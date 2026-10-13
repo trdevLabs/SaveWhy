@@ -53,7 +53,7 @@ public final class Reminders {
                 .setContentText(I18n.text(localized,"Kaydına dönme zamanı.")).setContentIntent(click).setAutoCancel(true)
                 .setVisibility(NotificationCompat.VISIBILITY_PRIVATE);
             NotificationManagerCompat.from(context).notify(id,0,notification.build());
-            Card consumed=card.copy(); consumed.reminderAt=0; store.save(consumed);
+            Card consumed=card.copy(); consumed.reminderAt=0; store.save(consumed,false);
         } catch(Exception ignored) { /* Never erase a failed or unreadable save. */ }
     }
 }

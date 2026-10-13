@@ -47,3 +47,14 @@ Birim testleri veri işlemlerini; arayüz testleri Android bileşenlerini emüle
 - Sistem dili Türkçe/İngilizce iken ilk açılışı dene. Ayarlardan diğer dili seç, yeniden aç; seçim korunmalı. Sistem dili seçimine dön, sistem dilini değiştir.
 - Kullanıcının başlığı, notu ve kendi yapılacakları dil değişiminde aynen kalmalı.
 - Normal splash yaklaşık 2,2 saniye görünmeli; dokununca hemen geçmeli. Paylaşım ve bildirim açılışında beklememeli.
+
+
+## v0.5 cihaz kabulü
+
+- Ana ekran slogan/sayaç satırlarını göstermemeli. Arama açıklaması kutu içinde, küçük logo başlığın solunda olmalı.
+- Ayarlarda Font lisansı, Nasıl çalışır ve sürüm açıklaması olmamalı.
+- Unutulanlar eşiğini değiştir; eski/tamamlanmamış kayıt ilgili sekmede görünmeli. Kartı açınca yeniden aktifleşmeli. Tamamlananlar dışarıda kalmalı.
+- Niyet ve hızlı neden ekle, adını değiştir, gizle ve yeniden göster. Eski kartlar korunmalı.
+- Tüm niyetleri/nedenleri gizleyip düzenleme erişiminin ve isteğe bağlı alanlarla kayıt akışının korunmasını dene.
+- Kişisel niyetle hızlı kayıt oluştur, yeniden başlat ve JSON yedeğini başka kurulumda içe aktar.
+- Dil değişiminde kişisel adlar ve kullanıcı notları aynı kalmalı.

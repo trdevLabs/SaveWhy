@@ -8,7 +8,7 @@ public final class Card {
     public static final int MAX_STEPS = 30;
     public final String id, url, title, why, note, searchQuery;
     public final long createdAt;
-    public long reminderAt;
+    public long reminderAt, lastActivityAt;
     public boolean done;
     public final List<Step> steps;
 
@@ -30,7 +30,7 @@ public final class Card {
         if(searchQuery==null || searchQuery.trim().length()>300) throw new IllegalArgumentException("Arama sorgusu en fazla 300 karakter olabilir.");
         this.searchQuery=searchQuery.trim();
         if (createdAt < 0) throw new IllegalArgumentException("Geçersiz kayıt tarihi.");
-        this.createdAt = createdAt; this.done = done;
+        this.createdAt = createdAt; this.lastActivityAt=createdAt; this.done = done;
         if (steps == null || steps.size() > MAX_STEPS) throw new IllegalArgumentException("En fazla 30 adım eklenebilir.");
         this.steps = new ArrayList<>();
         for (Step s : steps) this.steps.add(new Step(s.text, s.done));
@@ -40,7 +40,7 @@ public final class Card {
         if (text.trim().length() > max) throw new IllegalArgumentException(name + " en fazla " + max + " karakter olabilir.");
         return text.trim();
     }
-    public Card copy() { Card c=new Card(id, url, title, why, note, createdAt, done, steps, searchQuery); c.reminderAt=reminderAt; return c; }
+    public Card copy() { Card c=new Card(id, url, title, why, note, createdAt, done, steps, searchQuery); c.reminderAt=reminderAt; c.lastActivityAt=lastActivityAt; return c; }
     public int completedSteps() { int n = 0; for (Step s : steps) if (s.done) n++; return n; }
     public String duplicateKey() { return url + "\n" + why; }
     public boolean matches(String query) {
@@ -54,6 +54,12 @@ public final class Card {
         if(filter.equals("Bekleyen")) return !done;
         if(filter.equals("Tamamlanan")) return done;
         return why.equals(filter);
+    }
+    public boolean forgotten(long now,int days) { return !done && now>lastActivityAt && now-lastActivityAt>days*86400000L; }
+    public boolean visible(String filter,String query,int days,long now) {
+        if(filter.equals("Unutulanlar"))return matches(query)&&forgotten(now,days);
+        if(filter.equals("Bekleyen"))return matches(query)&&!done&&!forgotten(now,days);
+        return visible(filter,query);
     }
     public String effectiveSearchQuery() { return searchQuery.isEmpty()?title:searchQuery; }
     public String webSearchUrl() {

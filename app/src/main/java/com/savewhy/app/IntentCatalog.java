@@ -39,6 +39,7 @@ public final class IntentCatalog {
     public static List<Spec> all() { return ALL; }
     public static Spec get(String label) {
         for (Spec spec:ALL) if (spec.label.equals(label)) return spec;
+        if(Choices.custom(label))return new Spec(label,Choices.fallback(label),"Kendi niyetinle kaydet.","","İstersen özel bir not ekle.","Tamamlandı","");
         throw new IllegalArgumentException("Geçersiz niyet.");
     }
     public static String[] labels() {

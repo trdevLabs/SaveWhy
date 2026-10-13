@@ -24,6 +24,10 @@ SaveWhy, sosyal medyada kaydedilen bir içeriği kullanıcının amacı ve bir s
 
 Yeni niyetleri başlangıçta çoğaltmayacağız. Ek ihtiyaçlar önce mevcut niyetlerin alanları ve etiketlerle karşılanacak; özel niyetler ancak kullanıcıların tekrar eden ihtiyacı görülürse değerlendirilecek.
 
+## v0.5 kişisel seçenekler
+
+Sade ana ekran, varsayılan 15 günlük Unutulanlar listesi, değiştirilebilir süre ve niyet/hızlı neden kişiselleştirmesi uygulanmıştır. Kullanıcı yeni niyet/neden tanımlar, adını değiştirir ve göster/gizle seçer. Yedek biçimi 4, son etkinlik ve kişiselleştirme aktarımını içerir. AI aşaması henüz uygulanmamıştır.
+
 ## Cihaz geri bildirimiyle güncel sıra
 
 v0.4 kapsamında detay alanı okunabilirliği, seçilebilir yapılacak örnekleri, Türkçe/İngilizce dil desteği ve yerel hatırlatmalar öne alındı. AI içerik önerileri henüz eklenmedi; önce cihazda temel akış ve bildirim güvenilirliği doğrulanacak. Hatırlatma sürümüyle birlikte yedek biçimi 3 oldu; eski veriler korunur.

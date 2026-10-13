@@ -219,4 +219,27 @@
     <string name="ui_217" formatted="false">"Geçerli bir http/https bağlantısı gir."</string>
     <string name="ui_218" formatted="false">"Bu akşam · 20:00 geçti; yarın 20:00"</string>
     <string name="ui_219" formatted="false">"Hatırlatıcıyı kaydetmek için bildirime izin ver."</string>
+    <string name="ui_220" formatted="false">"Unutulanlar"</string>
+    <string name="ui_221" formatted="false">"Unutulanlar ayarı"</string>
+    <string name="ui_222" formatted="false">"Niyetlerini düzenle"</string>
+    <string name="ui_223" formatted="false">"Nedenlerini düzenle"</string>
+    <string name="ui_224" formatted="false">"Tamamlanmamış bir kaydı açmadığın veya değiştirmediğin gün sayısı. Süreyi geçenler Unutulanlar sekmesinde görünür; kayıtların silinmez."</string>
+    <string name="ui_225" formatted="false">"Gün sayısı · 1–365"</string>
+    <string name="ui_226" formatted="false">"1 ile 365 arasında gün sayısı gir."</string>
+    <string name="ui_227" formatted="false">"Seçenek ekle veya adını değiştir. İşaretli seçenekler uygulamada gösterilir. Gizlemek eski kayıtları değiştirmez."</string>
+    <string name="ui_228" formatted="false">"Hızlı nedenler"</string>
+    <string name="ui_229" formatted="false">"Yeni niyet ekle"</string>
+    <string name="ui_230" formatted="false">"Yeni neden ekle"</string>
+    <string name="ui_231" formatted="false">"Bitti"</string>
+    <string name="ui_232" formatted="false">"Seçenek adı"</string>
+    <string name="ui_233" formatted="false">"Yeni seçenek"</string>
+    <string name="ui_234" formatted="false">"Seçeneği düzenle"</string>
+    <string name="ui_235" formatted="false">"Seçenek adı 1–60 karakter olmalı."</string>
+    <string name="ui_236" formatted="false">"En fazla 500 kişisel seçenek eklenebilir."</string>
+    <string name="ui_237" formatted="false">"Geçersiz kişisel seçenek."</string>
+    <string name="ui_238" formatted="false">"Seçenekler kaydedilemedi."</string>
+    <string name="ui_239" formatted="false">"Seçenekler okunamadı. Mevcut ayarlar korunuyor."</string>
+    <string name="ui_240" formatted="false">"Geçersiz işlem tarihi."</string>
+    <string name="ui_241" formatted="false">"Kendi niyetinle kaydet."</string>
+    <string name="ui_242" formatted="false">"İstersen özel bir not ekle."</string>
 </resources>

@@ -219,4 +219,27 @@
     <string name="ui_217" formatted="false">"Enter a valid http/https link."</string>
     <string name="ui_218" formatted="false">"Tonight has passed · tomorrow at 20:00"</string>
     <string name="ui_219" formatted="false">"Allow notifications to save a reminder."</string>
+    <string name="ui_220" formatted="false">"Forgotten"</string>
+    <string name="ui_221" formatted="false">"Forgotten saves settings"</string>
+    <string name="ui_222" formatted="false">"Customize intents"</string>
+    <string name="ui_223" formatted="false">"Customize reasons"</string>
+    <string name="ui_224" formatted="false">"Number of days without opening or changing an unfinished save. Older saves appear in Forgotten; your saves are not deleted."</string>
+    <string name="ui_225" formatted="false">"Days · 1–365"</string>
+    <string name="ui_226" formatted="false">"Enter a number of days between 1 and 365."</string>
+    <string name="ui_227" formatted="false">"Add or rename options. Checked options are shown in the app. Hiding an option does not change existing saves."</string>
+    <string name="ui_228" formatted="false">"Quick reasons"</string>
+    <string name="ui_229" formatted="false">"Add intent"</string>
+    <string name="ui_230" formatted="false">"Add reason"</string>
+    <string name="ui_231" formatted="false">"Done"</string>
+    <string name="ui_232" formatted="false">"Option name"</string>
+    <string name="ui_233" formatted="false">"New option"</string>
+    <string name="ui_234" formatted="false">"Edit option"</string>
+    <string name="ui_235" formatted="false">"Option names must be 1–60 characters long."</string>
+    <string name="ui_236" formatted="false">"You can add up to 500 personal options."</string>
+    <string name="ui_237" formatted="false">"Invalid personal option."</string>
+    <string name="ui_238" formatted="false">"Options could not be saved."</string>
+    <string name="ui_239" formatted="false">"Options could not be read. Existing settings are preserved."</string>
+    <string name="ui_240" formatted="false">"Invalid activity date."</string>
+    <string name="ui_241" formatted="false">"Save with your own intent."</string>
+    <string name="ui_242" formatted="false">"Add a private note if you like."</string>
 </resources>

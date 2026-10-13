@@ -1,4 +1,4 @@
-# SaveWhy · Android 0.4.0
+# SaveWhy · Android 0.5.0
 
 **Paylaş. Niyetine dokun. Kaydet.**
 
@@ -13,6 +13,15 @@ Instagram, TikTok, YouTube veya bir web bağlantısında **Paylaş → SaveWhy**
 Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgisinden alınır; bilgi yoksa bağlantının kaynağı ve içerik kimliğinden oluşturulur. Her niyette dört hızlı neden vardır. Özel başlık, not, adımlar ve Bul sorgusu kapalı, isteğe bağlı detay alanındadır. Uygulama panoyu yalnızca **Panodan ekle** düğmesine dokunduğunda okur.
 
 **İzle** daha sonra tüketmek istediğin içerik içindir. **Bul** içerikte gördüğün bir şeyin kimliğini, kaynağını veya benzerini araştırmak içindir. Bul kartında web aramasından önce sorguyu gözden geçirirsin; özel notun sorguya otomatik eklenmez. Al, satın alma kararı; Öğren, öğrenme hedefi içindir.
+
+## v0.5 yenilikleri
+
+- Sade ana ekran: slogan/sayaç satırları kaldırıldı, arama açıklaması kutunun içine alındı; küçük splash logosu uygulama adının solunda.
+- Unutulanlar: varsayılan 15 günden uzun süre işlem görmeyen tamamlanmamış kayıtlar; ayarlardan 1–365 gün.
+- Niyet ve hızlı neden ekleme, yeniden adlandırma, göster/gizle; kişisel seçenekler kalıcıdır ve JSON yedeğiyle taşınır.
+- Ayarlar menüsü sadeleşti; adımsız kartların Niyetiyle kaydedildi satırı kaldırıldı.
+
+Davranış ve veri geçişi: [kişiselleştirme](docs/CUSTOMIZATION.md).
 
 ## v0.4 yenilikleri
 
@@ -75,13 +84,13 @@ Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında sak
 
 İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB JSON, 5000 kart, kart başına 30 adım. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 
-v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.4 yedek biçimi **sürüm 3**'tür; Bul sorgusunu ve hatırlatma tarihini içerir. Sürüm 1 ve 2 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
+v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.5 yedek biçimi **sürüm 4**'tür; Bul sorgusunu, hatırlatma ve son etkinlik tarihini içerir. Sürüm 1, 2 ve 3 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
 
 ## Doğrulama
 
 Veri testleri URL işlemleri, Türkçe arama, eski kayıt geçişi, yedekleme/birleştirme, yedi niyet ve başlık/not yazmadan hızlı kaydetmeyi kapsar. Robolectric arayüz testleri hızlı paylaşım kaydını, AMOLED/aydınlık renkleri ve taslağın yeniden oluşturulmasını kontrol eder. Arayüz testleri yerel inceleme için `app/build/reports/ui` altında görüntüler üretir.
 
-**81 test** (hatırlatma, dil ve Android arayüz testleri dahil), `lintDebug` ve temiz debug APK derlemesi geliştirme ortamında geçti; APK imzası ve ZIP bütünlüğü doğrulandı. **Gerçek cihaz ve Colab oturumunda etkileşimler ayrıca doğrulanmalıdır.** Testlerin geçmesi mağaza yayınına hazır olunduğu anlamına gelmez; cihaz kabul listesi ve ücretli ürün yayın kapıları tamamlanmalıdır.
+**94 test** (hatırlatma, dil ve Android arayüz testleri dahil), `lintDebug` ve temiz debug APK derlemesi geliştirme ortamında geçti; APK imzası ve ZIP bütünlüğü doğrulandı. **Gerçek cihaz ve Colab oturumunda etkileşimler ayrıca doğrulanmalıdır.** Testlerin geçmesi mağaza yayınına hazır olunduğu anlamına gelmez; cihaz kabul listesi ve ücretli ürün yayın kapıları tamamlanmalıdır.
 
 ## Üçüncü taraf varlıklar
 

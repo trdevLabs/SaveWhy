@@ -229,6 +229,29 @@ public final class I18n {
         IDS.put("Geçerli bir http/https bağlantısı gir.",R.string.ui_217);
         IDS.put("Bu akşam · 20:00 geçti; yarın 20:00",R.string.ui_218);
         IDS.put("Hatırlatıcıyı kaydetmek için bildirime izin ver.",R.string.ui_219);
+        IDS.put("Unutulanlar",R.string.ui_220);
+        IDS.put("Unutulanlar ayarı",R.string.ui_221);
+        IDS.put("Niyetlerini düzenle",R.string.ui_222);
+        IDS.put("Nedenlerini düzenle",R.string.ui_223);
+        IDS.put("Tamamlanmamış bir kaydı açmadığın veya değiştirmediğin gün sayısı. Süreyi geçenler Unutulanlar sekmesinde görünür; kayıtların silinmez.",R.string.ui_224);
+        IDS.put("Gün sayısı · 1–365",R.string.ui_225);
+        IDS.put("1 ile 365 arasında gün sayısı gir.",R.string.ui_226);
+        IDS.put("Seçenek ekle veya adını değiştir. İşaretli seçenekler uygulamada gösterilir. Gizlemek eski kayıtları değiştirmez.",R.string.ui_227);
+        IDS.put("Hızlı nedenler",R.string.ui_228);
+        IDS.put("Yeni niyet ekle",R.string.ui_229);
+        IDS.put("Yeni neden ekle",R.string.ui_230);
+        IDS.put("Bitti",R.string.ui_231);
+        IDS.put("Seçenek adı",R.string.ui_232);
+        IDS.put("Yeni seçenek",R.string.ui_233);
+        IDS.put("Seçeneği düzenle",R.string.ui_234);
+        IDS.put("Seçenek adı 1–60 karakter olmalı.",R.string.ui_235);
+        IDS.put("En fazla 500 kişisel seçenek eklenebilir.",R.string.ui_236);
+        IDS.put("Geçersiz kişisel seçenek.",R.string.ui_237);
+        IDS.put("Seçenekler kaydedilemedi.",R.string.ui_238);
+        IDS.put("Seçenekler okunamadı. Mevcut ayarlar korunuyor.",R.string.ui_239);
+        IDS.put("Geçersiz işlem tarihi.",R.string.ui_240);
+        IDS.put("Kendi niyetinle kaydet.",R.string.ui_241);
+        IDS.put("İstersen özel bir not ekle.",R.string.ui_242);
     }
     private I18n() {}
     public static String text(Context context,String value) {

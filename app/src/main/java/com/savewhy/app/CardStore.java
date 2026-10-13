@@ -22,7 +22,10 @@ public final class CardStore {
     public List<Card> all() { return new ArrayList<>(cards); }
     public Card find(String id) { for (Card c : cards) if (c.id.equals(id)) return c; return null; }
 
-    public void save(Card card) throws Exception {
+    public void save(Card card) throws Exception { save(card,true); }
+    public void save(Card card,boolean touch) throws Exception {
+        Card saved=card.copy(); if(touch)saved.lastActivityAt=System.currentTimeMillis();
+        card=saved;
         List<Card> next = all(); boolean replaced = false;
         for (int i=0; i<next.size(); i++) {
             Card old = next.get(i);

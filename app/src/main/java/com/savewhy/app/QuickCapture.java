@@ -21,7 +21,7 @@ public final class QuickCapture {
             case "Üret": return Arrays.asList("İlham aldım","Formatı uyarlayacağım","Yeni içerik fikri","Anlatımı hoşuma gitti");
             case "İzle": return Arrays.asList("Sonra izleyeceğim","Akşam için","Boş zamanımda","Birlikte izleyeceğiz");
             case "Bul": return Arrays.asList("Ne olduğunu bulacağım","Benzerini arayacağım","Kaynağını bulacağım","Nerede olduğunu bulacağım");
-            default: throw new IllegalArgumentException("Geçersiz niyet.");
+            default: if(Choices.custom(why))return Collections.emptyList(); throw new IllegalArgumentException("Geçersiz niyet.");
         }
     }
     public static String title(String url,String sharedTitle) {
@@ -47,10 +47,10 @@ public final class QuickCapture {
         IntentCatalog.get(why);
         String title=customTitle.trim().isEmpty()?title(url,sharedTitle):customTitle.trim();
         String note=!customNote.trim().isEmpty()?customNote.trim():quickReason.trim();
-        if(note.isEmpty()) note=reasons(why).get(0);
+        if(note.isEmpty()) note=reasons(why).isEmpty()?Choices.fallback(why):reasons(why).get(0);
         Card result=new Card(previous==null?UUID.randomUUID().toString():previous.id,url,title,why,note,
                 previous==null?System.currentTimeMillis():previous.createdAt,previous!=null&&previous.done,
                 Card.parseSteps(lines,previous==null?Collections.emptyList():previous.steps),searchQuery);
-        result.reminderAt=previous==null?0:previous.reminderAt; return result;
+        result.reminderAt=previous==null?0:previous.reminderAt; result.lastActivityAt=previous==null?result.createdAt:previous.lastActivityAt; return result;
     }
 }

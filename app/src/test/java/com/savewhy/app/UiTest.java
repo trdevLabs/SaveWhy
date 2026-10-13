@@ -45,6 +45,31 @@ public class UiTest {
         snapshot(splash.get().getWindow().getDecorView(),"splash");
         splash.pause().stop().destroy();
     }
+    private boolean hasText(View view,String text) {
+        if(view instanceof android.widget.TextView && ((android.widget.TextView)view).getText().toString().equals(text))return true;
+        if(view instanceof android.view.ViewGroup) {android.view.ViewGroup group=(android.view.ViewGroup)view;for(int i=0;i<group.getChildCount();i++)if(hasText(group.getChildAt(i),text))return true;}
+        return false;
+    }
+    @Test public void simplifiedHomeUsesInlineSearchAndForgottenTab() throws Exception {
+        MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);View view=activity.getWindow().getDecorView();
+        assertFalse(hasText(view,"Kaydet. Nedenini hatırla. Harekete geç."));
+        assertEquals("Kayıtlarında ara",((EditText)view.findViewById(R.id.main_search)).getHint().toString());assertTrue(hasText(view,"Unutulanlar"));
+        snapshot(view,"amoled-home-v05");
+    }
+    @Test public void editingWithHiddenReasonKeepsOriginalNote() throws Exception {
+        Choices choices=new Choices(RuntimeEnvironment.getApplication());choices.setReason("İzle","Sonra izleyeceğim","Later",false);
+        Card card=new Card("hidden","https://example.com","Title","İzle","Sonra izleyeceğim",1,false,java.util.Collections.emptyList());
+        CardStore persisted=new CardStore(RuntimeEnvironment.getApplication().getFilesDir());persisted.load();persisted.save(card);
+        MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);java.lang.reflect.Method edit=MainActivity.class.getDeclaredMethod("editCard",String.class);edit.setAccessible(true);edit.invoke(activity,card.id);
+        Dialog dialog=ShadowDialog.getLatestDialog();dialog.findViewById(R.id.capture_save).performClick();persisted.load();assertEquals("Sonra izleyeceğim",persisted.find(card.id).note);
+    }
+    @Test public void customIntentAndReasonSaveWithoutTypedFields() throws Exception {
+        Choices choices=new Choices(RuntimeEnvironment.getApplication());String key=Choices.customKey("Arşivle");choices.setIntent(key,"Arşivle",true);
+        String reason=Choices.customKey("Ailem için");choices.setReason(key,reason,"Ailem için",true);
+        MainActivity activity=launch(true,AppCompatDelegate.MODE_NIGHT_YES);Dialog dialog=ShadowDialog.getLatestDialog();tap(dialog.findViewById(R.id.capture_intents),"Arşivle");
+        assertTrue(hasText(dialog.getWindow().getDecorView(),"Ailem için"));dialog.findViewById(R.id.capture_save).performClick();
+        CardStore persisted=new CardStore(activity.getFilesDir());persisted.load();assertEquals(key,persisted.all().get(0).why);assertEquals("Ailem için",persisted.all().get(0).note);
+    }
     @Test public void englishQuickCaptureUsesTranslatedChoicesWithoutTyping() throws Exception {
         AppCompatDelegate.setApplicationLocales(androidx.core.os.LocaleListCompat.forLanguageTags("en"));
         MainActivity activity=launch(true,AppCompatDelegate.MODE_NIGHT_YES); Dialog dialog=ShadowDialog.getLatestDialog();
