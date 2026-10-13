@@ -52,7 +52,7 @@ if [[ ! -x "$build_cache/gradle-8.9/bin/gradle" ]]; then
   unzip -q -o "$build_cache/downloads/gradle.zip" -d "$build_cache"
 fi
 cd "$project_root"
-"$build_cache/gradle-8.9/bin/gradle" --no-daemon --console=plain testDebugUnitTest lintDebug assembleDebug
+"$build_cache/gradle-8.9/bin/gradle" --no-daemon --console=plain clean testDebugUnitTest lintDebug assembleDebug
 apk='app/build/outputs/apk/debug/app-debug.apk'
 test -s "$apk"
 python3 - <<'PY'

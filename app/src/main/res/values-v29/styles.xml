@@ -1,0 +1,6 @@
+<resources>
+    <style name="AppTheme" parent="SaveWhyThemeBase">
+        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+</resources>

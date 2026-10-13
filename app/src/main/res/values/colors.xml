@@ -1,0 +1,12 @@
+<resources>
+    <color name="app_background">#F6F8FA</color>
+    <color name="app_surface">#FFFFFF</color>
+    <color name="app_surface_soft">#EEF3F1</color>
+    <color name="app_text">#13221D</color>
+    <color name="app_muted">#64736C</color>
+    <color name="app_primary">#126D54</color>
+    <color name="app_on_primary">#FFFFFF</color>
+    <color name="app_border">#DEE7E2</color>
+    <color name="app_error">#BA1A1A</color>
+    <bool name="light_system_bars">true</bool>
+</resources>

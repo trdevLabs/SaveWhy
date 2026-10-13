@@ -1,0 +1,14 @@
+<resources>
+    <item name="main_search" type="id" />
+    <item name="main_list" type="id" />
+    <item name="main_add" type="id" />
+    <item name="capture_intents" type="id" />
+    <item name="capture_reasons" type="id" />
+    <item name="capture_link" type="id" />
+    <item name="capture_title" type="id" />
+    <item name="capture_note" type="id" />
+    <item name="capture_steps" type="id" />
+    <item name="capture_search_query" type="id" />
+    <item name="capture_details" type="id" />
+    <item name="capture_save" type="id" />
+</resources>

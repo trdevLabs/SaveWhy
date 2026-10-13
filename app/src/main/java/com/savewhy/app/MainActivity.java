@@ -1,276 +1,475 @@
 package com.savewhy.app;
 
-import android.app.*;
 import android.content.*;
-import android.graphics.Color;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
-import android.os.Bundle;
+import android.os.*;
 import android.text.*;
 import android.view.*;
 import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.*;
+import androidx.recyclerview.widget.*;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.chip.*;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.*;
 
-public class MainActivity extends Activity {
-    private static final int EXPORT = 41, IMPORT = 42;
-    private static final int INK = Color.rgb(26,48,40), GREEN = Color.rgb(26,112,87), MUTED = Color.rgb(101,117,108);
+public class MainActivity extends AppCompatActivity {
+    private static final int EXPORT=41, IMPORT=42;
     private CardStore store;
-    private LinearLayout list, filterRow;
-    private TextView summary, status;
-    private String query="", filter="Tümü";
-    private AlertDialog editorDialog;
-    private EditText editUrl, editTitle, editNote, editSteps;
-    private Spinner editWhy;
-    private String editingId="";
+    private FrameLayout root;
+    private RecyclerView recycler;
+    private CardAdapter adapter;
+    private LinearLayout empty;
+    private ChipGroup filters;
+    private TextView count, status;
+    private Typeface regular, bold;
+    private String query="", filter="Bekleyen";
+    private CaptureUi capture;
+    private final Handler handler=new Handler(Looper.getMainLooper());
+    private final ExecutorService worker=Executors.newSingleThreadExecutor();
+    private int generation;
+    private Runnable searchTask;
 
     @Override public void onCreate(Bundle state) {
+        int mode=getSharedPreferences("settings",MODE_PRIVATE).getInt("theme",AppCompatDelegate.MODE_NIGHT_YES);
+        AppCompatDelegate.setDefaultNightMode(mode);
         super.onCreate(state);
+        regular=ResourcesCompat.getFont(this,R.font.manrope_family); bold=Typeface.create(regular,Typeface.BOLD);
         store=new CardStore(getFilesDir());
         try { store.load(); } catch(Exception e) { toast("Kayıtlar okunamadı. Mevcut dosya korunuyor."); }
-        if (state!=null) { query=state.getString("query",""); filter=state.getString("filter","Tümü"); }
+        if(state!=null) { query=state.getString("query",""); filter=state.getString("filter","Bekleyen"); }
         home();
-        if (state!=null && state.containsKey("draft")) showEditor(state.getBundle("draft"));
-        else receive(getIntent());
+        if(state!=null && state.containsKey("draft")) showCapture(state.getBundle("draft")); else receive(getIntent());
     }
     @Override protected void onSaveInstanceState(Bundle state) {
         super.onSaveInstanceState(state); state.putString("query",query); state.putString("filter",filter);
-        if (editorDialog!=null && editorDialog.isShowing()) state.putBundle("draft",draft());
+        if(capture!=null && capture.dialog.isShowing()) state.putBundle("draft",capture.bundle());
     }
-    @Override protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent); setIntent(intent); receive(intent);
+    @Override protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null); worker.shutdownNow(); super.onDestroy();
     }
+    @Override protected void onNewIntent(Intent intent) { super.onNewIntent(intent); setIntent(intent); receive(intent); }
     private void receive(Intent intent) {
-        if (!Intent.ACTION_SEND.equals(intent.getAction())) return;
-        String shared=intent.getStringExtra(Intent.EXTRA_TEXT);
-        if (shared==null && intent.getClipData()!=null && intent.getClipData().getItemCount()>0)
-            shared=String.valueOf(intent.getClipData().getItemAt(0).coerceToText(this));
-        final String link=UrlTools.extract(shared);
-        String subject=intent.getStringExtra(Intent.EXTRA_SUBJECT);
+        if(!Intent.ACTION_SEND.equals(intent.getAction())) return;
+        CharSequence raw=intent.getCharSequenceExtra(Intent.EXTRA_TEXT);
+        if(raw==null && intent.getClipData()!=null && intent.getClipData().getItemCount()>0)
+            raw=intent.getClipData().getItemAt(0).coerceToText(this);
+        String url=UrlTools.extract(raw==null?"":raw.toString());
+        CharSequence subject=intent.getCharSequenceExtra(Intent.EXTRA_SUBJECT);
+        if(subject==null) subject=intent.getCharSequenceExtra(Intent.EXTRA_TITLE);
         intent.setAction(Intent.ACTION_MAIN);
-        if (link.isEmpty()) { toast("Paylaşılan metinde geçerli bir bağlantı bulunamadı."); return; }
-        Bundle draft=new Bundle(); draft.putString("url",link);
-        draft.putString("title",subject==null?"":subject.substring(0,Math.min(160,subject.length())));
-        if (editorDialog!=null && editorDialog.isShowing()) {
-            new AlertDialog.Builder(this).setTitle("Yeni paylaşımı aç?")
-                .setMessage("Açık formdaki kaydedilmemiş değişiklikler kapanacak.")
-                .setNegativeButton("Formda kal",null).setPositiveButton("Yeni paylaşımı aç",(d,w)-> {
-                    editorDialog.dismiss(); showEditor(draft);
-                }).show();
-        } else showEditor(draft);
+        if(url.isEmpty()) { toast("Bu paylaşımda geçerli bir bağlantı yok."); return; }
+        Bundle b=new Bundle(); b.putString("url",url); b.putString("sharedTitle",QuickCapture.sharedTitle(raw==null?"":raw.toString(),subject==null?"":subject.toString()));
+        if(capture!=null && capture.dialog.isShowing()) {
+            new MaterialAlertDialogBuilder(this).setTitle("Yeni paylaşımı aç?").setMessage("Açık taslak kapanacak.")
+                .setNegativeButton("Taslakta kal",null).setPositiveButton("Yeni paylaşımı aç",(d,w)-> {capture.dialog.dismiss(); showCapture(b);}).show();
+        } else showCapture(b);
     }
-
     private int dp(int n) { return Math.round(n*getResources().getDisplayMetrics().density); }
+    private int color(int id) { return ContextCompat.getColor(this,id); }
     private LinearLayout column() { LinearLayout l=new LinearLayout(this); l.setOrientation(LinearLayout.VERTICAL); return l; }
-    private TextView text(String value,int size,int color) {
-        TextView t=new TextView(this); t.setText(value); t.setTextSize(size); t.setTextColor(color);
-        t.setPadding(0,dp(4),0,dp(4)); return t;
+    private LinearLayout row() { LinearLayout l=new LinearLayout(this); l.setGravity(Gravity.CENTER_VERTICAL); return l; }
+    private TextView text(String value,int size,boolean strong) {
+        TextView t=new TextView(this); t.setText(value); t.setTextSize(size); t.setTypeface(strong?bold:regular);
+        t.setTextColor(color(strong?R.color.app_text:R.color.app_muted)); t.setLineSpacing(dp(2),1); t.setPadding(0,dp(4),0,dp(4)); return t;
     }
-    private TextView heading(String value,int size) { TextView t=text(value,size,INK); t.setTypeface(null,Typeface.BOLD); return t; }
-    private GradientDrawable surface(int color,int radius) { GradientDrawable b=new GradientDrawable(); b.setColor(color); b.setCornerRadius(dp(radius)); return b; }
-    private Button button(String label,boolean primary,Runnable action) {
-        Button b=new Button(this); b.setText(label); b.setAllCaps(false); b.setTextSize(14);
-        b.setTextColor(primary?Color.WHITE:GREEN); b.setBackground(surface(primary?GREEN:Color.rgb(231,240,234),14));
-        b.setPadding(dp(14),dp(8),dp(14),dp(8)); b.setMinHeight(dp(48)); b.setMinimumHeight(dp(48));
-        LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2); p.setMargins(0,dp(6),0,dp(6)); b.setLayoutParams(p);
+    private void gap(LinearLayout layout,int height) { View v=new View(this); layout.addView(v,new LinearLayout.LayoutParams(1,dp(height))); }
+    private LinearLayout.LayoutParams full() { return new LinearLayout.LayoutParams(-1,-2); }
+    private MaterialCardView surface() {
+        MaterialCardView c=new MaterialCardView(this); c.setCardBackgroundColor(color(R.color.app_surface));
+        c.setCardElevation(0); c.setRadius(dp(22)); c.setStrokeWidth(dp(1)); c.setStrokeColor(color(R.color.app_border)); return c;
+    }
+    private int icon(String why) {
+        switch(why) {
+            case "Yap": return R.drawable.ic_do; case "Git": return R.drawable.ic_go;
+            case "Al": return R.drawable.ic_buy; case "Öğren": return R.drawable.ic_learn;
+            case "Üret": return R.drawable.ic_create; case "İzle": return R.drawable.ic_watch;
+            case "Bul": return R.drawable.ic_find; default: return R.drawable.ic_bookmark;
+        }
+    }
+    private ColorStateList selectionColors(int checked,int normal) {
+        return new ColorStateList(new int[][]{new int[]{android.R.attr.state_checked},new int[]{}},new int[]{color(checked),color(normal)});
+    }
+    private MaterialButton button(String label,int icon,boolean primary,Runnable action) {
+        MaterialButton b=new MaterialButton(this); b.setText(label); b.setAllCaps(false); b.setTypeface(bold); b.setTextSize(14);
+        b.setCornerRadius(dp(16)); b.setMinHeight(dp(52)); b.setMinimumHeight(dp(52)); b.setMinWidth(0); b.setMinimumWidth(0);
+        b.setInsetTop(0); b.setInsetBottom(0); b.setStrokeWidth(0); b.setPadding(dp(16),dp(10),dp(16),dp(10));
+        b.setBackgroundTintList(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},
+                new int[]{color(R.color.app_surface_soft),color(primary?R.color.app_primary:R.color.app_surface_soft)}));
+        b.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},
+                new int[]{color(R.color.app_muted),color(primary?R.color.app_on_primary:R.color.app_primary)}));
+        if(icon!=0) { b.setIconResource(icon); b.setIconSize(dp(20)); b.setIconPadding(dp(10)); b.setIconTint(b.getTextColors()); }
         b.setOnClickListener(v->action.run()); return b;
     }
-    private EditText input(String hint,String value,int max,boolean multiline) {
-        EditText e=new EditText(this); e.setTextColor(INK); e.setHintTextColor(MUTED); e.setTextSize(16);
-        e.setHint(hint); e.setText(value); e.setPadding(dp(12),dp(12),dp(12),dp(12));
-        e.setBackground(surface(Color.rgb(241,244,239),12)); e.setSingleLine(!multiline);
-        if(multiline) { e.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE); e.setMinLines(3); e.setGravity(Gravity.TOP); }
-        e.setFilters(new InputFilter[]{new InputFilter.LengthFilter(max)});
-        LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2); p.setMargins(0,dp(4),0,dp(8)); e.setLayoutParams(p);
-        return e;
+    private MaterialButton iconButton(String label,int icon,Runnable action) {
+        MaterialButton b=button("",icon,false,action); b.setContentDescription(label); b.setIconPadding(0);
+        b.setPadding(0,0,0,0); b.setIconGravity(MaterialButton.ICON_GRAVITY_TEXT_START); b.setCornerRadius(dp(24));
+        b.setLayoutParams(new LinearLayout.LayoutParams(dp(48),dp(48))); return b;
+    }
+    private Chip chip(String name,int icon,boolean choice) {
+        Chip c=new Chip(this); c.setChipDrawable(ChipDrawable.createFromAttributes(this,null,0,com.google.android.material.R.style.Widget_Material3_Chip_Filter)); c.setText(name); c.setTypeface(regular);
+        c.setTextSize(13); c.setCheckable(choice); c.setCheckedIconVisible(false); c.setEnsureMinTouchTargetSize(true);
+        c.setChipCornerRadius(dp(14)); c.setChipStrokeWidth(dp(1)); c.setChipStrokeColor(ColorStateList.valueOf(color(R.color.app_border)));
+        c.setChipBackgroundColor(selectionColors(R.color.app_primary,R.color.app_surface));
+        c.setTextColor(selectionColors(R.color.app_on_primary,R.color.app_muted));
+        if(icon!=0) { c.setChipIconResource(icon); c.setChipIconSize(dp(18)); c.setChipIconTint(selectionColors(R.color.app_on_primary,R.color.app_primary)); c.setChipIconVisible(true); }
+        return c;
+    }
+    private TextInputLayout input(LinearLayout parent,String label,String value,int max,int lines,int id) {
+        TextInputLayout box=new TextInputLayout(this,null,com.google.android.material.R.attr.textInputOutlinedStyle);
+        box.setHint(label); box.setBoxBackgroundMode(TextInputLayout.BOX_BACKGROUND_OUTLINE);
+        box.setBoxCornerRadii(dp(14),dp(14),dp(14),dp(14));
+        TextInputEditText e=new TextInputEditText(box.getContext()); e.setId(id); e.setText(value); e.setTypeface(regular); e.setTextSize(15);
+        e.setTextColor(color(R.color.app_text)); e.setMinLines(lines); e.setMaxLines(lines==1?1:5);
+        e.setInputType(android.text.InputType.TYPE_CLASS_TEXT|(lines>1?android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE:0));
+        e.setFilters(new InputFilter[]{new InputFilter.LengthFilter(max)}); box.addView(e,new LinearLayout.LayoutParams(-1,-2));
+        LinearLayout.LayoutParams p=full(); p.setMargins(0,dp(6),0,dp(8)); parent.addView(box,p); return box;
     }
     private void home() {
-        LinearLayout root=column(); root.setBackgroundColor(Color.rgb(246,245,239)); setContentView(root);
-        root.setPadding(dp(20),dp(12),dp(20),dp(12));
-        root.setOnApplyWindowInsetsListener((v,i)-> {
-            root.setPadding(dp(20),dp(12)+i.getSystemWindowInsetTop(),dp(20),dp(12)+i.getSystemWindowInsetBottom()); return i;
+        WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
+        boolean light=getResources().getBoolean(R.bool.light_system_bars);
+        WindowInsetsControllerCompat bars=WindowCompat.getInsetsController(getWindow(),getWindow().getDecorView());
+        bars.setAppearanceLightStatusBars(light); bars.setAppearanceLightNavigationBars(light);
+        getWindow().setNavigationBarColor(Build.VERSION.SDK_INT<27&&light?color(R.color.app_text):color(R.color.app_background));
+        root=new FrameLayout(this); root.setBackgroundColor(color(R.color.app_background)); setContentView(root);
+        ViewCompat.setOnApplyWindowInsetsListener(root,(v,insets)-> {
+            Insets system=insets.getInsets(WindowInsetsCompat.Type.systemBars()); v.setPadding(0,system.top,0,system.bottom); return insets;
         });
-        LinearLayout top=new LinearLayout(this); top.setGravity(Gravity.CENTER_VERTICAL);
-        top.addView(heading("SaveWhy",32),new LinearLayout.LayoutParams(0,-2,1));
-        Button menu=button("•••",false,this::menu); menu.setContentDescription("Yedekleme ve uygulama bilgisi");
-        top.addView(menu,new LinearLayout.LayoutParams(dp(58),dp(48))); root.addView(top);
-        root.addView(text("Kaydettiğin içerik, yapacağın bir şeye dönüşsün.",14,MUTED));
-        summary=text("",13,GREEN); root.addView(summary);
-        root.addView(button("＋  Yeni içerik kaydet",true,()->showEditor(new Bundle())));
-        EditText search=input("Başlık, neden veya adım ara…",query,200,false); root.addView(search);
-        search.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s,int start,int count,int after) {}
-            public void afterTextChanged(Editable e) {}
-            public void onTextChanged(CharSequence s,int start,int before,int count) { query=s.toString(); render(); }
-        });
-        HorizontalScrollView filters=new HorizontalScrollView(this); filters.setHorizontalScrollBarEnabled(false); filterRow=new LinearLayout(this);
-        for(String name:new String[]{"Tümü","Yap","Git","Al","Öğren","Üret","Tamamlanan"}) {
-            Button b=button(name,false,()-> {filter=name; render();});
-            LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-2,dp(48)); p.setMargins(0,dp(4),dp(6),dp(4));
-            b.setTag(name); filterRow.addView(b,p);
+        LinearLayout page=column(); root.addView(page,new FrameLayout.LayoutParams(-1,-1));
+        LinearLayout header=row(); header.setPadding(dp(20),dp(16),dp(20),dp(12));
+        header.addView(text("SaveWhy",28,true),new LinearLayout.LayoutParams(0,-2,1));
+        header.addView(iconButton("Tema seç",R.drawable.ic_moon,this::chooseTheme));
+        View spacer=new View(this); header.addView(spacer,new LinearLayout.LayoutParams(dp(8),1));
+        header.addView(iconButton("Ayarlar ve yedekler",R.drawable.ic_more,this::settings)); page.addView(header);
+        LinearLayout top=column(); top.setPadding(dp(20),0,dp(20),dp(4));
+        top.addView(text("Kaydet. Nedenini hatırla. Harekete geç.",13,false));
+        count=text("",13,false); top.addView(count);
+        TextInputLayout search=input(top,"Kayıtlarında ara",query,200,1,R.id.main_search);
+        search.setStartIconDrawable(R.drawable.ic_find); search.setEndIconMode(TextInputLayout.END_ICON_CLEAR_TEXT);
+        search.getEditText().addTextChangedListener(watcher(()-> {
+            query=search.getEditText().getText().toString(); scheduleRender();
+        })); page.addView(top);
+        HorizontalScrollView horizontal=new HorizontalScrollView(this); horizontal.setHorizontalScrollBarEnabled(false);
+        filters=new ChipGroup(this); filters.setSingleLine(true); filters.setSingleSelection(true); filters.setSelectionRequired(true);
+        filters.setChipSpacingHorizontal(dp(6)); filters.setPadding(dp(20),0,dp(20),dp(4));
+        for(String name:IntentCatalog.filters()) {
+            Chip c=chip(name,Arrays.asList(Card.INTENTS).contains(name)?icon(name):0,true); c.setTag(name); c.setChecked(filter.equals(name));
+            c.setOnClickListener(v-> { filter=name; render(); }); filters.addView(c);
         }
-        filters.addView(filterRow); root.addView(filters);
-        status=text("",12,MUTED); root.addView(status);
-        ScrollView scroll=new ScrollView(this); scroll.setFillViewport(true); list=column(); scroll.addView(list);
-        root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1)); render();
+        horizontal.addView(filters); page.addView(horizontal);
+        status=text("",11,false); status.setPadding(dp(22),0,dp(20),dp(6)); page.addView(status);
+        FrameLayout content=new FrameLayout(this); page.addView(content,new LinearLayout.LayoutParams(-1,0,1));
+        recycler=new RecyclerView(this); recycler.setId(R.id.main_list); recycler.setLayoutManager(new LinearLayoutManager(this));
+        recycler.setClipToPadding(false); recycler.setPadding(dp(20),dp(4),dp(20),dp(100));
+        adapter=new CardAdapter(); recycler.setAdapter(adapter); content.addView(recycler,new FrameLayout.LayoutParams(-1,-1));
+        empty=column(); empty.setPadding(dp(32),dp(30),dp(32),dp(90)); empty.setGravity(Gravity.CENTER);
+        content.addView(empty,new FrameLayout.LayoutParams(-1,-1));
+        ExtendedFloatingActionButton add=new ExtendedFloatingActionButton(this); add.setId(R.id.main_add); add.setText("Yeni kayıt"); add.setTypeface(bold);
+        add.setIconResource(R.drawable.ic_add); add.setIconTint(ColorStateList.valueOf(color(R.color.app_on_primary)));
+        add.setBackgroundTintList(ColorStateList.valueOf(color(R.color.app_primary))); add.setTextColor(color(R.color.app_on_primary));
+        add.setOnClickListener(v->showCapture(new Bundle()));
+        FrameLayout.LayoutParams fab=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.END); fab.setMargins(dp(20),0,dp(20),dp(20)); root.addView(add,fab);
+        render();
+    }
+    private TextWatcher watcher(Runnable action) {
+        return new TextWatcher() { public void beforeTextChanged(CharSequence s,int a,int b,int c) {} public void afterTextChanged(Editable e) { action.run(); } public void onTextChanged(CharSequence s,int a,int b,int c) {} };
+    }
+    private void scheduleRender() {
+        if(searchTask!=null) handler.removeCallbacks(searchTask); searchTask=this::render; handler.postDelayed(searchTask,120);
     }
     private void render() {
-        if(list==null) return;
-        list.removeAllViews(); List<Card> cards=store.all(); int completed=0, shown=0;
-        for(Card c:cards) if(c.done) completed++;
-        summary.setText(getString(R.string.card_counts,cards.size()-completed,completed));
-        for(int i=0;i<filterRow.getChildCount();i++) {
-            Button b=(Button)filterRow.getChildAt(i); boolean active=filter.equals(b.getTag());
-            b.setBackground(surface(active?GREEN:Color.rgb(231,240,234),14)); b.setTextColor(active?Color.WHITE:GREEN);
+        if(adapter==null || isDestroyed()) return;
+        List<Card> all=store.all(); int done=0; for(Card c:all) if(c.done) done++;
+        count.setText(getString(R.string.card_counts,all.size()-done,done));
+        for(int i=0;i<filters.getChildCount();i++) { Chip c=(Chip)filters.getChildAt(i); c.setChecked(filter.equals(c.getTag())); }
+        final String selected=filter, term=query; final int ticket=++generation;
+        final List<Card> previous=new ArrayList<>(adapter.items);
+        worker.execute(()-> {
+            List<Card> visible=new ArrayList<>(); for(Card c:all) if(c.visible(selected,term)) visible.add(c);
+            DiffUtil.DiffResult changes=DiffUtil.calculateDiff(new DiffUtil.Callback() {
+                public int getOldListSize() { return previous.size(); }
+                public int getNewListSize() { return visible.size(); }
+                public boolean areItemsTheSame(int a,int b) { return previous.get(a).id.equals(visible.get(b).id); }
+                public boolean areContentsTheSame(int a,int b) {
+                    Card old=previous.get(a), now=visible.get(b);
+                    return old.title.equals(now.title)&&old.url.equals(now.url)&&old.why.equals(now.why)&&old.note.equals(now.note)
+                        &&old.done==now.done&&old.steps.size()==now.steps.size()&&old.completedSteps()==now.completedSteps();
+                }
+            });
+            runOnUiThread(()-> {
+                if(isDestroyed() || ticket!=generation) return;
+                adapter.items=visible; changes.dispatchUpdatesTo(adapter);
+                status.setText(store.isHealthy()?selected+" · "+visible.size()+" kayıt":"Kayıt dosyası okunamadı. Mevcut dosya korunuyor.");
+                empty.setVisibility(visible.isEmpty()?View.VISIBLE:View.GONE); recycler.setVisibility(visible.isEmpty()?View.GONE:View.VISIBLE);
+                if(visible.isEmpty()) emptyState(all.isEmpty());
+            });
+        });
+    }
+    private void emptyState(boolean first) {
+        empty.removeAllViews(); ImageView image=new ImageView(this); image.setImageResource(first?R.drawable.ic_bookmark:R.drawable.ic_find);
+        image.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary))); empty.addView(image,new LinearLayout.LayoutParams(dp(48),dp(48))); gap(empty,18);
+        TextView heading=text(first?"İyi bir şey gördün mü?":"Burada henüz kayıt yok.",24,true); heading.setGravity(Gravity.CENTER); empty.addView(heading);
+        TextView help=text(first?"Instagram, TikTok veya YouTube'da paylaş menüsünden SaveWhy'ı seç. Niyetine dokun, kaydet.":"Başka bir niyet seç veya arama sözcüğünü değiştir.",14,false);
+        help.setGravity(Gravity.CENTER); empty.addView(help); gap(empty,18);
+        if(first) empty.addView(button("Nasıl çalışır?",R.drawable.ic_info,false,this::howItWorks));
+    }
+    private class CardAdapter extends RecyclerView.Adapter<CardHolder> {
+        List<Card> items=new ArrayList<>();
+        @Override public CardHolder onCreateViewHolder(ViewGroup parent,int type) { return new CardHolder(); }
+        @Override public void onBindViewHolder(CardHolder h,int index) {
+            Card c=items.get(index); h.symbol.setImageResource(icon(c.why)); h.symbol.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary)));
+            h.meta.setText(c.why+"  ·  "+UrlTools.source(c.url)); h.title.setText(c.title); h.note.setText(c.note);
+            h.progress.setText(c.done?"Tamamlandı":c.steps.isEmpty()?"Niyetiyle kaydedildi":c.completedSteps()+" / "+c.steps.size()+" adım");
+            h.card.setOnClickListener(v->detail(c.id)); h.card.setContentDescription(c.title+", "+c.why+", "+c.note);
         }
-        for(Card c:cards) {
-            if(filter.equals("Tamamlanan")?!c.done:c.done||(!filter.equals("Tümü")&&!filter.equals(c.why))) continue;
-            if(!c.matches(query)) continue;
-            shown++;
-            LinearLayout box=column(); box.setPadding(dp(16),dp(14),dp(16),dp(14)); box.setBackground(surface(Color.WHITE,20));
-            LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2); p.setMargins(0,dp(6),0,dp(8)); list.addView(box,p);
-            box.addView(text(c.why.toUpperCase(Locale.forLanguageTag("tr"))+"  ·  "+UrlTools.source(c.url),12,GREEN));
-            box.addView(heading(c.title,21));
-            box.addView(text("NEDEN KAYDETTİM?",11,MUTED)); TextView reason=text(c.note,16,INK); reason.setMaxLines(3); reason.setEllipsize(TextUtils.TruncateAt.END); box.addView(reason);
-            String progress=c.steps.isEmpty()?"İlk adımını ekle":c.completedSteps()+" / "+c.steps.size()+" adım tamamlandı";
-            box.addView(text(c.done?"✓ Tamamlandı":progress,13,GREEN));
-            box.addView(button("Kartı aç  →",false,()->detail(c.id)));
+        @Override public int getItemCount() { return items.size(); }
+    }
+    private class CardHolder extends RecyclerView.ViewHolder {
+        MaterialCardView card; ImageView symbol; TextView meta,title,note,progress;
+        CardHolder() { super(surface()); card=(MaterialCardView)itemView;
+            RecyclerView.LayoutParams p=new RecyclerView.LayoutParams(-1,-2); p.setMargins(0,0,0,dp(12)); card.setLayoutParams(p);
+            card.setClickable(true); card.setFocusable(true);
+            LinearLayout body=column(); body.setPadding(dp(18),dp(16),dp(18),dp(16)); card.addView(body);
+            LinearLayout head=row(); symbol=new ImageView(MainActivity.this); head.addView(symbol,new LinearLayout.LayoutParams(dp(22),dp(22)));
+            meta=text("",12,false); LinearLayout.LayoutParams mp=new LinearLayout.LayoutParams(0,-2,1); mp.setMargins(dp(10),0,0,0); head.addView(meta,mp);
+            ImageView arrow=new ImageView(MainActivity.this); arrow.setImageResource(R.drawable.ic_chevron); arrow.setImageTintList(ColorStateList.valueOf(color(R.color.app_muted))); head.addView(arrow,new LinearLayout.LayoutParams(dp(18),dp(18))); body.addView(head); gap(body,6);
+            title=text("",18,true); title.setMaxLines(2); title.setEllipsize(TextUtils.TruncateAt.END); body.addView(title);
+            note=text("",13,false); note.setMaxLines(1); note.setEllipsize(TextUtils.TruncateAt.END); body.addView(note);
+            progress=text("",11,false); progress.setTextColor(color(R.color.app_primary)); body.addView(progress);
         }
-        status.setText(store.isHealthy()?filter+" · "+shown+" kayıt · Cihazında saklanır":"Kayıt dosyası okunamadı. Değişiklik yapılamıyor.");
-        if(shown==0) {
-            LinearLayout empty=column(); empty.setPadding(dp(12),dp(30),dp(12),dp(20));
-            empty.addView(heading(cards.isEmpty()?"İlk kaydınla başla.":"Burada henüz kayıt yok.",24));
-            empty.addView(text(query.isEmpty()?"Instagram, TikTok veya YouTube'da Paylaş → SaveWhy. Niyetini seç, nedenini yaz, adımlarını belirle.":"Başka bir kelime veya niyet filtresi dene.",16,MUTED));
-            list.addView(empty);
+    }
+    private BottomSheetDialog sheet(LinearLayout body) {
+        BottomSheetDialog dialog=new BottomSheetDialog(this); androidx.core.widget.NestedScrollView scroll=new androidx.core.widget.NestedScrollView(this);
+        scroll.setFillViewport(false); scroll.addView(body); dialog.setContentView(scroll);
+        dialog.getBehavior().setMaxHeight((int)(getResources().getDisplayMetrics().heightPixels*0.92));
+        dialog.getBehavior().setSkipCollapsed(true); dialog.setOnShowListener(d->dialog.getBehavior().setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED));
+        return dialog;
+    }
+    private BottomSheetDialog captureSheet(LinearLayout body,LinearLayout footer) {
+        BottomSheetDialog dialog=new BottomSheetDialog(this);
+        LinearLayout panel=column(); androidx.core.widget.NestedScrollView scroll=new androidx.core.widget.NestedScrollView(this); scroll.addView(body);
+        panel.addView(scroll,new LinearLayout.LayoutParams(-1,0,1)); panel.addView(footer,full()); dialog.setContentView(panel);
+        ViewGroup.LayoutParams size=panel.getLayoutParams(); size.height=Math.min(dp(680),(int)(getResources().getDisplayMetrics().heightPixels*0.9)); panel.setLayoutParams(size);
+        dialog.getBehavior().setMaxHeight((int)(getResources().getDisplayMetrics().heightPixels*0.92)); dialog.getBehavior().setSkipCollapsed(true);
+        ViewCompat.setOnApplyWindowInsetsListener(panel,(v,insets)-> {
+            Insets bars=insets.getInsets(WindowInsetsCompat.Type.systemBars()), keyboard=insets.getInsets(WindowInsetsCompat.Type.ime());
+            int available=getResources().getDisplayMetrics().heightPixels-bars.top-Math.max(bars.bottom,keyboard.bottom);
+            dialog.getBehavior().setMaxHeight(Math.max(dp(200),(int)(available*0.95))); return insets;
+        });
+        dialog.setOnShowListener(d->dialog.getBehavior().setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED)); return dialog;
+    }
+    private LinearLayout sheetBody() {
+        LinearLayout body=column(); body.setPadding(dp(24),dp(16),dp(24),dp(28)); body.setFocusableInTouchMode(true);
+        View handle=new View(this); android.graphics.drawable.GradientDrawable shape=new android.graphics.drawable.GradientDrawable();
+        shape.setColor(color(R.color.app_border)); shape.setCornerRadius(dp(4)); handle.setBackground(shape);
+        LinearLayout.LayoutParams hp=new LinearLayout.LayoutParams(dp(32),dp(4)); hp.gravity=Gravity.CENTER; hp.setMargins(0,0,0,dp(18)); body.addView(handle,hp); return body;
+    }
+    private void showCapture(Bundle draft) {
+        if(!store.isHealthy()) { toast("Kayıt dosyası okunamadı. Yeni kayıt açılamıyor."); return; }
+        capture=new CaptureUi(draft); capture.dialog.show(); capture.body.requestFocus();
+        if(capture.dialog.getWindow()!=null) capture.dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE|WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+    private class CaptureUi {
+        final BottomSheetDialog dialog; final LinearLayout body,details; final String id,sharedTitle;
+        final TextInputLayout urlBox,queryBox; final EditText url,title,note,steps,search;
+        final LinearLayout pasteActions;
+        final ChipGroup intents,reasons; final MaterialButton save; final TextView source,purpose;
+        String why,reason; boolean detailsOpen;
+        CaptureUi(Bundle b) {
+            id=b.getString("id",""); sharedTitle=b.getString("sharedTitle",""); why=b.getString("why",""); reason=b.getString("reason","");
+            body=sheetBody(); LinearLayout titleRow=row(); titleRow.addView(text(id.isEmpty()?"Neden kaydediyorsun?":"Kaydını düzenle",24,true),new LinearLayout.LayoutParams(0,-2,1));
+            titleRow.addView(iconButton("Kapat",R.drawable.ic_close,()-> { if(capture!=null) capture.dialog.dismiss(); })); body.addView(titleRow);
+            body.addView(text("Niyetini seç. Başlık ve detayları sonra da düzenleyebilirsin.",13,false)); gap(body,12);
+            source=text("",13,true); source.setMaxLines(1); source.setEllipsize(TextUtils.TruncateAt.END); LinearLayout sourceRow=row(); ImageView linkIcon=new ImageView(MainActivity.this); linkIcon.setImageResource(R.drawable.ic_link); linkIcon.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary))); sourceRow.addView(linkIcon,new LinearLayout.LayoutParams(dp(18),dp(18)));
+            LinearLayout.LayoutParams sp=new LinearLayout.LayoutParams(0,-2,1); sp.setMargins(dp(10),0,dp(8),0); sourceRow.addView(source,sp); body.addView(sourceRow);
+            urlBox=input(body,"Bağlantı",b.getString("url",""),4096,1,R.id.capture_link); url=urlBox.getEditText();
+            url.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_VARIATION_URI);
+            urlBox.setVisibility(url.getText().toString().isEmpty()?View.VISIBLE:View.GONE);
+            pasteActions=row();
+            MaterialButton paste=button("Panodan ekle",R.drawable.ic_clipboard,false,()->paste(url)); pasteActions.addView(paste,new LinearLayout.LayoutParams(0,-2,1));
+            sourceRow.addView(iconButton("Bağlantıyı düzenle",R.drawable.ic_edit,()->urlBox.setVisibility(View.VISIBLE))); body.addView(pasteActions); gap(body,16);
+            body.addView(text("NE İÇİN?",11,false)); intents=new ChipGroup(MainActivity.this); intents.setId(R.id.capture_intents); intents.setSingleSelection(true); intents.setSelectionRequired(true); intents.setChipSpacingHorizontal(dp(6));
+            for(String name:Card.INTENTS) {
+                Chip c=chip(name,icon(name),true); c.setId(View.generateViewId()); c.setTag(name); c.setChecked(name.equals(why));
+                c.setOnClickListener(v-> { why=name; buildReasons(); guidance(); }); intents.addView(c);
+            }
+            body.addView(intents); purpose=text("Bir niyet seçerek başlayabilirsin.",13,false); body.addView(purpose); gap(body,12);
+            body.addView(text("HIZLI NEDEN",11,false)); reasons=new ChipGroup(MainActivity.this); reasons.setId(R.id.capture_reasons); reasons.setSingleSelection(true); reasons.setSelectionRequired(true); reasons.setChipSpacingHorizontal(dp(6)); body.addView(reasons); gap(body,12);
+            details=column(); title=input(details,"Başlık · isteğe bağlı",b.getString("title",""),160,1,R.id.capture_title).getEditText();
+            note=input(details,"Özel not · isteğe bağlı",b.getString("note",""),2000,3,R.id.capture_note).getEditText();
+            steps=input(details,"Adımlar · her satıra bir adım",b.getString("steps",""),10000,3,R.id.capture_steps).getEditText();
+            details.addView(button("Hazır adımlar ekle",R.drawable.ic_do,false,()-> {
+                if(why.isEmpty()) { toast("Önce bir niyet seç."); return; }
+                Runnable apply=()->steps.setText(Card.template(why));
+                if(steps.getText().toString().trim().isEmpty()) apply.run();
+                else new MaterialAlertDialogBuilder(MainActivity.this).setTitle("Adımları değiştir?").setMessage("Mevcut adımların yerine hazır şablon gelecek.").setNegativeButton("Vazgeç",null).setPositiveButton("Değiştir",(d,w)->apply.run()).show();
+            }));
+            queryBox=input(details,"Bul için arama sorgusu · isteğe bağlı",b.getString("searchQuery",""),300,1,R.id.capture_search_query); search=queryBox.getEditText();
+            MaterialButton toggle=button("Not ve detaylar · isteğe bağlı",R.drawable.ic_expand,false,()-> { detailsOpen=!detailsOpen; details.setVisibility(detailsOpen?View.VISIBLE:View.GONE); });
+            toggle.setId(R.id.capture_details); body.addView(toggle); detailsOpen=b.getBoolean("detailsOpen",false); details.setVisibility(detailsOpen?View.VISIBLE:View.GONE); body.addView(details); gap(body,16);
+            LinearLayout footer=column(); footer.setPadding(dp(24),dp(12),dp(24),dp(20)); footer.setBackgroundColor(color(R.color.app_surface));
+            save=button(id.isEmpty()?"Kaydet":"Değişiklikleri kaydet",R.drawable.ic_check,true,this::save); save.setId(R.id.capture_save); footer.addView(save,full());
+            footer.addView(text("Cihazında saklanır. İnternet bağlantısı gerekmez.",11,false));
+            dialog=captureSheet(body,footer); url.addTextChangedListener(watcher(this::guidance)); buildReasons(); guidance();
         }
+        void buildReasons() {
+            reasons.removeAllViews(); if(why.isEmpty()) return;
+            List<String> options=QuickCapture.reasons(why); if(!options.contains(reason)) reason=options.get(0);
+            for(String value:options) {
+                Chip c=chip(value,0,true); c.setId(View.generateViewId()); c.setChecked(value.equals(reason));
+                c.setOnClickListener(v-> { reason=value; note.setText(""); }); reasons.addView(c);
+            }
+        }
+        void guidance() {
+            String link=UrlTools.extract(url.getText().toString());
+            pasteActions.setVisibility(link.isEmpty()?View.VISIBLE:View.GONE);
+            source.setText(link.isEmpty()?"Bir bağlantı paylaş veya panodan ekle.":QuickCapture.title(link,sharedTitle));
+            save.setEnabled(!link.isEmpty()&&!why.isEmpty());
+            queryBox.setVisibility(why.equals("Bul")?View.VISIBLE:View.GONE);
+            if(!why.isEmpty()) {
+                IntentCatalog.Spec spec=IntentCatalog.get(why); purpose.setText(spec.description); title.setHint(QuickCapture.title(link.isEmpty()?"https://example.org/":link,sharedTitle));
+                note.setHint(spec.noteHint); save.setText(id.isEmpty()?why+" olarak kaydet":"Değişiklikleri kaydet");
+            }
+        }
+        Bundle bundle() {
+            Bundle b=new Bundle(); b.putString("id",id); b.putString("sharedTitle",sharedTitle); b.putString("url",url.getText().toString());
+            b.putString("why",why); b.putString("reason",reason); b.putString("title",title.getText().toString()); b.putString("note",note.getText().toString());
+            b.putString("steps",steps.getText().toString()); b.putString("searchQuery",search.getText().toString()); b.putBoolean("detailsOpen",detailsOpen); return b;
+        }
+        void save() {
+            try {
+                Card c=QuickCapture.create(url.getText().toString(),sharedTitle,why,reason,title.getText().toString(),note.getText().toString(),steps.getText().toString(),search.getText().toString(),id.isEmpty()?null:store.find(id));
+                store.save(c); dialog.dismiss(); render();
+                Snackbar.make(root,id.isEmpty()?"Kaydedildi · "+why:"Kayıt güncellendi",Snackbar.LENGTH_LONG).show();
+            } catch(Exception e) { error(e); }
+        }
+    }
+    private void paste(EditText target) {
+        android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+        if(clipboard==null || !clipboard.hasPrimaryClip() || clipboard.getPrimaryClip()==null) { toast("Panoda bir bağlantı yok."); return; }
+        CharSequence raw=clipboard.getPrimaryClip().getItemAt(0).coerceToText(this); String url=UrlTools.extract(raw==null?"":raw.toString());
+        if(url.isEmpty()) { toast("Panodaki metinde geçerli bir bağlantı yok."); return; }
+        target.setText(url);
+    }
+    private void editCard(String id) {
+        Card c=store.find(id); if(c==null) return; Bundle b=new Bundle(); b.putString("id",c.id); b.putString("url",c.url); b.putString("why",c.why); b.putString("title",c.title);
+        boolean quick=QuickCapture.reasons(c.why).contains(c.note); b.putString("reason",quick?c.note:""); b.putString("note",quick?"":c.note);
+        b.putString("searchQuery",c.searchQuery); List<String> lines=new ArrayList<>(); for(Card.Step s:c.steps) lines.add(s.text); b.putString("steps",String.join("\n",lines)); showCapture(b);
     }
     private void detail(String id) {
-        Card card=store.find(id); if(card==null) return;
-        LinearLayout content=column(); content.setPadding(dp(20),dp(10),dp(20),dp(10));
-        content.addView(text(card.why+" · "+UrlTools.source(card.url),13,GREEN));
-        content.addView(heading("Neden kaydettim?",16)); content.addView(text(card.note,16,INK));
-        content.addView(heading("Eylem adımları",16));
-        if(card.steps.isEmpty()) content.addView(text("Düzenle'ye dokunarak ilk adımını ekle.",14,MUTED));
-        for(int i=0;i<card.steps.size();i++) {
-            final int index=i; CheckBox check=new CheckBox(this); check.setText(card.steps.get(i).text); check.setTextColor(INK);
-            check.setMinHeight(dp(48)); check.setChecked(card.steps.get(i).done); content.addView(check);
+        Card c=store.find(id); if(c==null) return;
+        LinearLayout body=sheetBody(); body.addView(text(c.why+"  ·  "+UrlTools.source(c.url),12,false)); body.addView(text(c.title,24,true)); gap(body,8);
+        body.addView(text("NİYETİM",11,false)); body.addView(text(c.note,16,true)); gap(body,14);
+        TextView progress=text(c.steps.isEmpty()?"":c.completedSteps()+" / "+c.steps.size()+" adım tamamlandı",12,false); body.addView(progress);
+        for(int i=0;i<c.steps.size();i++) {
+            final int index=i; MaterialCheckBox check=new MaterialCheckBox(this); check.setTypeface(regular); check.setText(c.steps.get(i).text); check.setChecked(c.steps.get(i).done); check.setMinHeight(dp(48)); body.addView(check);
             check.setOnClickListener(v-> {
-                Card current=store.find(id); if(current==null) return;
-                Card changed=current.copy(); changed.steps.get(index).done=check.isChecked();
-                if(!save(changed)) check.setChecked(current.steps.get(index).done);
+                Card current=store.find(id); if(current==null) return; Card changed=current.copy(); changed.steps.get(index).done=check.isChecked();
+                if(saveCard(changed)) progress.setText(changed.completedSteps()+" / "+changed.steps.size()+" adım tamamlandı"); else check.setChecked(current.steps.get(index).done);
             });
         }
-        content.addView(button("Orijinal içeriği aç ↗",true,()->openUrl(card.url)));
-        if(card.createdAt>0) content.addView(text("Kaydedildi: "+new SimpleDateFormat("d MMM yyyy",Locale.forLanguageTag("tr")).format(new Date(card.createdAt)),12,MUTED));
-        ScrollView scroll=new ScrollView(this); scroll.addView(content);
-        AlertDialog dialog=new AlertDialog.Builder(this).setTitle(card.title).setView(scroll).setNegativeButton("Kapat",null)
-                .setNeutralButton("Düzenle",(d,w)->editorFor(id)).setPositiveButton(card.done?"Geri al":"Tamamladım",(d,w)-> {
-                    Card current=store.find(id); if(current!=null) { Card changed=current.copy(); changed.done=!changed.done; save(changed); }
-                }).create();
-        content.addView(button("Kaydı sil",false,()->new AlertDialog.Builder(this).setTitle("Kaydı sil?").setMessage(card.title)
-                .setNegativeButton("Vazgeç",null).setPositiveButton("Sil",(d,w)-> {
-                    try { store.delete(id); dialog.dismiss(); render(); } catch(Exception e) { error(e); }
-                }).show()));
-        dialog.show();
+        gap(body,12);
+        if(c.why.equals("Bul")) body.addView(button("Web'de ara",R.drawable.ic_find,true,()->searchFor(id)));
+        else body.addView(button(c.why.equals("İzle")?"İçeriği izle":"Orijinal içeriği aç",c.why.equals("İzle")?R.drawable.ic_watch:R.drawable.ic_external,true,()->open(c.url)));
+        gap(body,8);
+        if(c.why.equals("Bul")) { body.addView(button("Orijinal içeriği aç",R.drawable.ic_external,false,()->open(c.url))); gap(body,8); }
+        BottomSheetDialog dialog=sheet(body);
+        body.addView(button(c.done?"Bekleyenlere geri al":IntentCatalog.get(c.why).completedLabel,R.drawable.ic_check,false,()-> {
+            Card current=store.find(id); if(current==null) return; Card changed=current.copy(); changed.done=!changed.done;
+            if(saveCard(changed)) { dialog.dismiss(); Snackbar.make(root,changed.done?"Tamamlandı":"Bekleyenlere geri alındı",Snackbar.LENGTH_SHORT).show(); }
+        })); gap(body,8);
+        LinearLayout actions=row(); actions.addView(button("Düzenle",R.drawable.ic_edit,false,()-> {dialog.dismiss(); editCard(id);}),new LinearLayout.LayoutParams(0,-2,1));
+        MaterialButton delete=iconButton("Kaydı sil",R.drawable.ic_delete,()->new MaterialAlertDialogBuilder(this).setTitle("Kaydı sil?").setMessage(c.title).setNegativeButton("Vazgeç",null).setPositiveButton("Sil",(d,w)-> {
+            Card removed=store.find(id); if(removed==null) return;
+            try { store.delete(id); dialog.dismiss(); render(); Snackbar.make(root,"Kayıt silindi",Snackbar.LENGTH_LONG).setAction("Geri al",v->saveCard(removed)).show(); } catch(Exception e) { error(e); }
+        }).show()); LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(dp(48),dp(48)); p.setMargins(dp(8),0,0,0); actions.addView(delete,p); body.addView(actions); dialog.show();
     }
-    private boolean save(Card card) {
-        try { store.save(card); render(); return true; } catch(Exception e) { error(e); return false; }
+    private void searchFor(String id) {
+        Card c=store.find(id); if(c==null) return; LinearLayout content=column(); content.setPadding(dp(24),dp(8),dp(24),0);
+        TextInputLayout box=input(content,"Ne aramak istiyorsun?",c.effectiveSearchQuery(),300,1,View.generateViewId());
+        androidx.appcompat.app.AlertDialog dialog=new MaterialAlertDialogBuilder(this).setTitle("Web'de ara").setView(content)
+            .setMessage("Yalnızca bu sorguyla Google araması açılır.").setNegativeButton("Vazgeç",null).setPositiveButton("Ara",null).create();
+        dialog.setOnShowListener(d->dialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE).setOnClickListener(v-> {
+            String term=box.getEditText().getText().toString().trim(); if(term.isEmpty()) { box.setError("Aramak istediğin şeyi yaz."); return; }
+            Card current=store.find(id); if(current==null) return;
+            Card changed=new Card(current.id,current.url,current.title,current.why,current.note,current.createdAt,current.done,current.steps,term);
+            if(saveCard(changed)) { dialog.dismiss(); open(changed.webSearchUrl()); }
+        })); dialog.show();
     }
-    private void editorFor(String id) {
-        Card c=store.find(id); if(c==null) return; Bundle b=new Bundle();
-        b.putString("id",c.id); b.putString("url",c.url); b.putString("title",c.title); b.putString("note",c.note); b.putString("why",c.why);
-        List<String> lines=new ArrayList<>(); for(Card.Step s:c.steps) lines.add(s.text); b.putString("steps",String.join("\n",lines)); showEditor(b);
+    private boolean saveCard(Card card) { try { store.save(card); render(); return true; } catch(Exception e) { error(e); return false; } }
+    private void open(String url) { try { startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url))); } catch(ActivityNotFoundException e) { toast("Bağlantıyı açacak uygulama bulunamadı."); } }
+    private void chooseTheme() {
+        LinearLayout body=sheetBody(); body.addView(text("Sana göre bir görünüm",24,true)); body.addView(text("AMOLED temada arka plan gerçek siyahtır.",13,false)); gap(body,12);
+        BottomSheetDialog dialog=sheet(body); int selected=getSharedPreferences("settings",MODE_PRIVATE).getInt("theme",AppCompatDelegate.MODE_NIGHT_YES);
+        String[] names={"Simsiyah AMOLED","Aydınlık","Sistem tercihi"}; int[] modes={AppCompatDelegate.MODE_NIGHT_YES,AppCompatDelegate.MODE_NIGHT_NO,AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM};
+        for(int i=0;i<names.length;i++) {
+            final int mode=modes[i]; MaterialButton b=button(names[i]+(selected==mode?" · seçili":""),i==0?R.drawable.ic_moon:R.drawable.ic_sun,selected==mode,()-> {
+                getSharedPreferences("settings",MODE_PRIVATE).edit().putInt("theme",mode).apply(); dialog.dismiss(); AppCompatDelegate.setDefaultNightMode(mode);
+            }); body.addView(b,full()); gap(body,8);
+        } dialog.show();
     }
-    private Bundle draft() {
-        Bundle b=new Bundle(); b.putString("id",editingId); b.putString("url",editUrl.getText().toString());
-        b.putString("title",editTitle.getText().toString()); b.putString("note",editNote.getText().toString());
-        b.putString("why",editWhy.getSelectedItem().toString()); b.putString("steps",editSteps.getText().toString()); return b;
-    }
-    private void showEditor(Bundle b) {
-        if(!store.isHealthy()) { toast("Kayıt dosyası okunamadığı için yeni kayıt açılamıyor."); return; }
-        editingId=b.getString("id","");
-        LinearLayout form=column(); form.setPadding(dp(20),dp(8),dp(20),dp(8));
-        form.addView(text("İçerik bağlantısı",13,MUTED)); editUrl=input("https://…",b.getString("url",""),4096,false);
-        editUrl.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_VARIATION_URI); form.addView(editUrl);
-        form.addView(text("Başlık",13,MUTED)); editTitle=input("Örn. Hafta sonu deneyeceğim tarif",b.getString("title",""),160,false); form.addView(editTitle);
-        form.addView(heading("Bunu ne için kaydediyorsun?",16)); editWhy=new Spinner(this);
-        editWhy.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,Card.INTENTS));
-        editWhy.setSelection(Math.max(0,Arrays.asList(Card.INTENTS).indexOf(b.getString("why","Yap")))); form.addView(editWhy);
-        form.addView(text("Kaydetme nedenin",13,MUTED)); editNote=input("Bununla ne yapmak istiyorsun?",b.getString("note",""),2000,true); form.addView(editNote);
-        form.addView(text("Eylem adımları · her satıra bir adım",13,MUTED)); editSteps=input("İlk somut adımın ne?",b.getString("steps",""),10000,true); form.addView(editSteps);
-        form.addView(button("Niyetime göre adım şablonu ekle",false,()-> {
-            Runnable apply=()->editSteps.setText(Card.template(editWhy.getSelectedItem().toString()));
-            if(editSteps.getText().toString().trim().isEmpty()) apply.run();
-            else new AlertDialog.Builder(this).setTitle("Adımları şablonla değiştir?").setMessage("Yazdığın adımların yerine niyet şablonu gelecek.")
-                    .setNegativeButton("Vazgeç",null).setPositiveButton("Değiştir",(d,w)->apply.run()).show();
-        }));
-        form.addView(text("Şablonlar başlangıç önerisidir. İçerik otomatik analiz edilmez.",12,MUTED));
-        ScrollView scroll=new ScrollView(this); scroll.addView(form);
-        editorDialog=new AlertDialog.Builder(this).setTitle(editingId.isEmpty()?"Neden kaydediyorsun?":"Kaydı düzenle")
-                .setView(scroll).setNegativeButton("Vazgeç",null).setPositiveButton("Kaydet",null).create();
-        editorDialog.setOnShowListener(d->editorDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v-> {
-            try {
-                String url=UrlTools.extract(editUrl.getText().toString());
-                if(url.isEmpty()) { editUrl.setError("Geçerli bir http/https bağlantısı gir."); return; }
-                if(editTitle.getText().toString().trim().isEmpty()) { editTitle.setError("Bir başlık ekle."); return; }
-                if(editNote.getText().toString().trim().isEmpty()) { editNote.setError("Kaydetme nedenini ekle."); return; }
-                Card previous=editingId.isEmpty()?null:store.find(editingId);
-                List<Card.Step> steps=Card.parseSteps(editSteps.getText().toString(),previous==null?Collections.emptyList():previous.steps);
-                Card card=new Card(previous==null?UUID.randomUUID().toString():previous.id,url,editTitle.getText().toString(),
-                        editWhy.getSelectedItem().toString(),editNote.getText().toString(),previous==null?System.currentTimeMillis():previous.createdAt,
-                        previous!=null&&previous.done,steps);
-                if(save(card)) { editorDialog.dismiss(); toast("Nedeniyle birlikte kaydedildi."); }
+    private void settings() {
+        LinearLayout body=sheetBody(); body.addView(text("SaveWhy",24,true)); body.addView(text("Kayıtların senin cihazında. Kontrol sende.",13,false)); gap(body,14);
+        BottomSheetDialog dialog=sheet(body);
+        body.addView(button("Görünüm",R.drawable.ic_moon,false,()-> { dialog.dismiss(); chooseTheme(); })); gap(body,8);
+        body.addView(button("JSON yedeği oluştur",R.drawable.ic_download,false,()-> { dialog.dismiss(); exportBackup(); })); gap(body,8);
+        body.addView(button("Yedeği içe aktar",R.drawable.ic_upload,false,()-> { dialog.dismiss(); importBackup(); })); gap(body,8);
+        body.addView(button("Nasıl çalışır?",R.drawable.ic_info,false,()-> { dialog.dismiss(); howItWorks(); })); gap(body,12);
+        body.addView(button("Font lisansı",R.drawable.ic_info,false,()-> {
+            try(InputStream in=getResources().openRawResource(R.raw.manrope_license)) {
+                String license=CardStore.read(in); new MaterialAlertDialogBuilder(this).setTitle("Manrope · SIL OFL 1.1").setMessage(license).setPositiveButton("Kapat",null).show();
             } catch(Exception e) { error(e); }
-        })); editorDialog.show();
+        })); gap(body,12);
+        body.addView(text("v0.3.0 · Manrope fontu / SIL OFL\nAI içerik analizi ve hatırlatmalar henüz eklenmedi.",11,false)); dialog.show();
     }
-    private void openUrl(String url) {
-        try { startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url))); }
-        catch(ActivityNotFoundException e) { toast("Bağlantıyı açacak uygulama bulunamadı."); }
-    }
-    private void menu() {
-        new AlertDialog.Builder(this).setTitle("SaveWhy").setItems(new String[]{"JSON yedeği oluştur","JSON yedeğini içe aktar","Uygulama hakkında"},(d,index)-> {
-            if(index==0) exportBackup(); else if(index==1) importBackup();
-            else new AlertDialog.Builder(this).setTitle("SaveWhy 0.2.0").setMessage("İçeriği niyetinle kaydet ve eyleme dönüştür.\n\nKayıtların bu cihazda saklanır. AI analizi, semantik arama ve bildirimler henüz eklenmedi.\n\nUygulamayı silmeden önce JSON yedeği oluştur.").setPositiveButton("Tamam",null).show();
-        }).show();
+    private void howItWorks() {
+        LinearLayout body=sheetBody(); body.addView(text("Bir bağlantı. Bir niyet.",24,true)); gap(body,8);
+        body.addView(text("1  İçeriği paylaş",18,true)); body.addView(text("Sosyal medya uygulamasında Paylaş → SaveWhy.",14,false)); gap(body,12);
+        body.addView(text("2  Niyetine dokun",18,true)); body.addView(text("Yap, Git, Al, Öğren, Üret, İzle veya Bul. Hızlı nedenlerden birini seçebilir veya doğrudan kaydedebilirsin.",14,false)); gap(body,12);
+        body.addView(text("3  Zamanı gelince geri dön",18,true)); body.addView(text("Kaynağı aç, araştır veya adımlarını tamamla. Başlığı ve notları istediğin zaman düzenle.",14,false)); gap(body,12);
+        body.addView(text("Başlık paylaşım bilgisinden veya bağlantıdan oluşturulur. Uygulama videonun içeriğini analiz etmez.",12,false));
+        BottomSheetDialog dialog=sheet(body); body.addView(button("Anladım",R.drawable.ic_check,true,dialog::dismiss)); dialog.show();
     }
     private void exportBackup() {
         if(!store.isHealthy()) { toast("Kayıtlar okunamadı. Yedek oluşturulamıyor."); return; }
-        Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/json");
-        intent.putExtra(Intent.EXTRA_TITLE,"SaveWhy-"+new SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(new Date())+".json");
+        Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/json"); intent.putExtra(Intent.EXTRA_TITLE,"SaveWhy-"+new java.text.SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(new Date())+".json");
         try { startActivityForResult(intent,EXPORT); } catch(ActivityNotFoundException e) { toast("Dosya seçici bulunamadı."); }
     }
     private void importBackup() {
         if(!store.isHealthy()) { toast("Kayıtlar okunamadı. Mevcut dosya korunuyor."); return; }
-        Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*");
-        try { startActivityForResult(intent,IMPORT); } catch(ActivityNotFoundException e) { toast("Dosya seçici bulunamadı."); }
+        try { startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"),IMPORT); } catch(ActivityNotFoundException e) { toast("Dosya seçici bulunamadı."); }
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
-        super.onActivityResult(request,result,data);
-        if(result!=RESULT_OK || data==null || data.getData()==null) return;
-        Uri uri=data.getData();
+        super.onActivityResult(request,result,data); if(result!=RESULT_OK || data==null || data.getData()==null) return; Uri uri=data.getData();
         try {
             if(request==EXPORT) {
                 byte[] bytes=store.backup().getBytes(StandardCharsets.UTF_8);
-                try(OutputStream out=getContentResolver().openOutputStream(uri,"wt")) {
-                    if(out==null) throw new IOException("Dosya açılamadı."); out.write(bytes);
-                } toast("JSON yedeği oluşturuldu.");
+                try(OutputStream out=getContentResolver().openOutputStream(uri,"wt")) { if(out==null) throw new IOException("Dosya açılamadı."); out.write(bytes); }
+                toast("Yedek oluşturuldu.");
             } else if(request==IMPORT) {
-                List<Card> imported;
-                try(InputStream in=getContentResolver().openInputStream(uri)) {
-                    if(in==null) throw new IOException("Dosya açılamadı."); imported=CardCodec.decode(CardStore.read(in));
-                }
+                List<Card> imported; try(InputStream in=getContentResolver().openInputStream(uri)) { if(in==null) throw new IOException("Dosya açılamadı."); imported=CardCodec.decode(CardStore.read(in)); }
                 int additions=CardCodec.merge(store.all(),imported).size()-store.all().size();
-                new AlertDialog.Builder(this).setTitle("Yedeği içe aktar?")
-                        .setMessage(additions+" yeni kayıt eklenecek. Mevcut kayıtlar ve tamamlanma durumları korunur; aynı bağlantı ve niyet atlanır.")
-                        .setNegativeButton("Vazgeç",null).setPositiveButton("İçe aktar",(d,w)-> {
-                            try { int added=store.merge(imported); render(); toast(added+" kayıt eklendi."); } catch(Exception e) { error(e); }
-                        }).show();
+                new MaterialAlertDialogBuilder(this).setTitle("Yedeği içe aktar?").setMessage(additions+" yeni kayıt eklenecek. Mevcut kayıtlar korunur; tekrarlar atlanır.")
+                    .setNegativeButton("Vazgeç",null).setPositiveButton("İçe aktar",(d,w)-> { try { int added=store.merge(imported); render(); toast(added+" kayıt eklendi."); } catch(Exception e) { error(e); } }).show();
             }
         } catch(Exception e) { error(e); }
     }
-    private void error(Exception e) { toast(e instanceof IllegalArgumentException?e.getMessage():"İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et."); }
+    private void error(Exception e) { toast(e instanceof IllegalArgumentException?e.getMessage():e instanceof org.json.JSONException?"Geçerli bir SaveWhy yedeği seç.":"İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et."); }
     private void toast(String message) { Toast.makeText(this,message,Toast.LENGTH_LONG).show(); }
 }

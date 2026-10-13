@@ -15,9 +15,9 @@ public final class CardCodec {
             JSONArray steps = new JSONArray();
             for (Card.Step s : c.steps) steps.put(new JSONObject().put("text", s.text).put("done", s.done));
             array.put(new JSONObject().put("id", c.id).put("url", c.url).put("title", c.title)
-                    .put("why", c.why).put("note", c.note).put("createdAt", c.createdAt).put("done", c.done).put("steps", steps));
+                    .put("why", c.why).put("note", c.note).put("createdAt", c.createdAt).put("done", c.done).put("steps", steps).put("searchQuery",c.searchQuery));
         }
-        return new JSONObject().put("app", "SaveWhy").put("version", 1).put("cards", array).toString(2);
+        return new JSONObject().put("app", "SaveWhy").put("version", 2).put("cards", array).toString(2);
     }
 
     public static List<Card> decode(String json) throws JSONException {
@@ -28,11 +28,12 @@ public final class CardCodec {
         if (tokener.nextClean() != 0) throw new IllegalArgumentException("Dosyada beklenmeyen ek içerik var.");
         // v0.1 stored a bare array. Existing installations migrate without losing cards.
         boolean legacy = root instanceof JSONArray;
-        JSONArray array;
+        JSONArray array; int version=0;
         if (legacy) array = (JSONArray) root;
         else if (root instanceof JSONObject) {
             JSONObject object = (JSONObject) root;
-            if (!"SaveWhy".equals(object.getString("app")) || object.getInt("version") != 1)
+            version=object.getInt("version");
+            if (!"SaveWhy".equals(object.getString("app")) || (version != 1 && version != 2))
                 throw new IllegalArgumentException("Desteklenmeyen yedek biçimi.");
             array = object.getJSONArray("cards");
         } else throw new IllegalArgumentException("Geçersiz yedek dosyası.");
@@ -45,7 +46,8 @@ public final class CardCodec {
                 JSONObject step = a.getJSONObject(j); steps.add(new Card.Step(step.getString("text"), step.getBoolean("done")));
             }
             Card card = new Card(c.getString("id"), c.getString("url"), c.getString("title"), c.getString("why"),
-                    c.getString("note"), legacy ? c.optLong("createdAt", 0) : c.getLong("createdAt"), c.getBoolean("done"), steps);
+                    c.getString("note"), legacy ? c.optLong("createdAt", 0) : c.getLong("createdAt"), c.getBoolean("done"), steps,
+                    version>=2?c.getString("searchQuery"):"");
             if (!ids.add(card.id)) throw new IllegalArgumentException("Dosyada tekrarlanan kayıt kimliği var.");
             // Tracking cleanup can collapse two old URLs; retain the first existing card.
             if (keys.add(card.duplicateKey())) result.add(card);
@@ -59,7 +61,7 @@ public final class CardCodec {
         for (Card c : imported) if (keys.add(c.duplicateKey())) {
             String id = c.id;
             if (ids.contains(id)) id = UUID.randomUUID().toString();
-            ids.add(id); result.add(new Card(id,c.url,c.title,c.why,c.note,c.createdAt,c.done,c.steps));
+            ids.add(id); result.add(new Card(id,c.url,c.title,c.why,c.note,c.createdAt,c.done,c.steps,c.searchQuery));
         }
         if (result.size() > MAX_CARDS) throw new IllegalArgumentException("Toplam kayıt sayısı 5000'i aşamaz.");
         return result;
