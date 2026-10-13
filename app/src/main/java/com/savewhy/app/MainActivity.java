@@ -229,11 +229,29 @@ public class MainActivity extends AppCompatActivity {
         help.setGravity(Gravity.CENTER); empty.addView(help); gap(empty,18);
         if(first) empty.addView(button("Nasıl çalışır?",R.drawable.ic_info,false,this::howItWorks));
     }
+    private int sourceIcon(String url) {
+        switch(UrlTools.source(url)) {
+            case "Instagram": return R.drawable.ic_social_instagram;
+            case "YouTube": return R.drawable.ic_social_youtube;
+            case "TikTok": return R.drawable.ic_social_tiktok;
+            case "Facebook": return R.drawable.ic_social_facebook;
+            case "X": return R.drawable.ic_social_x;
+            case "Pinterest": return R.drawable.ic_social_pinterest;
+            case "Reddit": return R.drawable.ic_social_reddit;
+            case "WhatsApp": return R.drawable.ic_social_whatsapp;
+            case "Telegram": return R.drawable.ic_social_telegram;
+            case "Threads": return R.drawable.ic_social_threads;
+            case "Twitch": return R.drawable.ic_social_twitch;
+            case "LinkedIn": return R.drawable.ic_social_linkedin;
+            default: return R.drawable.ic_link;
+        }
+    }
     private class CardAdapter extends RecyclerView.Adapter<CardHolder> {
         List<Card> items=new ArrayList<>();
         @Override public CardHolder onCreateViewHolder(ViewGroup parent,int type) { return new CardHolder(); }
         @Override public void onBindViewHolder(CardHolder h,int index) {
             Card c=items.get(index); h.symbol.setImageResource(icon(c.why)); h.symbol.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary)));
+            h.brand.setImageResource(sourceIcon(c.url)); h.brand.setImageTintList(ColorStateList.valueOf(color(R.color.app_text)));
             h.meta.setText(c.why+"  ·  "+UrlTools.source(c.url)); h.title.setText(c.title); h.note.setText(c.note);
             h.progress.setText(c.done?"Tamamlandı":c.steps.isEmpty()?"Niyetiyle kaydedildi":c.completedSteps()+" / "+c.steps.size()+" adım");
             h.card.setOnClickListener(v->detail(c.id)); h.card.setContentDescription(c.title+", "+c.why+", "+c.note);
@@ -241,13 +259,14 @@ public class MainActivity extends AppCompatActivity {
         @Override public int getItemCount() { return items.size(); }
     }
     private class CardHolder extends RecyclerView.ViewHolder {
-        MaterialCardView card; ImageView symbol; TextView meta,title,note,progress;
+        MaterialCardView card; ImageView symbol,brand; TextView meta,title,note,progress;
         CardHolder() { super(surface()); card=(MaterialCardView)itemView;
             RecyclerView.LayoutParams p=new RecyclerView.LayoutParams(-1,-2); p.setMargins(0,0,0,dp(12)); card.setLayoutParams(p);
             card.setClickable(true); card.setFocusable(true);
             LinearLayout body=column(); body.setPadding(dp(18),dp(16),dp(18),dp(16)); card.addView(body);
             LinearLayout head=row(); symbol=new ImageView(MainActivity.this); head.addView(symbol,new LinearLayout.LayoutParams(dp(22),dp(22)));
             meta=text("",12,false); LinearLayout.LayoutParams mp=new LinearLayout.LayoutParams(0,-2,1); mp.setMargins(dp(10),0,0,0); head.addView(meta,mp);
+            brand=new ImageView(MainActivity.this); head.addView(brand,new LinearLayout.LayoutParams(dp(18),dp(18)));
             ImageView arrow=new ImageView(MainActivity.this); arrow.setImageResource(R.drawable.ic_chevron); arrow.setImageTintList(ColorStateList.valueOf(color(R.color.app_muted))); head.addView(arrow,new LinearLayout.LayoutParams(dp(18),dp(18))); body.addView(head); gap(body,6);
             title=text("",18,true); title.setMaxLines(2); title.setEllipsize(TextUtils.TruncateAt.END); body.addView(title);
             note=text("",13,false); note.setMaxLines(1); note.setEllipsize(TextUtils.TruncateAt.END); body.addView(note);
@@ -289,14 +308,14 @@ public class MainActivity extends AppCompatActivity {
         final BottomSheetDialog dialog; final LinearLayout body,details; final String id,sharedTitle;
         final TextInputLayout urlBox,queryBox; final EditText url,title,note,steps,search;
         final LinearLayout pasteActions;
-        final ChipGroup intents,reasons; final MaterialButton save; final TextView source,purpose;
+        final ChipGroup intents,reasons; final MaterialButton save; final TextView source,purpose; final ImageView linkIcon;
         String why,reason; boolean detailsOpen;
         CaptureUi(Bundle b) {
             id=b.getString("id",""); sharedTitle=b.getString("sharedTitle",""); why=b.getString("why",""); reason=b.getString("reason","");
             body=sheetBody(); LinearLayout titleRow=row(); titleRow.addView(text(id.isEmpty()?"Neden kaydediyorsun?":"Kaydını düzenle",24,true),new LinearLayout.LayoutParams(0,-2,1));
             titleRow.addView(iconButton("Kapat",R.drawable.ic_close,()-> { if(capture!=null) capture.dialog.dismiss(); })); body.addView(titleRow);
             body.addView(text("Niyetini seç. Başlık ve detayları sonra da düzenleyebilirsin.",13,false)); gap(body,12);
-            source=text("",13,true); source.setMaxLines(1); source.setEllipsize(TextUtils.TruncateAt.END); LinearLayout sourceRow=row(); ImageView linkIcon=new ImageView(MainActivity.this); linkIcon.setImageResource(R.drawable.ic_link); linkIcon.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary))); sourceRow.addView(linkIcon,new LinearLayout.LayoutParams(dp(18),dp(18)));
+            source=text("",13,true); source.setMaxLines(1); source.setEllipsize(TextUtils.TruncateAt.END); LinearLayout sourceRow=row(); linkIcon=new ImageView(MainActivity.this); linkIcon.setImageResource(R.drawable.ic_link); linkIcon.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary))); sourceRow.addView(linkIcon,new LinearLayout.LayoutParams(dp(18),dp(18)));
             LinearLayout.LayoutParams sp=new LinearLayout.LayoutParams(0,-2,1); sp.setMargins(dp(10),0,dp(8),0); sourceRow.addView(source,sp); body.addView(sourceRow);
             urlBox=input(body,"Bağlantı",b.getString("url",""),4096,1,R.id.capture_link); url=urlBox.getEditText();
             url.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_VARIATION_URI);
@@ -338,12 +357,13 @@ public class MainActivity extends AppCompatActivity {
         }
         void guidance() {
             String link=UrlTools.extract(url.getText().toString());
+            linkIcon.setImageResource(link.isEmpty()?R.drawable.ic_link:sourceIcon(link));
             pasteActions.setVisibility(link.isEmpty()?View.VISIBLE:View.GONE);
             source.setText(link.isEmpty()?"Bir bağlantı paylaş veya panodan ekle.":QuickCapture.title(link,sharedTitle));
             save.setEnabled(!link.isEmpty()&&!why.isEmpty());
             queryBox.setVisibility(why.equals("Bul")?View.VISIBLE:View.GONE);
             if(!why.isEmpty()) {
-                IntentCatalog.Spec spec=IntentCatalog.get(why); purpose.setText(spec.description); title.setHint(QuickCapture.title(link.isEmpty()?"https://example.org/":link,sharedTitle));
+                IntentCatalog.Spec spec=IntentCatalog.get(why); purpose.setText(spec.description); title.setHint(link.isEmpty()?"Başlık · isteğe bağlı":QuickCapture.title(link,sharedTitle));
                 note.setHint(spec.noteHint); save.setText(id.isEmpty()?why+" olarak kaydet":"Değişiklikleri kaydet");
             }
         }

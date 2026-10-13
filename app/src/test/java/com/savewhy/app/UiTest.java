@@ -39,6 +39,11 @@ public class UiTest {
         File directory=new File("build/reports/ui"); directory.mkdirs();
         try(OutputStream out=new FileOutputStream(new File(directory,name+".png"))) { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,out)); }
     }
+    @Test public void splashArtworkRendersOnBlack() throws Exception {
+        ActivityController<SplashActivity> splash=Robolectric.buildActivity(SplashActivity.class).setup();
+        snapshot(splash.get().getWindow().getDecorView(),"splash");
+        splash.pause().stop().destroy();
+    }
     @Test public void sharedLinkSavesWithIntentAndNoTypedFields() throws Exception {
         MainActivity activity=launch(true,AppCompatDelegate.MODE_NIGHT_YES); Dialog dialog=ShadowDialog.getLatestDialog(); assertNotNull(dialog);
         assertFalse(dialog.findViewById(R.id.capture_save).isEnabled());

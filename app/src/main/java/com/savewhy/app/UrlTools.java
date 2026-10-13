@@ -62,8 +62,17 @@ public final class UrlTools {
     public static String source(String url) {
         String host = URI.create(url).getHost().toLowerCase(Locale.ROOT);
         if (matches(host, "instagram.com")) return "Instagram";
+        if (matches(host, "youtube.com") || matches(host, "youtu.be")) return "YouTube";
         if (matches(host, "tiktok.com")) return "TikTok";
-        if (matches(host, "youtube.com") || host.equals("youtu.be")) return "YouTube";
+        if (matches(host, "facebook.com") || matches(host, "fb.watch") || matches(host, "fb.com")) return "Facebook";
+        if (matches(host, "x.com") || matches(host, "twitter.com")) return "X";
+        if (matches(host, "pinterest.com") || matches(host, "pin.it")) return "Pinterest";
+        if (matches(host, "reddit.com") || matches(host, "redd.it")) return "Reddit";
+        if (matches(host, "whatsapp.com") || matches(host, "wa.me")) return "WhatsApp";
+        if (matches(host, "telegram.org") || matches(host, "t.me")) return "Telegram";
+        if (matches(host, "threads.net") || matches(host, "threads.com")) return "Threads";
+        if (matches(host, "twitch.tv")) return "Twitch";
+        if (matches(host, "linkedin.com") || matches(host, "lnkd.in")) return "LinkedIn";
         return host.startsWith("www.") ? host.substring(4) : host;
     }
     private static boolean matches(String host, String domain) { return host.equals(domain) || host.endsWith("." + domain); }
