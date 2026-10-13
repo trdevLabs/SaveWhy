@@ -1,3 +1,1 @@
-<resources>
-    <string name="card_counts">%1$d bekleyen  ·  %2$d tamamlanan</string>
-</resources>
+<resources><string name="card_counts">%1$d pending  ·  %2$d completed</string></resources>

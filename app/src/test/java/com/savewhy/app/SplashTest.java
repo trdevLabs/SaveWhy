@@ -19,7 +19,7 @@ public class SplashTest {
         ActivityController<SplashActivity> controller = Robolectric.buildActivity(SplashActivity.class).setup();
         SplashActivity activity = controller.get();
         assertNull(shadowOf(activity).peekNextStartedActivity());
-        shadowOf(Looper.getMainLooper()).idleFor(750, TimeUnit.MILLISECONDS);
+        shadowOf(Looper.getMainLooper()).idleFor(2300, TimeUnit.MILLISECONDS);
         Intent next = shadowOf(activity).getNextStartedActivity();
         assertEquals(MainActivity.class.getName(), next.getComponent().getClassName());
         assertTrue(activity.isFinishing());
@@ -27,10 +27,16 @@ public class SplashTest {
         assertNull(shadowOf(activity).peekNextStartedActivity());
         controller.pause().stop().destroy();
     }
+    @Test public void tappingSkipsLongerSplashImmediately() {
+        ActivityController<SplashActivity> controller=Robolectric.buildActivity(SplashActivity.class).setup();
+        android.view.ViewGroup content=controller.get().findViewById(android.R.id.content); content.getChildAt(0).performClick();
+        assertNotNull(shadowOf(controller.get()).peekNextStartedActivity());
+        controller.pause().stop().destroy();
+    }
     @Test public void pausedSplashDoesNotNavigateInBackground() {
         ActivityController<SplashActivity> controller = Robolectric.buildActivity(SplashActivity.class).setup();
         controller.pause();
-        shadowOf(Looper.getMainLooper()).idleFor(1, TimeUnit.SECONDS);
+        shadowOf(Looper.getMainLooper()).idleFor(3, TimeUnit.SECONDS);
         assertNull(shadowOf(controller.get()).peekNextStartedActivity());
         controller.resume();
         shadowOf(Looper.getMainLooper()).idle();

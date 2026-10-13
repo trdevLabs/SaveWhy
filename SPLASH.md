@@ -1,6 +1,6 @@
 # SaveWhy açılış ekranı
 
-Normal uygulama açılışında 700 ms siyah AMOLED ekran, mint cam yer imi görseli ve yerel Manrope yazı tipi gösterilir. Paylaşım intenti doğrudan MainActivity açar. Ekran arka planda yönlendirme yapmaz; yeniden oluşturulmada süre korunur. Android 12+ sistem açılış ekranı aynı siyah zemini kullanır.
+Normal uygulama açılışında 2200 ms siyah AMOLED ekran, mint cam yer imi görseli ve yerel Manrope yazı tipi gösterilir; dokunarak hemen geçilebilir. Paylaşım intenti doğrudan MainActivity açar. Ekran arka planda yönlendirme yapmaz; yeniden oluşturulmada süre korunur. Android 12+ sistem açılış ekranı aynı siyah zemini kullanır.
 
 Asset: `app/src/main/res/drawable-nodpi/splash_art.png`. Built-in image generation ile oluşturuldu; şeffaf PNG.
 

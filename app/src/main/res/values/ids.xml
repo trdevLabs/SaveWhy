@@ -11,4 +11,5 @@
     <item name="capture_search_query" type="id" />
     <item name="capture_details" type="id" />
     <item name="capture_save" type="id" />
+    <item name="capture_reminder" type="id" />
 </resources>

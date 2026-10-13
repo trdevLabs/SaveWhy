@@ -8,6 +8,7 @@ public final class Card {
     public static final int MAX_STEPS = 30;
     public final String id, url, title, why, note, searchQuery;
     public final long createdAt;
+    public long reminderAt;
     public boolean done;
     public final List<Step> steps;
 
@@ -39,7 +40,7 @@ public final class Card {
         if (text.trim().length() > max) throw new IllegalArgumentException(name + " en fazla " + max + " karakter olabilir.");
         return text.trim();
     }
-    public Card copy() { return new Card(id, url, title, why, note, createdAt, done, steps, searchQuery); }
+    public Card copy() { Card c=new Card(id, url, title, why, note, createdAt, done, steps, searchQuery); c.reminderAt=reminderAt; return c; }
     public int completedSteps() { int n = 0; for (Step s : steps) if (s.done) n++; return n; }
     public String duplicateKey() { return url + "\n" + why; }
     public boolean matches(String query) {

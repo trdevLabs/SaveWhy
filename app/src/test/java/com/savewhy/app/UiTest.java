@@ -22,6 +22,7 @@ import static org.junit.Assert.*;
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 public class UiTest {
     private ActivityController<MainActivity> controller;
+    @Before public void language() { AppCompatDelegate.setApplicationLocales(androidx.core.os.LocaleListCompat.forLanguageTags("tr")); }
     @After public void tearDown() { if(controller!=null) controller.pause().stop().destroy(); }
     private MainActivity launch(boolean share,int theme) {
         RuntimeEnvironment.getApplication().getSharedPreferences("settings",0).edit().putInt("theme",theme).commit();
@@ -43,6 +44,26 @@ public class UiTest {
         ActivityController<SplashActivity> splash=Robolectric.buildActivity(SplashActivity.class).setup();
         snapshot(splash.get().getWindow().getDecorView(),"splash");
         splash.pause().stop().destroy();
+    }
+    @Test public void englishQuickCaptureUsesTranslatedChoicesWithoutTyping() throws Exception {
+        AppCompatDelegate.setApplicationLocales(androidx.core.os.LocaleListCompat.forLanguageTags("en"));
+        MainActivity activity=launch(true,AppCompatDelegate.MODE_NIGHT_YES); Dialog dialog=ShadowDialog.getLatestDialog();
+        tap(dialog.findViewById(R.id.capture_intents),"Watch");
+        assertEquals("Watch · save",((android.widget.TextView)dialog.findViewById(R.id.capture_save)).getText().toString());
+        dialog.findViewById(R.id.capture_save).performClick();
+        CardStore persisted=new CardStore(activity.getFilesDir());persisted.load();assertEquals("İzle",persisted.all().get(0).why);
+        assertEquals("I will watch later",persisted.all().get(0).note);
+    }
+    @Test public void optionalDetailsUseSeparateLabelsWithoutOverlappingHints() throws Exception {
+        launch(true,AppCompatDelegate.MODE_NIGHT_YES); Dialog dialog=ShadowDialog.getLatestDialog(); tap(dialog.findViewById(R.id.capture_intents),"İzle");
+        dialog.findViewById(R.id.capture_details).performClick();
+        EditText note=dialog.findViewById(R.id.capture_note);
+        com.google.android.material.textfield.TextInputLayout box=(com.google.android.material.textfield.TextInputLayout)note.getParent().getParent();
+        assertFalse(box.isHintEnabled()); assertNull(note.getHint());
+        assertNotNull(dialog.findViewById(R.id.capture_reminder));
+        snapshot(dialog.getWindow().getDecorView(),"amoled-details");
+        note.requestRectangleOnScreen(new android.graphics.Rect(0,0,note.getWidth(),note.getHeight()),true);
+        snapshot(dialog.getWindow().getDecorView(),"amoled-details-note");
     }
     @Test public void sharedLinkSavesWithIntentAndNoTypedFields() throws Exception {
         MainActivity activity=launch(true,AppCompatDelegate.MODE_NIGHT_YES); Dialog dialog=ShadowDialog.getLatestDialog(); assertNotNull(dialog);

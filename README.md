@@ -1,4 +1,4 @@
-# SaveWhy · Android 0.3.0
+# SaveWhy · Android 0.4.0
 
 **Paylaş. Niyetine dokun. Kaydet.**
 
@@ -14,6 +14,17 @@ Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgis
 
 **İzle** daha sonra tüketmek istediğin içerik içindir. **Bul** içerikte gördüğün bir şeyin kimliğini, kaynağını veya benzerini araştırmak içindir. Bul kartında web aramasından önce sorguyu gözden geçirirsin; özel notun sorguya otomatik eklenmez. Al, satın alma kararı; Öğren, öğrenme hedefi içindir.
 
+## v0.4 yenilikleri
+
+- Detay alanlarında dış etiketler ve ayrı açıklamalar; üst üste binen hint kaldırıldı.
+- İsteğe bağlı yapılacaklar listesi; örnek işler seçilerek mevcut listeye eklenir.
+- Yerel tek seferlik hatırlatma: bir saat sonra, akşam, yarın, hafta sonu veya özel tarih/saat.
+- Android 13+ bildirim izni yalnızca hatırlatıcı seçildiğinde istenir. Bildirimler cihazında görünür; birlikte seçimi başka kişiye mesaj göndermez.
+- Türkçe / English / Sistem dili. Varsayılan sistem dili, desteklenmeyen sistem dillerinde İngilizce.
+- 2,2 saniyelik, dokunarak geçilebilir AMOLED splash. Paylaşım ve bildirim açılışları splash beklemez.
+
+Android pil tasarrufu nedeniyle hatırlatmalar seçilen saatten sonra gelebilir. Ayrıntılar: [hatırlatmalar ve dil](docs/REMINDERS_AND_LANGUAGES.md).
+
 ## Arayüz
 
 - Varsayılan **simsiyah AMOLED** tema: ana arka plan `#000000`.
@@ -28,7 +39,7 @@ Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgis
 
 Paylaşım bağlantısı alma, niyetle kaydetme, hızlı nedenler, isteğe bağlı eylem adımları, Türkçe karakterlerden bağımsız arama, niyet/durum filtreleri, düzenleme, tamamlandı işaretleme, kaynağı açma, yedekleme ve eski veri geçişi uygulanmıştır.
 
-Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır adımlar niyete göre genel başlangıç önerileridir. **AI kart üretimi, semantik arama, hatırlatmalar, nesne tanıma, fiyat takibi ve bulut senkronizasyonu henüz uygulanmadı.** Uygulamada ödeme veya abonelik entegrasyonu yoktur. Ücretli ürün hedefi ve yayın öncesi kontroller [yol haritasında](docs/ROADMAP.md) tanımlıdır.
+Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır adımlar niyete göre genel başlangıç önerileridir. **AI kart üretimi, semantik arama, nesne tanıma, fiyat takibi ve bulut senkronizasyonu henüz uygulanmadı.** Uygulamada ödeme veya abonelik entegrasyonu yoktur. Ücretli ürün hedefi ve yayın öncesi kontroller [yol haritasında](docs/ROADMAP.md) tanımlıdır.
 
 ## Colab derlemesi
 
@@ -60,18 +71,18 @@ Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni veri
 
 ## Veri ve yedekler
 
-Kayıtlar uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya sunucu yoktur; ağ izni istenmez. Web araması ve kaynak açma cihazın tarayıcısında/kaynak uygulamasında yapılır. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya sunucu yoktur; ağ izni istenmez. Web araması ve kaynak açma cihazın tarayıcısında/kaynak uygulamasında yapılır. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
 
 İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB JSON, 5000 kart, kart başına 30 adım. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 
-v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.3 yedek biçimi **sürüm 2**'dir ve Bul sorgusunu içerir; v0.2 uygulaması yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
+v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.4 yedek biçimi **sürüm 3**'tür; Bul sorgusunu ve hatırlatma tarihini içerir. Sürüm 1 ve 2 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
 
 ## Doğrulama
 
 Veri testleri URL işlemleri, Türkçe arama, eski kayıt geçişi, yedekleme/birleştirme, yedi niyet ve başlık/not yazmadan hızlı kaydetmeyi kapsar. Robolectric arayüz testleri hızlı paylaşım kaydını, AMOLED/aydınlık renkleri ve taslağın yeniden oluşturulmasını kontrol eder. Arayüz testleri yerel inceleme için `app/build/reports/ui` altında görüntüler üretir.
 
-**60 test** (6 Android arayüz testi dahil), `lintDebug` ve temiz debug APK derlemesi geliştirme ortamında geçti; APK imzası ve ZIP bütünlüğü doğrulandı. **Gerçek cihaz ve Colab oturumunda etkileşimler ayrıca doğrulanmalıdır.** Testlerin geçmesi mağaza yayınına hazır olunduğu anlamına gelmez; cihaz kabul listesi ve ücretli ürün yayın kapıları tamamlanmalıdır.
+**81 test** (hatırlatma, dil ve Android arayüz testleri dahil), `lintDebug` ve temiz debug APK derlemesi geliştirme ortamında geçti; APK imzası ve ZIP bütünlüğü doğrulandı. **Gerçek cihaz ve Colab oturumunda etkileşimler ayrıca doğrulanmalıdır.** Testlerin geçmesi mağaza yayınına hazır olunduğu anlamına gelmez; cihaz kabul listesi ve ücretli ürün yayın kapıları tamamlanmalıdır.
 
 ## Üçüncü taraf varlıklar
 
-Manrope, Google Fonts deposundan alınmıştır: https://github.com/google/fonts/tree/main/ofl/manrope . SIL Open Font License 1.1 metni `app/src/main/res/raw/manrope_license.txt` içinde ve APK'da bulunur. Manrope değişken fontundan 400/700 ağırlıklarında statik dosyalar üretildi; fontun telif ve lisans bilgileri korunur. Vektör ikonlar proje içinde tanımlanır. Material Components/AndroidX sürümleri Gradle dosyasında sabitlenmiştir.
+Manrope, Google Fonts deposundan alınmıştır: https://github.com/google/fonts/tree/main/ofl/manrope . SIL Open Font License 1.1 metni `app/src/main/res/raw/manrope_license.txt` içinde ve APK'da bulunur. Manrope değişken fontundan 400/700 ağırlıklarında statik dosyalar üretildi; fontun telif ve lisans bilgileri korunur. Sosyal platform vektörleri Simple Icons (CC0) kaynaklıdır; lisans `app/src/main/res/raw/simple_icons_license.txt` içindedir. Diğer vektörler proje içinde tanımlanır. Splash illüstrasyonu proje için oluşturulmuştur. Material Components/AndroidX sürümleri Gradle dosyasında sabitlenmiştir.

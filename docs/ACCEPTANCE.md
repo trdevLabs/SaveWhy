@@ -34,3 +34,16 @@ Android 8+ üzerinde, hem normal açılışta hem uygulama zaten açıkken dene.
 - [ ] İmzalı bir APK güncellemesini eski kurulum üzerine dene. Colab debug imzası değiştiyse uygulamayı silmeden yedek al.
 
 Birim testleri veri işlemlerini; arayüz testleri Android bileşenlerini emüle ederek temel etkileşimleri doğrular. Paylaşım uygulamaları, dosya sağlayıcıları, gerçek klavye ve cihaz performansı bu listede ayrıca doğrulanır.
+
+
+## v0.4 cihaz kabulü
+
+- Detayları aç: başlık ve not etiketi metinle çakışmamalı; büyük yazı boyutunda Kaydet erişilebilir kalmalı.
+- Örnek yapılacaklardan bir madde seç; kendi metnin ve tamamlanan eski maddelerin korunmalı.
+- 1 saat sonra veya yakın özel tarih/saat için hatırlatma ekle. Android 13+ izin kabul/ret ve kanal kapalı durumlarını dene.
+- Uygulamayı kapatıp bildirimi aç; ilgili kart gelmeli. Tamamlama ve silme sonrası bildirim gelmemeli.
+- Telefonu yeniden başlatıp bekleyen hatırlatmayı kontrol et. Android pil tasarrufu bildirim zamanını geciktirebilir.
+- Hatırlatmalı JSON yedeğini dışa/içe aktar; tarih korunmalı. Eski sürüm 1/2 yedeklerini de dene.
+- Sistem dili Türkçe/İngilizce iken ilk açılışı dene. Ayarlardan diğer dili seç, yeniden aç; seçim korunmalı. Sistem dili seçimine dön, sistem dilini değiştir.
+- Kullanıcının başlığı, notu ve kendi yapılacakları dil değişiminde aynen kalmalı.
+- Normal splash yaklaşık 2,2 saniye görünmeli; dokununca hemen geçmeli. Paylaşım ve bildirim açılışında beklememeli.

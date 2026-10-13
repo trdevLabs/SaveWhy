@@ -48,8 +48,9 @@ public final class QuickCapture {
         String title=customTitle.trim().isEmpty()?title(url,sharedTitle):customTitle.trim();
         String note=!customNote.trim().isEmpty()?customNote.trim():quickReason.trim();
         if(note.isEmpty()) note=reasons(why).get(0);
-        return new Card(previous==null?UUID.randomUUID().toString():previous.id,url,title,why,note,
+        Card result=new Card(previous==null?UUID.randomUUID().toString():previous.id,url,title,why,note,
                 previous==null?System.currentTimeMillis():previous.createdAt,previous!=null&&previous.done,
                 Card.parseSteps(lines,previous==null?Collections.emptyList():previous.steps),searchQuery);
+        result.reminderAt=previous==null?0:previous.reminderAt; return result;
     }
 }

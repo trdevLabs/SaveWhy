@@ -24,6 +24,10 @@ SaveWhy, sosyal medyada kaydedilen bir içeriği kullanıcının amacı ve bir s
 
 Yeni niyetleri başlangıçta çoğaltmayacağız. Ek ihtiyaçlar önce mevcut niyetlerin alanları ve etiketlerle karşılanacak; özel niyetler ancak kullanıcıların tekrar eden ihtiyacı görülürse değerlendirilecek.
 
+## Cihaz geri bildirimiyle güncel sıra
+
+v0.4 kapsamında detay alanı okunabilirliği, seçilebilir yapılacak örnekleri, Türkçe/İngilizce dil desteği ve yerel hatırlatmalar öne alındı. AI içerik önerileri henüz eklenmedi; önce cihazda temel akış ve bildirim güvenilirliği doğrulanacak. Hatırlatma sürümüyle birlikte yedek biçimi 3 oldu; eski veriler korunur.
+
 ## Sürüm sırası
 
 ### v0.3 — Hızlı kayıt, modern arayüz ve niyet sistemi
@@ -44,7 +48,7 @@ Yeni niyetleri başlangıçta çoğaltmayacağız. Ek ihtiyaçlar önce mevcut n
 
 Kabul: paylaşılan URL, niyet seçimi ve Kaydet düğmesiyle klavye açmadan kayıt oluşturulur; kullanıcı neden seçimini değiştirebilir; açık taslak ve tema tercihi yeniden açılışta korunur. İzle ve Bul ile paylaşım/kayıt/düzenleme/tamamlama akışı çalışır; arama sorgusu, ekran dönüşü ve yedekleme sırasında korunur. Otomatik nesne tanıma veya içerik çözümleme bu sürümde yoktur.
 
-### v0.4 — Metinden AI eylem kartı
+### Sonraki sürüm — Metinden AI eylem kartı
 
 İlk AI girdisi, kullanıcının verdiği açıklama, metin veya transkript olacak. Sadece bir URL'den videoyu okuduğumuzu varsaymayacağız. Android istemcisi bir sunucuya bağlanacak; model anahtarı APK içinde tutulmayacak.
 
@@ -68,7 +72,7 @@ Bu aşamada Bul için bulunan bağlantı ve sonuç notu da karta geri kaydedilec
 
 Kabul: aynı anlama gelen farklı sözcüklerle kayıt bulunur; yanlış pozitif sonuçlar elle değerlendirilir. Yalnızca tam kelime araması semantik arama olarak sunulmaz.
 
-### v0.6 — Zamana ve bağlama göre hatırlatma
+### İleri aşama — Hatırlatmaları genişletme
 
 Kullanıcının seçtiği zamanda geri dönme, erteleme ve haftalık bekleyenler görünümü. İzle için izleme listesi; Git için kullanıcı tarafından onaylanmış adres üzerinden harita açma. Bildirimler kullanıcı tercihiyle açılır. Satın alma takibi ve fiyat uyarıları ayrıca doğrulanabilir bir veri kaynağı gerektirir; bu aşamanın otomatik parçası değildir.
 

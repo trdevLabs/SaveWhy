@@ -59,8 +59,8 @@ public class IntentTest {
         root.getJSONArray("cards").getJSONObject(0).remove("searchQuery");
         assertThrows(JSONException.class,()->CardCodec.decode(root.toString()));
     }
-    @Test public void currentBackupVersionIsTwo() throws Exception {
-        assertEquals(2,new JSONObject(CardCodec.encode(Collections.emptyList())).getInt("version"));
+    @Test public void currentBackupVersionIsThree() throws Exception {
+        assertEquals(3,new JSONObject(CardCodec.encode(Collections.emptyList())).getInt("version"));
     }
     @Test public void oversizedResearchQueryIsRejected() {
         assertThrows(IllegalArgumentException.class,()->card("Bul",String.join("",Collections.nCopies(301,"a"))));
