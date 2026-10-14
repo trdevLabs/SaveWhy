@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView status,usageLabel;private com.google.android.material.progressindicator.LinearProgressIndicator usageProgress;private LinearLayout usageBox;
     private Choices choices; private PurchaseManager purchases;
     private Bundle imagePickDraft;private LocalMedia localMedia;private VideoStore videos;private ImageStore images;private ImageOcr imageOcr;private volatile boolean destroyed;private final Set<String> ocrActive=new HashSet<>();
-    private ThumbnailLoader thumbnails; private String thumbnailCardId; private BottomSheetDialog detailDialog;private String detailCardId;private TextView ocrStatus;private MaterialButton ocrTextButton,ocrRetryButton;
+    private ThumbnailLoader thumbnails; private String thumbnailCardId; private BottomSheetDialog detailDialog;private String detailCardId;private TextView ocrStatus,ocrContent;private MaterialButton ocrRetryButton;
     private WindowInsetsCompat lastWindowInsets;
     private Typeface regular, bold;
     private String query="", filter="Bekleyen";
@@ -56,18 +56,19 @@ public class MainActivity extends AppCompatActivity {
     @Override public void onCreate(Bundle state) {
         int mode=getSharedPreferences("settings",MODE_PRIVATE).getInt("theme",AppCompatDelegate.MODE_NIGHT_YES);
         AppCompatDelegate.setDefaultNightMode(mode);
+        setTheme(Palettes.STYLES[Palettes.index(this)]);
         super.onCreate(state);
-        regular=ResourcesCompat.getFont(this,R.font.manrope_family); bold=Typeface.create(regular,Typeface.BOLD);
-        choices=new Choices(this);localMedia=new LocalMedia(this);thumbnails=new ThumbnailLoader(this);images=new ImageStore(this);videos=new VideoStore(this,images);imageOcr=new ImageOcr();
+        regular=LanguageOptions.font(this); bold=Typeface.create(regular,Typeface.BOLD);
+        choices=new Choices(this);localMedia=new LocalMedia(this);thumbnails=new ThumbnailLoader(this);images=new ImageStore(this);videos=new VideoStore(this,images);imageOcr=new ImageOcr(this);
         purchases=new PurchaseManager(this);purchases.changed=()->{updateUsage();if(page.equals("purchase"))updatePaywall();};
         store=new CardStore(getFilesDir(),()->purchases.premium());
         try { store.load(); } catch(Exception e) { toast("Kayıtlar okunamadı. Mevcut dosya korunuyor."); }
         if(state!=null) { query=state.getString("query",""); filter=state.getString("filter","Bekleyen"); }
         if(store.isHealthy()){Set<String> retained=new HashSet<>();Set<String> retainedVideos=new HashSet<>();for(Card card:store.all()){if(card.hasVisual())retained.add(card.imageId);if(card.isVideo())retainedVideos.add(card.videoId());}if(state!=null)for(String key:new String[]{"draft","purchaseDraft","imagePickDraft"}){Bundle draft=state.getBundle(key);if(draft!=null){retained.add(draft.getString("imageId",""));retainedVideos.add(draft.getString("videoId",""));}}mediaWorker.execute(()->{images.cleanup(retained,System.currentTimeMillis());videos.cleanup(retainedVideos,System.currentTimeMillis());});}
         Reminders.restore(this,store.all());
-        getOnBackPressedDispatcher().addCallback(this,new androidx.activity.OnBackPressedCallback(true){public void handleOnBackPressed(){if(!page.equals("home"))home();else{setEnabled(false);getOnBackPressedDispatcher().onBackPressed();setEnabled(true);}}});
+        getOnBackPressedDispatcher().addCallback(this,new androidx.activity.OnBackPressedCallback(true){public void handleOnBackPressed(){if(page.equals("about"))settings();else if(!page.equals("home"))home();else{setEnabled(false);getOnBackPressedDispatcher().onBackPressed();setEnabled(true);}}});
         home();
-        if(state!=null&&"settings".equals(state.getString("page")))settings();else if(state!=null&&"notifications".equals(state.getString("page")))notifications();else if(state!=null&&"purchase".equals(state.getString("page")))purchaseScreen(state.getBundle("purchaseDraft"));
+        if(state!=null&&"settings".equals(state.getString("page")))settings();else if(state!=null&&"about".equals(state.getString("page")))about();else if(state!=null&&"notifications".equals(state.getString("page")))notifications();else if(state!=null&&"purchase".equals(state.getString("page")))purchaseScreen(state.getBundle("purchaseDraft"));
         String notificationId=getIntent().getStringExtra("cardId"); if(notificationId!=null) detail(notificationId);
         if(state!=null){thumbnailCardId=state.getString("thumbnailCardId");imagePickDraft=state.getBundle("imagePickDraft");}
         if(state==null&&Intent.ACTION_MAIN.equals(getIntent().getAction())&&getIntent().hasCategory(Intent.CATEGORY_LAUNCHER))startActivity(new Intent(this,SplashActivity.class).putExtra("overlay",true));
@@ -110,13 +111,28 @@ public class MainActivity extends AppCompatActivity {
     private void acceptMedia(Uri uri,boolean video){
         if(!"content".equalsIgnoreCase(uri.getScheme())){toast("Dosyaya erişilemiyor. Dosyayı yeniden bağla.");return;}
         final Bundle draft=imagePickDraft==null?new Bundle():new Bundle(imagePickDraft);final boolean fromPicker=imagePickDraft!=null;imagePickDraft=null;if(!draft.containsKey("relinkId"))draft.remove("id");draft.remove("url");draft.remove("sharedTitle");
-        if(!localMedia.persist(uri)){if(!fromPicker){toast("Paylaşım geçici erişim verdi. Kopyalamadan saklamak için aynı dosyayı seç.");chooseExistingMedia(video,draft,uri);}else{toast("Kalıcı dosya erişimi alınamadı. Başka bir dosya kaynağı seç.");}return;}
-        mediaWorker.execute(()->{try{if(!localMedia.accessible(uri))throw new IOException("Missing document");String id=LocalMedia.identity(uri),name=localMedia.name(uri);draft.putString("imageId",id);draft.putString("videoId",video?id:"");draft.putString("mediaUri",uri.toString());draft.putString("mediaName",name);handler.post(()->{if(destroyed)return;Runnable next=()->{if(capture!=null)capture.dialog.dismiss();showCapture(draft);};if(!fromPicker&&capture!=null&&capture.dialog.isShowing())new MaterialAlertDialogBuilder(this).setTitle(L("Yeni paylaşımı aç?")).setMessage(L("Açık taslak kapanacak.")).setNegativeButton(L("Taslakta kal"),null).setPositiveButton(L("Yeni paylaşımı aç"),(d,w)->next.run()).show();else next.run();});}catch(Exception e){handler.post(()->{if(!destroyed)toast("Dosyaya erişilemiyor. Dosyayı yeniden bağla.");});}});
+        final boolean persistent=localMedia.persist(uri);
+        if(!persistent&&fromPicker){toast("Kalıcı dosya erişimi alınamadı. Başka bir dosya kaynağı seç.");return;}
+        mediaWorker.execute(()->{try{
+            if(!localMedia.accessible(uri))throw new IOException("Missing document");
+            String name=localMedia.name(uri);
+            if(persistent){String id=LocalMedia.identity(uri);draft.putString("imageId",id);draft.putString("videoId",video?id:"");draft.putString("mediaUri",uri.toString());draft.putString("mediaName",name);}
+            else {
+                try(InputStream input=getContentResolver().openInputStream(uri)){
+                    if(video){VideoStore.Clip clip=videos.ingest(input);draft.putString("imageId",clip.poster);draft.putString("videoId",clip.id);}
+                    else{draft.putString("imageId",images.ingest(input));draft.putString("videoId","");}
+                }
+                draft.putString("mediaUri","");draft.putString("mediaName","");
+                if(draft.getString("title","").isEmpty())draft.putString("title",name);
+            }
+            handler.post(()->{if(destroyed)return;Runnable next=()->{if(capture!=null)capture.dialog.dismiss();showCapture(draft);};if(!fromPicker&&capture!=null&&capture.dialog.isShowing())new MaterialAlertDialogBuilder(this).setTitle(L("Yeni paylaşımı aç?")).setMessage(L("Açık taslak kapanacak.")).setNegativeButton(L("Taslakta kal"),null).setPositiveButton(L("Yeni paylaşımı aç"),(d,w)->next.run()).show();else next.run();});
+        }catch(Exception e){handler.post(()->{if(!destroyed)toast("Paylaşılan dosya okunamadı veya dosya sınırını aşıyor.");});}});
     }
+
     private void bindThumbnail(ImageView view,Card card){if(card.isReference())localMedia.bind(view,card.mediaUri(),card.isVideo(),mediaWorker,handler);else if(card.hasVisual())images.bind(view,card.imageId,mediaWorker,handler);else thumbnails.bind(view,card.url,sourceIcon(card.url));}
     private void openVideo(Card card){if(card.isReference())openReferenceVideo(card.mediaUri());else openVideo(card.videoId());}
-    private void openReferenceVideo(String value){try{Uri uri=Uri.parse(value);Intent open=new Intent(Intent.ACTION_VIEW).setDataAndType(uri,"video/*").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);open.setClipData(ClipData.newRawUri("SaveWhy video",uri));startActivity(open);}catch(Exception e){toast("Dosyaya erişilemiyor. Dosyayı yeniden bağla.");}}
-    private void openVideo(String id){try{Uri uri=androidx.core.content.FileProvider.getUriForFile(this,getPackageName()+".videos",videos.file(id));Intent open=new Intent(Intent.ACTION_VIEW).setDataAndType(uri,"video/*").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);open.setClipData(ClipData.newRawUri("SaveWhy video",uri));startActivity(open);}catch(Exception e){toast("Video açılamadı. Cihazında bir video oynatıcı bulunmalı.");}}
+    private void openReferenceVideo(String value){try{Uri uri=Uri.parse(value);Intent open=new Intent(Intent.ACTION_VIEW).setDataAndType(uri,"video/*").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);open.setClipData(ClipData.newRawUri("tosave video",uri));startActivity(open);}catch(Exception e){toast("Dosyaya erişilemiyor. Dosyayı yeniden bağla.");}}
+    private void openVideo(String id){try{Uri uri=androidx.core.content.FileProvider.getUriForFile(this,getPackageName()+".videos",videos.file(id));Intent open=new Intent(Intent.ACTION_VIEW).setDataAndType(uri,"video/*").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);open.setClipData(ClipData.newRawUri("tosave video",uri));startActivity(open);}catch(Exception e){toast("Video açılamadı. Cihazında bir video oynatıcı bulunmalı.");}}
     private void viewImage(String imageId){viewImage(imageId,"");}
     private void viewImage(String imageId,String uri){
         android.app.Dialog dialog=new android.app.Dialog(this,R.style.AppTheme);FrameLayout frame=new FrameLayout(this);frame.setBackgroundColor(android.graphics.Color.BLACK);ImageZoomView image=new ImageZoomView(this);image.setId(R.id.image_viewer);image.setContentDescription(L("Görseli büyüt"));frame.addView(image,new FrameLayout.LayoutParams(-1,-1));MaterialButton close=iconButton("Kapat",R.drawable.ic_close,dialog::dismiss);FrameLayout.LayoutParams closeParams=new FrameLayout.LayoutParams(dp(48),dp(48),Gravity.TOP|Gravity.END);frame.addView(close,closeParams);dialog.setContentView(frame);dialog.show();if(dialog.getWindow()!=null){dialog.getWindow().setLayout(-1,-1);dialog.getWindow().setStatusBarColor(android.graphics.Color.BLACK);dialog.getWindow().setNavigationBarColor(android.graphics.Color.BLACK);}
@@ -127,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void finishScan(String id,String text,boolean success){ocrActive.remove(id);if(destroyed)return;try{store.load();Card current=store.find(id);if(current==null||!current.isImage())return;Card updated=current.copy();if(success)updated.recognizedText=text;updated.ocrState=success?"ready":"failed";store.save(updated,false);render();updateOcrDetail(updated);}catch(Exception e){error(e);}}
     private int dp(int n) { return Math.round(n*getResources().getDisplayMetrics().density); }
-    private int color(int id) { return ContextCompat.getColor(this,id); }
+    private int color(int id) { return Palettes.color(this,id); }
     private LinearLayout column() { LinearLayout l=new LinearLayout(this); l.setOrientation(LinearLayout.VERTICAL); return l; }
     private LinearLayout row() { LinearLayout l=new LinearLayout(this); l.setGravity(Gravity.CENTER_VERTICAL); return l; }
     private TextView text(String value,int size,boolean strong) {
@@ -209,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout header=row(); header.setPadding(dp(16),dp(8),dp(16),dp(6));
         ImageView logo=new ImageView(this); logo.setImageResource(R.drawable.splash_art); logo.setScaleType(ImageView.ScaleType.FIT_CENTER); logo.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         int logoSize=Math.round(24*getResources().getDisplayMetrics().scaledDensity); LinearLayout.LayoutParams logoParams=new LinearLayout.LayoutParams(logoSize,logoSize); logoParams.setMarginEnd(dp(8)); header.addView(logo,logoParams);
-        header.addView(text("SaveWhy",24,true),new LinearLayout.LayoutParams(0,-2,1));
+        header.addView(text("tosave",24,true),new LinearLayout.LayoutParams(0,-2,1));
         FrameLayout notifications=new FrameLayout(this); bell=iconButton("Bildirimler",R.drawable.ic_bell,this::notifications);bell.setId(R.id.main_notifications);notifications.addView(bell);
         badge=text("",10,true);badge.setTextColor(color(R.color.app_on_primary));android.graphics.drawable.GradientDrawable dot=new android.graphics.drawable.GradientDrawable();dot.setColor(color(R.color.app_primary));dot.setCornerRadius(dp(10));badge.setBackground(dot);badge.setGravity(Gravity.CENTER);badge.setPadding(dp(4),0,dp(4),0);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         FrameLayout.LayoutParams bp=new FrameLayout.LayoutParams(-2,dp(18),Gravity.TOP|Gravity.END);notifications.addView(badge,bp);header.addView(notifications,new LinearLayout.LayoutParams(dp(48),dp(48)));
@@ -229,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
             HorizontalScrollView scroll=new HorizontalScrollView(this);scroll.setHorizontalScrollBarEnabled(false);ChipGroup rowGroup=new ChipGroup(this);rowGroup.setSingleLine(true);rowGroup.setChipSpacingHorizontal(dp(4));rowGroup.setPadding(dp(16),0,dp(16),0);
             for(String name:homeFilters()) {
                 boolean state=Arrays.asList("Bekleyen","Unutulanlar","Tümü","Tamamlanan","Görseller","Ekran görüntüleri","Videolar","Sosyal").contains(name);if(state!=(group==0))continue;
-                Chip c=chip(name,state?0:icon(name),true);c.setTag(name);c.setChecked(filter.equals(name));c.setOnClickListener(v->{filter=name;render();});rowGroup.addView(c);
+                Chip c=chip(name,state?filterIcon(name):icon(name),true);c.setTag(name);c.setChecked(filter.equals(name));c.setOnClickListener(v->{filter=name;render();});rowGroup.addView(c);
             }
             scroll.addView(rowGroup);filterRows.addView(scroll);
         }
@@ -287,10 +303,11 @@ public class MainActivity extends AppCompatActivity {
         empty.removeAllViews(); ImageView image=new ImageView(this); image.setImageResource(first?R.drawable.ic_bookmark:R.drawable.ic_find);
         image.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary))); empty.addView(image,new LinearLayout.LayoutParams(dp(48),dp(48))); gap(empty,18);
         TextView heading=text(first?"İyi bir şey gördün mü?":"Burada henüz kayıt yok.",24,true); heading.setGravity(Gravity.CENTER); empty.addView(heading);
-        TextView help=text(first?"Instagram, TikTok veya YouTube'da paylaş menüsünden SaveWhy'ı seç. Niyetine dokun, kaydet.":"Başka bir niyet seç veya arama sözcüğünü değiştir.",14,false);
+        TextView help=text(first?"Instagram, TikTok veya YouTube'da paylaş menüsünden tosave'ı seç. Niyetine dokun, kaydet.":"Başka bir niyet seç veya arama sözcüğünü değiştir.",14,false);
         help.setGravity(Gravity.CENTER); empty.addView(help); gap(empty,18);
 
     }
+    private int filterIcon(String name){switch(name){case "Sosyal":return R.drawable.ic_social;case "Ekran görüntüleri":case "Görseller":return R.drawable.ic_image;case "Videolar":return R.drawable.ic_watch;case "Bekleyen":return R.drawable.ic_pending;case "Unutulanlar":return R.drawable.ic_clock;case "Tümü":return R.drawable.ic_grid;case "Tamamlanan":return R.drawable.ic_check;default:return R.drawable.ic_bookmark;}}
     private int sourceIcon(String url) {
         switch(UrlTools.source(url)) {
             case "Instagram": return R.drawable.ic_social_instagram;
@@ -358,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
     private void showCapture(Bundle draft) {
         if(draft.getString("id","").isEmpty()&&store.all().size()>=CardStore.FREE_LIMIT&&!purchases.premium()){purchaseScreen(draft);return;}
         if(!store.isHealthy()) { toast("Kayıt dosyası okunamadı. Yeni kayıt açılamıyor."); return; }
-        capture=new CaptureUi(draft); capture.dialog.show(); capture.body.requestFocus();
+        capture=new CaptureUi(draft); capture.dialog.show(); capture.body.requestFocus();capture.readImage();
         if(capture.dialog.getWindow()!=null) capture.dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE|WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
     private class CaptureUi {
@@ -367,8 +384,10 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout pasteActions;
         final ChipGroup intents,reasons; final MaterialButton save; MaterialButton examplesButton; final TextView source,purpose; final ImageView linkIcon;
         String why,reason,originalReason,originalWhy,originalQuickNote; boolean detailsOpen,keepQuickNote;
+        String recognizedText="",ocrState="pending",savedCardId="";boolean draftReading;
         CaptureUi(Bundle b) {
             id=b.getString("id","");imageId=b.getString("imageId","");videoId=b.getString("videoId","");mediaUri=b.getString("mediaUri","");mediaName=b.getString("mediaName",""); sharedTitle=b.getString("sharedTitle",""); why=b.getString("why",""); reason=b.getString("reason",""); originalReason=b.getString("originalReason","");originalWhy=b.getString("originalWhy","");originalQuickNote=b.getString("originalQuickNote","");keepQuickNote=b.getBoolean("keepQuickNote",false);
+            recognizedText=b.getString("recognizedText","");ocrState=b.getString("ocrState","pending");
             body=sheetBody(); LinearLayout titleRow=row(); titleRow.addView(text(id.isEmpty()?"Niyetini seç":"Kaydını düzenle",20,true),new LinearLayout.LayoutParams(0,-2,1));
             titleRow.addView(iconButton("Kapat",R.drawable.ic_close,()-> { if(capture!=null) capture.dialog.dismiss(); })); body.addView(titleRow);
             gap(body,4);
@@ -382,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
             if(imageId.isEmpty())sourceRow.addView(iconButton("Bağlantıyı düzenle",R.drawable.ic_edit,()->inputVisibility(urlBox,View.VISIBLE))); body.addView(pasteActions);
             if(imageId.isEmpty()){LinearLayout mediaPick=row();mediaPick.addView(button("Görsel ekle",R.drawable.ic_image,false,MainActivity.this::pickImage),new LinearLayout.LayoutParams(0,-2,1));mediaPick.addView(button("Video ekle",R.drawable.ic_watch,false,MainActivity.this::pickVideo),new LinearLayout.LayoutParams(0,-2,1));body.addView(mediaPick);}
             else{inputVisibility(urlBox,View.GONE);ImageView preview=new ImageView(MainActivity.this);preview.setId(R.id.capture_image);preview.setContentDescription(L(videoId.isEmpty()?"Görseli büyüt":"Videoyu aç"));if(mediaUri.isEmpty())images.bind(preview,imageId,mediaWorker,handler);else localMedia.bind(preview,mediaUri,!videoId.isEmpty(),mediaWorker,handler);sourceRow.addView(preview,new LinearLayout.LayoutParams(dp(56),dp(56)));preview.setOnClickListener(v->{if(videoId.isEmpty())viewImage(imageId,mediaUri);else if(mediaUri.isEmpty())openVideo(videoId);else openReferenceVideo(mediaUri);});}
-            if(!mediaUri.isEmpty())body.addView(text("Dosyaya bağlı · yeniden kopyalanmaz",12,false));gap(body,12);
+            if(!mediaUri.isEmpty())body.addView(text("Dosyaya bağlı · yeniden kopyalanmaz",12,false));else if(!imageId.isEmpty())body.addView(text("Uygulamada saklanır",12,false));gap(body,12);
             LinearLayout intentHeader=row(); intentHeader.addView(text("NE İÇİN?",11,false),new LinearLayout.LayoutParams(0,-2,1)); intentHeader.addView(iconButton("Niyetlerini düzenle",R.drawable.ic_edit,()->{Bundle draft=bundle();capture.dialog.dismiss();manageIntents(()->showCapture(draft));})); body.addView(intentHeader); intents=new ChipGroup(MainActivity.this); intents.setId(R.id.capture_intents); intents.setSingleSelection(true); intents.setSelectionRequired(true); intents.setChipSpacingHorizontal(dp(6));
             for(String name:captureIntents(why)) {
                 Chip c=chip(name,icon(name),true); c.setId(View.generateViewId()); c.setTag(name); c.setChecked(name.equals(why));
@@ -421,6 +440,18 @@ public class MainActivity extends AppCompatActivity {
         void updateReminderLabel() {
             reminderButton.setText(reminderAt==0?L("Hatırlatıcı ekle"):L("Hatırlatma")+" · "+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT,getResources().getConfiguration().getLocales().get(0)).format(new Date(reminderAt)));
         }
+        void readImage(){
+            if(imageId.isEmpty()||!videoId.isEmpty()||!ocrState.equals("pending")||draftReading)return;
+            Card existing=id.isEmpty()?null:store.find(id);
+            if(existing!=null&&existing.imageId.equals(imageId)&&existing.mediaUri().equals(mediaUri)){recognizedText=existing.recognizedText;ocrState=existing.ocrState;return;}
+            draftReading=true;
+            mediaWorker.execute(()->{try{
+                android.graphics.Bitmap bitmap=mediaUri.isEmpty()?images.bitmap(imageId,2560):localMedia.bitmap(Uri.parse(mediaUri),false,2560);
+                if(bitmap==null)throw new IOException("Missing image");
+                handler.post(()->{if(destroyed){bitmap.recycle();return;}imageOcr.read(bitmap,(value,success)->completeDraftScan(value,success));});
+            }catch(Exception e){handler.post(()->completeDraftScan("",false));}});
+        }
+        void completeDraftScan(String value,boolean success){draftReading=false;recognizedText=value;ocrState=success?"ready":"failed";if(!savedCardId.isEmpty())finishScan(savedCardId,value,success);}
         void buildReasons() {
             reasons.removeAllViews(); if(why.isEmpty()) return;
             List<String> options=new ArrayList<>(); for(Choices.Option o:choices.reasons(why,true))options.add(o.key);
@@ -446,7 +477,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Bundle bundle() {
-            Bundle b=new Bundle(); b.putString("id",id);b.putString("imageId",imageId);b.putString("videoId",videoId);b.putString("mediaUri",mediaUri);b.putString("mediaName",mediaName);b.putString("tags",tags.getText().toString()); b.putString("sharedTitle",sharedTitle); b.putString("url",url.getText().toString());
+            Bundle b=new Bundle();b.putString("recognizedText",recognizedText);b.putString("ocrState",ocrState); b.putString("id",id);b.putString("imageId",imageId);b.putString("videoId",videoId);b.putString("mediaUri",mediaUri);b.putString("mediaName",mediaName);b.putString("tags",tags.getText().toString()); b.putString("sharedTitle",sharedTitle); b.putString("url",url.getText().toString());
             b.putString("why",why); b.putString("reason",reason); b.putString("title",title.getText().toString()); b.putString("note",note.getText().toString());
             b.putString("steps",steps.getText().toString()); b.putString("searchQuery",search.getText().toString()); b.putBoolean("detailsOpen",detailsOpen); b.putLong("reminderAt",reminderAt); b.putString("originalReason",originalReason);b.putString("originalWhy",originalWhy);b.putString("originalQuickNote",originalQuickNote);b.putBoolean("keepQuickNote",keepQuickNote);return b;
         }
@@ -455,9 +486,9 @@ public class MainActivity extends AppCompatActivity {
                 Card previous=id.isEmpty()?null:store.find(id);String quickReason=keepQuickNote&&reason.equals(originalReason)&&why.equals(originalWhy)?originalQuickNote:reason.isEmpty()?intentLabel(why):reasonText(why,reason);
                 Card c;
                 if(imageId.isEmpty())c=QuickCapture.create(url.getText().toString(),sharedTitle,why,quickReason,title.getText().toString(),note.getText().toString(),steps.getText().toString(),search.getText().toString(),previous);
-                else {if(mediaUri.isEmpty()&&!images.exists(imageId))throw new IOException("Missing image");String caption=title.getText().toString().trim();if(caption.isEmpty()&&!mediaName.isEmpty())caption=mediaName;if(caption.isEmpty())caption=L(videoId.isEmpty()?"Ekran görüntüsü":"Cihaz videosu")+" · "+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(new Date());String description=note.getText().toString().trim();c=new Card(previous==null?UUID.randomUUID().toString():previous.id,"",caption,why,description.isEmpty()?quickReason:description,previous==null?System.currentTimeMillis():previous.createdAt,previous!=null&&previous.done,Card.parseSteps(steps.getText().toString(),previous==null?Collections.emptyList():previous.steps),search.getText().toString(),imageId,Card.parseTags(tags.getText().toString()),previous==null||!previous.mediaUri().equals(mediaUri)?"":previous.recognizedText,previous==null||!previous.mediaUri().equals(mediaUri)?(videoId.isEmpty()?"pending":"none"):previous.ocrState);c.setVideo(videoId);c.setMediaReference(mediaUri,mediaName);if(mediaUri.isEmpty()&&!videoId.isEmpty()&&!videos.file(videoId).isFile())throw new IOException("Missing video");}
+                else {if(mediaUri.isEmpty()&&!images.exists(imageId))throw new IOException("Missing image");String caption=title.getText().toString().trim();if(caption.isEmpty()&&!mediaName.isEmpty())caption=mediaName;if(caption.isEmpty())caption=L(videoId.isEmpty()?"Ekran görüntüsü":"Cihaz videosu")+" · "+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT).format(new Date());String description=note.getText().toString().trim();c=new Card(previous==null?UUID.randomUUID().toString():previous.id,"",caption,why,description.isEmpty()?quickReason:description,previous==null?System.currentTimeMillis():previous.createdAt,previous!=null&&previous.done,Card.parseSteps(steps.getText().toString(),previous==null?Collections.emptyList():previous.steps),search.getText().toString(),imageId,Card.parseTags(tags.getText().toString()),previous==null||!previous.imageId.equals(imageId)||!previous.mediaUri().equals(mediaUri)?recognizedText:previous.recognizedText,previous==null||!previous.imageId.equals(imageId)||!previous.mediaUri().equals(mediaUri)?(videoId.isEmpty()?ocrState:"none"):previous.ocrState);c.setVideo(videoId);c.setMediaReference(mediaUri,mediaName);if(mediaUri.isEmpty()&&!videoId.isEmpty()&&!videos.file(videoId).isFile())throw new IOException("Missing video");}
                 if(reminderAt!=0 && reminderAt<=System.currentTimeMillis()) { toast("Gelecekte bir zaman seç."); return; }
-                c.reminderAt=reminderAt; if(reminderAt>0)c.done=false; store.save(c); Reminders.sync(MainActivity.this,c); dialog.dismiss(); render();if(c.isImage()&&c.ocrState.equals("pending"))scanImage(c.id);
+                c.reminderAt=reminderAt; if(reminderAt>0)c.done=false; store.save(c); Reminders.sync(MainActivity.this,c); dialog.dismiss(); render();savedCardId=c.id;if(c.isImage()&&c.ocrState.equals("pending")&&!draftReading)scanImage(c.id);
                 Snackbar.make(root,id.isEmpty()?L("Kaydedildi · ")+intentLabel(why):L("Kayıt güncellendi"),Snackbar.LENGTH_LONG).show();if(id.isEmpty())maybeFeedback();
             } catch(CardStore.LimitException e){Bundle draft=bundle();dialog.dismiss();purchaseScreen(draft);}catch(Exception e) { error(e); }
         }
@@ -478,7 +509,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void detail(String id) {
         Card c=store.find(id); if(c==null) return;
-        if(detailDialog!=null)detailDialog.dismiss();detailCardId=id;ocrStatus=null;ocrTextButton=null;ocrRetryButton=null;
+        if(detailDialog!=null)detailDialog.dismiss();detailCardId=id;ocrStatus=null;ocrContent=null;ocrRetryButton=null;
         try { store.save(c); render(); } catch(Exception e){error(e);}
         LinearLayout body=sheetBody(); ImageView media=new ImageView(this);media.setId(R.id.detail_video);media.setContentDescription(L(c.hasVisual()?c.isVideo()?"Videoyu aç":"Görseli büyüt":"Orijinal içeriği aç"));bindThumbnail(media,c);int width=getResources().getDisplayMetrics().widthPixels-dp(48);body.addView(media,new LinearLayout.LayoutParams(-1,Math.min(dp(220),width*9/16)));media.setOnClickListener(v->{touchCard(id);if(c.isVideo())openVideo(c);else if(c.isImage())viewImage(c.imageId,c.mediaUri());else open(c.url);});gap(body,8);
         if(!c.hasVisual())body.addView(button("Küçük görsel seç",R.drawable.ic_edit,false,()->{thumbnailCardId=id;try{startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("image/*"),THUMBNAIL);}catch(ActivityNotFoundException e){toast("Dosya seçici bulunamadı.");}}));
@@ -488,8 +519,8 @@ public class MainActivity extends AppCompatActivity {
         if(c.hasVisual()){
             ChipGroup labels=new ChipGroup(this);for(String tag:c.tags){Chip chip=chip("",0,false);chip.setText(tag);chip.setOnClickListener(v->{detailDialog.dismiss();query=tag;filter=c.isVideo()?"Videolar":"Ekran görüntüleri";home();});labels.addView(chip);}body.addView(labels);
             if(c.isImage()){ocrStatus=text("",12,false);body.addView(ocrStatus);
-            ocrTextButton=button("Okunan metni göster",R.drawable.ic_learn,false,()->{Card current=store.find(id);if(current==null||current.recognizedText.isEmpty())return;TextView content=rawText(current.recognizedText,14,false);content.setTextIsSelectable(true);content.setPadding(dp(20),dp(12),dp(20),dp(12));ScrollView scroll=new ScrollView(this);scroll.addView(content);new MaterialAlertDialogBuilder(this).setTitle(L("Görseldeki metin")).setView(scroll).setPositiveButton(L("Kapat"),null).show();});body.addView(ocrTextButton);
-            ocrRetryButton=button("Metni yeniden tara",R.drawable.ic_find,false,()->{Card current=store.find(id);if(current==null)return;Card changed=current.copy();changed.ocrState="pending";try{store.save(changed,false);updateOcrDetail(changed);scanImage(id);}catch(Exception e){error(e);}});body.addView(ocrRetryButton);updateOcrDetail(c);}
+            ocrContent=rawText(c.recognizedText,14,false);ocrContent.setId(R.id.detail_ocr_text);ocrContent.setTextIsSelectable(true);body.addView(ocrContent);
+            ocrRetryButton=button("Metni yeniden tara",R.drawable.ic_find,false,()->{Card current=store.find(id);if(current==null)return;Card changed=current.copy();changed.ocrState="pending";try{store.save(changed,false);updateOcrDetail(changed);scanImage(id);}catch(Exception e){error(e);}});ocrRetryButton.setId(R.id.detail_ocr_retry);body.addView(ocrRetryButton);updateOcrDetail(c);}
 
         }
         TextView progress=text(c.steps.isEmpty()?"":c.completedSteps()+" / "+c.steps.size()+L(" adım tamamlandı"),12,false);progress.setVisibility(c.steps.isEmpty()?View.GONE:View.VISIBLE);body.addView(progress);
@@ -519,7 +550,7 @@ public class MainActivity extends AppCompatActivity {
             try { store.delete(id);if(removed.hasVisual())images.retainForUndo(removed.imageId);if(removed.isVideo())videos.retainForUndo(removed.videoId()); Reminders.cancel(this,id); dialog.dismiss(); render(); Snackbar.make(root,L("Kayıt silindi"),Snackbar.LENGTH_LONG).setAction(L("Geri al"),v->saveCard(removed)).show(); } catch(Exception e) { error(e); }
         }).show()); LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(dp(48),dp(48)); p.setMargins(dp(8),0,0,0); actions.addView(delete,p); body.addView(actions); dialog.show();
     }
-    private void updateOcrDetail(Card card){if(ocrStatus==null||!card.id.equals(detailCardId))return;ocrStatus.setText(L(card.ocrState.equals("pending")?"Görseldeki yazılar okunuyor…":card.ocrState.equals("failed")?"Metin okunamadı. Yeniden deneyebilirsin.":"Görseldeki yazılar aramada kullanılır."));ocrTextButton.setVisibility(card.recognizedText.isEmpty()?View.GONE:View.VISIBLE);ocrRetryButton.setVisibility(card.ocrState.equals("pending")?View.GONE:View.VISIBLE);}
+    private void updateOcrDetail(Card card){if(ocrStatus==null||!card.id.equals(detailCardId))return;ocrStatus.setText(L(card.ocrState.equals("pending")?"Görseldeki yazılar okunuyor…":card.ocrState.equals("failed")?"Metin okunamadı. Yeniden deneyebilirsin.":card.recognizedText.isEmpty()?"Görselde metin bulunamadı.":"Görseldeki metin"));ocrContent.setText(card.recognizedText);ocrContent.setVisibility(card.recognizedText.isEmpty()?View.GONE:View.VISIBLE);ocrRetryButton.setVisibility(card.ocrState.equals("pending")?View.GONE:View.VISIBLE);}
     private void searchFor(String id) {
         Card c=store.find(id); if(c==null) return; LinearLayout content=column(); content.setPadding(dp(24),dp(8),dp(24),0);
         TextInputLayout box=input(content,"Ne aramak istiyorsun?",c.effectiveSearchQuery(),300,1,View.generateViewId());
@@ -546,7 +577,7 @@ public class MainActivity extends AppCompatActivity {
         return Choices.fallback(key);
     }
     private List<String> homeFilters() {
-        List<String> names=new ArrayList<>(Arrays.asList("Bekleyen","Unutulanlar","Tümü","Ekran görüntüleri","Videolar","Sosyal"));
+        List<String> names=new ArrayList<>(Arrays.asList("Sosyal","Ekran görüntüleri","Videolar","Bekleyen","Unutulanlar","Tümü"));
         for(Choices.Option option:choices.intents(true))names.add(option.key);
         names.add("Tamamlanan"); if(!names.contains(filter))filter="Bekleyen"; return names;
     }
@@ -602,7 +633,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView purchasePrice,purchaseStatus;private MaterialButton purchaseBuy;private Bundle purchaseDraft;
     private void purchaseScreen(Bundle draft) {
         purchaseDraft=draft==null?null:new Bundle(draft);
-        LinearLayout body=subpage("purchase","SaveWhy Sınırsız",R.id.purchase_screen);
+        LinearLayout body=subpage("purchase","tosave Sınırsız",R.id.purchase_screen);
         ImageView mark=new ImageView(this);mark.setImageResource(R.drawable.splash_art);mark.setScaleType(ImageView.ScaleType.FIT_CENTER);LinearLayout.LayoutParams image=new LinearLayout.LayoutParams(dp(112),dp(128));image.gravity=Gravity.CENTER;body.addView(mark,image);
         TextView headline=text("Kaydetmeye sınır koyma.",24,true);headline.setGravity(Gravity.CENTER);body.addView(headline);
         TextView explanation=text("İlk 20 kayıt ücretsiz. Tek seferlik satın almayla kayıt sınırını kaldır.",14,false);explanation.setGravity(Gravity.CENTER);body.addView(explanation);gap(body,16);addUsage(body);
@@ -622,12 +653,12 @@ public class MainActivity extends AppCompatActivity {
     private void maybeFeedback(){int saves=getSharedPreferences("feedback",MODE_PRIVATE).getInt("saves",0)+1;getSharedPreferences("feedback",MODE_PRIVATE).edit().putInt("saves",saves).apply();if(saves>=5&&!getSharedPreferences("feedback",MODE_PRIVATE).getBoolean("asked",false))handler.postDelayed(()->{if(!isFinishing()&&!isDestroyed()&&page.equals("home")&&getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED))feedback(false);},900);}
     private void feedback(boolean manual){
         getSharedPreferences("feedback",MODE_PRIVATE).edit().putBoolean("asked",true).apply();
-        new MaterialAlertDialogBuilder(this).setTitle(L("Uygulamadan memnun musun?")).setMessage(L("Bir dakikalık görüşün SaveWhy’ı geliştirmemize yardımcı olur."))
+        new MaterialAlertDialogBuilder(this).setTitle(L("Uygulamadan memnun musun?")).setMessage(L("Bir dakikalık görüşün tosave’ı geliştirmemize yardımcı olur."))
             .setPositiveButton(L("Memnunum"),(d,w)->feedbackMessage("Memnunum")).setNegativeButton(L("Geliştirilebilir"),(d,w)->feedbackMessage("Geliştirilebilir")).setNeutralButton(L("Şimdi değil"),(d,w)->{}).show();
     }
     private void feedbackMessage(String answer){getSharedPreferences("feedback",MODE_PRIVATE).edit().putString("answer",answer).apply();LinearLayout body=column();body.setPadding(dp(20),dp(8),dp(20),0);TextInputLayout note=input(body,"Görüşün · isteğe bağlı","",2000,3,View.generateViewId());
         new MaterialAlertDialogBuilder(this).setTitle(L("Geri bildirim")).setView(body).setMessage(L("E-posta uygulamasında taslak açılır. Göndermeden önce düzenleyebilirsin."))
-            .setNegativeButton(L("Vazgeç"),null).setPositiveButton(L("E-posta ile paylaş"),(d,w)->composeMail("Geri bildirim",L("Uygulamadan memnun musun?")+" "+L(answer)+"\n\n"+note.getEditText().getText().toString()+"\n\nSaveWhy "+BuildConfig.VERSION_NAME)).show();
+            .setNegativeButton(L("Vazgeç"),null).setPositiveButton(L("E-posta ile paylaş"),(d,w)->composeMail("Geri bildirim",L("Uygulamadan memnun musun?")+" "+L(answer)+"\n\n"+note.getEditText().getText().toString()+"\n\ntosave "+BuildConfig.VERSION_NAME)).show();
     }
     private String L(String text) { return I18n.text(this,text); }
     private java.util.function.LongConsumer permissionChoice;
@@ -639,7 +670,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if(!Reminders.enabled(this)) {
             new MaterialAlertDialogBuilder(this).setTitle(L("Bildirimler kapalı"))
-                .setMessage(L("Hatırlatıcı için SaveWhy bildirimlerini ayarlardan aç. Kaydın yine saklanır."))
+                .setMessage(L("Hatırlatıcı için tosave bildirimlerini ayarlardan aç. Kaydın yine saklanır."))
                 .setNegativeButton(L("Vazgeç"),null).setPositiveButton(L("Ayarları aç"),(d,w)->startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName()))).show(); return;
         }
         apply.accept(time);
@@ -674,8 +705,8 @@ public class MainActivity extends AppCompatActivity {
         body.addView(button("Hatırlatma yok",R.drawable.ic_close,false,()->{ apply.accept(0); dialog.dismiss(); })); dialog.show();
     }
     private void chooseLanguage() {
-        String[] labels={L("Sistem dili"),"Türkçe","English"}; String[] codes={"","tr","en"};
-        String current=AppCompatDelegate.getApplicationLocales().toLanguageTags(); int selected=current.startsWith("tr")?1:current.startsWith("en")?2:0;
+        String[] labels=LanguageOptions.NAMES.clone();labels[0]=L("Sistem dili");String[] codes=LanguageOptions.CODES;
+        String current=AppCompatDelegate.getApplicationLocales().toLanguageTags(); int selected=LanguageOptions.index(current);
         new MaterialAlertDialogBuilder(this).setTitle(L("Uygulama dili")).setSingleChoiceItems(labels,selected,(dialog,index)-> {
             dialog.dismiss(); getSharedPreferences("settings",MODE_PRIVATE).edit().putString("language",codes[index]).apply();
             AppCompatDelegate.setApplicationLocales(androidx.core.os.LocaleListCompat.forLanguageTags(codes[index]));
@@ -689,7 +720,17 @@ public class MainActivity extends AppCompatActivity {
             final int mode=modes[i]; MaterialButton b=button(L(names[i])+(selected==mode?L(" · seçili"):""),i==0?R.drawable.ic_moon:R.drawable.ic_sun,selected==mode,()-> {
                 getSharedPreferences("settings",MODE_PRIVATE).edit().putInt("theme",mode).apply(); dialog.dismiss(); AppCompatDelegate.setDefaultNightMode(mode);
             }); body.addView(b,full()); gap(body,8);
-        } dialog.show();
+        }
+        gap(body,12); body.addView(rawText(getString(R.string.palette_title),20,true));
+        String[] paletteNames=getResources().getStringArray(R.array.palette_names);
+        for(int i=0;i<paletteNames.length;i++) {
+            final int choice=i; MaterialButton b=button(paletteNames[i],R.drawable.ic_check,Palettes.index(this)==i,()->{
+                getSharedPreferences("settings",MODE_PRIVATE).edit().putInt("palette",choice).apply();dialog.dismiss();recreate();
+            });
+            b.setIconTint(ColorStateList.valueOf(ContextCompat.getColor(this,Palettes.COLORS[i][5])));
+            body.addView(b,full());gap(body,6);
+        }
+        dialog.show();
     }
     private void syncFilterChecks(View view) {
         if(view instanceof Chip){Chip chip=(Chip)view;chip.setChecked(filter.equals(chip.getTag()));}
@@ -714,7 +755,7 @@ public class MainActivity extends AppCompatActivity {
         if(bellAnimation!=null)bellAnimation.cancel();
         page=name;root=new FrameLayout(this);root.setBackgroundColor(color(R.color.app_background));bindWindowInsets(root);setContentView(root);
         LinearLayout layout=column();root.addView(layout,new FrameLayout.LayoutParams(-1,-1));LinearLayout toolbar=row();toolbar.setPadding(dp(8),dp(4),dp(16),dp(4));
-        MaterialButton back=iconButton("Geri",R.drawable.ic_chevron,this::home);back.setRotation(180);toolbar.addView(back);toolbar.addView(text(title,22,true));layout.addView(toolbar);
+        MaterialButton back=iconButton("Geri",R.drawable.ic_chevron,()->{if(name.equals("about"))settings();else home();});back.setRotation(180);toolbar.addView(back);toolbar.addView(text(title,22,true));layout.addView(toolbar);
         androidx.core.widget.NestedScrollView scroll=new androidx.core.widget.NestedScrollView(this);layout.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));LinearLayout body=column();body.setId(id);body.setPadding(dp(20),dp(8),dp(20),dp(24));scroll.addView(body);return body;
     }
     private void preferenceRow(LinearLayout body,String title,String subtitle,int icon,Runnable action) { preferenceRow(body,title,subtitle,icon,action,false); }
@@ -727,9 +768,9 @@ public class MainActivity extends AppCompatActivity {
     private void section(LinearLayout body,String title){gap(body,16);TextView label=text(title,12,true);label.setTextColor(color(R.color.app_primary));body.addView(label);}
     private void settings() {
         LinearLayout body=subpage("settings","Ayarlar",R.id.settings_screen);
-        preferenceRow(body,"SaveWhy Sınırsız",purchases.premium()?"Sınırsız kayıt açık":"20 kayıt ücretsiz · Tek seferlik satın alma",R.drawable.ic_bookmark,()->purchaseScreen(null));
+        preferenceRow(body,"tosave Sınırsız",purchases.premium()?"Sınırsız kayıt açık":"20 kayıt ücretsiz · Tek seferlik satın alma",R.drawable.ic_bookmark,()->purchaseScreen(null));
         section(body,"Genel");String language=AppCompatDelegate.getApplicationLocales().toLanguageTags();
-        preferenceRow(body,"Uygulama dili",language.isEmpty()?L("Sistem dili"):language.startsWith("tr")?"Türkçe":"English",R.drawable.ic_info,this::chooseLanguage);
+        preferenceRow(body,"Uygulama dili",LanguageOptions.name(language,L("Sistem dili")),R.drawable.ic_info,this::chooseLanguage);
         int mode=getSharedPreferences("settings",MODE_PRIVATE).getInt("theme",AppCompatDelegate.MODE_NIGHT_YES);
         preferenceRow(body,"Görünüm",mode==AppCompatDelegate.MODE_NIGHT_YES?"Karanlık":mode==AppCompatDelegate.MODE_NIGHT_NO?"Aydınlık":"Sistem tercihi",R.drawable.ic_moon,this::chooseTheme);
         section(body,"Kayıtlar");int days=getSharedPreferences("settings",MODE_PRIVATE).getInt("forgottenDays",15);
@@ -737,10 +778,24 @@ public class MainActivity extends AppCompatActivity {
         preferenceRow(body,"Niyetler ve hızlı nedenler","Göster, gizle veya kişisel seçenek ekle.",R.drawable.ic_edit,()->manageIntents(()->settings()));
         section(body,"Bildirimler");preferenceRow(body,"Bildirim merkezi","Hatırlatmalarını burada gör.",R.drawable.ic_bell,this::notifications);
         preferenceRow(body,"Sistem bildirim ayarları",Reminders.enabled(this)?"Açık":"Kapalı",R.drawable.ic_settings,()->startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName())));
-        section(body,"Destek");preferenceRow(body,"İletişim ve destek","tr.developer@hotmail.com",R.drawable.ic_info,()->composeMail("Destek",""));preferenceRow(body,"Uygulamadan memnun musun?","Görüşünü bizimle paylaş.",R.drawable.ic_info,()->feedback(true));
+        section(body,"Hakkında");preferenceRow(body,"tosave hakkında","tr.developer",R.drawable.ic_info,this::about);
         section(body,"Yedekleme");body.addView(text("Yeni yerel kayıtlar dosyaya bağlıdır. Yedek dosyanın aslını içermez.",12,false));preferenceRow(body,"Yedek oluştur","Etiketlerini, notlarını ve dosya bağlantılarını dışa aktar.",R.drawable.ic_download,this::exportBackup);
         preferenceRow(body,"Yedeği içe aktar","Mevcut kayıtların korunur.",R.drawable.ic_upload,this::importBackup);
     }
+    private void about() {
+        LinearLayout body=subpage("about","Hakkında",R.id.about_screen);gap(body,16);
+        ImageView icon=new ImageView(this);icon.setId(R.id.about_icon);icon.setImageResource(R.mipmap.ic_launcher);icon.setContentDescription("tosave");icon.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        LinearLayout.LayoutParams imageParams=new LinearLayout.LayoutParams(dp(112),dp(112));imageParams.gravity=Gravity.CENTER_HORIZONTAL;body.addView(icon,imageParams);
+        TextView name=rawText("tosave",24,true);name.setGravity(Gravity.CENTER);body.addView(name,full());
+        TextView developer=rawText(getString(R.string.about_developer)+" · tr.developer",13,false);developer.setId(R.id.about_developer);developer.setGravity(Gravity.CENTER);body.addView(developer,full());
+        TextView version=rawText(BuildConfig.VERSION_NAME,11,false);version.setGravity(Gravity.CENTER);body.addView(version,full());gap(body,16);
+        aboutParagraph(body,R.string.about_purpose,R.id.about_purpose);
+        section(body,"Birlikte katkı sunuyoruz");aboutParagraph(body,R.string.about_contribution,R.id.about_contribution);
+        section(body,"Bağımsız geliştirme");aboutParagraph(body,R.string.about_independent,R.id.about_independent);
+        section(body,"İletişim ve destek");preferenceRow(body,"İletişim ve destek","tr.developer@hotmail.com",R.drawable.ic_info,()->composeMail("Destek",""));body.getChildAt(body.getChildCount()-1).setId(R.id.about_support);
+        preferenceRow(body,"Uygulamadan memnun musun?","Görüşünü bizimle paylaş.",R.drawable.ic_info,()->feedback(true));
+    }
+    private void aboutParagraph(LinearLayout body,int resource,int id){TextView paragraph=rawText(getString(resource),14,false);paragraph.setId(id);paragraph.setTextIsSelectable(true);paragraph.setLineSpacing(dp(4),1);body.addView(paragraph,full());gap(body,8);}
     private String reminderDate(long time){return java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT,getResources().getConfiguration().getLocales().get(0)).format(new Date(time));}
     private void notifications() {
         refreshNotifications();LinearLayout body=subpage("notifications","Bildirimler",R.id.notifications_screen);
@@ -758,7 +813,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void howItWorks() {
         LinearLayout body=sheetBody(); body.addView(text("Bir bağlantı. Bir niyet.",24,true)); gap(body,8);
-        body.addView(text("1  İçeriği paylaş",18,true)); body.addView(text("Sosyal medya uygulamasında Paylaş → SaveWhy.",14,false)); gap(body,12);
+        body.addView(text("1  İçeriği paylaş",18,true)); body.addView(text("Sosyal medya uygulamasında Paylaş → tosave.",14,false)); gap(body,12);
         body.addView(text("2  Niyetine dokun",18,true)); body.addView(text("Yap, Git, Al, Öğren, Üret, İzle veya Bul. Hızlı nedenlerden birini seçebilir veya doğrudan kaydedebilirsin.",14,false)); gap(body,12);
         body.addView(text("3  Zamanı gelince geri dön",18,true)); body.addView(text("Kaynağı aç, araştır veya adımlarını tamamla. Başlığı ve notları istediğin zaman düzenle.",14,false)); gap(body,12);
         body.addView(text("Başlık paylaşım bilgisinden veya bağlantıdan oluşturulur. Uygulama videonun içeriğini analiz etmez.",12,false));
@@ -766,7 +821,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void exportBackup() {
         if(!store.isHealthy()) { toast("Kayıtlar okunamadı. Yedek oluşturulamıyor."); return; }
-        Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/zip"); intent.putExtra(Intent.EXTRA_TITLE,"SaveWhy-"+new java.text.SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(new Date())+".zip");
+        Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/zip"); intent.putExtra(Intent.EXTRA_TITLE,"tosave-"+new java.text.SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(new Date())+".zip");
         try { startActivityForResult(intent,EXPORT); } catch(ActivityNotFoundException e) { toast("Dosya seçici bulunamadı."); }
     }
     private void importBackup() {
@@ -795,6 +850,6 @@ public class MainActivity extends AppCompatActivity {
         }catch(Exception e){closeMedia(pending);error(e);}
     }
     private void closeMedia(AutoCloseable resource){mediaResources.remove(resource);try{resource.close();}catch(Exception ignored){}}
-    private void error(Exception e) { if(e instanceof CardStore.LimitException){purchaseScreen(null);return;}toast(e instanceof IllegalArgumentException?e.getMessage():e instanceof org.json.JSONException?"Geçerli bir SaveWhy yedeği seç.":"İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et."); }
+    private void error(Exception e) { if(e instanceof CardStore.LimitException){purchaseScreen(null);return;}toast(e instanceof IllegalArgumentException?e.getMessage():e instanceof org.json.JSONException?"Geçerli bir tosave yedeği seç.":"İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et."); }
     private void toast(String message) { Toast.makeText(this,L(message),Toast.LENGTH_LONG).show(); }
 }
