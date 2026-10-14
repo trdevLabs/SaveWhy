@@ -311,4 +311,6 @@
 <string name="ui_309" formatted="false">"E-posta uygulamasında taslak açılır. Göndermeden önce düzenleyebilirsin."</string>
 <string name="ui_310" formatted="false">"E-posta ile paylaş"</string>
 <string name="ui_311" formatted="false">"Satın alma 20 kayıt sınırını kaldırır. Teknik kapasite: 5.000 kayıt / 4 MB."</string>
+<string name="ui_312">Küçük görsel seç</string>
+<string name="ui_313">Görsel okunamadı. Başka bir görsel seç.</string>
 </resources>

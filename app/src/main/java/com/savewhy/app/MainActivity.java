@@ -30,7 +30,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int EXPORT=41, IMPORT=42;
+    private static final int EXPORT=41, IMPORT=42, THUMBNAIL=43;
     private CardStore store;
     private FrameLayout root;
     private RecyclerView recycler;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout filterRegistry;
     private TextView status;
     private Choices choices; private PurchaseManager purchases;
-    private ThumbnailLoader thumbnails; private final Set<VideoPanel> videoPanels=new HashSet<>();
+    private ThumbnailLoader thumbnails; private String thumbnailCardId; private BottomSheetDialog detailDialog;
     private WindowInsetsCompat lastWindowInsets;
     private Typeface regular, bold;
     private String query="", filter="Bekleyen";
@@ -67,16 +67,18 @@ public class MainActivity extends AppCompatActivity {
         home();
         if(state!=null&&"settings".equals(state.getString("page")))settings();else if(state!=null&&"notifications".equals(state.getString("page")))notifications();else if(state!=null&&"purchase".equals(state.getString("page")))purchaseScreen(state.getBundle("purchaseDraft"));
         String notificationId=getIntent().getStringExtra("cardId"); if(notificationId!=null) detail(notificationId);
+        if(state!=null)thumbnailCardId=state.getString("thumbnailCardId");
+        if(state==null&&Intent.ACTION_MAIN.equals(getIntent().getAction())&&getIntent().hasCategory(Intent.CATEGORY_LAUNCHER))startActivity(new Intent(this,SplashActivity.class).putExtra("overlay",true));
         if(state!=null && state.containsKey("draft")) showCapture(state.getBundle("draft")); else if(notificationId==null) receive(getIntent());
     }
     @Override protected void onSaveInstanceState(Bundle state) {
-        super.onSaveInstanceState(state); state.putString("query",query); state.putString("filter",filter);state.putString("page",page);if(purchaseDraft!=null)state.putBundle("purchaseDraft",purchaseDraft);
+        super.onSaveInstanceState(state);state.putString("thumbnailCardId",thumbnailCardId); state.putString("query",query); state.putString("filter",filter);state.putString("page",page);if(purchaseDraft!=null)state.putBundle("purchaseDraft",purchaseDraft);
         if(capture!=null && capture.dialog.isShowing()) state.putBundle("draft",capture.bundle());
     }
     @Override protected void onResume(){super.onResume();if(store!=null){try{store.load();}catch(Exception e){error(e);}refreshNotifications();if(page.equals("home"))render();else if(page.equals("settings"))settings();}if(purchases!=null)purchases.refresh();handler.removeCallbacks(inboxTick);handler.postDelayed(inboxTick,30000);}
-    @Override protected void onPause(){handler.removeCallbacks(inboxTick);for(VideoPanel panel:videoPanels)panel.stop();if(bellAnimation!=null)bellAnimation.cancel();if(bell!=null){bell.animate().cancel();bell.setRotation(0);}super.onPause();}
+    @Override protected void onPause(){handler.removeCallbacks(inboxTick);if(bellAnimation!=null)bellAnimation.cancel();if(bell!=null){bell.animate().cancel();bell.setRotation(0);}super.onPause();}
     @Override protected void onDestroy() {
-        handler.removeCallbacksAndMessages(null);for(VideoPanel panel:videoPanels)panel.stop();videoPanels.clear();if(thumbnails!=null)thumbnails.close();if(purchases!=null)purchases.close(); worker.shutdownNow(); super.onDestroy();
+        handler.removeCallbacksAndMessages(null);if(thumbnails!=null)thumbnails.close();if(purchases!=null)purchases.close(); worker.shutdownNow(); super.onDestroy();
     }
     @Override protected void onNewIntent(Intent intent) { super.onNewIntent(intent); setIntent(intent); String id=intent.getStringExtra("cardId"); if(id!=null) detail(id); else receive(intent); }
     private void receive(Intent intent) {
@@ -436,9 +438,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void detail(String id) {
         Card c=store.find(id); if(c==null) return;
+        if(detailDialog!=null)detailDialog.dismiss();
         try { store.save(c); render(); } catch(Exception e){error(e);}
-        LinearLayout body=sheetBody(); final VideoPanel media;
-        if(!VideoLinks.youtubeId(c.url).isEmpty()){media=new VideoPanel(this,c.url,thumbnails);media.setId(R.id.detail_video);videoPanels.add(media);int width=getResources().getDisplayMetrics().widthPixels-dp(48);body.addView(media,new LinearLayout.LayoutParams(-1,Math.max(dp(200),width*9/16)));gap(body,12);}else media=null;
+        LinearLayout body=sheetBody(); ImageView media=new ImageView(this);media.setId(R.id.detail_video);media.setContentDescription(L("Orijinal içeriği aç"));thumbnails.bind(media,c.url,sourceIcon(c.url));int width=getResources().getDisplayMetrics().widthPixels-dp(48);body.addView(media,new LinearLayout.LayoutParams(-1,Math.min(dp(220),width*9/16)));media.setOnClickListener(v->{touchCard(id);open(c.url);});gap(body,8);
+        body.addView(button("Küçük görsel seç",R.drawable.ic_edit,false,()->{thumbnailCardId=id;try{startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("image/*"),THUMBNAIL);}catch(ActivityNotFoundException e){toast("Dosya seçici bulunamadı.");}}));
         body.addView(text(intentLabel(c.why)+"  ·  "+UrlTools.source(c.url),11,false));body.addView(rawText(c.title,17,true));gap(body,6);
         body.addView(text("NİYETİM",11,false)); body.addView(rawText(c.note,13,false)); gap(body,8);
         TextView progress=text(c.steps.isEmpty()?"":c.completedSteps()+" / "+c.steps.size()+L(" adım tamamlandı"),12,false);progress.setVisibility(c.steps.isEmpty()?View.GONE:View.VISIBLE);body.addView(progress);
@@ -453,10 +456,10 @@ public class MainActivity extends AppCompatActivity {
         TextView reminderStatus=text(c.reminderAt==0?"Hatırlatma yok":L("Hatırlatma")+" · "+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT,getResources().getConfiguration().getLocales().get(0)).format(new Date(c.reminderAt)),13,false); body.addView(reminderStatus);
         body.addView(button("Hatırlatıcıyı düzenle",R.drawable.ic_clock,false,()->chooseReminder(c.reminderAt,time->{ Card current=store.find(id); if(current==null)return; Card changed=current.copy(); changed.reminderAt=time; if(time>0)changed.done=false; if(saveCard(changed)) reminderStatus.setText(time==0?L("Hatırlatma yok"):java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT,getResources().getConfiguration().getLocales().get(0)).format(new Date(time))); }))); gap(body,12);
         if(c.why.equals("Bul")) body.addView(button("Web'de ara",R.drawable.ic_find,true,()->searchFor(id)));
-        else if(media==null)body.addView(button(c.why.equals("İzle")?"İçeriği izle":"Orijinal içeriği aç",c.why.equals("İzle")?R.drawable.ic_watch:R.drawable.ic_external,true,()->{touchCard(id);open(c.url);}));
+        else body.addView(button(c.why.equals("İzle")?"İçeriği izle":"Orijinal içeriği aç",c.why.equals("İzle")?R.drawable.ic_watch:R.drawable.ic_external,true,()->{touchCard(id);open(c.url);}));
         gap(body,8);
-        if(c.why.equals("Bul")||media!=null) { body.addView(button("Orijinal içeriği aç",R.drawable.ic_external,false,()->{touchCard(id);open(c.url);})); gap(body,8); }
-        BottomSheetDialog dialog=sheet(body);dialog.setOnDismissListener(d->{if(media!=null){media.stop();videoPanels.remove(media);}});
+        if(c.why.equals("Bul")) { body.addView(button("Orijinal içeriği aç",R.drawable.ic_external,false,()->{touchCard(id);open(c.url);})); gap(body,8); }
+        BottomSheetDialog dialog=sheet(body);detailDialog=dialog;
         body.addView(button(c.done?"Bekleyenlere geri al":IntentCatalog.get(c.why).completedLabel,R.drawable.ic_check,false,()-> {
             Card current=store.find(id); if(current==null) return; Card changed=current.copy(); changed.done=!changed.done; if(changed.done)changed.reminderAt=0;
             if(saveCard(changed)) { dialog.dismiss(); Snackbar.make(root,changed.done?L("Tamamlandı"):L("Bekleyenlere geri alındı"),Snackbar.LENGTH_SHORT).show(); }
@@ -721,6 +724,7 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data); if(result!=RESULT_OK || data==null || data.getData()==null) return; Uri uri=data.getData();
         try {
+            if(request==THUMBNAIL){Card card=store.find(thumbnailCardId);thumbnailCardId=null;if(card==null)return;thumbnails.select(card.url,()->getContentResolver().openInputStream(uri),success->{if(success){touchCard(card.id);render();detail(card.id);}else toast("Görsel okunamadı. Başka bir görsel seç.");});return;}
             if(request==EXPORT) {
                 org.json.JSONObject backup=new org.json.JSONObject(store.backup()); backup.put("customization",choices.snapshot()); backup.put("forgottenDays",getSharedPreferences("settings",MODE_PRIVATE).getInt("forgottenDays",15));
                 byte[] bytes=backup.toString(2).getBytes(StandardCharsets.UTF_8);if(bytes.length>CardCodec.MAX_BYTES)throw new IllegalArgumentException("Dosya en fazla 4 MB olabilir.");

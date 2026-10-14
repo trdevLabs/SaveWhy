@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
     private final Runnable open = () -> {
         if (isFinishing() || navigated) return;
         navigated = true;
-        startActivity(new Intent(this, MainActivity.class));
+        if (!getIntent().getBooleanExtra("overlay",false)) startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP));
         finish();
     };
     @Override public void onCreate(Bundle state) {

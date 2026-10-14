@@ -1,4 +1,4 @@
-# SaveWhy · Android 0.8.0
+# SaveWhy · Android 0.9.0
 
 **Paylaş. Niyetine dokun. Kaydet.**
 
@@ -13,6 +13,13 @@ Instagram, TikTok, YouTube veya bir web bağlantısında **Paylaş → SaveWhy**
 Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgisinden alınır; bilgi yoksa bağlantının kaynağı ve içerik kimliğinden oluşturulur. Her niyette dört hızlı neden vardır. Özel başlık, not, adımlar ve Bul sorgusu kapalı, isteğe bağlı detay alanındadır. Uygulama panoyu yalnızca **Panodan ekle** düğmesine dokunduğunda okur.
 
 **İzle** daha sonra tüketmek istediğin içerik içindir. **Bul** içerikte gördüğün bir şeyin kimliğini, kaynağını veya benzerini araştırmak içindir. Bul kartında web aramasından önce sorguyu gözden geçirirsin; özel notun sorguya otomatik eklenmez. Al, satın alma kararı; Öğren, öğrenme hedefi içindir.
+
+## v0.9 yenilikleri
+
+- Launcher, paylaşım ve bildirim aynı `singleTask` MainActivity'ye gider; tekrar açılış mevcut pencereyi kullanır. Splash bu pencerenin üzerinde kısa süreli bir ekrandır.
+- YouTube dahil bütün içerikler kaynak uygulamada veya tarayıcıda açılır; gömülü oynatıcı kaldırıldı.
+- Instagram/Facebook için herkese açık Open Graph, TikTok için oEmbed/Open Graph küçük görselleri desteklenir. X/Pinterest önizlemeleri de aynı akışı kullanır.
+- Erişimi engellenen/özel içeriklerin otomatik görseli garanti edilemez. Detayda **Küçük görsel seç** ile cihazdan gerçek bir görsel atanabilir.
 
 ## v0.8 yenilikleri
 
@@ -29,7 +36,7 @@ Kurulum ve güvenlik sınırları: [satın alma ve destek](docs/PURCHASE_AND_SUP
 - Yeni sayfalarda sistem çubuğu boşlukları hemen uygulanır; yukarı taşma düzeltildi.
 - Tema adı Karanlık oldu; AMOLED siyah zemin korunur.
 - Kompakt liste: küçük görsel, daha küçük başlık, niyet rozeti ve kaynak adı.
-- YouTube detayında kullanıcı başlatmalı resmi oynatıcı ve kaynakta açma seçeneği.
+- Tüm platformlarda içerik kaynak uygulamada/tarayıcıda açılır; uygulama içi oynatıcı yoktur.
 - Küçük görseller önbelleğe alınır; çevrimdışı kayıt akışı korunur.
 
 Ayrıntılar ve platform sınırları: [medya önizleme](docs/MEDIA_PREVIEW.md).
@@ -109,7 +116,7 @@ Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni veri
 
 ## Veri ve yedekler
 
-Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. YouTube küçük görselleri ve kullanıcı başlatmalı oynatıcı için internet izni vardır; görseller YouTube CDN, oynatma YouTube üzerinden yüklenir. Kayıt verileri cihazında kalır. Web araması ve diğer platformların kaynak açma işlemi tarayıcıda/kaynak uygulamasında yapılır; uygun YouTube içerikleri uygulama içinde oynatılabilir. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller cihazda saklanır; JSON yedeğine dahil değildir. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
 
 İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB JSON, 5000 kart, kart başına 30 adım. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 

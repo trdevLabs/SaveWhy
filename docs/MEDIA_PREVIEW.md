@@ -1,18 +1,22 @@
-# v0.7 — Güvenli ekran alanı, kompakt kart ve YouTube oynatıcı
+# v0.9 — Tek pencere ve sosyal küçük görseller
 
-Yeni kök sayfa hazırlanırken son bilinen sistem çubuğu/ekran kesiti boşlukları hemen uygulanır; dinleyici sayfa pencereye eklenmeden kurulup yeniden inset dağıtımı istenir. Bildirimler ve ayarlar başlıkları durum çubuğunun altına taşmaz. Tema adı Karanlık / Dark'tır; AMOLED zeminin rengi siyah kalır.
+Launcher, ACTION_SEND ve bildirim bağlantıları aynı `singleTask` MainActivity üzerinden açılır. `documentLaunchMode=never` ayrı belge görevlerini engeller. Splash artık dışarıdan açılabilen launcher değildir; soğuk launcher açılışında mevcut MainActivity üzerinde görünür ve kapanır. Yeni paylaşım `onNewIntent` ile işlenir; açık taslak varsa önceki taslak için mevcut seçim korunur.
 
-Liste kartlarında 88×66 dp küçük görsel, 14 sp iki satırlık başlık, küçük niyet rozeti ve kaynak adı vardır. Uzun başlıklar listede kısaltılır; asıl metin değiştirilmez. Detay başlığı 17 sp, not 13 sp'dir.
+Liste kartlarında 76×56 dp küçük görsel, 14 sp iki satırlık başlık, niyet rozeti ve kaynak adı vardır. Detayda aynı gerçek küçük görsel ve dış bağlantı açma bulunur. YouTube dahil tüm oynatma kaynak uygulamada/tarayıcıdadır; WebView veya video dosyası indirme yoktur.
 
-YouTube watch, youtu.be, shorts, embed ve live bağlantılarındaki 11 karakterli kimlik doğrulanır. Küçük görsel yalnızca sabit HTTPS `i.ytimg.com` uç noktasından alınır. Rastgele kaynak URL'si, özel not veya başlık sunucuya gönderilmez. Ağ işleri arka plan iş parçacığındadır; yanıtta en fazla 1 MB ve 4096×4096 boyut kabul edilir. Bellek önbelleği 8 MB, cihaz önbelleği en fazla 40 küçük görseldir. İnternet yoksa mevcut önbellek veya kaynak simgesi gösterilir. Diğer platformlar için gerçek görsel varmış gibi sahte görsel kullanılmaz.
+## Görsel kaynakları
 
-YouTube detayında resmi gömülü oynatıcı ancak kullanıcı Videoyu oynat'a dokununca yüklenir. Oynatıcı en az 200 dp yüksekliğindedir. Referer, YouTube'un Android WebView kılavuzuna göre uygulama kimliğinden (`https://com.savewhy.app`) ayarlanır. JavaScript yalnızca bu doğrulanmış oynatıcı için açıktır; JavaScript-native köprüsü, dosya/içerik erişimi ve cleartext trafik yoktur. Oynatıcı kontrolleri/markalaması değiştirilmez ve üzerlerine özel kontroller bindirilmez.
+- YouTube: doğrulanmış video kimliği ile sabit HTTPS i.ytimg.com küçük görseli.
+- Instagram/Facebook: herkese açık sayfanın `og:image` / `twitter:image` verisi.
+- TikTok: resmi oEmbed `thumbnail_url`; kısa bağlantı çözümü ve Open Graph yedeği.
+- X/Twitter/Pinterest/Threads: aynı herkese açık metadata akışı.
 
-Panel kapatılınca veya uygulama arka plana gidince WebView durdurulur ve yok edilir; tekrar oynatmak için dokunmak gerekir. Kaynak uygulamada açma düğmesi her zaman vardır. Gömme kısıtı, özel/silinmiş video, internet veya WebView sorunu nedeniyle her video oynatılamayabilir. Instagram/TikTok vb. kaynaklar bu sürümde kaynak uygulamada açılır; video dosyası indirilmez veya korumalar aşılmaz.
+Bu yöntem her içerikte görsel garantisi vermez. Özel/silinmiş içerik, giriş duvarı, platform engeli ve ağ hatası otomatik önizlemeyi engelleyebilir. Oturum çerezleri, erişim token'ları veya koruma aşma kullanılmaz. Gerçek görsel alınamazsa kaynak simgesi gösterilir. Detayda **Küçük görsel seç** ile kullanıcı sistem dosya seçicisinden bir fotoğraf seçebilir; böylece erişimi kapalı içeriklere de görsel atanabilir. Galeri izni istenmez; seçilen dosya arka planda küçültülüp yeniden JPEG olarak kaydedilir. Kullanıcı tarafından seçilen görüntü otomatik önizlemeye üstün gelir.
 
-Başlık paylaşım bilgisinden alınmaya devam eder; bu sürüm video içeriğini analiz etmez. Normal hızlı kaydetme ve kullanıcı verileri çevrimdışı çalışır. Görsel/CDN ve YouTube oynatma internet bağlantısı gerektirir; uygulama kendi AI sunucusunu kullanmaz.
+İstekler yalnızca izinli sosyal alan adları ve görüntü CDN'lerine HTTPS üzerinden gider. Her yönlendirmede alan adı kontrol edilir; localhost/özel/link-local IP'ler ve özel portlar reddedilir. Çerez, not veya başlık gönderilmez; önizleme alabilmek için ilgili bağlantının kendisi kaynak platforma iletilir. En fazla dört yönlendirme, istek başına 3 saniye bağlantı / 5 saniye okuma zaman aşımı, 1 MB ağ yanıtı, 8192×8192 kaynak boyutu, yaklaşık 640 px çözünürlük ve 8 MB bellek önbelleği vardır. Başarısız önizleme beş dakika tekrar denenmez. Otomatik disk önbelleği 40 görseldir; seçilmiş görseller uygulamanın özel dosyalarında kalır. Seçilmiş görseller JSON yedeğinde yer almaz ve uygulama silinirse kaybolur.
+
+AI servisi veya ücretli önizleme sunucusu kullanılmaz. Normal kayıt ve hatırlatmalar çevrimdışı çalışır; otomatik önizleme internet ister. Platformlardan canlı başarı garantisi verilmez; otomatik testler metadata ayrıştırma, güvenli URL/IP kontrolü, dört platformun önbellek bağlama akışı, seçilen görselin kalıcılığı ve ortak dış bağlantı davranışını doğrular.
 
 Kaynaklar:
-- https://developers.google.com/youtube/terms/required-minimum-functionality
-- https://developers.google.com/youtube/player_parameters
-- https://developer.android.com/reference/androidx/core/view/ViewCompat
+- https://developers.tiktok.com/docs/en/embed-videos
+- https://developer.android.com/guide/components/activities/tasks-and-back-stack

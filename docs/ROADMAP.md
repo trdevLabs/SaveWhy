@@ -113,3 +113,11 @@ Tek seferlik satılan, cihazda çalışan temel ürün korunur. Bulut AI temel s
 ## v0.8 yayın hazırlığı
 
 20 kayıt ücretsiz kapasite ve tek seferlik tüketilmeyen SaveWhy Sınırsız INAPP ürünü planı uygulanmıştır. Play ürünü/fiyat/public key, kararlı release imzası ve mağaza testleri henüz tamamlanmalıdır. Destek ve memnuniyet geri bildirimi e-posta taslağı olarak çalışır. Bulut AI temel üründe yoktur.
+
+## v0.9 cihaz kabulü
+
+- Uygulamayı ikonundan aç, arka plana al, Instagram/TikTok/Facebook'tan paylaş, bildirimden aç; son uygulamalarda tek SaveWhy görevi olmalı.
+- Soğuk launcher açılışında splash görünmeli; uygulama açıkken paylaşım splash yaratmamalı.
+- Her platformda görsel/İçeriği izle düğmesi kaynak uygulamaya veya tarayıcıya gitmeli; uygulama içinde oynatıcı kalmamalı.
+- Herkese açık ve özel sosyal bağlantıları ayrı dene; erişimi engellenenlerde kaynak simgesi ve cihazdan küçük görsel seçme çalışmalı.
+- Seçilen küçük görsel uygulamayı yeniden açınca kalmalı; fotoğraf seçiciden iptal ve geçersiz dosya kaydı bozmamalı.

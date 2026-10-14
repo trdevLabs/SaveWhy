@@ -321,6 +321,8 @@ public final class I18n {
         IDS.put("E-posta uygulamasında taslak açılır. Göndermeden önce düzenleyebilirsin.",R.string.ui_309);
         IDS.put("E-posta ile paylaş",R.string.ui_310);
         IDS.put("Satın alma 20 kayıt sınırını kaldırır. Teknik kapasite: 5.000 kayıt / 4 MB.",R.string.ui_311);
+        IDS.put("Küçük görsel seç",R.string.ui_312);
+        IDS.put("Görsel okunamadı. Başka bir görsel seç.",R.string.ui_313);
     }
     private I18n() {}
     public static String text(Context context,String value) {

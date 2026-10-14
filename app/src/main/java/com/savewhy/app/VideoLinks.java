@@ -1,7 +1,7 @@
 package com.savewhy.app;
 import java.net.URI;
 import java.util.*;
-/** Only canonical YouTube video identifiers may reach the thumbnail/player endpoints. */
+/** Only canonical YouTube video identifiers may reach the thumbnail endpoints. */
 public final class VideoLinks {
     private VideoLinks(){}
     public static String youtubeId(String url){
@@ -19,5 +19,4 @@ public final class VideoLinks {
         }catch(Exception e){return "";}
     }
     public static String thumbnail(String id){if(!id.matches("[A-Za-z0-9_-]{11}"))throw new IllegalArgumentException("Invalid video id");return "https://i.ytimg.com/vi/"+id+"/hqdefault.jpg";}
-    public static String embed(String id){if(!id.matches("[A-Za-z0-9_-]{11}"))throw new IllegalArgumentException("Invalid video id");return "https://www.youtube.com/embed/"+id+"?autoplay=1&playsinline=1&rel=0";}
 }

@@ -10,5 +10,5 @@ public class VideoLinksTest {
     @Test public void malformedAndLookalikeUrlsNeverReachPlayer(){
         for(String url:new String[]{"https://youtube.com.evil.test/watch?v="+ID,"https://evil.test/?v="+ID,"https://youtube.com/watch?v=<script>","https://youtu.be/short","https://user@youtube.com/watch?v="+ID,"javascript:alert(1)"})assertEquals("",VideoLinks.youtubeId(url));
     }
-    @Test public void generatedUrlsAreBoundToKnownHttpsHosts(){assertEquals("https://i.ytimg.com/vi/"+ID+"/hqdefault.jpg",VideoLinks.thumbnail(ID));assertTrue(VideoLinks.embed(ID).startsWith("https://www.youtube.com/embed/"+ID));assertThrows(IllegalArgumentException.class,()->VideoLinks.embed("bad/../id"));}
+    @Test public void generatedUrlsAreBoundToKnownHttpsHosts(){assertEquals("https://i.ytimg.com/vi/"+ID+"/hqdefault.jpg",VideoLinks.thumbnail(ID));assertThrows(IllegalArgumentException.class,()->VideoLinks.thumbnail("bad/../id"));}
 }

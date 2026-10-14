@@ -36,6 +36,13 @@ public class SplashTest {
     @Test public void copyrightReplacesVisibleTapText() {
         ActivityController<SplashActivity> controller=Robolectric.buildActivity(SplashActivity.class).setup();android.widget.TextView copyright=controller.get().findViewById(R.id.splash_copyright);assertNotNull(copyright);assertEquals("Copy Right 2026",copyright.getText().toString());controller.pause().stop().destroy();
     }
+    @Test public void overlayReturnsToExistingMainWithoutLaunchingAnotherActivity(){
+        ActivityController<SplashActivity> controller=Robolectric.buildActivity(SplashActivity.class,new Intent().putExtra("overlay",true)).setup();shadowOf(Looper.getMainLooper()).idleFor(2300,TimeUnit.MILLISECONDS);assertTrue(controller.get().isFinishing());assertNull(shadowOf(controller.get()).peekNextStartedActivity());controller.pause().stop().destroy();
+    }
+    @Test public void launcherShareAndNotificationsUseSameMainTask()throws Exception{
+        android.content.Context context=org.robolectric.RuntimeEnvironment.getApplication();android.content.pm.ActivityInfo main=context.getPackageManager().getActivityInfo(new android.content.ComponentName(context,MainActivity.class),0);assertEquals(android.content.pm.ActivityInfo.LAUNCH_SINGLE_TASK,main.launchMode);assertEquals(android.content.pm.ActivityInfo.DOCUMENT_LAUNCH_NEVER,main.documentLaunchMode);
+        android.content.pm.ResolveInfo launcher=context.getPackageManager().resolveActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setPackage(context.getPackageName()),0);assertNotNull(launcher);assertEquals(MainActivity.class.getName(),launcher.activityInfo.name);
+    }
     @Test public void pausedSplashDoesNotNavigateInBackground() {
         ActivityController<SplashActivity> controller = Robolectric.buildActivity(SplashActivity.class).setup();
         controller.pause();

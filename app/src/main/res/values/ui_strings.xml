@@ -311,4 +311,6 @@
 <string name="ui_309" formatted="false">"A draft opens in your email app. You can edit it before sending."</string>
 <string name="ui_310" formatted="false">"Share by email"</string>
 <string name="ui_311" formatted="false">"Purchase removes the 20-save limit. Technical capacity: 5,000 saves / 4 MB."</string>
+<string name="ui_312">Choose thumbnail</string>
+<string name="ui_313">Could not read the image. Choose another image.</string>
 </resources>

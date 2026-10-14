@@ -19,7 +19,7 @@ Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgis
 - Yeni sayfalarda sistem çubuğu boşlukları hemen uygulanır; yukarı taşma düzeltildi.
 - Tema adı Karanlık oldu; AMOLED siyah zemin korunur.
 - Kompakt liste: küçük görsel, daha küçük başlık, niyet rozeti ve kaynak adı.
-- YouTube detayında kullanıcı başlatmalı resmi oynatıcı ve kaynakta açma seçeneği.
+- Tüm platformlarda içerik kaynak uygulamada/tarayıcıda açılır; uygulama içi oynatıcı yoktur.
 - Küçük görseller önbelleğe alınır; çevrimdışı kayıt akışı korunur.
 
 Ayrıntılar ve platform sınırları: [medya önizleme](docs/MEDIA_PREVIEW.md).
@@ -99,7 +99,7 @@ Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni veri
 
 ## Veri ve yedekler
 
-Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. YouTube küçük görselleri ve kullanıcı başlatmalı oynatıcı için internet izni vardır; görseller YouTube CDN, oynatma YouTube üzerinden yüklenir. Kayıt verileri cihazında kalır. Web araması ve diğer platformların kaynak açma işlemi tarayıcıda/kaynak uygulamasında yapılır; uygun YouTube içerikleri uygulama içinde oynatılabilir. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller cihazda saklanır; JSON yedeğine dahil değildir. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
 
 İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB JSON, 5000 kart, kart başına 30 adım. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 
@@ -125,3 +125,11 @@ Manrope, Google Fonts deposundan alınmıştır: https://github.com/google/fonts
 - Destek/geri bildirim mail taslağında alıcı tr.developer@hotmail.com, konu başı savewhy olmalı. Kendi kendine mail gönderilmemeli.
 - Internal testing Play kurulumu: tek seferlik fiyat, iptal, bekleyen ödeme, satın alma, acknowledge, yeniden kurulum/geri yükleme ve iade sonrası sahiplik sorgusu denenmeli.
 - Public key veya ürün yoksa satın alma açıkmış gibi görünmemeli; debug test bypass bulunmamalı.
+
+## v0.9 doğrulama
+
+- 126 otomatik test: 0 hata / 0 başarısız / 0 atlanan.
+- Launcher'ın MainActivity'yi çözümlemesi, singleTask/never manifest ayarları ve splash'ın ikinci MainActivity açmadan dönmesi doğrulandı.
+- Dört sosyal kaynakta dış bağlantı ve WebView olmaması UI testleriyle doğrulandı.
+- Gerçek JPEG fixture'larıyla dört kaynak için önbellek bağlama, manuel görselin yeniden açılışta kalması ve bozuk dosyanın reddi doğrulandı. Bu fixture testleri platformların canlı erişim garantisi değildir.
+- Cihazda son uygulamalar/paylaşım/hatırlatma ve canlı platform bağlantılarının son kabulü yapılmalı.
