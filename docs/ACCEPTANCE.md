@@ -1,70 +1,127 @@
-# Cihazda kabul kontrolü · v0.3
+# SaveWhy · Android 0.7.0
 
-Android 8+ üzerinde, hem normal açılışta hem uygulama zaten açıkken dene. Bu kontroller gerçek cihazda ayrıca yapılmalıdır.
+**Paylaş. Niyetine dokun. Kaydet.**
 
-## Hızlı kaydetme
+Sosyal medyada kaydettiğin içeriği neden kaydettiğini hatırla ve zamanı geldiğinde harekete geç.
 
-- [ ] Instagram, TikTok ve YouTube'dan Paylaş → SaveWhy. Başlık veya not yazmadan bir niyete dokunup Kaydet ile kayıt oluştur. Klavye otomatik açılmamalı.
-- [ ] Yedi niyetin her birini dene; farklı hızlı neden seç. Başlık paylaşım bilgisinden ya da kaynak/içerik kimliğinden oluşmalı.
-- [ ] Niyet seçmeden veya geçerli URL eklemeden kaydetme düğmesi etkin olmamalı.
-- [ ] Panodan ekle yalnızca düğmeye dokunduğunda panoyu okusun. Geçersiz metin hata mesajı versin.
-- [ ] Not ve detayları aç; özel başlık/not yaz. Hızlı nedeni tekrar seçince özel notun yerine yeni seçimi kullanmayı doğrula.
-- [ ] Taslak açıkken ekranı döndür; URL, niyet, hızlı neden, açık detaylar ve özel alanlar korunmalı.
-- [ ] Başka bir paylaşım açık taslağı değiştirmeden önce seçim sunmalı.
+[Colab'da APK derle](https://colab.research.google.com/github/trdevLabs/SaveWhy/blob/main/colab/SaveWhy_Build.ipynb) · [Ürün yol haritası](docs/ROADMAP.md) · [Cihazda kabul kontrolü](docs/ACCEPTANCE.md)
 
-## Tema ve okunabilirlik
+## Hızlı kullanım
 
-- [ ] İlk açılışta AMOLED tema: ana arka plan #000000; kartlar, paneller, yazılar ve düğmeler okunabilir.
-- [ ] Aydınlık ve sistem temalarını seç; uygulamayı kapatıp aç; seçimin korunduğunu doğrula.
-- [ ] Tema değişiminden sonra açık taslak kaybolmasın; tüm bileşenler yeni temayı kullansın.
-- [ ] Büyük yazı boyutu ve küçük ekranda niyet/neden seçimleri, detaylar, klavye ve Kaydet erişilebilir olsun.
-- [ ] Fontta Ç, Ğ, İ, Ö, Ş, Ü ve küçük karşılıkları doğru görünsün. TalkBack ikon düğmelerinin adlarını okusun.
+Instagram, TikTok, YouTube veya bir web bağlantısında **Paylaş → SaveWhy**. **Yap / Git / Al / Öğren / Üret / İzle / Bul** niyetlerinden birine dokun; kaydet.
 
-## Kullanım ve veri
+Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgisinden alınır; bilgi yoksa bağlantının kaynağı ve içerik kimliğinden oluşturulur. Her niyette dört hızlı neden vardır. Özel başlık, not, adımlar ve Bul sorgusu kapalı, isteğe bağlı detay alanındadır. Uygulama panoyu yalnızca **Panodan ekle** düğmesine dokunduğunda okur.
 
-- [ ] İzle kartından İçeriği izle; ardından İzledim → tamamlananlar → geri al.
-- [ ] Bul kartından Web'de ara: sorguyu gözden geçir/düzenle; yalnızca sorgu tarayıcıya gönderilmeli. Özel not gönderilmemeli.
-- [ ] Bekleyen yalnızca açık kayıtları, Tümü tüm durumları göstersin; niyet filtresinde tamamlanan kayıtlar da bulunsun.
-- [ ] Arama başlık, neden, adım ve Bul sorgusunu kapsasın; Türkçe karakterden bağımsız arama çalışsın. Uzun listede yazma ve kaydırma takılmasın.
-- [ ] Kartı düzenle; değişmeyen adımın tamamlanma durumu korunsun. Uygulamayı kapatıp aç; tüm kayıtlar korunsun.
-- [ ] Silmeyi önce iptal et; sonra sil ve Geri al ile kurtar. Kalıcı kayıttan da geri gelmeli.
-- [ ] Aynı bağlantıyı aynı niyetle tekrar kaydetmeye çalış; hata versin. Başka niyetle kaydetmeye izin versin.
-- [ ] JSON yedeğini temiz kurulumda içe aktar; Bul sorgusu ve tüm durumlar korunsun. Aynı yedeği tekrar içe aktarınca kayıtlar çoğalmasın.
-- [ ] v0.1/v0.2 yedeklerini aç; eski kayıtlar korunsun. Geçersiz/gelecek sürüm yedek dosyası mevcut veriyi değiştirmesin.
-- [ ] İmzalı bir APK güncellemesini eski kurulum üzerine dene. Colab debug imzası değiştiyse uygulamayı silmeden yedek al.
+**İzle** daha sonra tüketmek istediğin içerik içindir. **Bul** içerikte gördüğün bir şeyin kimliğini, kaynağını veya benzerini araştırmak içindir. Bul kartında web aramasından önce sorguyu gözden geçirirsin; özel notun sorguya otomatik eklenmez. Al, satın alma kararı; Öğren, öğrenme hedefi içindir.
 
-Birim testleri veri işlemlerini; arayüz testleri Android bileşenlerini emüle ederek temel etkileşimleri doğrular. Paylaşım uygulamaları, dosya sağlayıcıları, gerçek klavye ve cihaz performansı bu listede ayrıca doğrulanır.
+## v0.7 yenilikleri
+
+- Yeni sayfalarda sistem çubuğu boşlukları hemen uygulanır; yukarı taşma düzeltildi.
+- Tema adı Karanlık oldu; AMOLED siyah zemin korunur.
+- Kompakt liste: küçük görsel, daha küçük başlık, niyet rozeti ve kaynak adı.
+- YouTube detayında kullanıcı başlatmalı resmi oynatıcı ve kaynakta açma seçeneği.
+- Küçük görseller önbelleğe alınır; çevrimdışı kayıt akışı korunur.
+
+Ayrıntılar ve platform sınırları: [medya önizleme](docs/MEDIA_PREVIEW.md).
+
+## v0.6 yenilikleri
+
+- Kompakt başlık: küçük logo, bildirim zili ve ayarlar; arama ve iki filtre satırı.
+- Ana sayfadan Nasıl çalışır düğmesi kaldırıldı; kayıt ekranı ve ikincil düğmeler sadeleştirildi.
+- Android ayarlarına benzer bölüm başlıkları, mevcut değerler ve kompakt satırlardan oluşan tam ekran ayarlar.
+- Yerel bildirim merkezi: okunmamış sayacı, kısa zil animasyonu, kalıcı hatırlatma geçmişi ve yaklaşan tarihler.
+
+Ayrıntılar: [arayüz ve bildirim merkezi](docs/UI_AND_NOTIFICATIONS.md). Sunucu veya AI kullanımı yoktur.
+
+## v0.5 yenilikleri
+
+- Sade ana ekran: slogan/sayaç satırları kaldırıldı, arama açıklaması kutunun içine alındı; küçük splash logosu uygulama adının solunda.
+- Unutulanlar: varsayılan 15 günden uzun süre işlem görmeyen tamamlanmamış kayıtlar; ayarlardan 1–365 gün.
+- Niyet ve hızlı neden ekleme, yeniden adlandırma, göster/gizle; kişisel seçenekler kalıcıdır ve JSON yedeğiyle taşınır.
+- Ayarlar menüsü sadeleşti; adımsız kartların Niyetiyle kaydedildi satırı kaldırıldı.
+
+Davranış ve veri geçişi: [kişiselleştirme](docs/CUSTOMIZATION.md).
+
+## v0.4 yenilikleri
+
+- Detay alanlarında dış etiketler ve ayrı açıklamalar; üst üste binen hint kaldırıldı.
+- İsteğe bağlı yapılacaklar listesi; örnek işler seçilerek mevcut listeye eklenir.
+- Yerel tek seferlik hatırlatma: bir saat sonra, akşam, yarın, hafta sonu veya özel tarih/saat.
+- Android 13+ bildirim izni yalnızca hatırlatıcı seçildiğinde istenir. Bildirimler cihazında görünür; birlikte seçimi başka kişiye mesaj göndermez.
+- Türkçe / English / Sistem dili. Varsayılan sistem dili, desteklenmeyen sistem dillerinde İngilizce.
+- 2,2 saniyelik, dokunarak geçilebilir AMOLED splash. Paylaşım ve bildirim açılışları splash beklemez.
+
+Android pil tasarrufu nedeniyle hatırlatmalar seçilen saatten sonra gelebilir. Ayrıntılar: [hatırlatmalar ve dil](docs/REMINDERS_AND_LANGUAGES.md).
+
+## Arayüz
+
+- Varsayılan **simsiyah AMOLED** tema: ana arka plan `#000000`.
+- Aydınlık ve sistem tercihi seçenekleri; tema seçimi cihazda saklanır.
+- Uygulamaya gömülü, Türkçe karakterleri destekleyen **Manrope** fontu.
+- Material 3 kartlar, seçim chipleri, alt paneller, metin alanları ve düğmeler.
+- Vektör ikonlar; ikon düğmelerinde erişilebilir adlar.
+- Uzun listeler için RecyclerView; arama süzmesi arka plan iş parçacığında, kısa gecikmeyle yapılır.
+- Geri alınabilir silme; kaydetme/tamamlama geri bildirimi.
+
+## Özellikler ve sınırlar
+
+Paylaşım bağlantısı alma, niyetle kaydetme, hızlı nedenler, isteğe bağlı eylem adımları, Türkçe karakterlerden bağımsız arama, niyet/durum filtreleri, düzenleme, tamamlandı işaretleme, kaynağı açma, yedekleme ve eski veri geçişi uygulanmıştır.
+
+Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır adımlar niyete göre genel başlangıç önerileridir. **AI kart üretimi, semantik arama, nesne tanıma, fiyat takibi ve bulut senkronizasyonu henüz uygulanmadı.** Uygulamada ödeme veya abonelik entegrasyonu yoktur. Ücretli ürün hedefi ve yayın öncesi kontroller [yol haritasında](docs/ROADMAP.md) tanımlıdır.
+
+## Colab derlemesi
+
+1. Yukarıdaki Colab bağlantısını aç; CPU çalışma zamanı yeterlidir.
+2. Üç kod hücresini sırayla çalıştır: kurulum/repo, test/derleme, APK indirme.
+3. `app-debug.apk` dosyasını telefona kur; hızlı paylaşım ve temaları dene.
+
+JDK 17, Gradle 8.9, Android SDK 35 ve Build Tools 34.0.0 kullanılır. SDK/Gradle arşivlerinin SHA-256 özetleri sabitlenmiştir. İlk derleme ve arayüz testleri bağımlılıkları indirir. GitHub token veya model API anahtarı gerekmez. SDK lisans kabulü defterde açıklanır. Debug APK mağaza paketi değildir.
+
+Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce JSON yedeği oluştur**; yeniden kurulumdan sonra içe aktar.
+
+## Yerel geliştirme
+
+JDK 17, Android SDK Platform 35 ve Build Tools 34.0.0 gerektirir. Android Studio'da klasörü aç veya SDK yolunu `ANDROID_HOME` ile ayarla.
+
+```bash
+./gradlew clean testDebugUnitTest lintDebug assembleDebug
+```
+
+Windows'ta `gradlew.bat` kullan. APK: `app/build/outputs/apk/debug/app-debug.apk`.
+
+SDK kurulumunu da yapan Linux/Colab scripti:
+
+```bash
+SAVEWHY_BUILD_CACHE=/content/savewhy-tools ACCEPT_ANDROID_SDK_LICENSES=yes bash scripts/build_colab.sh
+```
+
+Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni verilmezse etkileşimli kabul sorar. Notebook yalnızca başarılı derlemeyle aynı commit ve özet değerine sahip APK'yı indirir.
+
+## Veri ve yedekler
+
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. YouTube küçük görselleri ve kullanıcı başlatmalı oynatıcı için internet izni vardır; görseller YouTube CDN, oynatma YouTube üzerinden yüklenir. Kayıt verileri cihazında kalır. Web araması ve diğer platformların kaynak açma işlemi tarayıcıda/kaynak uygulamasında yapılır; uygun YouTube içerikleri uygulama içinde oynatılabilir. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
+
+İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB JSON, 5000 kart, kart başına 30 adım. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
+
+v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.5 yedek biçimi **sürüm 4**'tür; Bul sorgusunu, hatırlatma ve son etkinlik tarihini içerir. Sürüm 1, 2 ve 3 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
+
+## Doğrulama
+
+Veri testleri URL işlemleri, Türkçe arama, eski kayıt geçişi, yedekleme/birleştirme, yedi niyet ve başlık/not yazmadan hızlı kaydetmeyi kapsar. Robolectric arayüz testleri hızlı paylaşım kaydını, AMOLED/aydınlık renkleri ve taslağın yeniden oluşturulmasını kontrol eder. Arayüz testleri yerel inceleme için `app/build/reports/ui` altında görüntüler üretir.
+
+**105 test** (hatırlatma, dil ve Android arayüz testleri dahil), `lintDebug` ve temiz debug APK derlemesi geliştirme ortamında geçti; APK imzası ve ZIP bütünlüğü doğrulandı. **Gerçek cihaz ve Colab oturumunda etkileşimler ayrıca doğrulanmalıdır.** Testlerin geçmesi mağaza yayınına hazır olunduğu anlamına gelmez; cihaz kabul listesi ve ücretli ürün yayın kapıları tamamlanmalıdır.
+
+## Üçüncü taraf varlıklar
+
+Manrope, Google Fonts deposundan alınmıştır: https://github.com/google/fonts/tree/main/ofl/manrope . SIL Open Font License 1.1 metni `app/src/main/res/raw/manrope_license.txt` içinde ve APK'da bulunur. Manrope değişken fontundan 400/700 ağırlıklarında statik dosyalar üretildi; fontun telif ve lisans bilgileri korunur. Sosyal platform vektörleri Simple Icons (CC0) kaynaklıdır; lisans `app/src/main/res/raw/simple_icons_license.txt` içindedir. Diğer vektörler proje içinde tanımlanır. Splash illüstrasyonu proje için oluşturulmuştur. Material Components/AndroidX sürümleri Gradle dosyasında sabitlenmiştir.
 
 
-## v0.4 cihaz kabulü
+## v0.8 cihaz ve mağaza kabulü
 
-- Detayları aç: başlık ve not etiketi metinle çakışmamalı; büyük yazı boyutunda Kaydet erişilebilir kalmalı.
-- Örnek yapılacaklardan bir madde seç; kendi metnin ve tamamlanan eski maddelerin korunmalı.
-- 1 saat sonra veya yakın özel tarih/saat için hatırlatma ekle. Android 13+ izin kabul/ret ve kanal kapalı durumlarını dene.
-- Uygulamayı kapatıp bildirimi aç; ilgili kart gelmeli. Tamamlama ve silme sonrası bildirim gelmemeli.
-- Telefonu yeniden başlatıp bekleyen hatırlatmayı kontrol et. Android pil tasarrufu bildirim zamanını geciktirebilir.
-- Hatırlatmalı JSON yedeğini dışa/içe aktar; tarih korunmalı. Eski sürüm 1/2 yedeklerini de dene.
-- Sistem dili Türkçe/İngilizce iken ilk açılışı dene. Ayarlardan diğer dili seç, yeniden aç; seçim korunmalı. Sistem dili seçimine dön, sistem dilini değiştir.
-- Kullanıcının başlığı, notu ve kendi yapılacakları dil değişiminde aynen kalmalı.
-- Normal splash yaklaşık 2,2 saniye görünmeli; dokununca hemen geçmeli. Paylaşım ve bildirim açılışında beklememeli.
-
-
-## v0.5 cihaz kabulü
-
-- Ana ekran slogan/sayaç satırlarını göstermemeli. Arama açıklaması kutu içinde, küçük logo başlığın solunda olmalı.
-- Ayarlarda Font lisansı, Nasıl çalışır ve sürüm açıklaması olmamalı.
-- Unutulanlar eşiğini değiştir; eski/tamamlanmamış kayıt ilgili sekmede görünmeli. Kartı açınca yeniden aktifleşmeli. Tamamlananlar dışarıda kalmalı.
-- Niyet ve hızlı neden ekle, adını değiştir, gizle ve yeniden göster. Eski kartlar korunmalı.
-- Tüm niyetleri/nedenleri gizleyip düzenleme erişiminin ve isteğe bağlı alanlarla kayıt akışının korunmasını dene.
-- Kişisel niyetle hızlı kayıt oluştur, yeniden başlat ve JSON yedeğini başka kurulumda içe aktar.
-- Dil değişiminde kişisel adlar ve kullanıcı notları aynı kalmalı.
-
-## v0.6 cihaz kabulü
-
-- Dar ekran/büyük fontta üst başlık ve zil/ayarlar ikonları çakışmamalı; arama ve iki filtre satırı ayrı görünmeli.
-- Ana sayfada Nasıl çalışır düğmesi olmamalı. Kaydet hariç ikincil işlemler büyük dolu düğmeler olmamalı.
-- Ayarlar tam ekran açılmalı; geri tuşu ana sayfaya dönmeli. Dil/tema değişimi ve ekran dönüşü ayarlar sayfasını korumalı.
-- Yakın zamanda bir hatırlatma oluştur; zil okunmamış sayısını göstermeli, merkeze dokununca geçmiş ve yaklaşan tarihler görünmeli.
-- Merkezi açınca okunmamış işareti kalkmalı. Telefon yeniden açıldığında geçmiş korunmalı; temizlemek kartları silmemeli.
-- Sistem bildirimlerini kapatıp bir hatırlatmayı bekle; uygulama açıldığında yerel merkezde görülmeli. Sistem bildirimi/Doze zamanlaması gerçek cihazda ayrıca denenmeli.
-- Sistem animasyonları kapalıyken zil salınımı olmamalı. Arka planda sürekli animasyon olmamalı.
+- Ana arama, başlık/ikonlar, filtre ve kartların dış kenarları aynı hizada olmalı.
+- Uygulama simgesi splash görseliyle aynı mint yer imi olmalı; alt copyright kesilmemeli ve dokunma yazısı görünmemeli.
+- 20 kayıt oluştur; 21. yeni kayıt satın alma ekranına gitmeli. Düzenleme/okuma/silme/yedekleme kullanılmalı.
+- İçe aktarma 20'yi aşıyorsa hiçbir yeni kayıt yazılmamalı. 20'den fazla eski veri korunmalı.
+- Destek/geri bildirim mail taslağında alıcı tr.developer@hotmail.com, konu başı savewhy olmalı. Kendi kendine mail gönderilmemeli.
+- Internal testing Play kurulumu: tek seferlik fiyat, iptal, bekleyen ödeme, satın alma, acknowledge, yeniden kurulum/geri yükleme ve iade sonrası sahiplik sorgusu denenmeli.
+- Public key veya ürün yoksa satın alma açıkmış gibi görünmemeli; debug test bypass bulunmamalı.

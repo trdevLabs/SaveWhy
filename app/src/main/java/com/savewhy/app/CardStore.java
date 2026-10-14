@@ -9,8 +9,12 @@ public final class CardStore {
     private final AtomicFile file;
     private List<Card> cards = new ArrayList<>();
     private boolean healthy = true;
+    public static final int FREE_LIMIT=20;
+    public static final class LimitException extends IllegalStateException {public LimitException(){super("20 ücretsiz kayıt sınırına ulaştın.");}}
+    private final java.util.function.BooleanSupplier unlimited;
 
-    public CardStore(File directory) { file = new AtomicFile(new File(directory, "cards.json")); }
+    public CardStore(File directory) { this(directory,()->true); }
+    public CardStore(File directory,java.util.function.BooleanSupplier unlimited) { file=new AtomicFile(new File(directory,"cards.json"));this.unlimited=unlimited; }
     public void load() throws Exception {
         try (InputStream in = file.openRead()) { cards = CardCodec.decode(read(in)); }
         catch (FileNotFoundException e) {
@@ -33,6 +37,7 @@ public final class CardStore {
                 throw new IllegalArgumentException("Bu bağlantı aynı niyetle zaten kayıtlı.");
             if (old.id.equals(card.id)) { next.set(i,card); replaced=true; }
         }
+        if(!replaced&&!unlimited.getAsBoolean()&&cards.size()>=FREE_LIMIT)throw new LimitException();
         if (!replaced) next.add(0,card);
         commit(next);
     }
@@ -40,7 +45,7 @@ public final class CardStore {
         List<Card> next = all(); next.removeIf(c -> c.id.equals(id)); commit(next);
     }
     public int merge(List<Card> imported) throws Exception {
-        List<Card> next = CardCodec.merge(cards,imported); int added = next.size()-cards.size(); commit(next); return added;
+        List<Card> next = CardCodec.merge(cards,imported);if(!unlimited.getAsBoolean()&&next.size()>FREE_LIMIT&&next.size()>cards.size())throw new LimitException(); int added = next.size()-cards.size(); commit(next); return added;
     }
     public String backup() throws Exception {
         if (!healthy) throw new IOException("Kayıt dosyası okunamadı. Yedek oluşturulamıyor.");

@@ -266,4 +266,49 @@
 <string name="ui_264" formatted="false">"Bildirimler okunamadı. Mevcut geçmiş korunuyor."</string>
 <string name="ui_265" formatted="false">"Bildirimler kaydedilemedi."</string>
 <string name="ui_266" formatted="false">"Niyetini seç"</string>
+<string name="ui_267" formatted="false">"Karanlık"</string>
+<string name="ui_268" formatted="false">"Videoyu oynat"</string>
+<string name="ui_269" formatted="false">"Video yüklenemedi. Kaynağında açabilirsin."</string>
+<string name="ui_270" formatted="false">"SaveWhy Sınırsız"</string>
+<string name="ui_271" formatted="false">"20 kayıt ücretsiz · Tek seferlik satın alma"</string>
+<string name="ui_272" formatted="false">"Sınırsız kayıt açık"</string>
+<string name="ui_273" formatted="false">"Destek"</string>
+<string name="ui_274" formatted="false">"İletişim ve destek"</string>
+<string name="ui_275" formatted="false">"Uygulamadan memnun musun?"</string>
+<string name="ui_276" formatted="false">"Görüşünü bizimle paylaş."</string>
+<string name="ui_277" formatted="false">"Kaydetmeye sınır koyma."</string>
+<string name="ui_278" formatted="false">"İlk 20 kayıt ücretsiz. Tek seferlik satın almayla kayıt sınırını kaldır."</string>
+<string name="ui_279" formatted="false">"Sınırsız kayıt"</string>
+<string name="ui_280" formatted="false">"Hatırlatmalar ve Unutulanlar"</string>
+<string name="ui_281" formatted="false">"Kişisel niyetler ve hızlı nedenler"</string>
+<string name="ui_282" formatted="false">"Yedekleme ve geri yükleme"</string>
+<string name="ui_283" formatted="false">"Tek seferlik ödeme. Abonelik yok."</string>
+<string name="ui_284" formatted="false">"Ücretsiz sürümde en fazla 20 kayıt tutulur. Tamamlananlar da bu sayıya dahildir. Mevcut kayıtlarını her zaman açabilir, düzenleyebilir ve yedekleyebilirsin."</string>
+<string name="ui_285" formatted="false">"Satın al"</string>
+<string name="ui_286" formatted="false">"Satın almayı geri yükle"</string>
+<string name="ui_287" formatted="false">"Şimdilik devam et"</string>
+<string name="ui_288" formatted="false">"Fiyat Google Play’den alınır."</string>
+<string name="ui_289" formatted="false">"Devam et"</string>
+<string name="ui_290" formatted="false">"Google Play satın alma şu anda kullanılamıyor."</string>
+<string name="ui_291" formatted="false">"Google Play’e bağlanılıyor…"</string>
+<string name="ui_292" formatted="false">"Google Play bağlantısı kesildi. Tekrar deneyebilirsin."</string>
+<string name="ui_293" formatted="false">"Satın alma iptal edildi."</string>
+<string name="ui_294" formatted="false">"Satın alma tamamlanamadı. Tekrar deneyebilirsin."</string>
+<string name="ui_295" formatted="false">"Ödeme bekliyor. Tamamlandığında sınırsız kayıt açılacak."</string>
+<string name="ui_296" formatted="false">"Satın alma doğrulanamadı."</string>
+<string name="ui_297" formatted="false">"Satın alma kaydedilemedi. Satın almayı geri yükle."</string>
+<string name="ui_298" formatted="false">"Sınırsız kayıt açıldı. Teşekkürler!"</string>
+<string name="ui_299" formatted="false">"Satın alma onayı bekliyor. Geri yüklemeyi dene."</string>
+<string name="ui_300" formatted="false">"Sınırsız kayıt zaten açık."</string>
+<string name="ui_301" formatted="false">"Satın alma başlatılamadı. Tekrar deneyebilirsin."</string>
+<string name="ui_302" formatted="false">"20 ücretsiz kayıt sınırına ulaştın."</string>
+<string name="ui_303" formatted="false">"Bir dakikalık görüşün SaveWhy’ı geliştirmemize yardımcı olur."</string>
+<string name="ui_304" formatted="false">"Memnunum"</string>
+<string name="ui_305" formatted="false">"Geliştirilebilir"</string>
+<string name="ui_306" formatted="false">"Şimdi değil"</string>
+<string name="ui_307" formatted="false">"Geri bildirim"</string>
+<string name="ui_308" formatted="false">"Görüşün · isteğe bağlı"</string>
+<string name="ui_309" formatted="false">"E-posta uygulamasında taslak açılır. Göndermeden önce düzenleyebilirsin."</string>
+<string name="ui_310" formatted="false">"E-posta ile paylaş"</string>
+<string name="ui_311" formatted="false">"Satın alma 20 kayıt sınırını kaldırır. Teknik kapasite: 5.000 kayıt / 4 MB."</string>
 </resources>

@@ -33,6 +33,9 @@ public class SplashTest {
         assertNotNull(shadowOf(controller.get()).peekNextStartedActivity());
         controller.pause().stop().destroy();
     }
+    @Test public void copyrightReplacesVisibleTapText() {
+        ActivityController<SplashActivity> controller=Robolectric.buildActivity(SplashActivity.class).setup();android.widget.TextView copyright=controller.get().findViewById(R.id.splash_copyright);assertNotNull(copyright);assertEquals("Copy Right 2026",copyright.getText().toString());controller.pause().stop().destroy();
+    }
     @Test public void pausedSplashDoesNotNavigateInBackground() {
         ActivityController<SplashActivity> controller = Robolectric.buildActivity(SplashActivity.class).setup();
         controller.pause();

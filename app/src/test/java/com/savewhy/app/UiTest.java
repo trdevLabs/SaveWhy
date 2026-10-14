@@ -50,6 +50,37 @@ public class UiTest {
         if(view instanceof android.view.ViewGroup) {android.view.ViewGroup group=(android.view.ViewGroup)view;for(int i=0;i<group.getChildCount();i++)if(hasText(group.getChildAt(i),text))return true;}
         return false;
     }
+    @Test public void swappingPagesReplaysSafeAreaInsetsImmediately() throws Exception {
+        MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);android.view.ViewGroup content=activity.findViewById(android.R.id.content);View root=content.getChildAt(0);
+        androidx.core.view.WindowInsetsCompat insets=new androidx.core.view.WindowInsetsCompat.Builder().setInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars(),androidx.core.graphics.Insets.of(0,48,0,30)).build();
+        androidx.core.view.ViewCompat.dispatchApplyWindowInsets(root,insets);activity.findViewById(R.id.main_notifications).performClick();assertEquals(48,content.getChildAt(0).getPaddingTop());assertEquals(30,content.getChildAt(0).getPaddingBottom());
+    }
+    @Test public void youtubeDetailHasSmallTitleAndNativePlayPreview() throws Exception {
+        String url="https://youtube.com/shorts/abcDEF123_-";Card card=new Card("video","https://youtube.com/shorts/abcDEF123_-","A shared video title","İzle","Later",1,false,java.util.Collections.emptyList());
+        java.io.File cache=new java.io.File(RuntimeEnvironment.getApplication().getCacheDir(),"thumbnails");cache.mkdirs();Bitmap preview=Bitmap.createBitmap(320,180,Bitmap.Config.ARGB_8888);preview.eraseColor(Color.DKGRAY);try(java.io.OutputStream out=new java.io.FileOutputStream(new java.io.File(cache,"abcDEF123_-.jpg"))){preview.compress(Bitmap.CompressFormat.JPEG,85,out);}
+        CardStore saved=new CardStore(RuntimeEnvironment.getApplication().getFilesDir());saved.load();saved.save(card);MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);
+        java.lang.reflect.Method detail=MainActivity.class.getDeclaredMethod("detail",String.class);detail.setAccessible(true);detail.invoke(activity,card.id);Dialog dialog=ShadowDialog.getLatestDialog();assertNotNull(dialog.findViewById(R.id.detail_video));assertTrue(hasText(dialog.getWindow().getDecorView(),"Videoyu oynat"));snapshot(dialog.getWindow().getDecorView(),"youtube-detail-v07");
+    }
+    private android.webkit.WebView embeddedView(android.view.ViewGroup group) {
+        for(int i=0;i<group.getChildCount();i++){View child=group.getChildAt(i);if(child instanceof android.webkit.WebView)return (android.webkit.WebView)child;if(child instanceof android.view.ViewGroup){android.webkit.WebView result=embeddedView((android.view.ViewGroup)child);if(result!=null)return result;}}
+        return null;
+    }
+    @Test public void youtubePlayerHasIdentityAndStopsWhenBackgrounded() throws Exception {
+        java.io.File cache=new java.io.File(RuntimeEnvironment.getApplication().getCacheDir(),"thumbnails");cache.mkdirs();Bitmap bitmap=Bitmap.createBitmap(320,180,Bitmap.Config.ARGB_8888);try(java.io.OutputStream out=new java.io.FileOutputStream(new java.io.File(cache,"abcDEF123_-.jpg"))){bitmap.compress(Bitmap.CompressFormat.JPEG,80,out);}
+        Card card=new Card("player","https://youtu.be/abcDEF123_-","Saved video","İzle","Watch later",1,false,java.util.Collections.emptyList());CardStore saved=new CardStore(RuntimeEnvironment.getApplication().getFilesDir());saved.load();saved.save(card);
+        MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);java.lang.reflect.Method detail=MainActivity.class.getDeclaredMethod("detail",String.class);detail.setAccessible(true);detail.invoke(activity,card.id);Dialog dialog=ShadowDialog.getLatestDialog();VideoPanel panel=dialog.findViewById(R.id.detail_video);
+        assertNull(embeddedView(panel));panel.play();android.webkit.WebView web=embeddedView(panel);assertNotNull(web);
+        assertEquals(VideoLinks.embed("abcDEF123_-"),org.robolectric.Shadows.shadowOf(web).getLastLoadedUrl());assertEquals("https://com.savewhy.app",org.robolectric.Shadows.shadowOf(web).getLastAdditionalHttpHeaders().get("Referer"));
+        assertFalse(web.getSettings().getAllowFileAccess());assertFalse(web.getSettings().getAllowContentAccess());
+        controller.pause();assertNull(embeddedView(panel));controller.resume();assertNull(embeddedView(panel));
+    }
+    @Test public void twentyFirstCaptureShowsRealPurchaseScreenWithoutUnlock() throws Exception {
+        CardStore store=new CardStore(RuntimeEnvironment.getApplication().getFilesDir());store.load();for(int i=0;i<20;i++)store.save(new Card("limit"+i,"https://example.com/"+i,"Saved","İzle","Later",1,false,java.util.Collections.emptyList()));
+        MainActivity activity=launch(true,AppCompatDelegate.MODE_NIGHT_YES);assertNotNull(activity.findViewById(R.id.purchase_screen));assertTrue(hasText(activity.getWindow().getDecorView(),"Tek seferlik ödeme. Abonelik yok."));assertFalse(activity.findViewById(R.id.purchase_buy).isEnabled());store.load();assertEquals(20,store.all().size());snapshot(activity.getWindow().getDecorView(),"purchase-v08");
+    }
+    @Test public void supportEmailUsesRequestedRecipientAndSubjectPrefix() throws Exception {
+        MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);java.lang.reflect.Method email=MainActivity.class.getDeclaredMethod("composeMail",String.class,String.class);email.setAccessible(true);email.invoke(activity,"Destek","My feedback");android.content.Intent intent=org.robolectric.Shadows.shadowOf(activity).getNextStartedActivity();assertNotNull(intent);assertEquals("tr.developer@hotmail.com",android.net.MailTo.parse(intent.getDataString()).getTo());assertTrue(android.net.MailTo.parse(intent.getDataString()).getSubject().startsWith("savewhy"));assertTrue(intent.getStringExtra(android.content.Intent.EXTRA_SUBJECT).startsWith("savewhy"));assertEquals(android.content.Intent.ACTION_SENDTO,intent.getAction());
+    }
     @Test public void homeHasBellAndSettingsOpensFullScreenRows() throws Exception {
         MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);View home=activity.getWindow().getDecorView();
         assertFalse(hasText(home,"Nasıl çalışır?"));assertNotNull(home.findViewById(R.id.main_notifications));

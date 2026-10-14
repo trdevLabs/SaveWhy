@@ -266,4 +266,49 @@
 <string name="ui_264" formatted="false">"Notifications could not be read. Existing history is preserved."</string>
 <string name="ui_265" formatted="false">"Notifications could not be saved."</string>
 <string name="ui_266" formatted="false">"Choose your intent"</string>
+<string name="ui_267" formatted="false">"Dark"</string>
+<string name="ui_268" formatted="false">"Play video"</string>
+<string name="ui_269" formatted="false">"The video could not load. You can open it in the source app."</string>
+<string name="ui_270" formatted="false">"SaveWhy Unlimited"</string>
+<string name="ui_271" formatted="false">"20 free saves · One-time purchase"</string>
+<string name="ui_272" formatted="false">"Unlimited saves enabled"</string>
+<string name="ui_273" formatted="false">"Support"</string>
+<string name="ui_274" formatted="false">"Contact and support"</string>
+<string name="ui_275" formatted="false">"Are you happy with the app?"</string>
+<string name="ui_276" formatted="false">"Share your feedback with us."</string>
+<string name="ui_277" formatted="false">"Keep saving without limits."</string>
+<string name="ui_278" formatted="false">"Your first 20 saves are free. Remove the limit with a one-time purchase."</string>
+<string name="ui_279" formatted="false">"Unlimited saves"</string>
+<string name="ui_280" formatted="false">"Reminders and Forgotten saves"</string>
+<string name="ui_281" formatted="false">"Personal intents and quick reasons"</string>
+<string name="ui_282" formatted="false">"Backup and restore"</string>
+<string name="ui_283" formatted="false">"One-time payment. No subscription."</string>
+<string name="ui_284" formatted="false">"The free version holds up to 20 saves, including completed ones. You can always open, edit and back up your existing saves."</string>
+<string name="ui_285" formatted="false">"Buy now"</string>
+<string name="ui_286" formatted="false">"Restore purchase"</string>
+<string name="ui_287" formatted="false">"Continue for now"</string>
+<string name="ui_288" formatted="false">"Price is provided by Google Play."</string>
+<string name="ui_289" formatted="false">"Continue"</string>
+<string name="ui_290" formatted="false">"Google Play purchases are currently unavailable."</string>
+<string name="ui_291" formatted="false">"Connecting to Google Play…"</string>
+<string name="ui_292" formatted="false">"Disconnected from Google Play. You can try again."</string>
+<string name="ui_293" formatted="false">"Purchase canceled."</string>
+<string name="ui_294" formatted="false">"The purchase could not complete. You can try again."</string>
+<string name="ui_295" formatted="false">"Payment is pending. Unlimited saves unlock after it completes."</string>
+<string name="ui_296" formatted="false">"The purchase could not be verified."</string>
+<string name="ui_297" formatted="false">"The purchase could not be saved. Restore your purchase."</string>
+<string name="ui_298" formatted="false">"Unlimited saves unlocked. Thank you!"</string>
+<string name="ui_299" formatted="false">"Purchase confirmation is pending. Try restoring it."</string>
+<string name="ui_300" formatted="false">"Unlimited saves are already enabled."</string>
+<string name="ui_301" formatted="false">"The purchase could not start. You can try again."</string>
+<string name="ui_302" formatted="false">"You have reached the 20-save free limit."</string>
+<string name="ui_303" formatted="false">"Your quick feedback helps us improve SaveWhy."</string>
+<string name="ui_304" formatted="false">"I like it"</string>
+<string name="ui_305" formatted="false">"It could be better"</string>
+<string name="ui_306" formatted="false">"Not now"</string>
+<string name="ui_307" formatted="false">"Feedback"</string>
+<string name="ui_308" formatted="false">"Your feedback · optional"</string>
+<string name="ui_309" formatted="false">"A draft opens in your email app. You can edit it before sending."</string>
+<string name="ui_310" formatted="false">"Share by email"</string>
+<string name="ui_311" formatted="false">"Purchase removes the 20-save limit. Technical capacity: 5,000 saves / 4 MB."</string>
 </resources>

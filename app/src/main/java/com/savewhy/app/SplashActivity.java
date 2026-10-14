@@ -31,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.BLACK);
         getWindow().setNavigationBarColor(Color.BLACK);
         getWindow().getDecorView().setSystemUiVisibility(0);
+        android.widget.FrameLayout frame=new android.widget.FrameLayout(this);frame.setBackgroundColor(Color.BLACK);
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
         root.setGravity(Gravity.CENTER);
@@ -51,9 +52,11 @@ public class SplashActivity extends AppCompatActivity {
         tagline.setTextColor(Color.rgb(148, 230, 195)); tagline.setTypeface(font);
         tagline.setGravity(Gravity.CENTER); tagline.setPadding(0, dp(12), 0, 0);
         root.addView(tagline);
-        TextView skip=new TextView(this); skip.setText(I18n.text(this,"Devam etmek için dokun")); skip.setTextColor(Color.rgb(160,170,165)); skip.setTextSize(12); skip.setTypeface(font); skip.setPadding(0,dp(32),0,0); root.addView(skip);
-        root.setFocusable(true); root.setClickable(true); root.setContentDescription(I18n.text(this,"Devam etmek için dokun")); root.setOnClickListener(v->open.run());
-        setContentView(root);
+        frame.addView(root,new android.widget.FrameLayout.LayoutParams(-1,-1));
+        TextView copyright=new TextView(this);copyright.setId(R.id.splash_copyright);copyright.setText("Copy Right 2026");copyright.setTextSize(12);copyright.setTypeface(font);copyright.setTextColor(Color.rgb(150,165,158));copyright.setGravity(Gravity.CENTER);copyright.setPadding(0,dp(8),0,dp(16));frame.addView(copyright,new android.widget.FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));
+        frame.setFocusable(true);frame.setClickable(true);frame.setContentDescription(I18n.text(this,"Devam etmek için dokun"));frame.setOnClickListener(v->open.run());
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(frame,(v,insets)->{androidx.core.graphics.Insets bars=insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars()|androidx.core.view.WindowInsetsCompat.Type.displayCutout());v.setPadding(bars.left,bars.top,bars.right,bars.bottom);return insets;});
+        setContentView(frame);frame.post(()->androidx.core.view.ViewCompat.requestApplyInsets(frame));
         if (state == null && android.provider.Settings.Global.getFloat(getContentResolver(), android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0) {
             art.setAlpha(0f); art.animate().alpha(1f).setDuration(250).start();
         }

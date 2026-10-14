@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout empty;
     private LinearLayout filterRegistry;
     private TextView status;
-    private Choices choices;
+    private Choices choices; private PurchaseManager purchases;
+    private ThumbnailLoader thumbnails; private final Set<VideoPanel> videoPanels=new HashSet<>();
+    private WindowInsetsCompat lastWindowInsets;
     private Typeface regular, bold;
     private String query="", filter="Bekleyen";
     private CaptureUi capture;
@@ -55,25 +57,26 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(mode);
         super.onCreate(state);
         regular=ResourcesCompat.getFont(this,R.font.manrope_family); bold=Typeface.create(regular,Typeface.BOLD);
-        choices=new Choices(this);
-        store=new CardStore(getFilesDir());
+        choices=new Choices(this);thumbnails=new ThumbnailLoader(this);
+        purchases=new PurchaseManager(this);purchases.changed=()->{if(page.equals("purchase"))updatePaywall();};
+        store=new CardStore(getFilesDir(),()->purchases.premium());
         try { store.load(); } catch(Exception e) { toast("Kayıtlar okunamadı. Mevcut dosya korunuyor."); }
         if(state!=null) { query=state.getString("query",""); filter=state.getString("filter","Bekleyen"); }
         Reminders.restore(this,store.all());
         getOnBackPressedDispatcher().addCallback(this,new androidx.activity.OnBackPressedCallback(true){public void handleOnBackPressed(){if(!page.equals("home"))home();else{setEnabled(false);getOnBackPressedDispatcher().onBackPressed();setEnabled(true);}}});
         home();
-        if(state!=null&&"settings".equals(state.getString("page")))settings();else if(state!=null&&"notifications".equals(state.getString("page")))notifications();
+        if(state!=null&&"settings".equals(state.getString("page")))settings();else if(state!=null&&"notifications".equals(state.getString("page")))notifications();else if(state!=null&&"purchase".equals(state.getString("page")))purchaseScreen(state.getBundle("purchaseDraft"));
         String notificationId=getIntent().getStringExtra("cardId"); if(notificationId!=null) detail(notificationId);
         if(state!=null && state.containsKey("draft")) showCapture(state.getBundle("draft")); else if(notificationId==null) receive(getIntent());
     }
     @Override protected void onSaveInstanceState(Bundle state) {
-        super.onSaveInstanceState(state); state.putString("query",query); state.putString("filter",filter);state.putString("page",page);
+        super.onSaveInstanceState(state); state.putString("query",query); state.putString("filter",filter);state.putString("page",page);if(purchaseDraft!=null)state.putBundle("purchaseDraft",purchaseDraft);
         if(capture!=null && capture.dialog.isShowing()) state.putBundle("draft",capture.bundle());
     }
-    @Override protected void onResume(){super.onResume();if(store!=null){try{store.load();}catch(Exception e){error(e);}refreshNotifications();if(page.equals("home"))render();else if(page.equals("settings"))settings();}handler.removeCallbacks(inboxTick);handler.postDelayed(inboxTick,30000);}
-    @Override protected void onPause(){handler.removeCallbacks(inboxTick);if(bellAnimation!=null)bellAnimation.cancel();if(bell!=null){bell.animate().cancel();bell.setRotation(0);}super.onPause();}
+    @Override protected void onResume(){super.onResume();if(store!=null){try{store.load();}catch(Exception e){error(e);}refreshNotifications();if(page.equals("home"))render();else if(page.equals("settings"))settings();}if(purchases!=null)purchases.refresh();handler.removeCallbacks(inboxTick);handler.postDelayed(inboxTick,30000);}
+    @Override protected void onPause(){handler.removeCallbacks(inboxTick);for(VideoPanel panel:videoPanels)panel.stop();if(bellAnimation!=null)bellAnimation.cancel();if(bell!=null){bell.animate().cancel();bell.setRotation(0);}super.onPause();}
     @Override protected void onDestroy() {
-        handler.removeCallbacksAndMessages(null); worker.shutdownNow(); super.onDestroy();
+        handler.removeCallbacksAndMessages(null);for(VideoPanel panel:videoPanels)panel.stop();videoPanels.clear();if(thumbnails!=null)thumbnails.close();if(purchases!=null)purchases.close(); worker.shutdownNow(); super.onDestroy();
     }
     @Override protected void onNewIntent(Intent intent) { super.onNewIntent(intent); setIntent(intent); String id=intent.getStringExtra("cardId"); if(id!=null) detail(id); else receive(intent); }
     private void receive(Intent intent) {
@@ -156,17 +159,21 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout.LayoutParams p=full(); p.setMargins(0,dp(4),0,dp(6)); parent.addView(box,p); return box;
     }
     private void inputVisibility(TextInputLayout box,int visibility) { box.setVisibility(visibility); ((View)box.getTag()).setVisibility(visibility); }
+    private void bindWindowInsets(FrameLayout target) {
+        ViewCompat.setOnApplyWindowInsetsListener(target,(v,insets)->{lastWindowInsets=insets;Insets system=insets.getInsets(WindowInsetsCompat.Type.systemBars()|WindowInsetsCompat.Type.displayCutout());v.setPadding(system.left,system.top,system.right,system.bottom);return insets;});
+        WindowInsetsCompat cached=lastWindowInsets!=null?lastWindowInsets:ViewCompat.getRootWindowInsets(getWindow().getDecorView());
+        if(cached!=null)ViewCompat.dispatchApplyWindowInsets(target,cached);
+        else {int id=getResources().getIdentifier("status_bar_height","dimen","android");target.setPadding(0,id==0?dp(24):getResources().getDimensionPixelSize(id),0,0);}
+        target.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(){public void onViewAttachedToWindow(View view){ViewCompat.requestApplyInsets(view);view.post(()->ViewCompat.requestApplyInsets(view));view.removeOnAttachStateChangeListener(this);}public void onViewDetachedFromWindow(View view){}});
+    }
     private void home() {
-        page="home";
+        if(page.equals("purchase"))purchaseDraft=null;page="home";
         WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
         boolean light=getResources().getBoolean(R.bool.light_system_bars);
         WindowInsetsControllerCompat bars=WindowCompat.getInsetsController(getWindow(),getWindow().getDecorView());
         bars.setAppearanceLightStatusBars(light); bars.setAppearanceLightNavigationBars(light);
         getWindow().setNavigationBarColor(Build.VERSION.SDK_INT<27&&light?color(R.color.app_text):color(R.color.app_background));
-        root=new FrameLayout(this); root.setBackgroundColor(color(R.color.app_background)); setContentView(root);
-        ViewCompat.setOnApplyWindowInsetsListener(root,(v,insets)-> {
-            Insets system=insets.getInsets(WindowInsetsCompat.Type.systemBars()); v.setPadding(0,system.top,0,system.bottom); return insets;
-        });
+        root=new FrameLayout(this); root.setBackgroundColor(color(R.color.app_background)); bindWindowInsets(root);setContentView(root);
         LinearLayout page=column(); root.addView(page,new FrameLayout.LayoutParams(-1,-1));
         LinearLayout header=row(); header.setPadding(dp(16),dp(8),dp(16),dp(6));
         ImageView logo=new ImageView(this); logo.setImageResource(R.drawable.splash_art); logo.setScaleType(ImageView.ScaleType.FIT_CENTER); logo.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
@@ -178,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
         View spacer=new View(this); header.addView(spacer,new LinearLayout.LayoutParams(dp(8),1));
         MaterialButton settingsButton=iconButton("Ayarlar",R.drawable.ic_settings,this::settings);settingsButton.setId(R.id.main_settings);header.addView(settingsButton); page.addView(header);
-        LinearLayout top=column(); top.setPadding(dp(20),0,dp(20),dp(4));
+        LinearLayout top=column(); top.setPadding(dp(16),0,dp(16),dp(4));
         TextInputLayout search=input(top,"Kayıtlarında ara",query,200,1,R.id.main_search);
         ((View)search.getTag()).setVisibility(View.GONE); search.getEditText().setHint(L("Kayıtlarında ara"));
         search.setStartIconDrawable(R.drawable.ic_find); search.setEndIconMode(TextInputLayout.END_ICON_CLEAR_TEXT);
@@ -199,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         status=text("",11,false); status.setPadding(dp(22),0,dp(20),dp(6)); page.addView(status);
         FrameLayout content=new FrameLayout(this); page.addView(content,new LinearLayout.LayoutParams(-1,0,1));
         recycler=new RecyclerView(this); recycler.setId(R.id.main_list); recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setClipToPadding(false); recycler.setPadding(dp(20),dp(4),dp(20),dp(100));
+        recycler.setClipToPadding(false); recycler.setPadding(dp(16),dp(2),dp(16),dp(80));
         adapter=new CardAdapter(); recycler.setAdapter(adapter); content.addView(recycler,new FrameLayout.LayoutParams(-1,-1));
         empty=column(); empty.setPadding(dp(32),dp(30),dp(32),dp(90)); empty.setGravity(Gravity.CENTER);
         content.addView(empty,new FrameLayout.LayoutParams(-1,-1));
@@ -271,29 +278,23 @@ public class MainActivity extends AppCompatActivity {
     }
     private class CardAdapter extends RecyclerView.Adapter<CardHolder> {
         List<Card> items=new ArrayList<>();
-        @Override public CardHolder onCreateViewHolder(ViewGroup parent,int type) { return new CardHolder(); }
-        @Override public void onBindViewHolder(CardHolder h,int index) {
-            Card c=items.get(index); h.symbol.setImageResource(icon(c.why)); h.symbol.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary)));
-            h.brand.setImageResource(sourceIcon(c.url)); h.brand.setImageTintList(ColorStateList.valueOf(color(R.color.app_text)));
-            h.meta.setText(intentLabel(c.why)+"  ·  "+UrlTools.source(c.url)); h.title.setText(c.title); h.note.setText(c.note);
-            h.progress.setVisibility(!c.done&&c.steps.isEmpty()?View.GONE:View.VISIBLE); h.progress.setText(c.done?L("Tamamlandı"):c.completedSteps()+" / "+c.steps.size()+L(" adım"));
-            h.card.setOnClickListener(v->detail(c.id)); h.card.setContentDescription(c.title+", "+c.why+", "+c.note);
+        @Override public CardHolder onCreateViewHolder(ViewGroup parent,int type){return new CardHolder();}
+        @Override public void onBindViewHolder(CardHolder h,int index){
+            Card c=items.get(index);thumbnails.bind(h.image,c.url,sourceIcon(c.url));h.title.setText(c.title);h.meta.setText(intentLabel(c.why));h.note.setText(UrlTools.source(c.url));
+            h.progress.setVisibility(c.done?View.VISIBLE:View.GONE);h.progress.setText(L("Tamamlandı"));h.card.setOnClickListener(v->detail(c.id));h.card.setContentDescription(c.title+", "+intentLabel(c.why));
         }
-        @Override public int getItemCount() { return items.size(); }
+        @Override public int getItemCount(){return items.size();}
     }
     private class CardHolder extends RecyclerView.ViewHolder {
-        MaterialCardView card; ImageView symbol,brand; TextView meta,title,note,progress;
-        CardHolder() { super(surface()); card=(MaterialCardView)itemView;
-            RecyclerView.LayoutParams p=new RecyclerView.LayoutParams(-1,-2); p.setMargins(0,0,0,dp(12)); card.setLayoutParams(p);
-            card.setClickable(true); card.setFocusable(true);
-            LinearLayout body=column(); body.setPadding(dp(18),dp(16),dp(18),dp(16)); card.addView(body);
-            LinearLayout head=row(); symbol=new ImageView(MainActivity.this); head.addView(symbol,new LinearLayout.LayoutParams(dp(22),dp(22)));
-            meta=text("",12,false); LinearLayout.LayoutParams mp=new LinearLayout.LayoutParams(0,-2,1); mp.setMargins(dp(10),0,0,0); head.addView(meta,mp);
-            brand=new ImageView(MainActivity.this); head.addView(brand,new LinearLayout.LayoutParams(dp(18),dp(18)));
-            ImageView arrow=new ImageView(MainActivity.this); arrow.setImageResource(R.drawable.ic_chevron); arrow.setImageTintList(ColorStateList.valueOf(color(R.color.app_muted))); head.addView(arrow,new LinearLayout.LayoutParams(dp(18),dp(18))); body.addView(head); gap(body,6);
-            title=text("",18,true); title.setMaxLines(2); title.setEllipsize(TextUtils.TruncateAt.END); body.addView(title);
-            note=text("",13,false); note.setMaxLines(1); note.setEllipsize(TextUtils.TruncateAt.END); body.addView(note);
-            progress=text("",11,false); progress.setTextColor(color(R.color.app_primary)); body.addView(progress);
+        MaterialCardView card;ImageView image;TextView meta,title,note,progress;
+        CardHolder(){super(surface());card=(MaterialCardView)itemView;card.setRadius(dp(14));RecyclerView.LayoutParams params=new RecyclerView.LayoutParams(-1,-2);params.setMargins(0,0,0,dp(6));card.setLayoutParams(params);card.setClickable(true);card.setFocusable(true);
+            LinearLayout body=row();body.setPadding(dp(8),dp(8),dp(8),dp(8));card.addView(body);
+            MaterialCardView cover=new MaterialCardView(MainActivity.this);cover.setRadius(dp(8));cover.setCardElevation(0);cover.setCardBackgroundColor(color(R.color.app_surface_soft));image=new ImageView(MainActivity.this);image.setScaleType(ImageView.ScaleType.CENTER_CROP);image.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);cover.addView(image,new FrameLayout.LayoutParams(-1,-1));body.addView(cover,new LinearLayout.LayoutParams(dp(76),dp(56)));
+            LinearLayout labels=column();LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(0,-2,1);lp.setMarginStart(dp(8));body.addView(labels,lp);
+            title=text("",14,true);title.setMaxLines(2);title.setEllipsize(TextUtils.TruncateAt.END);labels.addView(title);
+            LinearLayout bottom=row();meta=text("",10,true);meta.setTextColor(color(R.color.app_primary));meta.setMaxWidth(dp(110));meta.setMaxLines(1);meta.setEllipsize(TextUtils.TruncateAt.END);meta.setPadding(dp(6),dp(2),dp(6),dp(2));android.graphics.drawable.GradientDrawable badgeShape=new android.graphics.drawable.GradientDrawable();badgeShape.setColor(color(R.color.app_surface_soft));badgeShape.setCornerRadius(dp(6));meta.setBackground(badgeShape);bottom.addView(meta,new LinearLayout.LayoutParams(-2,-2));
+            note=text("",10,false);note.setMaxLines(1);note.setEllipsize(TextUtils.TruncateAt.END);LinearLayout.LayoutParams np=new LinearLayout.LayoutParams(0,-2,1);np.setMarginStart(dp(6));bottom.addView(note,np);labels.addView(bottom);
+            progress=text("",10,false);labels.addView(progress);
         }
     }
     private BottomSheetDialog sheet(LinearLayout body) {
@@ -323,6 +324,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout.LayoutParams hp=new LinearLayout.LayoutParams(dp(32),dp(4)); hp.gravity=Gravity.CENTER; hp.setMargins(0,0,0,dp(18)); body.addView(handle,hp); return body;
     }
     private void showCapture(Bundle draft) {
+        if(draft.getString("id","").isEmpty()&&store.all().size()>=CardStore.FREE_LIMIT&&!purchases.premium()){purchaseScreen(draft);return;}
         if(!store.isHealthy()) { toast("Kayıt dosyası okunamadı. Yeni kayıt açılamıyor."); return; }
         capture=new CaptureUi(draft); capture.dialog.show(); capture.body.requestFocus();
         if(capture.dialog.getWindow()!=null) capture.dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE|WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -416,8 +418,8 @@ public class MainActivity extends AppCompatActivity {
                 Card c=QuickCapture.create(url.getText().toString(),sharedTitle,why,keepQuickNote&&reason.equals(originalReason)&&why.equals(originalWhy)?originalQuickNote:reason.isEmpty()?intentLabel(why):reasonText(why,reason),title.getText().toString(),note.getText().toString(),steps.getText().toString(),search.getText().toString(),id.isEmpty()?null:store.find(id));
                 if(reminderAt!=0 && reminderAt<=System.currentTimeMillis()) { toast("Gelecekte bir zaman seç."); return; }
                 c.reminderAt=reminderAt; if(reminderAt>0)c.done=false; store.save(c); Reminders.sync(MainActivity.this,c); dialog.dismiss(); render();
-                Snackbar.make(root,id.isEmpty()?L("Kaydedildi · ")+intentLabel(why):L("Kayıt güncellendi"),Snackbar.LENGTH_LONG).show();
-            } catch(Exception e) { error(e); }
+                Snackbar.make(root,id.isEmpty()?L("Kaydedildi · ")+intentLabel(why):L("Kayıt güncellendi"),Snackbar.LENGTH_LONG).show();if(id.isEmpty())maybeFeedback();
+            } catch(CardStore.LimitException e){Bundle draft=bundle();dialog.dismiss();purchaseScreen(draft);}catch(Exception e) { error(e); }
         }
     }
     private void paste(EditText target) {
@@ -435,9 +437,11 @@ public class MainActivity extends AppCompatActivity {
     private void detail(String id) {
         Card c=store.find(id); if(c==null) return;
         try { store.save(c); render(); } catch(Exception e){error(e);}
-        LinearLayout body=sheetBody(); body.addView(text(intentLabel(c.why)+"  ·  "+UrlTools.source(c.url),12,false)); body.addView(rawText(c.title,24,true)); gap(body,8);
-        body.addView(text("NİYETİM",11,false)); body.addView(rawText(c.note,16,true)); gap(body,14);
-        TextView progress=text(c.steps.isEmpty()?"":c.completedSteps()+" / "+c.steps.size()+L(" adım tamamlandı"),12,false); body.addView(progress);
+        LinearLayout body=sheetBody(); final VideoPanel media;
+        if(!VideoLinks.youtubeId(c.url).isEmpty()){media=new VideoPanel(this,c.url,thumbnails);media.setId(R.id.detail_video);videoPanels.add(media);int width=getResources().getDisplayMetrics().widthPixels-dp(48);body.addView(media,new LinearLayout.LayoutParams(-1,Math.max(dp(200),width*9/16)));gap(body,12);}else media=null;
+        body.addView(text(intentLabel(c.why)+"  ·  "+UrlTools.source(c.url),11,false));body.addView(rawText(c.title,17,true));gap(body,6);
+        body.addView(text("NİYETİM",11,false)); body.addView(rawText(c.note,13,false)); gap(body,8);
+        TextView progress=text(c.steps.isEmpty()?"":c.completedSteps()+" / "+c.steps.size()+L(" adım tamamlandı"),12,false);progress.setVisibility(c.steps.isEmpty()?View.GONE:View.VISIBLE);body.addView(progress);
         for(int i=0;i<c.steps.size();i++) {
             final int index=i; MaterialCheckBox check=new MaterialCheckBox(this); check.setTypeface(regular); check.setText(c.steps.get(i).text); check.setChecked(c.steps.get(i).done); check.setMinHeight(dp(48)); body.addView(check);
             check.setOnClickListener(v-> {
@@ -449,10 +453,10 @@ public class MainActivity extends AppCompatActivity {
         TextView reminderStatus=text(c.reminderAt==0?"Hatırlatma yok":L("Hatırlatma")+" · "+java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT,getResources().getConfiguration().getLocales().get(0)).format(new Date(c.reminderAt)),13,false); body.addView(reminderStatus);
         body.addView(button("Hatırlatıcıyı düzenle",R.drawable.ic_clock,false,()->chooseReminder(c.reminderAt,time->{ Card current=store.find(id); if(current==null)return; Card changed=current.copy(); changed.reminderAt=time; if(time>0)changed.done=false; if(saveCard(changed)) reminderStatus.setText(time==0?L("Hatırlatma yok"):java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,java.text.DateFormat.SHORT,getResources().getConfiguration().getLocales().get(0)).format(new Date(time))); }))); gap(body,12);
         if(c.why.equals("Bul")) body.addView(button("Web'de ara",R.drawable.ic_find,true,()->searchFor(id)));
-        else body.addView(button(c.why.equals("İzle")?"İçeriği izle":"Orijinal içeriği aç",c.why.equals("İzle")?R.drawable.ic_watch:R.drawable.ic_external,true,()->{touchCard(id);open(c.url);}));
+        else if(media==null)body.addView(button(c.why.equals("İzle")?"İçeriği izle":"Orijinal içeriği aç",c.why.equals("İzle")?R.drawable.ic_watch:R.drawable.ic_external,true,()->{touchCard(id);open(c.url);}));
         gap(body,8);
-        if(c.why.equals("Bul")) { body.addView(button("Orijinal içeriği aç",R.drawable.ic_external,false,()->{touchCard(id);open(c.url);})); gap(body,8); }
-        BottomSheetDialog dialog=sheet(body);
+        if(c.why.equals("Bul")||media!=null) { body.addView(button("Orijinal içeriği aç",R.drawable.ic_external,false,()->{touchCard(id);open(c.url);})); gap(body,8); }
+        BottomSheetDialog dialog=sheet(body);dialog.setOnDismissListener(d->{if(media!=null){media.stop();videoPanels.remove(media);}});
         body.addView(button(c.done?"Bekleyenlere geri al":IntentCatalog.get(c.why).completedLabel,R.drawable.ic_check,false,()-> {
             Card current=store.find(id); if(current==null) return; Card changed=current.copy(); changed.done=!changed.done; if(changed.done)changed.reminderAt=0;
             if(saveCard(changed)) { dialog.dismiss(); Snackbar.make(root,changed.done?L("Tamamlandı"):L("Bekleyenlere geri alındı"),Snackbar.LENGTH_SHORT).show(); }
@@ -540,6 +544,36 @@ public class MainActivity extends AppCompatActivity {
             } catch(Exception e){field.setError(L(e.getMessage()));}
         }));dialog.show();
     }
+    private TextView purchasePrice,purchaseStatus;private MaterialButton purchaseBuy;private Bundle purchaseDraft;
+    private void purchaseScreen(Bundle draft) {
+        purchaseDraft=draft==null?null:new Bundle(draft);
+        LinearLayout body=subpage("purchase","SaveWhy Sınırsız",R.id.purchase_screen);
+        ImageView mark=new ImageView(this);mark.setImageResource(R.drawable.splash_art);mark.setScaleType(ImageView.ScaleType.FIT_CENTER);LinearLayout.LayoutParams image=new LinearLayout.LayoutParams(dp(112),dp(128));image.gravity=Gravity.CENTER;body.addView(mark,image);
+        TextView headline=text("Kaydetmeye sınır koyma.",24,true);headline.setGravity(Gravity.CENTER);body.addView(headline);
+        TextView explanation=text("İlk 20 kayıt ücretsiz. Tek seferlik satın almayla kayıt sınırını kaldır.",14,false);explanation.setGravity(Gravity.CENTER);body.addView(explanation);gap(body,16);
+        MaterialCardView features=surface();LinearLayout content=column();content.setPadding(dp(16),dp(12),dp(16),dp(12));features.addView(content);body.addView(features);
+        for(String item:new String[]{"Sınırsız kayıt","Hatırlatmalar ve Unutulanlar","Kişisel niyetler ve hızlı nedenler","Yedekleme ve geri yükleme"}){LinearLayout line=row();ImageView check=new ImageView(this);check.setImageResource(R.drawable.ic_check);check.setImageTintList(ColorStateList.valueOf(color(R.color.app_primary)));line.addView(check,new LinearLayout.LayoutParams(dp(18),dp(18)));TextView label=text(item,13,false);LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(0,-2,1);lp.setMarginStart(dp(10));line.addView(label,lp);content.addView(line);}
+        gap(body,14);body.addView(text("Tek seferlik ödeme. Abonelik yok.",14,true));body.addView(text("Ücretsiz sürümde en fazla 20 kayıt tutulur. Tamamlananlar da bu sayıya dahildir. Mevcut kayıtlarını her zaman açabilir, düzenleyebilir ve yedekleyebilirsin.",12,false));
+        body.addView(text("Satın alma 20 kayıt sınırını kaldırır. Teknik kapasite: 5.000 kayıt / 4 MB.",11,false));
+        purchasePrice=text("",20,true);body.addView(purchasePrice);purchaseStatus=text("",12,false);body.addView(purchaseStatus);gap(body,12);
+        purchaseBuy=button("Satın al",R.drawable.ic_check,true,()->{if(purchases.premium()){Bundle resume=purchaseDraft;purchaseDraft=null;home();if(resume!=null)showCapture(resume);}else purchases.buy();});purchaseBuy.setId(R.id.purchase_buy);body.addView(purchaseBuy,full());
+        body.addView(button("Satın almayı geri yükle",R.drawable.ic_download,false,()->{purchases.refresh();updatePaywall();}));body.addView(button("Şimdilik devam et",R.drawable.ic_close,false,this::home));updatePaywall();purchases.refresh();
+    }
+    private void updatePaywall(){if(purchaseBuy==null||!page.equals("purchase"))return;boolean premium=purchases.premium();purchasePrice.setText(premium?L("Sınırsız kayıt açık"):purchases.price().isEmpty()?L("Fiyat Google Play’den alınır."):purchases.price());purchasePrice.setTextSize(!premium&&purchases.price().isEmpty()?12:24);purchasePrice.setTextColor(color(!premium&&purchases.price().isEmpty()?R.color.app_muted:R.color.app_primary));purchaseStatus.setText(L(purchases.status));purchaseBuy.setText(L(premium?"Devam et":"Satın al"));purchaseBuy.setEnabled(premium||purchases.available());}
+    private void composeMail(String kind,String body) {
+        String subject="savewhy - "+L(kind);Intent email=new Intent(Intent.ACTION_SENDTO,Uri.parse("mailto:tr.developer@hotmail.com?subject="+Uri.encode(subject)+"&body="+Uri.encode(body)));email.putExtra(Intent.EXTRA_SUBJECT,subject);email.putExtra(Intent.EXTRA_TEXT,body);
+        try{startActivity(email);}catch(ActivityNotFoundException e){new MaterialAlertDialogBuilder(this).setTitle(L("İletişim ve destek")).setMessage("tr.developer@hotmail.com").setPositiveButton(L("Kapat"),null).show();}
+    }
+    private void maybeFeedback(){int saves=getSharedPreferences("feedback",MODE_PRIVATE).getInt("saves",0)+1;getSharedPreferences("feedback",MODE_PRIVATE).edit().putInt("saves",saves).apply();if(saves>=5&&!getSharedPreferences("feedback",MODE_PRIVATE).getBoolean("asked",false))handler.postDelayed(()->{if(!isFinishing()&&!isDestroyed()&&page.equals("home")&&getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED))feedback(false);},900);}
+    private void feedback(boolean manual){
+        getSharedPreferences("feedback",MODE_PRIVATE).edit().putBoolean("asked",true).apply();
+        new MaterialAlertDialogBuilder(this).setTitle(L("Uygulamadan memnun musun?")).setMessage(L("Bir dakikalık görüşün SaveWhy’ı geliştirmemize yardımcı olur."))
+            .setPositiveButton(L("Memnunum"),(d,w)->feedbackMessage("Memnunum")).setNegativeButton(L("Geliştirilebilir"),(d,w)->feedbackMessage("Geliştirilebilir")).setNeutralButton(L("Şimdi değil"),(d,w)->{}).show();
+    }
+    private void feedbackMessage(String answer){getSharedPreferences("feedback",MODE_PRIVATE).edit().putString("answer",answer).apply();LinearLayout body=column();body.setPadding(dp(20),dp(8),dp(20),0);TextInputLayout note=input(body,"Görüşün · isteğe bağlı","",2000,3,View.generateViewId());
+        new MaterialAlertDialogBuilder(this).setTitle(L("Geri bildirim")).setView(body).setMessage(L("E-posta uygulamasında taslak açılır. Göndermeden önce düzenleyebilirsin."))
+            .setNegativeButton(L("Vazgeç"),null).setPositiveButton(L("E-posta ile paylaş"),(d,w)->composeMail("Geri bildirim",L("Uygulamadan memnun musun?")+" "+L(answer)+"\n\n"+note.getEditText().getText().toString()+"\n\nSaveWhy "+BuildConfig.VERSION_NAME)).show();
+    }
     private String L(String text) { return I18n.text(this,text); }
     private java.util.function.LongConsumer permissionChoice;
     private long permissionTime;
@@ -595,7 +629,7 @@ public class MainActivity extends AppCompatActivity {
     private void chooseTheme() {
         LinearLayout body=sheetBody(); body.addView(text("Sana göre bir görünüm",24,true)); body.addView(text("AMOLED temada arka plan gerçek siyahtır.",13,false)); gap(body,12);
         BottomSheetDialog dialog=sheet(body); int selected=getSharedPreferences("settings",MODE_PRIVATE).getInt("theme",AppCompatDelegate.MODE_NIGHT_YES);
-        String[] names={"Simsiyah AMOLED","Aydınlık","Sistem tercihi"}; int[] modes={AppCompatDelegate.MODE_NIGHT_YES,AppCompatDelegate.MODE_NIGHT_NO,AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM};
+        String[] names={"Karanlık","Aydınlık","Sistem tercihi"}; int[] modes={AppCompatDelegate.MODE_NIGHT_YES,AppCompatDelegate.MODE_NIGHT_NO,AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM};
         for(int i=0;i<names.length;i++) {
             final int mode=modes[i]; MaterialButton b=button(L(names[i])+(selected==mode?L(" · seçili"):""),i==0?R.drawable.ic_moon:R.drawable.ic_sun,selected==mode,()-> {
                 getSharedPreferences("settings",MODE_PRIVATE).edit().putInt("theme",mode).apply(); dialog.dismiss(); AppCompatDelegate.setDefaultNightMode(mode);
@@ -623,8 +657,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private LinearLayout subpage(String name,String title,int id) {
         if(bellAnimation!=null)bellAnimation.cancel();
-        page=name;root=new FrameLayout(this);root.setBackgroundColor(color(R.color.app_background));setContentView(root);
-        ViewCompat.setOnApplyWindowInsetsListener(root,(v,insets)->{Insets system=insets.getInsets(WindowInsetsCompat.Type.systemBars());v.setPadding(0,system.top,0,system.bottom);return insets;});
+        page=name;root=new FrameLayout(this);root.setBackgroundColor(color(R.color.app_background));bindWindowInsets(root);setContentView(root);
         LinearLayout layout=column();root.addView(layout,new FrameLayout.LayoutParams(-1,-1));LinearLayout toolbar=row();toolbar.setPadding(dp(8),dp(4),dp(16),dp(4));
         MaterialButton back=iconButton("Geri",R.drawable.ic_chevron,this::home);back.setRotation(180);toolbar.addView(back);toolbar.addView(text(title,22,true));layout.addView(toolbar);
         androidx.core.widget.NestedScrollView scroll=new androidx.core.widget.NestedScrollView(this);layout.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));LinearLayout body=column();body.setId(id);body.setPadding(dp(20),dp(8),dp(20),dp(24));scroll.addView(body);return body;
@@ -639,15 +672,17 @@ public class MainActivity extends AppCompatActivity {
     private void section(LinearLayout body,String title){gap(body,16);TextView label=text(title,12,true);label.setTextColor(color(R.color.app_primary));body.addView(label);}
     private void settings() {
         LinearLayout body=subpage("settings","Ayarlar",R.id.settings_screen);
+        preferenceRow(body,"SaveWhy Sınırsız",purchases.premium()?"Sınırsız kayıt açık":"20 kayıt ücretsiz · Tek seferlik satın alma",R.drawable.ic_bookmark,()->purchaseScreen(null));
         section(body,"Genel");String language=AppCompatDelegate.getApplicationLocales().toLanguageTags();
         preferenceRow(body,"Uygulama dili",language.isEmpty()?L("Sistem dili"):language.startsWith("tr")?"Türkçe":"English",R.drawable.ic_info,this::chooseLanguage);
         int mode=getSharedPreferences("settings",MODE_PRIVATE).getInt("theme",AppCompatDelegate.MODE_NIGHT_YES);
-        preferenceRow(body,"Görünüm",mode==AppCompatDelegate.MODE_NIGHT_YES?"Simsiyah AMOLED":mode==AppCompatDelegate.MODE_NIGHT_NO?"Aydınlık":"Sistem tercihi",R.drawable.ic_moon,this::chooseTheme);
+        preferenceRow(body,"Görünüm",mode==AppCompatDelegate.MODE_NIGHT_YES?"Karanlık":mode==AppCompatDelegate.MODE_NIGHT_NO?"Aydınlık":"Sistem tercihi",R.drawable.ic_moon,this::chooseTheme);
         section(body,"Kayıtlar");int days=getSharedPreferences("settings",MODE_PRIVATE).getInt("forgottenDays",15);
         preferenceRow(body,"Unutulanlar ayarı",days+" "+L("gün"),R.drawable.ic_clock,this::forgottenSettings);
         preferenceRow(body,"Niyetler ve hızlı nedenler","Göster, gizle veya kişisel seçenek ekle.",R.drawable.ic_edit,()->manageIntents(()->settings()));
         section(body,"Bildirimler");preferenceRow(body,"Bildirim merkezi","Hatırlatmalarını burada gör.",R.drawable.ic_bell,this::notifications);
         preferenceRow(body,"Sistem bildirim ayarları",Reminders.enabled(this)?"Açık":"Kapalı",R.drawable.ic_settings,()->startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName())));
+        section(body,"Destek");preferenceRow(body,"İletişim ve destek","tr.developer@hotmail.com",R.drawable.ic_info,()->composeMail("Destek",""));preferenceRow(body,"Uygulamadan memnun musun?","Görüşünü bizimle paylaş.",R.drawable.ic_info,()->feedback(true));
         section(body,"Yedekleme");preferenceRow(body,"JSON yedeği oluştur","Kayıtlarını ve kişisel seçeneklerini dışa aktar.",R.drawable.ic_download,this::exportBackup);
         preferenceRow(body,"Yedeği içe aktar","Mevcut kayıtların korunur.",R.drawable.ic_upload,this::importBackup);
     }
@@ -695,12 +730,12 @@ public class MainActivity extends AppCompatActivity {
                 List<Card> imported; org.json.JSONObject preferences=null; int importDays=15; try(InputStream in=getContentResolver().openInputStream(uri)) { if(in==null) throw new IOException("Dosya açılamadı."); String json=CardStore.read(in); imported=CardCodec.decode(json); Object rootData=new org.json.JSONTokener(json).nextValue(); if(rootData instanceof org.json.JSONObject) {org.json.JSONObject rootObject=(org.json.JSONObject)rootData; if(rootObject.has("customization"))preferences=Choices.validateSnapshot(rootObject.getJSONObject("customization")); importDays=rootObject.optInt("forgottenDays",15);if(importDays<1||importDays>365)throw new IllegalArgumentException("1 ile 365 arasında gün sayısı gir.");} }
                 if(preferences!=null)choices.previewMerge(preferences);
                 final org.json.JSONObject importedPreferences=preferences; final int importedDays=importDays;
-                int additions=CardCodec.merge(store.all(),imported).size()-store.all().size();
+                int additions=CardCodec.merge(store.all(),imported).size()-store.all().size();if(additions>0&&store.all().size()+additions>CardStore.FREE_LIMIT&&!purchases.premium()){purchaseScreen(null);return;}
                 new MaterialAlertDialogBuilder(this).setTitle(L("Yedeği içe aktar?")).setMessage(additions+L(" yeni kayıt eklenecek. Mevcut kayıtlar korunur; tekrarlar atlanır."))
                     .setNegativeButton(L("Vazgeç"),null).setPositiveButton(L("İçe aktar"),(d,w)-> { try { int added=store.merge(imported); if(importedPreferences!=null)choices.mergeSnapshot(importedPreferences); if(!getSharedPreferences("settings",MODE_PRIVATE).contains("forgottenDays"))getSharedPreferences("settings",MODE_PRIVATE).edit().putInt("forgottenDays",importedDays).apply(); home(); Reminders.restore(this,store.all()); render(); toast(added+L(" kayıt eklendi.")); } catch(Exception e) { error(e); } }).show();
             }
         } catch(Exception e) { error(e); }
     }
-    private void error(Exception e) { toast(e instanceof IllegalArgumentException?e.getMessage():e instanceof org.json.JSONException?"Geçerli bir SaveWhy yedeği seç.":"İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et."); }
+    private void error(Exception e) { if(e instanceof CardStore.LimitException){purchaseScreen(null);return;}toast(e instanceof IllegalArgumentException?e.getMessage():e instanceof org.json.JSONException?"Geçerli bir SaveWhy yedeği seç.":"İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et."); }
     private void toast(String message) { Toast.makeText(this,L(message),Toast.LENGTH_LONG).show(); }
 }

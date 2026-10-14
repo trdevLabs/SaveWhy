@@ -108,3 +108,8 @@ Geliştirme sırası: **hızlı kullanım ve arayüz → AI kartının somut fay
 ## v0.6 ve güncel ürün kapsamı
 
 Tek seferlik satılan, cihazda çalışan temel ürün korunur. Bulut AI temel sürüm planından çıkarılmıştır. Kompakt arayüz, tam ekran ayarlar ve yerel bildirim merkezi uygulanmıştır. Sonraki adım gerçek cihaz güvenilirliği, kararlı yayın imzası ve mağaza hazırlığıdır; sınırsız bulut AI vaadi verilmez.
+
+
+## v0.8 yayın hazırlığı
+
+20 kayıt ücretsiz kapasite ve tek seferlik tüketilmeyen SaveWhy Sınırsız INAPP ürünü planı uygulanmıştır. Play ürünü/fiyat/public key, kararlı release imzası ve mağaza testleri henüz tamamlanmalıdır. Destek ve memnuniyet geri bildirimi e-posta taslağı olarak çalışır. Bulut AI temel üründe yoktur.
