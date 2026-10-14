@@ -42,9 +42,9 @@ public class SplashActivity extends AppCompatActivity {
         art.setScaleType(ImageView.ScaleType.FIT_CENTER);
         art.setImportantForAccessibility(android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         root.addView(art, new LinearLayout.LayoutParams(dp(260), dp(300)));
-        Typeface font = ResourcesCompat.getFont(this, R.font.manrope_family);
+        Typeface font = LanguageOptions.font(this);
         TextView name = new TextView(this);
-        name.setText("SaveWhy"); name.setTextSize(36); name.setTextColor(Color.WHITE);
+        name.setText("tosave"); name.setTextSize(36); name.setTextColor(Color.WHITE);
         name.setTypeface(font, Typeface.BOLD); name.setGravity(Gravity.CENTER);
         root.addView(name);
         TextView tagline = new TextView(this);
