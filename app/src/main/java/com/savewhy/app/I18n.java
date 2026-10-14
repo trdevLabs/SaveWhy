@@ -252,6 +252,30 @@ public final class I18n {
         IDS.put("Geçersiz işlem tarihi.",R.string.ui_240);
         IDS.put("Kendi niyetinle kaydet.",R.string.ui_241);
         IDS.put("İstersen özel bir not ekle.",R.string.ui_242);
+        IDS.put("Bildirimler",R.string.ui_243);
+        IDS.put("Ayarlar",R.string.ui_244);
+        IDS.put("Geri",R.string.ui_245);
+        IDS.put("Genel",R.string.ui_246);
+        IDS.put("Kayıtlar",R.string.ui_247);
+        IDS.put("gün",R.string.ui_248);
+        IDS.put("Niyetler ve hızlı nedenler",R.string.ui_249);
+        IDS.put("Göster, gizle veya kişisel seçenek ekle.",R.string.ui_250);
+        IDS.put("Bildirim merkezi",R.string.ui_251);
+        IDS.put("Hatırlatmalarını burada gör.",R.string.ui_252);
+        IDS.put("Sistem bildirim ayarları",R.string.ui_253);
+        IDS.put("Açık",R.string.ui_254);
+        IDS.put("Kapalı",R.string.ui_255);
+        IDS.put("Yedekleme",R.string.ui_256);
+        IDS.put("Kayıtlarını ve kişisel seçeneklerini dışa aktar.",R.string.ui_257);
+        IDS.put("Mevcut kayıtların korunur.",R.string.ui_258);
+        IDS.put("Henüz bildirim yok.",R.string.ui_259);
+        IDS.put("Son bildirimler",R.string.ui_260);
+        IDS.put("Bu kayıt artık mevcut değil.",R.string.ui_261);
+        IDS.put("Bildirim geçmişini temizle",R.string.ui_262);
+        IDS.put("Yaklaşan hatırlatmalar",R.string.ui_263);
+        IDS.put("Bildirimler okunamadı. Mevcut geçmiş korunuyor.",R.string.ui_264);
+        IDS.put("Bildirimler kaydedilemedi.",R.string.ui_265);
+        IDS.put("Niyetini seç",R.string.ui_266);
     }
     private I18n() {}
     public static String text(Context context,String value) {

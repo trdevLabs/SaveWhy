@@ -242,4 +242,28 @@
     <string name="ui_240" formatted="false">"Geçersiz işlem tarihi."</string>
     <string name="ui_241" formatted="false">"Kendi niyetinle kaydet."</string>
     <string name="ui_242" formatted="false">"İstersen özel bir not ekle."</string>
+<string name="ui_243" formatted="false">"Bildirimler"</string>
+<string name="ui_244" formatted="false">"Ayarlar"</string>
+<string name="ui_245" formatted="false">"Geri"</string>
+<string name="ui_246" formatted="false">"Genel"</string>
+<string name="ui_247" formatted="false">"Kayıtlar"</string>
+<string name="ui_248" formatted="false">"gün"</string>
+<string name="ui_249" formatted="false">"Niyetler ve hızlı nedenler"</string>
+<string name="ui_250" formatted="false">"Göster, gizle veya kişisel seçenek ekle."</string>
+<string name="ui_251" formatted="false">"Bildirim merkezi"</string>
+<string name="ui_252" formatted="false">"Hatırlatmalarını burada gör."</string>
+<string name="ui_253" formatted="false">"Sistem bildirim ayarları"</string>
+<string name="ui_254" formatted="false">"Açık"</string>
+<string name="ui_255" formatted="false">"Kapalı"</string>
+<string name="ui_256" formatted="false">"Yedekleme"</string>
+<string name="ui_257" formatted="false">"Kayıtlarını ve kişisel seçeneklerini dışa aktar."</string>
+<string name="ui_258" formatted="false">"Mevcut kayıtların korunur."</string>
+<string name="ui_259" formatted="false">"Henüz bildirim yok."</string>
+<string name="ui_260" formatted="false">"Son bildirimler"</string>
+<string name="ui_261" formatted="false">"Bu kayıt artık mevcut değil."</string>
+<string name="ui_262" formatted="false">"Bildirim geçmişini temizle"</string>
+<string name="ui_263" formatted="false">"Yaklaşan hatırlatmalar"</string>
+<string name="ui_264" formatted="false">"Bildirimler okunamadı. Mevcut geçmiş korunuyor."</string>
+<string name="ui_265" formatted="false">"Bildirimler kaydedilemedi."</string>
+<string name="ui_266" formatted="false">"Niyetini seç"</string>
 </resources>

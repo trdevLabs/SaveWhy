@@ -43,6 +43,8 @@ public final class Reminders {
         try {
             CardStore store=new CardStore(context.getFilesDir()); store.load(); Card card=store.find(id);
             if(card==null || card.done || card.reminderAt==0 || card.reminderAt!=expectedTime || card.reminderAt>System.currentTimeMillis()) return;
+            NotificationInbox.record(context,card,expectedTime);
+            Card consumed=card.copy(); consumed.reminderAt=0; store.save(consumed,false);
             if(!enabled(context)) return;
             if(Build.VERSION.SDK_INT>=33 && androidx.core.content.ContextCompat.checkSelfPermission(context,android.Manifest.permission.POST_NOTIFICATIONS)!=android.content.pm.PackageManager.PERMISSION_GRANTED) return;
             Context localized=I18n.context(context);
@@ -53,7 +55,6 @@ public final class Reminders {
                 .setContentText(I18n.text(localized,"Kaydına dönme zamanı.")).setContentIntent(click).setAutoCancel(true)
                 .setVisibility(NotificationCompat.VISIBILITY_PRIVATE);
             NotificationManagerCompat.from(context).notify(id,0,notification.build());
-            Card consumed=card.copy(); consumed.reminderAt=0; store.save(consumed,false);
         } catch(Exception ignored) { /* Never erase a failed or unreadable save. */ }
     }
 }

@@ -1,4 +1,4 @@
-# SaveWhy · Android 0.5.0
+# SaveWhy · Android 0.6.0
 
 **Paylaş. Niyetine dokun. Kaydet.**
 
@@ -13,6 +13,15 @@ Instagram, TikTok, YouTube veya bir web bağlantısında **Paylaş → SaveWhy**
 Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgisinden alınır; bilgi yoksa bağlantının kaynağı ve içerik kimliğinden oluşturulur. Her niyette dört hızlı neden vardır. Özel başlık, not, adımlar ve Bul sorgusu kapalı, isteğe bağlı detay alanındadır. Uygulama panoyu yalnızca **Panodan ekle** düğmesine dokunduğunda okur.
 
 **İzle** daha sonra tüketmek istediğin içerik içindir. **Bul** içerikte gördüğün bir şeyin kimliğini, kaynağını veya benzerini araştırmak içindir. Bul kartında web aramasından önce sorguyu gözden geçirirsin; özel notun sorguya otomatik eklenmez. Al, satın alma kararı; Öğren, öğrenme hedefi içindir.
+
+## v0.6 yenilikleri
+
+- Kompakt başlık: küçük logo, bildirim zili ve ayarlar; arama ve iki filtre satırı.
+- Ana sayfadan Nasıl çalışır düğmesi kaldırıldı; kayıt ekranı ve ikincil düğmeler sadeleştirildi.
+- Android ayarlarına benzer bölüm başlıkları, mevcut değerler ve kompakt satırlardan oluşan tam ekran ayarlar.
+- Yerel bildirim merkezi: okunmamış sayacı, kısa zil animasyonu, kalıcı hatırlatma geçmişi ve yaklaşan tarihler.
+
+Ayrıntılar: [arayüz ve bildirim merkezi](docs/UI_AND_NOTIFICATIONS.md). Sunucu veya AI kullanımı yoktur.
 
 ## v0.5 yenilikleri
 
@@ -90,7 +99,7 @@ v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.5 yedek biçi
 
 Veri testleri URL işlemleri, Türkçe arama, eski kayıt geçişi, yedekleme/birleştirme, yedi niyet ve başlık/not yazmadan hızlı kaydetmeyi kapsar. Robolectric arayüz testleri hızlı paylaşım kaydını, AMOLED/aydınlık renkleri ve taslağın yeniden oluşturulmasını kontrol eder. Arayüz testleri yerel inceleme için `app/build/reports/ui` altında görüntüler üretir.
 
-**94 test** (hatırlatma, dil ve Android arayüz testleri dahil), `lintDebug` ve temiz debug APK derlemesi geliştirme ortamında geçti; APK imzası ve ZIP bütünlüğü doğrulandı. **Gerçek cihaz ve Colab oturumunda etkileşimler ayrıca doğrulanmalıdır.** Testlerin geçmesi mağaza yayınına hazır olunduğu anlamına gelmez; cihaz kabul listesi ve ücretli ürün yayın kapıları tamamlanmalıdır.
+**100 test** (hatırlatma, dil ve Android arayüz testleri dahil), `lintDebug` ve temiz debug APK derlemesi geliştirme ortamında geçti; APK imzası ve ZIP bütünlüğü doğrulandı. **Gerçek cihaz ve Colab oturumunda etkileşimler ayrıca doğrulanmalıdır.** Testlerin geçmesi mağaza yayınına hazır olunduğu anlamına gelmez; cihaz kabul listesi ve ücretli ürün yayın kapıları tamamlanmalıdır.
 
 ## Üçüncü taraf varlıklar
 

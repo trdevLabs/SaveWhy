@@ -50,6 +50,17 @@ public class UiTest {
         if(view instanceof android.view.ViewGroup) {android.view.ViewGroup group=(android.view.ViewGroup)view;for(int i=0;i<group.getChildCount();i++)if(hasText(group.getChildAt(i),text))return true;}
         return false;
     }
+    @Test public void homeHasBellAndSettingsOpensFullScreenRows() throws Exception {
+        MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);View home=activity.getWindow().getDecorView();
+        assertFalse(hasText(home,"Nasıl çalışır?"));assertNotNull(home.findViewById(R.id.main_notifications));
+        home.findViewById(R.id.main_settings).performClick();View screen=activity.findViewById(R.id.settings_screen);assertNotNull(screen);
+        assertTrue(hasText(screen,"Genel"));assertTrue(hasText(screen,"Yedekleme"));snapshot(activity.getWindow().getDecorView(),"settings-v06");
+    }
+    @Test public void bellShowsHistoryAndMarksItRead() throws Exception {
+        Card card=new Card("notice","https://example.com","Saved title","İzle","Reason",1,false,java.util.Collections.emptyList());NotificationInbox.record(RuntimeEnvironment.getApplication(),card,42);
+        MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);activity.findViewById(R.id.main_notifications).performClick();
+        assertNotNull(activity.findViewById(R.id.notifications_screen));assertTrue(hasText(activity.getWindow().getDecorView(),"Saved title"));assertEquals(0,NotificationInbox.unread(activity));snapshot(activity.getWindow().getDecorView(),"notifications-v06");
+    }
     @Test public void simplifiedHomeUsesInlineSearchAndForgottenTab() throws Exception {
         MainActivity activity=launch(false,AppCompatDelegate.MODE_NIGHT_YES);View view=activity.getWindow().getDecorView();
         assertFalse(hasText(view,"Kaydet. Nedenini hatırla. Harekete geç."));

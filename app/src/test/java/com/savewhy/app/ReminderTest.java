@@ -58,10 +58,10 @@ public class ReminderTest {
         Card card=card();card.reminderAt=System.currentTimeMillis()+3600000;CardStore store=new CardStore(context.getFilesDir());store.load();store.save(card);
         Reminders.deliver(context,card.id,card.reminderAt);assertEquals(0,shadowOf(context.getSystemService(NotificationManager.class)).getAllNotifications().size());
     }
-    @Test public void blockedNotificationsDoNotConsumeReminder() throws Exception {
+    @Test public void blockedSystemNotificationsStillDeliverToLocalInbox() throws Exception {
         Card card=card();card.reminderAt=System.currentTimeMillis()-1000;CardStore store=new CardStore(context.getFilesDir());store.load();store.save(card);
         shadowOf(context.getSystemService(NotificationManager.class)).setNotificationsEnabled(false);
-        Reminders.deliver(context,card.id,card.reminderAt);store.load();assertEquals(card.reminderAt,store.find(card.id).reminderAt);
+        Reminders.deliver(context,card.id,card.reminderAt);store.load();assertEquals(0,store.find(card.id).reminderAt);assertEquals(1,NotificationInbox.unread(context));
         assertEquals(0,shadowOf(context.getSystemService(NotificationManager.class)).getAllNotifications().size());
     }
     @Test public void rebootRestoresPendingOnly() throws Exception {

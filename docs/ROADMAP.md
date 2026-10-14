@@ -104,3 +104,7 @@ Yayın öncesi kapılar:
 6. **Yayın:** mağaza hedefi, gizlilik/bilgi metinleri, kararlı release anahtarı, release AAB, beta geri bildirimi ve mağaza incelemesi. Yayına hazır olma iddiası bu kapılar geçildikten sonra yapılır.
 
 Geliştirme sırası: **hızlı kullanım ve arayüz → AI kartının somut faydası → geri bulma ve hatırlatma → beta → ücretlendirme/yayın**. Başlık yazdırarak kaydın önüne engel koyan akışa geri dönülmeyecek.
+
+## v0.6 ve güncel ürün kapsamı
+
+Tek seferlik satılan, cihazda çalışan temel ürün korunur. Bulut AI temel sürüm planından çıkarılmıştır. Kompakt arayüz, tam ekran ayarlar ve yerel bildirim merkezi uygulanmıştır. Sonraki adım gerçek cihaz güvenilirliği, kararlı yayın imzası ve mağaza hazırlığıdır; sınırsız bulut AI vaadi verilmez.

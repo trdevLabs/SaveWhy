@@ -242,4 +242,28 @@
     <string name="ui_240" formatted="false">"Invalid activity date."</string>
     <string name="ui_241" formatted="false">"Save with your own intent."</string>
     <string name="ui_242" formatted="false">"Add a private note if you like."</string>
+<string name="ui_243" formatted="false">"Notifications"</string>
+<string name="ui_244" formatted="false">"Settings"</string>
+<string name="ui_245" formatted="false">"Back"</string>
+<string name="ui_246" formatted="false">"General"</string>
+<string name="ui_247" formatted="false">"Saves"</string>
+<string name="ui_248" formatted="false">"days"</string>
+<string name="ui_249" formatted="false">"Intents and quick reasons"</string>
+<string name="ui_250" formatted="false">"Show, hide or add personal options."</string>
+<string name="ui_251" formatted="false">"Notification center"</string>
+<string name="ui_252" formatted="false">"See your reminders here."</string>
+<string name="ui_253" formatted="false">"System notification settings"</string>
+<string name="ui_254" formatted="false">"On"</string>
+<string name="ui_255" formatted="false">"Off"</string>
+<string name="ui_256" formatted="false">"Backup"</string>
+<string name="ui_257" formatted="false">"Export your saves and personal options."</string>
+<string name="ui_258" formatted="false">"Your existing saves are preserved."</string>
+<string name="ui_259" formatted="false">"No notifications yet."</string>
+<string name="ui_260" formatted="false">"Recent notifications"</string>
+<string name="ui_261" formatted="false">"This save no longer exists."</string>
+<string name="ui_262" formatted="false">"Clear notification history"</string>
+<string name="ui_263" formatted="false">"Upcoming reminders"</string>
+<string name="ui_264" formatted="false">"Notifications could not be read. Existing history is preserved."</string>
+<string name="ui_265" formatted="false">"Notifications could not be saved."</string>
+<string name="ui_266" formatted="false">"Choose your intent"</string>
 </resources>

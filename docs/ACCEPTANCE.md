@@ -58,3 +58,13 @@ Birim testleri veri işlemlerini; arayüz testleri Android bileşenlerini emüle
 - Tüm niyetleri/nedenleri gizleyip düzenleme erişiminin ve isteğe bağlı alanlarla kayıt akışının korunmasını dene.
 - Kişisel niyetle hızlı kayıt oluştur, yeniden başlat ve JSON yedeğini başka kurulumda içe aktar.
 - Dil değişiminde kişisel adlar ve kullanıcı notları aynı kalmalı.
+
+## v0.6 cihaz kabulü
+
+- Dar ekran/büyük fontta üst başlık ve zil/ayarlar ikonları çakışmamalı; arama ve iki filtre satırı ayrı görünmeli.
+- Ana sayfada Nasıl çalışır düğmesi olmamalı. Kaydet hariç ikincil işlemler büyük dolu düğmeler olmamalı.
+- Ayarlar tam ekran açılmalı; geri tuşu ana sayfaya dönmeli. Dil/tema değişimi ve ekran dönüşü ayarlar sayfasını korumalı.
+- Yakın zamanda bir hatırlatma oluştur; zil okunmamış sayısını göstermeli, merkeze dokununca geçmiş ve yaklaşan tarihler görünmeli.
+- Merkezi açınca okunmamış işareti kalkmalı. Telefon yeniden açıldığında geçmiş korunmalı; temizlemek kartları silmemeli.
+- Sistem bildirimlerini kapatıp bir hatırlatmayı bekle; uygulama açıldığında yerel merkezde görülmeli. Sistem bildirimi/Doze zamanlaması gerçek cihazda ayrıca denenmeli.
+- Sistem animasyonları kapalıyken zil salınımı olmamalı. Arka planda sürekli animasyon olmamalı.
