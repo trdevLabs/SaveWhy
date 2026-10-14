@@ -1,4 +1,4 @@
-# SaveWhy · Android 0.9.0
+# SaveWhy · Android 0.10.0
 
 **Paylaş. Niyetine dokun. Kaydet.**
 
@@ -13,6 +13,18 @@ Instagram, TikTok, YouTube veya bir web bağlantısında **Paylaş → SaveWhy**
 Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgisinden alınır; bilgi yoksa bağlantının kaynağı ve içerik kimliğinden oluşturulur. Her niyette dört hızlı neden vardır. Özel başlık, not, adımlar ve Bul sorgusu kapalı, isteğe bağlı detay alanındadır. Uygulama panoyu yalnızca **Panodan ekle** düğmesine dokunduğunda okur.
 
 **İzle** daha sonra tüketmek istediğin içerik içindir. **Bul** içerikte gördüğün bir şeyin kimliğini, kaynağını veya benzerini araştırmak içindir. Bul kartında web aramasından önce sorguyu gözden geçirirsin; özel notun sorguya otomatik eklenmez. Al, satın alma kararı; Öğren, öğrenme hedefi içindir.
+
+## v0.10 yenilikleri
+
+- Ekran görüntüsü ve fotoğraf: Galeride **Paylaş → SaveWhy** veya **Yeni kayıt → Görsel ekle**. URL gerekmez; tek görsel bir kayıt oluşturur.
+- Hızlı niyet/etiket seçimi ve özel etiketler; kayıt başına en fazla 12 etiket. Önceki etiketler hızlı seçeneklere gelir.
+- **Ekran görüntüleri / Videolar / Sosyal** filtreleri. Görsellerde yakınlaştırma; cihaz videolarında kare önizlemesi ve telefonun oynatıcısıyla açma.
+- Uygulamaya dahil Latin metin tanıma modeli: Türkçe/İngilizce gibi Latin yazıları cihazda okunup aramaya eklenir; bulut OCR/AI çağrısı yoktur. Başarısız okuma kaydı engellemez, yeniden tarama mümkündür.
+- Görselin uygulama içinde kopyası saklanır; galeriden silmek kaydı bozmaz. ZIP yedeği görselleri ve seçilmiş küçük görselleri kapsar; eski JSON yedekleri okunur.
+- Görseller, cihaz videoları ve bağlantılar aynı 20 ücretsiz kayıt kapasitesini paylaşır; kullanım barı ana sayfada ve satın alma ekranında görünür.
+- Tek seferlik fiyat **$4.99** olarak tasarlandı. Play hazır olduğunda gerçek yerel mağaza fiyatı gösterilir; mağaza ürünü/fiyatı/anahtarı henüz yapılandırılmadığından ödeme canlı değildir.
+
+Ayrıntılar: [görseller, etiketler ve yedekler](docs/SCREENSHOTS.md).
 
 ## v0.9 yenilikleri
 
@@ -48,7 +60,7 @@ Ayrıntılar ve platform sınırları: [medya önizleme](docs/MEDIA_PREVIEW.md).
 - Android ayarlarına benzer bölüm başlıkları, mevcut değerler ve kompakt satırlardan oluşan tam ekran ayarlar.
 - Yerel bildirim merkezi: okunmamış sayacı, kısa zil animasyonu, kalıcı hatırlatma geçmişi ve yaklaşan tarihler.
 
-Ayrıntılar: [arayüz ve bildirim merkezi](docs/UI_AND_NOTIFICATIONS.md). Sunucu veya AI kullanımı yoktur.
+Ayrıntılar: [arayüz ve bildirim merkezi](docs/UI_AND_NOTIFICATIONS.md). Bulut AI servisi yoktur; görsellerde cihaz içi metin tanıma kullanılır.
 
 ## v0.5 yenilikleri
 
@@ -94,7 +106,7 @@ Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır 
 
 JDK 17, Gradle 8.9, Android SDK 35 ve Build Tools 34.0.0 kullanılır. SDK/Gradle arşivlerinin SHA-256 özetleri sabitlenmiştir. İlk derleme ve arayüz testleri bağımlılıkları indirir. GitHub token veya model API anahtarı gerekmez. SDK lisans kabulü defterde açıklanır. Debug APK mağaza paketi değildir.
 
-Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce JSON yedeği oluştur**; yeniden kurulumdan sonra içe aktar.
+Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce görselleri içeren yedek oluştur**; yeniden kurulumdan sonra içe aktar.
 
 ## Yerel geliştirme
 
@@ -116,11 +128,11 @@ Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni veri
 
 ## Veri ve yedekler
 
-Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller cihazda saklanır; JSON yedeğine dahil değildir. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller ve kaydedilen ekran görüntüleri cihazda saklanır; yeni ZIP yedeğine dahildir. Uygulama silinirse yerel dosya silinir. Menüden **Yedek oluştur** ile başka bir konuma yedek al.
 
-İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB JSON, 5000 kart, kart başına 30 adım. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
+İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet veya görsel/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB kayıt metadatası, 5000 kart, kart başına 30 adım; görsel içe aktarmada 12 MB, kayıtlı görselde 2 MB, cihaz videosunda 64 MB, ZIP yedeğinin toplam açılmış içeriğinde 2 GB. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 
-v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.5 yedek biçimi **sürüm 4**'tür; Bul sorgusunu, hatırlatma ve son etkinlik tarihini içerir. Sürüm 1, 2 ve 3 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
+v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.10 kayıt biçimi **sürüm 5**'tir; görsel kimliği, etiketler ve okunan metin eklenmiştir. Sürüm 1–4 JSON yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
 
 ## Doğrulama
 

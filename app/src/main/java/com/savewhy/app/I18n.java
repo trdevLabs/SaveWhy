@@ -323,6 +323,47 @@ public final class I18n {
         IDS.put("Satın alma 20 kayıt sınırını kaldırır. Teknik kapasite: 5.000 kayıt / 4 MB.",R.string.ui_311);
         IDS.put("Küçük görsel seç",R.string.ui_312);
         IDS.put("Görsel okunamadı. Başka bir görsel seç.",R.string.ui_313);
+        IDS.put("Görsel ekle",R.string.ui_314);
+        IDS.put("Görseller",R.string.ui_315);
+        IDS.put("Görsel",R.string.ui_316);
+        IDS.put("Ekran görüntüsü",R.string.ui_317);
+        IDS.put("Görseli büyüt",R.string.ui_318);
+        IDS.put("Etiketler",R.string.ui_319);
+        IDS.put("Etiket ekle · virgülle ayır",R.string.ui_320);
+        IDS.put("Alışveriş",R.string.ui_321);
+        IDS.put("Tarif",R.string.ui_322);
+        IDS.put("İş",R.string.ui_323);
+        IDS.put("Fikir",R.string.ui_324);
+        IDS.put("Referans",R.string.ui_325);
+        IDS.put("Görsel hazırlanıyor…",R.string.ui_326);
+        IDS.put("Görseldeki yazılar okunuyor…",R.string.ui_327);
+        IDS.put("Metin okunamadı. Yeniden deneyebilirsin.",R.string.ui_328);
+        IDS.put("Görseldeki yazılar aramada kullanılır.",R.string.ui_329);
+        IDS.put("Okunan metni göster",R.string.ui_330);
+        IDS.put("Görseldeki metin",R.string.ui_331);
+        IDS.put("Metni yeniden tara",R.string.ui_332);
+        IDS.put("Yedek oluştur",R.string.ui_333);
+        IDS.put("Kayıtlarını, görsellerini ve kişisel seçeneklerini dışa aktar.",R.string.ui_334);
+        IDS.put("Yedek hazırlanıyor…",R.string.ui_335);
+        IDS.put("Yedek kontrol ediliyor…",R.string.ui_336);
+        IDS.put("Etiket en fazla 40 karakter olabilir.",R.string.ui_337);
+        IDS.put("En fazla 12 etiket eklenebilir.",R.string.ui_338);
+        IDS.put("Geçersiz etiketler.",R.string.ui_339);
+        IDS.put("Etiket ekle",R.string.ui_340);
+        IDS.put("Ekran görüntüleri",R.string.ui_341);
+        IDS.put("Videolar",R.string.ui_342);
+        IDS.put("Sosyal",R.string.ui_343);
+        IDS.put("Video",R.string.ui_344);
+        IDS.put("Cihaz videosu",R.string.ui_345);
+        IDS.put("Video ekle",R.string.ui_346);
+        IDS.put("Videoyu aç",R.string.ui_347);
+        IDS.put("Video hazırlanıyor…",R.string.ui_348);
+        IDS.put("Video eklenemedi. En fazla 64 MB olan oynatılabilir bir video seç.",R.string.ui_349);
+        IDS.put("Video açılamadı. Cihazında bir video oynatıcı bulunmalı.",R.string.ui_350);
+        IDS.put("Ücretsiz kayıt",R.string.ui_351);
+        IDS.put("Ekran görüntüleri, videolar ve etiketler",R.string.ui_352);
+        IDS.put("Görseldeki yazıyla arama",R.string.ui_353);
+        IDS.put("Görselleri ve videoları içeren yedek",R.string.ui_354);
     }
     private I18n() {}
     public static String text(Context context,String value) {

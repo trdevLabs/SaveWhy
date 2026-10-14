@@ -6,7 +6,7 @@
 
 Sınır yalnızca ekranda değil, ana uygulamanın CardStore yazma ve birleştirme yolunda uygulanır. İçe aktarma sınırı aşarsa dosya kısmen yazılmaz. Sistem hatırlatmaları yalnızca var olan kayıtları günceller. Kapasite kısıtı diğer temel özellikleri kapatmaz. Satın alma 20 kayıt sınırını kaldırır; var olan teknik dosya sınırı 5.000 kayıt / 4 MB olarak kalır ve satın alma ekranında belirtilir.
 
-Satın alma ekranı, sınırı kaldıran **tek seferlik**, tüketilmeyen Google Play INAPP ürünü içindir. Abonelik yoktur. Ürün kimliği: `savewhy_lifetime`. Fiyat uygulamada uydurulmaz; uygun Google Play teklifinin yerelleştirilmiş fiyatı gösterilir. Mağaza bağlantısı/ürün eksikse Satın al düğmesi kapalı ve uygun durum mesajı görünür. Debug/Colab APK'sında sahte sınırsız erişim verilmez.
+Satın alma ekranı, sınırı kaldıran **tek seferlik**, tüketilmeyen Google Play INAPP ürünü içindir. Abonelik yoktur. Ürün kimliği: `savewhy_lifetime`. Başlangıç fiyatı kullanıcı kararıyla $4.99 olarak tanımlıdır; uygun Google Play teklifi geldiğinde gerçek yerelleştirilmiş fiyatı gösterilir. Mağaza bağlantısı/ürün eksikse Satın al düğmesi kapalı ve uygun durum mesajı görünür. Debug/Colab APK'sında sahte sınırsız erişim verilmez.
 
 ## Gerçek ödemeyi etkinleştirme
 
@@ -38,3 +38,9 @@ Ana ekran kenarları 16 dp'ye hizalanır; kart iç boşluğu 8 dp, kartlar aras�
 Kaynaklar:
 - https://developer.android.com/google/play/billing/integrate
 - https://developer.android.com/google/play/billing/security
+
+## v0.10 görsel kayıtları
+
+Ekran görüntüsü/fotoğraf ve cihaz videosu da birer kayıttır; bağlantılarla ortak 20 kayıt kapasitesini kullanır. OCR, etiketler ve görselli ZIP yedeği ücretsiz kayıtlar için de erişilebilirdir; ayrı abonelik veya ek ücret yoktur.
+
+Fiyat kararı: savewhy_lifetime USD taban fiyatı **4.99**. APK tasarımındaki $4.99 yazısı ürün bulunmadığı durumda gösterilen başlangıç fiyatıdır; gerçek ödemede Play fiyatı ve para birimi kullanılır.

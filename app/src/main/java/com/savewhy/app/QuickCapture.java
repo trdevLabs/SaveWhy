@@ -51,6 +51,7 @@ public final class QuickCapture {
         Card result=new Card(previous==null?UUID.randomUUID().toString():previous.id,url,title,why,note,
                 previous==null?System.currentTimeMillis():previous.createdAt,previous!=null&&previous.done,
                 Card.parseSteps(lines,previous==null?Collections.emptyList():previous.steps),searchQuery);
+        if(previous!=null&&!previous.isImage())result=new Card(result.id,result.url,result.title,result.why,result.note,result.createdAt,result.done,result.steps,result.searchQuery,"",previous.tags,previous.recognizedText,previous.ocrState);
         result.reminderAt=previous==null?0:previous.reminderAt; result.lastActivityAt=previous==null?result.createdAt:previous.lastActivityAt; return result;
     }
 }

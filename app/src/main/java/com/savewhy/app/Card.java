@@ -6,7 +6,9 @@ import java.util.*;
 public final class Card {
     public static final String[] INTENTS = IntentCatalog.labels();
     public static final int MAX_STEPS = 30;
-    public final String id, url, title, why, note, searchQuery;
+    public final String id, url, title, why, note, searchQuery, imageId;
+    public final List<String> tags;
+    public String recognizedText="", ocrState="none";private String videoId="";
     public final long createdAt;
     public long reminderAt, lastActivityAt;
     public boolean done;
@@ -23,7 +25,17 @@ public final class Card {
         this(id,url,title,why,note,createdAt,done,steps,"");
     }
     public Card(String id, String url, String title, String why, String note, long createdAt, boolean done, List<Step> steps, String searchQuery) {
-        this.id = required(id, 100, "Kimlik"); this.url = UrlTools.normalize(url);
+        this(id,url,title,why,note,createdAt,done,steps,searchQuery,"",Collections.emptyList(),"","none");
+    }
+    public Card(String id,String url,String title,String why,String note,long createdAt,boolean done,List<Step> steps,String searchQuery,String imageId,List<String> tags,String recognizedText,String ocrState) {
+        this.id = required(id, 100, "Kimlik");
+        if(imageId==null||(!imageId.isEmpty()&&!imageId.matches("[a-f0-9]{64}")))throw new IllegalArgumentException("Geçersiz görsel kimliği.");
+        this.imageId=imageId;this.url=imageId.isEmpty()?UrlTools.normalize(url):"";
+        if(!imageId.isEmpty()&&url!=null&&!url.isEmpty())throw new IllegalArgumentException("Görsel kaydı bağlantı içeremez.");
+        this.tags=Collections.unmodifiableList(parseTags(tags));
+        if(recognizedText==null||recognizedText.length()>4000)throw new IllegalArgumentException("Geçersiz görsel metni.");
+        if(!Arrays.asList("none","pending","ready","failed").contains(ocrState))throw new IllegalArgumentException("Geçersiz metin tanıma durumu.");
+        this.recognizedText=recognizedText;this.ocrState=ocrState;
         this.title = required(title, 160, "Başlık"); this.note = required(note, 2000, "Kaydetme nedeni");
         IntentCatalog.get(why);
         this.why = why;
@@ -40,16 +52,27 @@ public final class Card {
         if (text.trim().length() > max) throw new IllegalArgumentException(name + " en fazla " + max + " karakter olabilir.");
         return text.trim();
     }
-    public Card copy() { Card c=new Card(id, url, title, why, note, createdAt, done, steps, searchQuery); c.reminderAt=reminderAt; c.lastActivityAt=lastActivityAt; return c; }
+    public Card copy() { Card c=new Card(id, url, title, why, note, createdAt, done, steps, searchQuery,imageId,tags,recognizedText,ocrState); c.reminderAt=reminderAt; c.lastActivityAt=lastActivityAt;c.setVideo(videoId); return c; }
+    public boolean isImage(){return !imageId.isEmpty()&&videoId.isEmpty();}
+    public boolean isVideo(){return !videoId.isEmpty();}
+    public boolean hasVisual(){return !imageId.isEmpty();}
+    public String videoId(){return videoId;}
+    public void setVideo(String value){if(value==null||(!value.isEmpty()&&(!value.matches("[a-f0-9]{64}")||imageId.isEmpty())))throw new IllegalArgumentException("Geçersiz video kimliği.");videoId=value;}
+    public static List<String> parseTags(List<String> values){if(values==null)throw new IllegalArgumentException("Geçersiz etiketler.");List<String> tags=new ArrayList<>();Set<String> keys=new HashSet<>();for(String value:values){if(value==null)throw new IllegalArgumentException("Geçersiz etiketler.");value=value.trim();if(value.isEmpty())continue;if(value.length()>40||value.contains("\n")||value.contains(","))throw new IllegalArgumentException("Etiket en fazla 40 karakter olabilir.");if(keys.add(fold(value)))tags.add(value);}if(tags.size()>12)throw new IllegalArgumentException("En fazla 12 etiket eklenebilir.");return tags;}
+    public static List<String> parseTags(String text){return parseTags(Arrays.asList(text.split(",",-1)));}
     public int completedSteps() { int n = 0; for (Step s : steps) if (s.done) n++; return n; }
-    public String duplicateKey() { return url + "\n" + why; }
+    public String duplicateKey() { return (isVideo()?"video:"+videoId:isImage()?"image:"+imageId:url) + "\n" + why; }
     public boolean matches(String query) {
-        StringBuilder data = new StringBuilder(title).append(' ').append(note).append(' ').append(url).append(' ').append(why).append(' ').append(searchQuery);
+        StringBuilder data = new StringBuilder(title).append(' ').append(note).append(' ').append(url).append(' ').append(why).append(' ').append(searchQuery).append(' ').append(recognizedText);
+        for(String tag:tags)data.append(' ').append(tag);
         for (Step s : steps) data.append(' ').append(s.text);
         return fold(data.toString()).contains(fold(query));
     }
     public boolean visible(String filter,String query) {
         if(!matches(query)) return false;
+        if(filter.equals("Görseller")||filter.equals("Ekran görüntüleri"))return isImage();
+        if(filter.equals("Videolar"))return isVideo();
+        if(filter.equals("Sosyal"))return !hasVisual();
         if(filter.equals("Tümü")) return true;
         if(filter.equals("Bekleyen")) return !done;
         if(filter.equals("Tamamlanan")) return done;

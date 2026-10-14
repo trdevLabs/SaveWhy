@@ -121,3 +121,14 @@ Tek seferlik satılan, cihazda çalışan temel ürün korunur. Bulut AI temel s
 - Her platformda görsel/İçeriği izle düğmesi kaynak uygulamaya veya tarayıcıya gitmeli; uygulama içinde oynatıcı kalmamalı.
 - Herkese açık ve özel sosyal bağlantıları ayrı dene; erişimi engellenenlerde kaynak simgesi ve cihazdan küçük görsel seçme çalışmalı.
 - Seçilen küçük görsel uygulamayı yeniden açınca kalmalı; fotoğraf seçiciden iptal ve geçersiz dosya kaydı bozmamalı.
+
+## v0.10 cihaz kabulü
+
+- Galeriden ekran görüntüsünü Paylaş → SaveWhy ile ekle; bağlantı/başlık yazmadan niyet ve etiketlerle kaydet.
+- Yeni kayıt → Görsel ekle dosya seçicisini açmalı; iptal mevcut taslağı korumalı.
+- Galeride aslı silinince kayıtlı görsel açılmalı; büyütme/kaydırma, aydınlık/karanlık ve sistem çubuğu boşlukları denenmeli.
+- Cihazı çevrimdışı bırakıp okunaklı Türkçe/İngilizce görsel ekle; OCR tamamlandıktan sonra içindeki kelimeyle ara. Okuma hatası kaydı silmemeli; yeniden tara çalışmalı.
+- Özel etiketle arama, etiket değiştirme ve Görseller filtresi; bağlantıyla ortak 20 kayıt sınırı.
+- Cihaz videosunu ekle/etiketle, galeride aslını silip cihaz oynatıcısıyla aç; video paylaşımını ve 64 MB sınırını dene.
+- Ekran görüntüleri/Videolar/Sosyal filtreleri ve kayıt kullanım barı; satın alma ekranında $4.99 ve screenshot/video özellikleri.
+- Görseller, videolar ve seçilmiş sosyal küçük görsellerle ZIP yedeği oluştur; ayrı kurulumda geri yükleyip görsel/metin/etiketleri kontrol et. Eski JSON yedeğini de dene.

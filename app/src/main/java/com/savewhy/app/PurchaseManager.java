@@ -8,6 +8,7 @@ import java.util.*;
 
 /** One-time, non-consumable Play product. No subscription and no debug unlock. */
 public final class PurchaseManager implements AutoCloseable {
+    public static final String BASE_PRICE_USD="$4.99";
     public static final String PRODUCT="savewhy_lifetime";
     private final Activity activity;private final SharedPreferences receipts;private final Handler main=new Handler(Looper.getMainLooper());
     private BillingClient client;private ProductDetails product;private ProductDetails.OneTimePurchaseOfferDetails offer;private boolean closed,connecting;

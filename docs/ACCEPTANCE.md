@@ -67,7 +67,7 @@ Android pil tasarrufu nedeniyle hatırlatmalar seçilen saatten sonra gelebilir.
 
 Paylaşım bağlantısı alma, niyetle kaydetme, hızlı nedenler, isteğe bağlı eylem adımları, Türkçe karakterlerden bağımsız arama, niyet/durum filtreleri, düzenleme, tamamlandı işaretleme, kaynağı açma, yedekleme ve eski veri geçişi uygulanmıştır.
 
-Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır adımlar niyete göre genel başlangıç önerileridir. **AI kart üretimi, semantik arama, nesne tanıma, fiyat takibi ve bulut senkronizasyonu henüz uygulanmadı.** Uygulamada ödeme veya abonelik entegrasyonu yoktur. Ücretli ürün hedefi ve yayın öncesi kontroller [yol haritasında](docs/ROADMAP.md) tanımlıdır.
+Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır adımlar niyete göre genel başlangıç önerileridir. **AI kart üretimi, semantik arama, nesne tanıma, fiyat takibi ve bulut senkronizasyonu henüz uygulanmadı.** Cihaz içi OCR ve tek seferlik Google Play satın alma entegrasyonu vardır; mağaza ürünü ve doğrulama anahtarı yapılandırılmadan ödeme canlı değildir. Ücretli ürün hedefi ve yayın öncesi kontroller [yol haritasında](docs/ROADMAP.md) tanımlıdır.
 
 ## Colab derlemesi
 
@@ -77,7 +77,7 @@ Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır 
 
 JDK 17, Gradle 8.9, Android SDK 35 ve Build Tools 34.0.0 kullanılır. SDK/Gradle arşivlerinin SHA-256 özetleri sabitlenmiştir. İlk derleme ve arayüz testleri bağımlılıkları indirir. GitHub token veya model API anahtarı gerekmez. SDK lisans kabulü defterde açıklanır. Debug APK mağaza paketi değildir.
 
-Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce JSON yedeği oluştur**; yeniden kurulumdan sonra içe aktar.
+Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce görselleri içeren yedek oluştur**; yeniden kurulumdan sonra içe aktar.
 
 ## Yerel geliştirme
 
@@ -99,11 +99,11 @@ Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni veri
 
 ## Veri ve yedekler
 
-Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller cihazda saklanır; JSON yedeğine dahil değildir. Uygulama silinirse yerel dosya silinir. Menüden **JSON yedeği oluştur** ile başka bir konuma yedek al.
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller ve kaydedilen ekran görüntüleri cihazda saklanır; yeni ZIP yedeğine dahildir. Uygulama silinirse yerel dosya silinir. Menüden **Yedek oluştur** ile başka bir konuma yedek al.
 
-İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB JSON, 5000 kart, kart başına 30 adım. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
+İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet veya görsel/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB kayıt metadatası, 5000 kart, kart başına 30 adım; görsel içe aktarmada 12 MB, kayıtlı görselde 2 MB, cihaz videosunda 64 MB, ZIP yedeğinin toplam açılmış içeriğinde 2 GB. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 
-v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.5 yedek biçimi **sürüm 4**'tür; Bul sorgusunu, hatırlatma ve son etkinlik tarihini içerir. Sürüm 1, 2 ve 3 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
+v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.10 kayıt biçimi **sürüm 5**'tir; görsel kimliği, etiketler ve okunan metin eklenmiştir. Sürüm 1–4 JSON yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
 
 ## Doğrulama
 
@@ -133,3 +133,11 @@ Manrope, Google Fonts deposundan alınmıştır: https://github.com/google/fonts
 - Dört sosyal kaynakta dış bağlantı ve WebView olmaması UI testleriyle doğrulandı.
 - Gerçek JPEG fixture'larıyla dört kaynak için önbellek bağlama, manuel görselin yeniden açılışta kalması ve bozuk dosyanın reddi doğrulandı. Bu fixture testleri platformların canlı erişim garantisi değildir.
 - Cihazda son uygulamalar/paylaşım/hatırlatma ve canlı platform bağlantılarının son kabulü yapılmalı.
+
+## v0.10 doğrulama
+
+- 151 otomatik test: görsel/etiket/OCR sonuçlarının korunması ve araması, v4 göçü, 20 kayıt ortak kapasitesi, yerel görsel büyütme, Android image/video paylaşımı ve dosya seçici.
+- Bozuk/eksik/limit dışı ZIP girişleri, zip-slip ve checksum uyuşmazlığı reddi; JPEG + video + etiketli kayıt yedeğinin farklı özel dizine geri yüklenmesi ve asset geri alma doğrulandı.
+- Gerçek ffmpeg MP4 fixture'ıyla byte-for-byte özel video kopyası; testte sahte Android kare çıkarıcısıyla poster akışı. Görsel metin modeli de UI iş akışı testinde fake OCR ile çalıştırıldı; fiziksel cihazda OCR doğruluğu/codec oynatma ayrıca kontrol edilmeli.
+- $4.99 satın alma ekranı, screenshot/video özellikleri, 3/20 kullanım barı ve ödeme yapılandırılmadığında satın alma düğmesinin kapalı kalması UI testleriyle doğrulandı.
+- APK derlemesi, ZIP bütünlüğü ve imza doğrulaması başarılı; lint sıfır Error/Fatal.

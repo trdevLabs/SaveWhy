@@ -1,0 +1,36 @@
+package com.savewhy.app;
+import android.content.*;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.os.*;
+import android.app.Dialog;
+import java.io.*;
+import java.nio.file.Files;
+import java.util.*;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.robolectric.*;
+import org.robolectric.annotation.*;
+import org.robolectric.android.controller.ActivityController;
+import org.robolectric.shadows.ShadowDialog;
+import org.robolectric.shadows.ShadowMediaMetadataRetriever;
+import static org.junit.Assert.*;
+@RunWith(RobolectricTestRunner.class) @Config(sdk=28,shadows=VideoStoreTest.Retriever.class) @GraphicsMode(GraphicsMode.Mode.NATIVE)
+public class VideoStoreTest {
+    @Implements(MediaMetadataRetriever.class)
+    public static class Retriever extends ShadowMediaMetadataRetriever {
+        @Implementation protected void setDataSource(String path){addMetadata(path,MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO,"yes");super.setDataSource(path);}
+        @Implementation protected Bitmap getScaledFrameAtTime(long t,int option,int w,int h){return Bitmap.createBitmap(320,180,Bitmap.Config.ARGB_8888);}
+    }
+    private ActivityController<MainActivity> controller;
+    @After public void close(){if(controller!=null)controller.pause().stop().destroy();}
+    private byte[] clip()throws Exception{return ImageStore.read(getClass().getResourceAsStream("/test_clip.mp4"),1024*1024);}
+    private void await(java.util.function.BooleanSupplier ready)throws Exception{long end=System.currentTimeMillis()+5000;while(!ready.getAsBoolean()&&System.currentTimeMillis()<end){Thread.sleep(20);org.robolectric.Shadows.shadowOf(Looper.getMainLooper()).idle();}assertTrue(ready.getAsBoolean());}
+    @Test public void deviceVideoCopyAndPosterSurviveOriginalDeletion()throws Exception{ImageStore images=new ImageStore(RuntimeEnvironment.getApplication());VideoStore videos=new VideoStore(RuntimeEnvironment.getApplication(),images);File original=File.createTempFile("test-source-",".mp4");Files.write(original.toPath(),clip());VideoStore.Clip copy=videos.ingest(new FileInputStream(original));original.delete();assertTrue(videos.file(copy.id).isFile());assertTrue(images.exists(copy.poster));assertArrayEquals(clip(),Files.readAllBytes(videos.file(copy.id).toPath()));assertEquals(copy.id,VideoStore.digest(videos.file(copy.id)));}
+    @Test public void movieAndPosterRoundTripThroughPortableBackup()throws Exception{android.content.Context context=RuntimeEnvironment.getApplication();ImageStore images=new ImageStore(context);VideoStore videos=new VideoStore(context,images);VideoStore.Clip clip=videos.ingest(new ByteArrayInputStream(clip()));Card c=new Card("v","","Device video","İzle","Later",0,false,Collections.emptyList(),"",clip.poster,Collections.singletonList("Work"),"","none");c.setVideo(clip.id);ByteArrayOutputStream out=new ByteArrayOutputStream();MediaBackup.write(out,CardCodec.encode(Collections.singletonList(c)),Collections.singletonList(c),images,new File(context.getFilesDir(),"previews"),videos);File directory=Files.createTempDirectory("restored-video").toFile();ImageStore restoredImages=new ImageStore(new File(directory,"images"));VideoStore restoredVideos=new VideoStore(new File(directory,"videos"),restoredImages);try(MediaBackup.Pending pending=MediaBackup.read(new ByteArrayInputStream(out.toByteArray()),context.getCacheDir(),restoredImages);MediaBackup.Install install=pending.install(restoredImages,new File(directory,"previews"),pending.cards,restoredVideos)){assertTrue(restoredVideos.file(clip.id).isFile());assertTrue(restoredImages.exists(clip.poster));assertTrue(pending.cards.get(0).isVideo());assertEquals(c.tags,pending.cards.get(0).tags);install.commit();}assertEquals(clip.id,VideoStore.digest(restoredVideos.file(clip.id)));remove(directory);}
+    private void remove(File file){File[] files=file.listFiles();if(files!=null)for(File child:files)remove(child);file.delete();}
+    @Test public void boundedStreamingRejectsOversizedVideoWithoutWholeFileAllocation(){InputStream input=new InputStream(){long remaining=VideoStore.MAX_BYTES+1;public int read(){return remaining-->0?0:-1;}public int read(byte[] b,int off,int len){if(remaining==0)return -1;int n=(int)Math.min(remaining,len);Arrays.fill(b,off,off+n,(byte)0);remaining-=n;return n;}};assertThrows(IOException.class,()->VideoStore.copy(input,new OutputStream(){public void write(int b){}public void write(byte[] b,int off,int len){}},VideoStore.MAX_BYTES));}
+    @Test public void videoShareSavesTaggedLocalRecordAndOpensGrantedContentUri()throws Exception{androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(androidx.core.os.LocaleListCompat.forLanguageTags("tr"));Uri uri=Uri.parse("content://com.example.test/video/one");org.robolectric.Shadows.shadowOf(RuntimeEnvironment.getApplication().getContentResolver()).registerInputStream(uri,new ByteArrayInputStream(clip()));Intent share=new Intent(Intent.ACTION_SEND).setType("video/mp4").putExtra(Intent.EXTRA_STREAM,uri);controller=Robolectric.buildActivity(MainActivity.class,share).setup();MainActivity activity=controller.get();await(()->{Dialog dialog=ShadowDialog.getLatestDialog();return dialog!=null&&dialog.findViewById(R.id.capture_image)!=null;});Dialog dialog=ShadowDialog.getLatestDialog();com.google.android.material.chip.ChipGroup choices=dialog.findViewById(R.id.capture_intents);for(int i=0;i<choices.getChildCount();i++){com.google.android.material.chip.Chip chip=(com.google.android.material.chip.Chip)choices.getChildAt(i);if(chip.getText().toString().equals("İzle"))chip.performClick();}((android.widget.EditText)dialog.findViewById(R.id.capture_tags)).setText("İş, Fikir");dialog.findViewById(R.id.capture_save).performClick();CardStore store=new CardStore(activity.getFilesDir());store.load();assertEquals(1,store.all().size());Card card=store.all().get(0);assertTrue(card.isVideo());assertFalse(card.isImage());assertEquals("none",card.ocrState);assertEquals(Arrays.asList("İş","Fikir"),card.tags);java.lang.reflect.Method open=MainActivity.class.getDeclaredMethod("openVideo",Card.class);open.setAccessible(true);open.invoke(activity,card);Intent view=org.robolectric.Shadows.shadowOf(activity).getNextStartedActivity();assertEquals(Intent.ACTION_VIEW,view.getAction());assertEquals("content",view.getData().getScheme());assertEquals("com.savewhy.app.videos",view.getData().getAuthority());assertTrue((view.getFlags()&Intent.FLAG_GRANT_READ_URI_PERMISSION)!=0);assertEquals("video/*",view.getType());}
+    @Test public void mediaCategoriesAreSeparateAndCodecKeepsVideoIdentity()throws Exception{String poster=String.join("",Collections.nCopies(64,"a")),video=String.join("",Collections.nCopies(64,"b"));Card c=new Card("v","","Movie","İzle","Later",0,false,Collections.emptyList(),"",poster,Collections.singletonList("Work"),"","none");c.setVideo(video);Card restored=CardCodec.decode(CardCodec.encode(Collections.singletonList(c))).get(0);assertEquals(video,restored.videoId());assertTrue(restored.visible("Videolar","work"));assertFalse(restored.visible("Ekran görüntüleri",""));assertFalse(restored.visible("Sosyal",""));assertEquals(video,restored.copy().videoId());assertThrows(IllegalArgumentException.class,()->c.setVideo("../bad"));}
+}
