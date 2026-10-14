@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="about_contribution" formatted="false">"Ein Teil der Einnahmen von tosave fließt an Kinder mit spinaler Muskelatrophie (SMA), Einrichtungen für Kinderschutz und Kinderbetreuung, Gesundheits- und Bildungseinrichtungen sowie Baumpflanzprojekte. Ziel ist es, das Leben und die Betreuung von Kindern, den Zugang zur Gesundheitsversorgung, Bildungschancen und den Schutz der Natur zu unterstützen."</string>
+    <string name="about_contribution_title" formatted="false">"Gemeinsam etwas beitragen"</string>
+    <string name="about_developer" formatted="false">"Entwickler"</string>
+    <string name="about_entry" formatted="false">"Über tosave"</string>
+    <string name="about_independent" formatted="false">"tosave wird von tr.developer als Einzelentwickler entwickelt. Je nach Gerät und Nutzung können Funktionen fehlen oder Fehler auftreten. Gemeldete Probleme werden geprüft und möglichst schnell behoben. Ihre Vorschläge helfen dabei, die App zu verbessern. Bitte nennen Sie bei einer Fehlermeldung Ihr Gerätemodell, die Android-Version und die Schritte, die zum Problem geführt haben."</string>
+    <string name="about_independent_title" formatted="false">"Unabhängige Entwicklung"</string>
+    <string name="about_purpose" formatted="false">"tosave hilft Ihnen, die Links, Fotos und Videos zu ordnen, die Sie mit der App teilen. Wählen Sie, wofür Sie einen gespeicherten Inhalt verwenden möchten, und ergänzen Sie Tags, persönliche Notizen und Erinnerungen. So behalten Sie den Grund fürs Speichern im Blick und finden Ihre Inhalte bei Bedarf schnell wieder."</string>
+    <string name="about_title" formatted="false">"Über die App"</string>
+    <string name="card_counts">"%1$d offen · %2$d erledigt"</string>
+    <string name="media_saved_copy" formatted="false">"In der App gespeichert"</string>
+    <string name="ocr_empty" formatted="false">"Kein Text im Bild gefunden."</string>
+    <string name="ocr_inline_title" formatted="false">"Text im Bild"</string>
+    <string name="shared_media_error" formatted="false">"Die geteilte Datei konnte nicht gelesen werden oder überschreitet die Größenbeschränkung."</string>
+    <string name="ui_0" formatted="false">"Tun"</string>
+    <string name="ui_1" formatted="false">"Besuchen"</string>
+    <string name="ui_10" formatted="false">"Schließen"</string>
+    <string name="ui_100" formatted="false">"v0.4.0 · Erinnerungen und Spracheinstellungen\nEine KI-Inhaltsanalyse ist noch nicht verfügbar."</string>
+    <string name="ui_101" formatted="false">"Ein Link. Ein Ziel."</string>
+    <string name="ui_102" formatted="false">"1  Inhalt teilen"</string>
+    <string name="ui_103" formatted="false">"Wählen Sie in Ihrer Social-Media-App Teilen → tosave."</string>
+    <string name="ui_104" formatted="false">"2  Ziel auswählen"</string>
+    <string name="ui_105" formatted="false">"Tun, Besuchen, Kaufen, Lernen, Erstellen, Ansehen oder Finden. Wählen Sie einen kurzen Grund oder speichern Sie direkt."</string>
+    <string name="ui_106" formatted="false">"3  Zur richtigen Zeit zurückkehren"</string>
+    <string name="ui_107" formatted="false">"Öffnen Sie die Quelle, recherchieren Sie oder erledigen Sie Ihre Aufgaben. Titel und Notizen können Sie jederzeit bearbeiten."</string>
+    <string name="ui_108" formatted="false">"Titel stammen aus den geteilten Informationen oder dem Link. Die App analysiert das Video nicht."</string>
+    <string name="ui_109" formatted="false">"Verstanden"</string>
+    <string name="ui_11" formatted="false">"Speichern"</string>
+    <string name="ui_110" formatted="false">"Sicherung exportiert."</string>
+    <string name="ui_111" formatted="false">"Diese Sicherung importieren?"</string>
+    <string name="ui_112" formatted="false">" neue Einträge werden hinzugefügt. Bestehende Einträge bleiben erhalten; Duplikate werden übersprungen."</string>
+    <string name="ui_113" formatted="false">"Importieren"</string>
+    <string name="ui_114" formatted="false">" Einträge hinzugefügt."</string>
+    <string name="ui_115" formatted="false">"Benachrichtigungen sind deaktiviert"</string>
+    <string name="ui_116" formatted="false">"Aktivieren Sie tosave-Benachrichtigungen in den Einstellungen, um eine Erinnerung hinzuzufügen. Ihr Eintrag bleibt gespeichert."</string>
+    <string name="ui_117" formatted="false">"Einstellungen öffnen"</string>
+    <string name="ui_118" formatted="false">"Die Benachrichtigungsberechtigung wurde nicht erteilt. Es wurde keine Erinnerung hinzugefügt."</string>
+    <string name="ui_119" formatted="false">"Wann möchten Sie erinnert werden?"</string>
+    <string name="ui_12" formatted="false">"Abbrechen"</string>
+    <string name="ui_120" formatted="false">"Wenn Sie etwas gemeinsam unternehmen möchten, wählen Sie den Zeitpunkt Ihres Treffens. Die Benachrichtigung erscheint auf Ihrem Gerät und wird nicht an andere Personen gesendet."</string>
+    <string name="ui_121" formatted="false">"Der Android-Energiesparmodus kann Benachrichtigungen über den gewählten Zeitpunkt hinaus verzögern."</string>
+    <string name="ui_122" formatted="false">"In 1 Stunde"</string>
+    <string name="ui_123" formatted="false">"Heute Abend · 20:00"</string>
+    <string name="ui_124" formatted="false">"Morgen · 09:00"</string>
+    <string name="ui_125" formatted="false">"Am Wochenende · 10:00"</string>
+    <string name="ui_126" formatted="false">"Datum und Uhrzeit wählen"</string>
+    <string name="ui_127" formatted="false">"Erinnerungen"</string>
+    <string name="ui_128" formatted="false">"Kehren Sie zum gewünschten Zeitpunkt zu Ihren Einträgen zurück."</string>
+    <string name="ui_129" formatted="false">"Zeit, zu Ihrem Eintrag zurückzukehren."</string>
+    <string name="ui_13" formatted="false">"Hinzufügen"</string>
+    <string name="ui_130" formatted="false">"Ich möchte es später ausprobieren"</string>
+    <string name="ui_131" formatted="false">"Ich mache es am Wochenende"</string>
+    <string name="ui_132" formatted="false">"Nützlich für mich"</string>
+    <string name="ui_133" formatted="false">"Wir machen es gemeinsam"</string>
+    <string name="ui_134" formatted="false">"Ich möchte dort hin"</string>
+    <string name="ui_135" formatted="false">"Für das Wochenende"</string>
+    <string name="ui_136" formatted="false">"Ich gehe mit einem Freund hin"</string>
+    <string name="ui_137" formatted="false">"Zu meinem Reiseplan hinzufügen"</string>
+    <string name="ui_138" formatted="false">"Ich erwäge einen Kauf"</string>
+    <string name="ui_139" formatted="false">"Ich werde Preise vergleichen"</string>
+    <string name="ui_14" formatted="false">"Löschen"</string>
+    <string name="ui_140" formatted="false">"Geschenkidee"</string>
+    <string name="ui_141" formatted="false">"Das brauche ich"</string>
+    <string name="ui_142" formatted="false">"Ich möchte das lernen"</string>
+    <string name="ui_143" formatted="false">"Ich werde es bei der Arbeit nutzen"</string>
+    <string name="ui_144" formatted="false">"Ich werde üben"</string>
+    <string name="ui_145" formatted="false">"Als Referenz behalten"</string>
+    <string name="ui_146" formatted="false">"Das hat mich inspiriert"</string>
+    <string name="ui_147" formatted="false">"Ich werde das Format anpassen"</string>
+    <string name="ui_148" formatted="false">"Neue Idee für Inhalte"</string>
+    <string name="ui_149" formatted="false">"Mir gefällt die Erzählweise"</string>
+    <string name="ui_15" formatted="false">"Suchen"</string>
+    <string name="ui_150" formatted="false">"Ich werde es später ansehen"</string>
+    <string name="ui_151" formatted="false">"Für heute Abend"</string>
+    <string name="ui_152" formatted="false">"In meiner Freizeit"</string>
+    <string name="ui_153" formatted="false">"Wir werden es gemeinsam ansehen"</string>
+    <string name="ui_154" formatted="false">"Ich möchte herausfinden, was es ist"</string>
+    <string name="ui_155" formatted="false">"Ich werde etwas Ähnliches suchen"</string>
+    <string name="ui_156" formatted="false">"Ich werde die Quelle finden"</string>
+    <string name="ui_157" formatted="false">"Ich werde den Ort finden"</string>
+    <string name="ui_158" formatted="false">"Etwas ausprobieren, machen oder vorbereiten."</string>
+    <string name="ui_159" formatted="false">"Was möchten Sie tun? Wann oder wo möchten Sie es nutzen?"</string>
+    <string name="ui_16" formatted="false">"Erledigt"</string>
+    <string name="ui_160" formatted="false">"Benötigte Dinge auflisten\nFehlendes vorbereiten\nAusprobieren und das Ergebnis notieren"</string>
+    <string name="ui_161" formatted="false">"Einen Ort oder eine Veranstaltung besuchen."</string>
+    <string name="ui_162" formatted="false">"Wohin möchten Sie gehen, mit wem und warum?"</string>
+    <string name="ui_163" formatted="false">"Adresse und Öffnungszeiten prüfen\nEinen Tag für den Besuch auswählen\nNach dem Besuch Notizen hinzufügen"</string>
+    <string name="ui_164" formatted="false">"Einen Kauf erwägen."</string>
+    <string name="ui_165" formatted="false">"Welchen Bedarf würde dieses Produkt decken? Wie hoch ist Ihr Budget und welche Auswahlkriterien haben Sie?"</string>
+    <string name="ui_166" formatted="false">"Bedarf und Budget notieren\nPreise und Alternativen vergleichen\nÜber den Kauf entscheiden"</string>
+    <string name="ui_167" formatted="false">"Etwas lernen oder eine Fähigkeit entwickeln."</string>
+    <string name="ui_168" formatted="false">"Was möchten Sie lernen und wo möchten Sie es anwenden?"</string>
+    <string name="ui_169" formatted="false">"Lernziel notieren\nNotizen zum Inhalt machen\nMit einem Beispiel üben"</string>
+    <string name="ui_17" formatted="false">"Besucht"</string>
+    <string name="ui_170" formatted="false">"Eine Idee in eigene Inhalte verwandeln."</string>
+    <string name="ui_171" formatted="false">"Was hat Sie inspiriert? Wie werden Sie es in Ihren eigenen Inhalten nutzen?"</string>
+    <string name="ui_172" formatted="false">"Einstieg und Format notieren\nEigenen Blickwinkel und Zielgruppe festlegen\nAblauf und Handlungsaufforderung schreiben\nEigene Version erstellen"</string>
+    <string name="ui_173" formatted="false">"Ein Video oder andere Inhalte später ansehen."</string>
+    <string name="ui_174" formatted="false">"Warum möchten Sie es ansehen? Wann wäre ein guter Zeitpunkt?"</string>
+    <string name="ui_175" formatted="false">"Etwas Gesehenes oder etwas Ähnliches recherchieren."</string>
+    <string name="ui_176" formatted="false">"Was genau möchten Sie finden? Welche Hinweise haben Sie?"</string>
+    <string name="ui_177" formatted="false">"Gesuchtes und Hinweise präzisieren\nBeschreibung und Kommentare prüfen\nMit einem passenden Suchbegriff im Web suchen\nErgebnis mit der Quelle vergleichen"</string>
+    <string name="ui_178" formatted="false">"Einträge konnten nicht gelesen werden. Die vorhandene Datei bleibt erhalten."</string>
+    <string name="ui_179" formatted="false">"Die geteilten Daten enthalten keinen gültigen Link."</string>
+    <string name="ui_18" formatted="false">"Entschieden"</string>
+    <string name="ui_180" formatted="false">"Neue geteilte Inhalte öffnen?"</string>
+    <string name="ui_181" formatted="false">"Der aktuelle Entwurf wird geschlossen."</string>
+    <string name="ui_182" formatted="false">"Aktuellen Entwurf behalten"</string>
+    <string name="ui_183" formatted="false">"Neue Inhalte öffnen"</string>
+    <string name="ui_184" formatted="false">"Die Eintragsdatei konnte nicht gelesen werden. Die vorhandene Datei bleibt erhalten."</string>
+    <string name="ui_185" formatted="false">"Die Eintragsdatei konnte nicht gelesen werden. Ein neuer Eintrag kann nicht geöffnet werden."</string>
+    <string name="ui_186" formatted="false">"Einträge konnten nicht gelesen werden. Eine Sicherung kann nicht erstellt werden."</string>
+    <string name="ui_187" formatted="false">"Keine Dateiauswahl verfügbar."</string>
+    <string name="ui_188" formatted="false">"Die Datei konnte nicht geöffnet werden."</string>
+    <string name="ui_189" formatted="false">"Wählen Sie eine gültige tosave-Sicherung."</string>
+    <string name="ui_19" formatted="false">"Gelernt"</string>
+    <string name="ui_190" formatted="false">"Der Vorgang konnte nicht abgeschlossen werden. Prüfen Sie die Datei und den verfügbaren Speicherplatz."</string>
+    <string name="ui_191" formatted="false">"Ungültiges Ziel."</string>
+    <string name="ui_192" formatted="false">"Teilen Sie einen Link oder fügen Sie ihn ein."</string>
+    <string name="ui_193" formatted="false">"Dieser Link ist bereits mit diesem Ziel gespeichert."</string>
+    <string name="ui_194" formatted="false">"Die Eintragsdatei konnte nicht gelesen werden. Eine Sicherung kann nicht erstellt werden."</string>
+    <string name="ui_195" formatted="false">"Die Eintragsdatei konnte nicht gelesen werden; die vorhandene Datei bleibt erhalten."</string>
+    <string name="ui_196" formatted="false">"Sie können bis zu 5000 Einträge speichern."</string>
+    <string name="ui_197" formatted="false">"Die Einträge überschreiten die Grenze von 4 MB."</string>
+    <string name="ui_198" formatted="false">"Die Datei darf höchstens 4 MB groß sein."</string>
+    <string name="ui_199" formatted="false">"Aufgabe"</string>
+    <string name="ui_2" formatted="false">"Kaufen"</string>
+    <string name="ui_20" formatted="false">"Erstellt"</string>
+    <string name="ui_200" formatted="false">"Titel"</string>
+    <string name="ui_201" formatted="false">"Grund für das Speichern"</string>
+    <string name="ui_202" formatted="false">"Der Suchbegriff darf höchstens 300 Zeichen lang sein."</string>
+    <string name="ui_203" formatted="false">"Ungültiges Speicherdatum."</string>
+    <string name="ui_204" formatted="false">"Sie können bis zu 30 Aufgaben hinzufügen."</string>
+    <string name="ui_205" formatted="false">" darf nicht leer sein."</string>
+    <string name="ui_206" formatted="false">" darf höchstens "</string>
+    <string name="ui_207" formatted="false">" Zeichen lang sein."</string>
+    <string name="ui_208" formatted="false">"Die Websuche ist für das Ziel „Finden“ verfügbar."</string>
+    <string name="ui_209" formatted="false">"Die Datei enthält unerwartete zusätzliche Inhalte."</string>
+    <string name="ui_21" formatted="false">"Angesehen"</string>
+    <string name="ui_210" formatted="false">"Nicht unterstütztes Sicherungsformat."</string>
+    <string name="ui_211" formatted="false">"Ungültige Sicherungsdatei."</string>
+    <string name="ui_212" formatted="false">"Sie können bis zu 5000 Einträge importieren."</string>
+    <string name="ui_213" formatted="false">"Ungültiges Erinnerungsdatum."</string>
+    <string name="ui_214" formatted="false">"Die Datei enthält doppelte Eintrags-IDs."</string>
+    <string name="ui_215" formatted="false">"Die Gesamtzahl der Einträge darf 5000 nicht überschreiten."</string>
+    <string name="ui_216" formatted="false">"Der Link ist zu lang."</string>
+    <string name="ui_217" formatted="false">"Geben Sie einen gültigen http-/https-Link ein."</string>
+    <string name="ui_218" formatted="false">"Heute Abend ist bereits vorbei · morgen um 20:00"</string>
+    <string name="ui_219" formatted="false">"Erlauben Sie Benachrichtigungen, um eine Erinnerung zu speichern."</string>
+    <string name="ui_22" formatted="false">"Gefunden"</string>
+    <string name="ui_220" formatted="false">"Vergessen"</string>
+    <string name="ui_221" formatted="false">"Einstellungen für vergessene Einträge"</string>
+    <string name="ui_222" formatted="false">"Ziele anpassen"</string>
+    <string name="ui_223" formatted="false">"Gründe anpassen"</string>
+    <string name="ui_224" formatted="false">"Anzahl der Tage, an denen ein offener Eintrag nicht geöffnet oder geändert wurde. Ältere Einträge erscheinen unter „Vergessen“; sie werden nicht gelöscht."</string>
+    <string name="ui_225" formatted="false">"Tage · 1–365"</string>
+    <string name="ui_226" formatted="false">"Geben Sie eine Anzahl zwischen 1 und 365 Tagen ein."</string>
+    <string name="ui_227" formatted="false">"Optionen hinzufügen oder umbenennen. Markierte Optionen werden in der App angezeigt. Ausblenden verändert bestehende Einträge nicht."</string>
+    <string name="ui_228" formatted="false">"Kurze Gründe"</string>
+    <string name="ui_229" formatted="false">"Ziel hinzufügen"</string>
+    <string name="ui_23" formatted="false">"Design auswählen"</string>
+    <string name="ui_230" formatted="false">"Grund hinzufügen"</string>
+    <string name="ui_231" formatted="false">"Fertig"</string>
+    <string name="ui_232" formatted="false">"Name der Option"</string>
+    <string name="ui_233" formatted="false">"Neue Option"</string>
+    <string name="ui_234" formatted="false">"Option bearbeiten"</string>
+    <string name="ui_235" formatted="false">"Optionsnamen müssen 1–60 Zeichen lang sein."</string>
+    <string name="ui_236" formatted="false">"Sie können bis zu 500 persönliche Optionen hinzufügen."</string>
+    <string name="ui_237" formatted="false">"Ungültige persönliche Option."</string>
+    <string name="ui_238" formatted="false">"Optionen konnten nicht gespeichert werden."</string>
+    <string name="ui_239" formatted="false">"Optionen konnten nicht gelesen werden. Bestehende Einstellungen bleiben erhalten."</string>
+    <string name="ui_24" formatted="false">"Einstellungen und Sicherungen"</string>
+    <string name="ui_240" formatted="false">"Ungültiges Aktivitätsdatum."</string>
+    <string name="ui_241" formatted="false">"Mit einem eigenen Ziel speichern."</string>
+    <string name="ui_242" formatted="false">"Fügen Sie bei Bedarf eine persönliche Notiz hinzu."</string>
+    <string name="ui_243" formatted="false">"Benachrichtigungen"</string>
+    <string name="ui_244" formatted="false">"Einstellungen"</string>
+    <string name="ui_245" formatted="false">"Zurück"</string>
+    <string name="ui_246" formatted="false">"Allgemein"</string>
+    <string name="ui_247" formatted="false">"Gespeicherte Einträge"</string>
+    <string name="ui_248" formatted="false">"Tage"</string>
+    <string name="ui_249" formatted="false">"Ziele und kurze Gründe"</string>
+    <string name="ui_25" formatted="false">"Speichern. Den Grund behalten. Aktiv werden."</string>
+    <string name="ui_250" formatted="false">"Persönliche Optionen anzeigen, ausblenden oder hinzufügen."</string>
+    <string name="ui_251" formatted="false">"Benachrichtigungszentrum"</string>
+    <string name="ui_252" formatted="false">"Hier finden Sie Ihre Erinnerungen."</string>
+    <string name="ui_253" formatted="false">"System-Benachrichtigungseinstellungen"</string>
+    <string name="ui_254" formatted="false">"Ein"</string>
+    <string name="ui_255" formatted="false">"Aus"</string>
+    <string name="ui_256" formatted="false">"Sicherung"</string>
+    <string name="ui_257" formatted="false">"Exportieren Sie Ihre Einträge und persönlichen Optionen."</string>
+    <string name="ui_258" formatted="false">"Ihre vorhandenen Einträge bleiben erhalten."</string>
+    <string name="ui_259" formatted="false">"Noch keine Benachrichtigungen."</string>
+    <string name="ui_26" formatted="false">"Speichern. Den Grund behalten."</string>
+    <string name="ui_260" formatted="false">"Letzte Benachrichtigungen"</string>
+    <string name="ui_261" formatted="false">"Dieser Eintrag ist nicht mehr vorhanden."</string>
+    <string name="ui_262" formatted="false">"Benachrichtigungsverlauf löschen"</string>
+    <string name="ui_263" formatted="false">"Anstehende Erinnerungen"</string>
+    <string name="ui_264" formatted="false">"Benachrichtigungen konnten nicht gelesen werden. Der vorhandene Verlauf bleibt erhalten."</string>
+    <string name="ui_265" formatted="false">"Benachrichtigungen konnten nicht gespeichert werden."</string>
+    <string name="ui_266" formatted="false">"Wofür möchten Sie das speichern?"</string>
+    <string name="ui_267" formatted="false">"Dunkel"</string>
+    <string name="ui_268" formatted="false">"Video abspielen"</string>
+    <string name="ui_269" formatted="false">"Das Video konnte nicht geladen werden. Sie können es in der Quell-App öffnen."</string>
+    <string name="ui_27" formatted="false">"Zum Fortfahren tippen"</string>
+    <string name="ui_270" formatted="false">"tosave Unbegrenzt"</string>
+    <string name="ui_271" formatted="false">"20 kostenlose Einträge · Einmaliger Kauf"</string>
+    <string name="ui_272" formatted="false">"Unbegrenztes Speichern aktiviert"</string>
+    <string name="ui_273" formatted="false">"Support"</string>
+    <string name="ui_274" formatted="false">"Kontakt und Support"</string>
+    <string name="ui_275" formatted="false">"Sind Sie mit der App zufrieden?"</string>
+    <string name="ui_276" formatted="false">"Teilen Sie uns Ihre Meinung mit."</string>
+    <string name="ui_277" formatted="false">"Speichern Sie weiter ohne Einschränkungen."</string>
+    <string name="ui_278" formatted="false">"Die ersten 20 Einträge sind kostenlos. Entfernen Sie das Limit mit einem einmaligen Kauf."</string>
+    <string name="ui_279" formatted="false">"Unbegrenzte Einträge"</string>
+    <string name="ui_28" formatted="false">"Gespeicherte Inhalte durchsuchen"</string>
+    <string name="ui_280" formatted="false">"Erinnerungen und vergessene Einträge"</string>
+    <string name="ui_281" formatted="false">"Persönliche Ziele und kurze Gründe"</string>
+    <string name="ui_282" formatted="false">"Sichern und Wiederherstellen"</string>
+    <string name="ui_283" formatted="false">"Einmalige Zahlung. Kein Abonnement."</string>
+    <string name="ui_284" formatted="false">"Die kostenlose Version erlaubt bis zu 20 Einträge, einschließlich erledigter Einträge. Ihre vorhandenen Einträge können Sie jederzeit öffnen, bearbeiten und sichern."</string>
+    <string name="ui_285" formatted="false">"Jetzt kaufen"</string>
+    <string name="ui_286" formatted="false">"Kauf wiederherstellen"</string>
+    <string name="ui_287" formatted="false">"Vorerst fortfahren"</string>
+    <string name="ui_288" formatted="false">"Der Preis wird von Google Play bereitgestellt."</string>
+    <string name="ui_289" formatted="false">"Fortfahren"</string>
+    <string name="ui_29" formatted="false">"Neuer Eintrag"</string>
+    <string name="ui_290" formatted="false">"Google-Play-Käufe sind derzeit nicht verfügbar."</string>
+    <string name="ui_291" formatted="false">"Verbindung zu Google Play wird hergestellt…"</string>
+    <string name="ui_292" formatted="false">"Verbindung zu Google Play unterbrochen. Sie können es erneut versuchen."</string>
+    <string name="ui_293" formatted="false">"Kauf abgebrochen."</string>
+    <string name="ui_294" formatted="false">"Der Kauf konnte nicht abgeschlossen werden. Sie können es erneut versuchen."</string>
+    <string name="ui_295" formatted="false">"Die Zahlung steht noch aus. Unbegrenzte Einträge werden nach Abschluss freigeschaltet."</string>
+    <string name="ui_296" formatted="false">"Der Kauf konnte nicht überprüft werden."</string>
+    <string name="ui_297" formatted="false">"Der Kauf konnte nicht gespeichert werden. Stellen Sie den Kauf wieder her."</string>
+    <string name="ui_298" formatted="false">"Unbegrenzte Einträge freigeschaltet. Vielen Dank!"</string>
+    <string name="ui_299" formatted="false">"Die Kaufbestätigung steht noch aus. Versuchen Sie, den Kauf wiederherzustellen."</string>
+    <string name="ui_3" formatted="false">"Lernen"</string>
+    <string name="ui_30" formatted="false">" gespeicherte Einträge"</string>
+    <string name="ui_300" formatted="false">"Unbegrenzte Einträge sind bereits aktiviert."</string>
+    <string name="ui_301" formatted="false">"Der Kauf konnte nicht gestartet werden. Sie können es erneut versuchen."</string>
+    <string name="ui_302" formatted="false">"Sie haben das kostenlose Limit von 20 Einträgen erreicht."</string>
+    <string name="ui_303" formatted="false">"Ihre kurze Rückmeldung hilft uns, tosave zu verbessern."</string>
+    <string name="ui_304" formatted="false">"Gefällt mir"</string>
+    <string name="ui_305" formatted="false">"Könnte besser sein"</string>
+    <string name="ui_306" formatted="false">"Nicht jetzt"</string>
+    <string name="ui_307" formatted="false">"Feedback"</string>
+    <string name="ui_308" formatted="false">"Ihr Feedback · freiwillig"</string>
+    <string name="ui_309" formatted="false">"Ein Entwurf wird in Ihrer E-Mail-App geöffnet. Sie können ihn vor dem Senden bearbeiten."</string>
+    <string name="ui_31" formatted="false">"Noch nichts gespeichert"</string>
+    <string name="ui_310" formatted="false">"Per E-Mail teilen"</string>
+    <string name="ui_311" formatted="false">"Der Kauf entfernt das Limit von 20 Einträgen. Technische Kapazität: 5.000 Einträge / 4 MB."</string>
+    <string name="ui_312" formatted="false">"Vorschaubild auswählen"</string>
+    <string name="ui_313" formatted="false">"Das Bild konnte nicht gelesen werden. Wählen Sie ein anderes Bild."</string>
+    <string name="ui_314" formatted="false">"Bild hinzufügen"</string>
+    <string name="ui_315" formatted="false">"Bilder"</string>
+    <string name="ui_316" formatted="false">"Bild"</string>
+    <string name="ui_317" formatted="false">"Screenshot"</string>
+    <string name="ui_318" formatted="false">"Bild vergrößern"</string>
+    <string name="ui_319" formatted="false">"Tags"</string>
+    <string name="ui_32" formatted="false">"Hier sind noch keine Einträge gespeichert."</string>
+    <string name="ui_320" formatted="false">"Tags hinzufügen · durch Kommas trennen"</string>
+    <string name="ui_321" formatted="false">"Einkaufen"</string>
+    <string name="ui_322" formatted="false">"Rezept"</string>
+    <string name="ui_323" formatted="false">"Arbeit"</string>
+    <string name="ui_324" formatted="false">"Idee"</string>
+    <string name="ui_325" formatted="false">"Referenz"</string>
+    <string name="ui_326" formatted="false">"Bild wird vorbereitet…"</string>
+    <string name="ui_327" formatted="false">"Bildtext wird gelesen…"</string>
+    <string name="ui_328" formatted="false">"Der Text konnte nicht gelesen werden. Sie können es erneut versuchen."</string>
+    <string name="ui_329" formatted="false">"Der Bildtext kann durchsucht werden."</string>
+    <string name="ui_33" formatted="false">"Teilen Sie einen Link, ein Foto oder ein Video über das Teilen-Menü mit tosave. Wählen Sie den Grund fürs Speichern, um den Inhalt später leicht wiederzufinden."</string>
+    <string name="ui_330" formatted="false">"Erkannten Text anzeigen"</string>
+    <string name="ui_331" formatted="false">"Text im Bild"</string>
+    <string name="ui_332" formatted="false">"Text erneut scannen"</string>
+    <string name="ui_333" formatted="false">"Sicherung erstellen"</string>
+    <string name="ui_334" formatted="false">"Einträge, Bilder und persönliche Optionen exportieren."</string>
+    <string name="ui_335" formatted="false">"Sicherung wird vorbereitet…"</string>
+    <string name="ui_336" formatted="false">"Sicherung wird geprüft…"</string>
+    <string name="ui_337" formatted="false">"Tags dürfen höchstens 40 Zeichen lang sein."</string>
+    <string name="ui_338" formatted="false">"Sie können bis zu 12 Tags hinzufügen."</string>
+    <string name="ui_339" formatted="false">"Ungültige Tags."</string>
+    <string name="ui_34" formatted="false">"Wählen Sie ein anderes Ziel oder ändern Sie Ihre Suche."</string>
+    <string name="ui_340" formatted="false">"Tag hinzufügen"</string>
+    <string name="ui_341" formatted="false">"Screenshots"</string>
+    <string name="ui_342" formatted="false">"Videos"</string>
+    <string name="ui_343" formatted="false">"Soziale Medien"</string>
+    <string name="ui_344" formatted="false">"Video"</string>
+    <string name="ui_345" formatted="false">"Video auf dem Gerät"</string>
+    <string name="ui_346" formatted="false">"Video hinzufügen"</string>
+    <string name="ui_347" formatted="false">"Video öffnen"</string>
+    <string name="ui_348" formatted="false">"Video wird vorbereitet…"</string>
+    <string name="ui_349" formatted="false">"Video konnte nicht hinzugefügt werden. Wählen Sie ein abspielbares Video bis 64 MB."</string>
+    <string name="ui_35" formatted="false">"So funktioniert es"</string>
+    <string name="ui_350" formatted="false">"Video konnte nicht geöffnet werden. Installieren Sie einen Videoplayer auf Ihrem Gerät."</string>
+    <string name="ui_351" formatted="false">"Kostenlose Einträge"</string>
+    <string name="ui_352" formatted="false">"Screenshots, Videos und Tags"</string>
+    <string name="ui_353" formatted="false">"Bildtexte durchsuchen"</string>
+    <string name="ui_354" formatted="false">"Sicherung mit Bildern und Videos"</string>
+    <string name="ui_355" formatted="false">"Verknüpfte Datei · keine zusätzliche Kopie"</string>
+    <string name="ui_356" formatted="false">"Datei erneut verknüpfen"</string>
+    <string name="ui_357" formatted="false">"Von einer früheren Version gespeicherte Kopie"</string>
+    <string name="ui_358" formatted="false">"Kein Zugriff auf die Datei. Verknüpfen Sie sie erneut."</string>
+    <string name="ui_359" formatted="false">"Die Freigabe erlaubt nur vorübergehenden Zugriff. Wählen Sie dieselbe Datei, um sie ohne Kopie zu verknüpfen."</string>
+    <string name="ui_36" formatted="false">"Erledigt"</string>
+    <string name="ui_360" formatted="false">"Dauerhafter Dateizugriff konnte nicht erhalten werden. Wählen Sie eine andere Dateiquelle."</string>
+    <string name="ui_361" formatted="false">"Tags, Notizen und Dateiverweise exportieren."</string>
+    <string name="ui_362" formatted="false">"Verknüpfte Dateien und Zugriffsrechte werden nicht übertragen. Verknüpfen Sie die Dateien auf einem anderen Gerät erneut."</string>
+    <string name="ui_363" formatted="false">"Ungültiger Dateiverweis."</string>
+    <string name="ui_364" formatted="false">"Sicherung von Tags und Notizen"</string>
+    <string name="ui_365" formatted="false">"Verknüpfte lokale Einträge enthalten nur einen Dateiverweis. Die Sicherung enthält ihre Originaldatei nicht."</string>
+    <string name="ui_37" formatted="false">"Mit einem Ziel gespeichert"</string>
+    <string name="ui_38" formatted="false">" Schritte"</string>
+    <string name="ui_39" formatted="false">"Warum speichern Sie das?"</string>
+    <string name="ui_4" formatted="false">"Erstellen"</string>
+    <string name="ui_40" formatted="false">"Eintrag bearbeiten"</string>
+    <string name="ui_41" formatted="false">"Wählen Sie Ihr Ziel. Titel und Details können Sie später bearbeiten."</string>
+    <string name="ui_42" formatted="false">"Link"</string>
+    <string name="ui_43" formatted="false">"Link einfügen"</string>
+    <string name="ui_44" formatted="false">"Link bearbeiten"</string>
+    <string name="ui_45" formatted="false">"Zweck des Speicherns"</string>
+    <string name="ui_46" formatted="false">"Wählen Sie zunächst ein Ziel."</string>
+    <string name="ui_47" formatted="false">"KURZER GRUND"</string>
+    <string name="ui_48" formatted="false">"Erinnerung hinzufügen"</string>
+    <string name="ui_49" formatted="false">"Diese Felder sind freiwillig. Sie können den Eintrag auch ohne diese Angaben speichern."</string>
+    <string name="ui_5" formatted="false">"Ansehen"</string>
+    <string name="ui_50" formatted="false">"Titel · freiwillig"</string>
+    <string name="ui_51" formatted="false">"Persönliche Notiz · freiwillig"</string>
+    <string name="ui_52" formatted="false">"Aufgabenliste"</string>
+    <string name="ui_53" formatted="false">"Teilen Sie Ihren Plan in kleine Aufgaben auf. Haken Sie diese im Eintrag ab, sobald sie erledigt sind. Sie können das Feld auch leer lassen."</string>
+    <string name="ui_54" formatted="false">"Aufgaben · eine pro Zeile"</string>
+    <string name="ui_55" formatted="false">"Beispielaufgaben auswählen"</string>
+    <string name="ui_56" formatted="false">"Wählen Sie zuerst ein Ziel."</string>
+    <string name="ui_57" formatted="false">"Suchbegriff · freiwillig"</string>
+    <string name="ui_58" formatted="false">"Notiz und Aufgaben · freiwillig"</string>
+    <string name="ui_59" formatted="false">"Änderungen speichern"</string>
+    <string name="ui_6" formatted="false">"Finden"</string>
+    <string name="ui_60" formatted="false">"Auf Ihrem Gerät gespeichert. Auch offline nutzbar."</string>
+    <string name="ui_61" formatted="false">"Erinnerung"</string>
+    <string name="ui_62" formatted="false">"Teilen Sie einen Link oder fügen Sie ihn ein."</string>
+    <string name="ui_63" formatted="false">" · speichern"</string>
+    <string name="ui_64" formatted="false">"Wählen Sie einen Zeitpunkt in der Zukunft."</string>
+    <string name="ui_65" formatted="false">"Gespeichert · "</string>
+    <string name="ui_66" formatted="false">"Eintrag aktualisiert"</string>
+    <string name="ui_67" formatted="false">"Kein Link in der Zwischenablage."</string>
+    <string name="ui_68" formatted="false">"Die Zwischenablage enthält keinen gültigen Link."</string>
+    <string name="ui_69" formatted="false">"Zweck des Speicherns"</string>
+    <string name="ui_7" formatted="false">"Offen"</string>
+    <string name="ui_70" formatted="false">" Aufgaben erledigt"</string>
+    <string name="ui_71" formatted="false">"Keine Erinnerung"</string>
+    <string name="ui_72" formatted="false">"Erinnerung bearbeiten"</string>
+    <string name="ui_73" formatted="false">"Inhalt ansehen"</string>
+    <string name="ui_74" formatted="false">"Originalinhalt öffnen"</string>
+    <string name="ui_75" formatted="false">"Als offen markieren"</string>
+    <string name="ui_76" formatted="false">"Als offen markiert"</string>
+    <string name="ui_77" formatted="false">"Bearbeiten"</string>
+    <string name="ui_78" formatted="false">"Eintrag löschen"</string>
+    <string name="ui_79" formatted="false">"Diesen Eintrag löschen?"</string>
+    <string name="ui_8" formatted="false">"Alle"</string>
+    <string name="ui_80" formatted="false">"Eintrag gelöscht"</string>
+    <string name="ui_81" formatted="false">"Rückgängig"</string>
+    <string name="ui_82" formatted="false">"Wonach möchten Sie suchen?"</string>
+    <string name="ui_83" formatted="false">"Im Web suchen"</string>
+    <string name="ui_84" formatted="false">"Nur dieser Suchbegriff wird an die Google-Suche gesendet."</string>
+    <string name="ui_85" formatted="false">"Geben Sie ein, wonach Sie suchen möchten."</string>
+    <string name="ui_86" formatted="false">"Keine App zum Öffnen dieses Links gefunden."</string>
+    <string name="ui_87" formatted="false">"Darstellung auswählen"</string>
+    <string name="ui_88" formatted="false">"Das AMOLED-Design verwendet einen vollständig schwarzen Hintergrund."</string>
+    <string name="ui_89" formatted="false">"Tiefschwarzes AMOLED"</string>
+    <string name="ui_9" formatted="false">"Erledigt"</string>
+    <string name="ui_90" formatted="false">"Hell"</string>
+    <string name="ui_91" formatted="false">"Systemeinstellung"</string>
+    <string name="ui_92" formatted="false">" · ausgewählt"</string>
+    <string name="ui_93" formatted="false">"Ihre Einträge bleiben auf Ihrem Gerät. Sie behalten die Kontrolle."</string>
+    <string name="ui_94" formatted="false">"App-Sprache"</string>
+    <string name="ui_95" formatted="false">"Systemsprache"</string>
+    <string name="ui_96" formatted="false">"Darstellung"</string>
+    <string name="ui_97" formatted="false">"JSON-Sicherung exportieren"</string>
+    <string name="ui_98" formatted="false">"Sicherung importieren"</string>
+    <string name="ui_99" formatted="false">"Schriftlizenz"</string>
+</resources>
