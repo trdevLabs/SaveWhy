@@ -1,0 +1,152 @@
+<resources>
+<style name="PalettePowder" parent="AppTheme">
+<item name="colorPrimary">@color/palette_powder_primary</item>
+<item name="colorOnPrimary">@color/palette_powder_on_primary</item>
+<item name="colorPrimaryContainer">@color/palette_powder_surface_soft</item>
+<item name="colorOnPrimaryContainer">@color/palette_powder_primary</item>
+<item name="colorSecondary">@color/palette_powder_primary</item>
+<item name="colorSecondaryContainer">@color/palette_powder_surface_soft</item>
+<item name="colorOnSecondaryContainer">@color/palette_powder_primary</item>
+<item name="colorSurface">@color/palette_powder_surface</item>
+<item name="colorOnSurface">@color/palette_powder_text</item>
+<item name="colorOnSurfaceVariant">@color/palette_powder_muted</item>
+<item name="colorSurfaceVariant">@color/palette_powder_surface_soft</item>
+<item name="colorOutline">@color/palette_powder_border</item>
+<item name="colorOutlineVariant">@color/palette_powder_border</item>
+<item name="colorError">@color/palette_powder_error</item>
+<item name="android:colorBackground">@color/palette_powder_background</item>
+<item name="android:windowBackground">@color/palette_powder_background</item>
+<item name="android:statusBarColor">@color/palette_powder_background</item>
+<item name="android:navigationBarColor">@color/palette_powder_background</item>
+<item name="colorSurfaceContainer">@color/palette_powder_surface</item>
+<item name="colorSurfaceContainerLow">@color/palette_powder_surface</item>
+<item name="colorSurfaceContainerLowest">@color/palette_powder_surface</item>
+<item name="colorSurfaceContainerHigh">@color/palette_powder_surface_soft</item>
+<item name="colorSurfaceContainerHighest">@color/palette_powder_surface_soft</item>
+</style>
+<style name="PaletteAmber" parent="AppTheme">
+<item name="colorPrimary">@color/palette_amber_primary</item>
+<item name="colorOnPrimary">@color/palette_amber_on_primary</item>
+<item name="colorPrimaryContainer">@color/palette_amber_surface_soft</item>
+<item name="colorOnPrimaryContainer">@color/palette_amber_primary</item>
+<item name="colorSecondary">@color/palette_amber_primary</item>
+<item name="colorSecondaryContainer">@color/palette_amber_surface_soft</item>
+<item name="colorOnSecondaryContainer">@color/palette_amber_primary</item>
+<item name="colorSurface">@color/palette_amber_surface</item>
+<item name="colorOnSurface">@color/palette_amber_text</item>
+<item name="colorOnSurfaceVariant">@color/palette_amber_muted</item>
+<item name="colorSurfaceVariant">@color/palette_amber_surface_soft</item>
+<item name="colorOutline">@color/palette_amber_border</item>
+<item name="colorOutlineVariant">@color/palette_amber_border</item>
+<item name="colorError">@color/palette_amber_error</item>
+<item name="android:colorBackground">@color/palette_amber_background</item>
+<item name="android:windowBackground">@color/palette_amber_background</item>
+<item name="android:statusBarColor">@color/palette_amber_background</item>
+<item name="android:navigationBarColor">@color/palette_amber_background</item>
+<item name="colorSurfaceContainer">@color/palette_amber_surface</item>
+<item name="colorSurfaceContainerLow">@color/palette_amber_surface</item>
+<item name="colorSurfaceContainerLowest">@color/palette_amber_surface</item>
+<item name="colorSurfaceContainerHigh">@color/palette_amber_surface_soft</item>
+<item name="colorSurfaceContainerHighest">@color/palette_amber_surface_soft</item>
+</style>
+<style name="PaletteRed" parent="AppTheme">
+<item name="colorPrimary">@color/palette_red_primary</item>
+<item name="colorOnPrimary">@color/palette_red_on_primary</item>
+<item name="colorPrimaryContainer">@color/palette_red_surface_soft</item>
+<item name="colorOnPrimaryContainer">@color/palette_red_primary</item>
+<item name="colorSecondary">@color/palette_red_primary</item>
+<item name="colorSecondaryContainer">@color/palette_red_surface_soft</item>
+<item name="colorOnSecondaryContainer">@color/palette_red_primary</item>
+<item name="colorSurface">@color/palette_red_surface</item>
+<item name="colorOnSurface">@color/palette_red_text</item>
+<item name="colorOnSurfaceVariant">@color/palette_red_muted</item>
+<item name="colorSurfaceVariant">@color/palette_red_surface_soft</item>
+<item name="colorOutline">@color/palette_red_border</item>
+<item name="colorOutlineVariant">@color/palette_red_border</item>
+<item name="colorError">@color/palette_red_error</item>
+<item name="android:colorBackground">@color/palette_red_background</item>
+<item name="android:windowBackground">@color/palette_red_background</item>
+<item name="android:statusBarColor">@color/palette_red_background</item>
+<item name="android:navigationBarColor">@color/palette_red_background</item>
+<item name="colorSurfaceContainer">@color/palette_red_surface</item>
+<item name="colorSurfaceContainerLow">@color/palette_red_surface</item>
+<item name="colorSurfaceContainerLowest">@color/palette_red_surface</item>
+<item name="colorSurfaceContainerHigh">@color/palette_red_surface_soft</item>
+<item name="colorSurfaceContainerHighest">@color/palette_red_surface_soft</item>
+</style>
+<style name="PaletteLavender" parent="AppTheme">
+<item name="colorPrimary">@color/palette_lavender_primary</item>
+<item name="colorOnPrimary">@color/palette_lavender_on_primary</item>
+<item name="colorPrimaryContainer">@color/palette_lavender_surface_soft</item>
+<item name="colorOnPrimaryContainer">@color/palette_lavender_primary</item>
+<item name="colorSecondary">@color/palette_lavender_primary</item>
+<item name="colorSecondaryContainer">@color/palette_lavender_surface_soft</item>
+<item name="colorOnSecondaryContainer">@color/palette_lavender_primary</item>
+<item name="colorSurface">@color/palette_lavender_surface</item>
+<item name="colorOnSurface">@color/palette_lavender_text</item>
+<item name="colorOnSurfaceVariant">@color/palette_lavender_muted</item>
+<item name="colorSurfaceVariant">@color/palette_lavender_surface_soft</item>
+<item name="colorOutline">@color/palette_lavender_border</item>
+<item name="colorOutlineVariant">@color/palette_lavender_border</item>
+<item name="colorError">@color/palette_lavender_error</item>
+<item name="android:colorBackground">@color/palette_lavender_background</item>
+<item name="android:windowBackground">@color/palette_lavender_background</item>
+<item name="android:statusBarColor">@color/palette_lavender_background</item>
+<item name="android:navigationBarColor">@color/palette_lavender_background</item>
+<item name="colorSurfaceContainer">@color/palette_lavender_surface</item>
+<item name="colorSurfaceContainerLow">@color/palette_lavender_surface</item>
+<item name="colorSurfaceContainerLowest">@color/palette_lavender_surface</item>
+<item name="colorSurfaceContainerHigh">@color/palette_lavender_surface_soft</item>
+<item name="colorSurfaceContainerHighest">@color/palette_lavender_surface_soft</item>
+</style>
+<style name="PaletteBlue" parent="AppTheme">
+<item name="colorPrimary">@color/palette_blue_primary</item>
+<item name="colorOnPrimary">@color/palette_blue_on_primary</item>
+<item name="colorPrimaryContainer">@color/palette_blue_surface_soft</item>
+<item name="colorOnPrimaryContainer">@color/palette_blue_primary</item>
+<item name="colorSecondary">@color/palette_blue_primary</item>
+<item name="colorSecondaryContainer">@color/palette_blue_surface_soft</item>
+<item name="colorOnSecondaryContainer">@color/palette_blue_primary</item>
+<item name="colorSurface">@color/palette_blue_surface</item>
+<item name="colorOnSurface">@color/palette_blue_text</item>
+<item name="colorOnSurfaceVariant">@color/palette_blue_muted</item>
+<item name="colorSurfaceVariant">@color/palette_blue_surface_soft</item>
+<item name="colorOutline">@color/palette_blue_border</item>
+<item name="colorOutlineVariant">@color/palette_blue_border</item>
+<item name="colorError">@color/palette_blue_error</item>
+<item name="android:colorBackground">@color/palette_blue_background</item>
+<item name="android:windowBackground">@color/palette_blue_background</item>
+<item name="android:statusBarColor">@color/palette_blue_background</item>
+<item name="android:navigationBarColor">@color/palette_blue_background</item>
+<item name="colorSurfaceContainer">@color/palette_blue_surface</item>
+<item name="colorSurfaceContainerLow">@color/palette_blue_surface</item>
+<item name="colorSurfaceContainerLowest">@color/palette_blue_surface</item>
+<item name="colorSurfaceContainerHigh">@color/palette_blue_surface_soft</item>
+<item name="colorSurfaceContainerHighest">@color/palette_blue_surface_soft</item>
+</style>
+<style name="PaletteGraphite" parent="AppTheme">
+<item name="colorPrimary">@color/palette_graphite_primary</item>
+<item name="colorOnPrimary">@color/palette_graphite_on_primary</item>
+<item name="colorPrimaryContainer">@color/palette_graphite_surface_soft</item>
+<item name="colorOnPrimaryContainer">@color/palette_graphite_primary</item>
+<item name="colorSecondary">@color/palette_graphite_primary</item>
+<item name="colorSecondaryContainer">@color/palette_graphite_surface_soft</item>
+<item name="colorOnSecondaryContainer">@color/palette_graphite_primary</item>
+<item name="colorSurface">@color/palette_graphite_surface</item>
+<item name="colorOnSurface">@color/palette_graphite_text</item>
+<item name="colorOnSurfaceVariant">@color/palette_graphite_muted</item>
+<item name="colorSurfaceVariant">@color/palette_graphite_surface_soft</item>
+<item name="colorOutline">@color/palette_graphite_border</item>
+<item name="colorOutlineVariant">@color/palette_graphite_border</item>
+<item name="colorError">@color/palette_graphite_error</item>
+<item name="android:colorBackground">@color/palette_graphite_background</item>
+<item name="android:windowBackground">@color/palette_graphite_background</item>
+<item name="android:statusBarColor">@color/palette_graphite_background</item>
+<item name="android:navigationBarColor">@color/palette_graphite_background</item>
+<item name="colorSurfaceContainer">@color/palette_graphite_surface</item>
+<item name="colorSurfaceContainerLow">@color/palette_graphite_surface</item>
+<item name="colorSurfaceContainerLowest">@color/palette_graphite_surface</item>
+<item name="colorSurfaceContainerHigh">@color/palette_graphite_surface_soft</item>
+<item name="colorSurfaceContainerHighest">@color/palette_graphite_surface_soft</item>
+</style>
+</resources>

@@ -3,8 +3,12 @@ android {
     namespace 'com.savewhy.app'
     compileSdk 35
     buildToolsVersion '34.0.0'
-    defaultConfig { applicationId 'com.savewhy.app'; minSdk 26; targetSdk 35; versionCode 12; versionName '0.11.0' }
+    defaultConfig { applicationId 'com.savewhy.app'; minSdk 26; targetSdk 35; versionCode 16; versionName '0.15.0' }
+    if (providers.gradleProperty('targetAbi').isPresent()) {
+        defaultConfig { ndk { abiFilters providers.gradleProperty('targetAbi').get() } }
+    }
     buildFeatures { buildConfig true }
+    bundle { language { enableSplit = false } }
     defaultConfig {
         buildConfigField 'String', 'PLAY_BILLING_PUBLIC_KEY', '"' + providers.gradleProperty('SAVEWHY_PLAY_PUBLIC_KEY').getOrElse('').replace('\\','\\\\').replace('"','\\"') + '"'
     }
@@ -22,8 +26,25 @@ dependencies {
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.android.billingclient:billing:8.0.0'
     implementation 'com.google.mlkit:text-recognition:16.0.1'
+    implementation 'cz.adaptech.tesseract4android:tesseract4android:4.9.0'
     implementation 'androidx.exifinterface:exifinterface:1.3.7'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.json:json:20240303'
     testImplementation 'org.robolectric:robolectric:4.14.1'
 }
+
+// Decode checked-in OCR models into generated assets before every Android build.
+def ocrAssets = layout.buildDirectory.dir('generated/ocrAssets')
+android.sourceSets.main.assets.srcDir(ocrAssets)
+def prepareOcrModels = tasks.register('prepareOcrModels') {
+    inputs.dir('src/main/ocrModels')
+    outputs.dir(ocrAssets)
+    doLast {
+        def target = ocrAssets.get().dir('tessdata').asFile
+        target.mkdirs()
+        fileTree('src/main/ocrModels').matching { include '*.b64' }.each { source ->
+            new File(target, source.name.replace('.b64', '')).bytes = source.text.trim().decodeBase64()
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn(prepareOcrModels) }

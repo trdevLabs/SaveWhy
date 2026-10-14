@@ -50,7 +50,7 @@ public class IntentTest {
         assertEquals(2,result.size()); assertNotEquals(old.id,result.get(1).id); assertEquals(added.searchQuery,result.get(1).searchQuery);
     }
     @Test public void versionOneBackupMigratesAllOriginalFields() throws Exception {
-        String v1="{\"app\":\"SaveWhy\",\"version\":1,\"cards\":[{\"id\":\"old\",\"url\":\"https://youtu.be/abc\",\"title\":\"Tarif\",\"why\":\"Yap\",\"note\":\"Pazar günü dene\",\"createdAt\":1234,\"done\":true,\"steps\":[{\"text\":\"Malzemeleri al\",\"done\":true}]}]}";
+        String v1="{\"app\":\"tosave\",\"version\":1,\"cards\":[{\"id\":\"old\",\"url\":\"https://youtu.be/abc\",\"title\":\"Tarif\",\"why\":\"Yap\",\"note\":\"Pazar günü dene\",\"createdAt\":1234,\"done\":true,\"steps\":[{\"text\":\"Malzemeleri al\",\"done\":true}]}]}";
         Card c=CardCodec.decode(v1).get(0); assertEquals("",c.searchQuery); assertEquals(1234,c.createdAt);
         assertTrue(c.done); assertTrue(c.steps.get(0).done); assertEquals("Pazar günü dene",c.note);
     }

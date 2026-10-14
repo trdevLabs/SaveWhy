@@ -72,7 +72,7 @@ public class CoreTest {
         Card c=CardCodec.decode(json).get(0); assertTrue(c.done); assertEquals(0,c.createdAt); assertTrue(c.steps.isEmpty());
     }
     @Test public void futureVersionIsRejected() {
-        assertThrows(IllegalArgumentException.class,()->CardCodec.decode("{\"app\":\"SaveWhy\",\"version\":99,\"cards\":[]}"));
+        assertThrows(IllegalArgumentException.class,()->CardCodec.decode("{\"app\":\"tosave\",\"version\":99,\"cards\":[]}"));
     }
     @Test public void invalidImportCannotReturnPartialCards() throws Exception {
         JSONObject backup=new JSONObject(CardCodec.encode(Collections.singletonList(card("a","https://example.org/","Yap"))));

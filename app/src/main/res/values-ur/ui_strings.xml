@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="about_contribution" formatted="false">"tosave کی آمدنی کا ایک حصہ اسپائنل مسکولر ایٹروفی (SMA) سے متاثرہ بچوں، بچوں کے تحفظ اور نگہداشت کے اداروں، صحت اور تعلیمی اداروں اور شجرکاری کے کاموں کو دیا جاتا ہے۔ مقصد بچوں کی زندگی اور نگہداشت، صحت کی سہولتوں تک رسائی، تعلیمی مواقع اور فطرت کے تحفظ میں حصہ ڈالنا ہے۔"</string>
+    <string name="about_contribution_title" formatted="false">"مل کر حصہ ڈالیں"</string>
+    <string name="about_developer" formatted="false">"ڈویلپر"</string>
+    <string name="about_entry" formatted="false">"tosave کے بارے میں"</string>
+    <string name="about_independent" formatted="false">"tosave کو tr.developer انفرادی طور پر تیار کرتے ہیں۔ مختلف آلات اور استعمال کی صورتوں میں کچھ خصوصیات نامکمل ہو سکتی ہیں یا غلطیاں سامنے آ سکتی ہیں۔ بتائے گئے مسائل کا جائزہ لیا جاتا ہے اور ڈویلپر انہیں جلد از جلد درست کرنے کی کوشش کرتے ہیں۔ آپ کی تجاویز ایپ کو بہتر بناتی ہیں۔ مسئلہ بتاتے وقت آلے کا ماڈل، Android ورژن اور وہ مراحل شامل کریں جن سے مسئلہ پیدا ہوا، تاکہ حل آسان ہو۔"</string>
+    <string name="about_independent_title" formatted="false">"آزادانہ تیاری"</string>
+    <string name="about_purpose" formatted="false">"tosave ان لنکس، تصاویر اور ویڈیوز کو ترتیب دینے میں مدد کرتا ہے جو آپ ایپ کے ساتھ شیئر کرتے ہیں۔ ہر محفوظ اندراج کا استعمال منتخب کریں اور ٹیگز، ذاتی نوٹس اور یاد دہانیاں شامل کریں۔ اس طرح محفوظ کرنے کی وجہ یاد رہے گی اور ضرورت پڑنے پر مواد آسانی سے مل جائے گا۔"</string>
+    <string name="about_title" formatted="false">"ایپ کے بارے میں"</string>
+    <string name="card_counts">"%1$d زیر التوا · %2$d مکمل"</string>
+    <string name="media_saved_copy" formatted="false">"ایپ میں محفوظ"</string>
+    <string name="ocr_empty" formatted="false">"تصویر میں متن نہیں ملا۔"</string>
+    <string name="ocr_inline_title" formatted="false">"تصویر کا متن"</string>
+    <string name="shared_media_error" formatted="false">"شیئر کردہ فائل نہیں پڑھی جا سکی یا حد سے بڑی ہے۔"</string>
+    <string name="ui_0" formatted="false">"کریں"</string>
+    <string name="ui_1" formatted="false">"جائیں"</string>
+    <string name="ui_10" formatted="false">"بند کریں"</string>
+    <string name="ui_100" formatted="false">"v0.4.0 · یادیں اور زبان کی ترتیبات\nAI مواد کا تجزیہ ابھی تک دستیاب نہیں ہے."</string>
+    <string name="ui_101" formatted="false">"ایک نقطہ نظر ۔ ایک نقطہ نظر ۔"</string>
+    <string name="ui_102" formatted="false">"1 اشتراک کریں مواد"</string>
+    <string name="ui_103" formatted="false">"سوشل ایپ میں شیئر ← tosave منتخب کریں۔"</string>
+    <string name="ui_104" formatted="false">"2 اپنے مقصد کا انتخاب کریں"</string>
+    <string name="ui_105" formatted="false">"کر، جاؤ، خریدیں، سیکھیں، تخلیق کریں، دیکھیں یا تلاش کریں۔ ایک تیزی سے وجہ کا انتخاب کریں یا فوری طور پر بچائیں۔"</string>
+    <string name="ui_106" formatted="false">"3 جب وقت آتا ہے تو واپس آتا ہے"</string>
+    <string name="ui_107" formatted="false">"ذریعہ کھولیں، اس کا مطالعہ کریں یا اپنے کاموں کو ختم کریں۔ عنوان کو ترمیم کریں اور جب بھی آپ چاہتے ہیں نوٹ کریں۔"</string>
+    <string name="ui_108" formatted="false">"عنوانات مشترکہ معلومات یا لنک سے آتے ہیں. اپلی کیشن ویڈیو کا تجزیہ نہیں کرتا."</string>
+    <string name="ui_109" formatted="false">"سمجھ گیا"</string>
+    <string name="ui_11" formatted="false">"محفوظ کریں"</string>
+    <string name="ui_110" formatted="false">"سپورٹ کو برآمد کیا گیا ہے"</string>
+    <string name="ui_111" formatted="false">"یہ بیک اپ درآمد کریں؟"</string>
+    <string name="ui_112" formatted="false">" نئے محفوظ اشیاء شامل کیے جائیں گے موجودہ محفوظ اشیاء کو برقرار رکھا جاتا ہے؛ دوبارہ کھو دیا جاتا ہے."</string>
+    <string name="ui_113" formatted="false">"درآمد کریں"</string>
+    <string name="ui_114" formatted="false">" ذخیرہ کردہ اشیاء شامل کریں"</string>
+    <string name="ui_115" formatted="false">"نوٹس ختم ہو گئے ہیں"</string>
+    <string name="ui_116" formatted="false">"یاد دہانی شامل کرنے کے لیے ترتیبات میں tosave کی اطلاعات فعال کریں۔ اندراج محفوظ رہے گا۔"</string>
+    <string name="ui_117" formatted="false">"ترتیبات کھولیں"</string>
+    <string name="ui_118" formatted="false">"تبصرے کی اجازت نہیں دی گئی ۔ کوئی یادداشت نہیں دی گئی ۔"</string>
+    <string name="ui_119" formatted="false">"کب یاد دلاؤں؟"</string>
+    <string name="ui_12" formatted="false">"منسوخ کریں"</string>
+    <string name="ui_120" formatted="false">"اگر ساتھ کرنا ہے تو ملنے کا وقت منتخب کریں۔ اطلاع آپ کے آلے پر دکھائی دے گی؛ کسی اور کو نہیں بھیجی جائے گی۔"</string>
+    <string name="ui_121" formatted="false">"Android بیٹری بچاؤ منتخب وقت سے پہلے نوٹس کو تاخیر کر سکتے ہیں."</string>
+    <string name="ui_122" formatted="false">"۱ گھنٹے بعد"</string>
+    <string name="ui_123" formatted="false">"آج رات · 20:00"</string>
+    <string name="ui_124" formatted="false">"کل · 09:00"</string>
+    <string name="ui_125" formatted="false">"ہفتے کے آخر میں · 10:00"</string>
+    <string name="ui_126" formatted="false">"تاریخ اور وقت منتخب کریں"</string>
+    <string name="ui_127" formatted="false">"یاد دہانیاں"</string>
+    <string name="ui_128" formatted="false">"آپ کو منتخب کرنے کے وقت اپنے محفوظ اشیاء پر واپس لوٹنا."</string>
+    <string name="ui_129" formatted="false">"آپ کے محفوظ اشیاء پر واپس آنے کا وقت ہے."</string>
+    <string name="ui_13" formatted="false">"شامل کریں"</string>
+    <string name="ui_130" formatted="false">"میں بعد میں کوشش کروں گا"</string>
+    <string name="ui_131" formatted="false">"میں اس ہفتے کے آخر میں ایسا کروں گا"</string>
+    <string name="ui_132" formatted="false">"میرے لئے مفید ہے"</string>
+    <string name="ui_133" formatted="false">"ہم یہ ایک ساتھ کریں گے"</string>
+    <string name="ui_134" formatted="false">"میں کا دورہ کرنا چاہتا ہوں"</string>
+    <string name="ui_135" formatted="false">"ہفتے کے لئے"</string>
+    <string name="ui_136" formatted="false">"میں ایک دوست کے ساتھ جاؤں گا"</string>
+    <string name="ui_137" formatted="false">"میرے سفر کی منصوبہ بندی میں شامل کریں"</string>
+    <string name="ui_138" formatted="false">"خریدنے کے بارے میں سوچنا"</string>
+    <string name="ui_139" formatted="false">"قیمتوں کا موازنہ کریں گے"</string>
+    <string name="ui_14" formatted="false">"حذف کریں"</string>
+    <string name="ui_140" formatted="false">"خیالات کا تحفہ"</string>
+    <string name="ui_141" formatted="false">"مجھے ضرورت ہے"</string>
+    <string name="ui_142" formatted="false">"میں سیکھنا چاہتا ہوں"</string>
+    <string name="ui_143" formatted="false">"میں کام میں استعمال کروں گا"</string>
+    <string name="ui_144" formatted="false">"میں عمل کروں گا"</string>
+    <string name="ui_145" formatted="false">"مرجع کے طور پر رکھیں"</string>
+    <string name="ui_146" formatted="false">"مجھے حوصلہ افزائی کرتا ہے"</string>
+    <string name="ui_147" formatted="false">"میں اس فارمیٹ کو تبدیل کر دوں گا"</string>
+    <string name="ui_148" formatted="false">"نئے مواد کا خیال"</string>
+    <string name="ui_149" formatted="false">"مجھے کہانی پسند ہے"</string>
+    <string name="ui_15" formatted="false">"تلاش کریں"</string>
+    <string name="ui_150" formatted="false">"میں بعد میں دیکھوں گا"</string>
+    <string name="ui_151" formatted="false">"آج رات کے لئے"</string>
+    <string name="ui_152" formatted="false">"میرے آزاد وقت میں"</string>
+    <string name="ui_153" formatted="false">"ہم ایک دوسرے کو دیکھیں گے"</string>
+    <string name="ui_154" formatted="false">"مجھے معلوم ہو جائے گا کہ یہ کیا ہے"</string>
+    <string name="ui_155" formatted="false">"میں کچھ اسی طرح کی تلاش کر رہا ہوں"</string>
+    <string name="ui_156" formatted="false">"میں اس ذریعہ کو تلاش کروں گا"</string>
+    <string name="ui_157" formatted="false">"میں اس جگہ کو تلاش کروں گا"</string>
+    <string name="ui_158" formatted="false">"کوشش کریں، یا کچھ تیار کریں."</string>
+    <string name="ui_159" formatted="false">"آپ کیا کرنا چاہتے ہیں؟ آپ یہ کب یا کہاں استعمال کریں گے؟"</string>
+    <string name="ui_16" formatted="false">"مکمل"</string>
+    <string name="ui_160" formatted="false">"جو کچھ آپ کی ضرورت ہے لکھیں\nگمشدہ چیزوں کو تیار کریں\nکوشش کریں اور نتائج کا ذکر کریں"</string>
+    <string name="ui_161" formatted="false">"ایک جگہ یا واقعہ کا دورہ کریں."</string>
+    <string name="ui_162" formatted="false">"آپ کہاں جانا چاہتے ہیں، کس کے ساتھ اور کیوں؟"</string>
+    <string name="ui_163" formatted="false">"ایڈریس اور کھولنے کا وقت چیک کریں\nایک دن کا انتخاب کریں\nآپ کے دورے کے بعد نوٹ شامل کریں"</string>
+    <string name="ui_164" formatted="false">"خریداری پر غور کریں"</string>
+    <string name="ui_165" formatted="false">"یہ مصنوعات کی کیا ضرورت ملے گی؟ آپ کے بجٹ یا انتخاب کے معیار کیا ہیں؟"</string>
+    <string name="ui_166" formatted="false">"آپ کی ضروریات اور بجٹ کو لکھیں\nقیمتوں اور اختیارات کا موازنہ کریں\nخریدنے کا فیصلہ کریں یا نہیں"</string>
+    <string name="ui_167" formatted="false">"کچھ سیکھیں یا ایک مہارت کی تعمیر کریں."</string>
+    <string name="ui_168" formatted="false">"آپ کیا سیکھنا چاہتے ہیں اور آپ اسے کہاں استعمال کریں گے؟"</string>
+    <string name="ui_169" formatted="false">"لکھیں جو آپ سیکھنا چاہتے ہیں\nمواد سے نوٹ لے لو\nایک مثال کے ساتھ عمل کریں"</string>
+    <string name="ui_17" formatted="false">"دورہ کر لیا"</string>
+    <string name="ui_170" formatted="false">"ایک خیال کو اپنے مواد میں تبدیل کریں."</string>
+    <string name="ui_171" formatted="false">"آپ کو کس طرح استعمال کیا جائے گا؟ آپ کو اپنے مواد میں کس طرح استعمال کیا جائے گا؟"</string>
+    <string name="ui_172" formatted="false">"کھولنے کی لائن اور فارمیٹ پر نوٹ کریں\nآپ کے زاویہ اور صارفین کا انتخاب کریں\nٹرانسمیشن لکھیں اور عمل کی دعوت دیں\nاپنے آپ کا ورژن بنائیں"</string>
+    <string name="ui_173" formatted="false">"بعد میں ایک ویڈیو یا مواد دیکھیں."</string>
+    <string name="ui_174" formatted="false">"آپ اسے کیوں دیکھنا چاہتے ہیں؟ یہ ایک اچھا وقت کب ہو گا؟"</string>
+    <string name="ui_175" formatted="false">"آپ نے کچھ دیکھا ہے یا اس طرح کی چیزوں کا مطالعہ."</string>
+    <string name="ui_176" formatted="false">"آپ کو کیا کرنا چاہتے ہیں؟ آپ کو کیا پتہ ہے؟"</string>
+    <string name="ui_177" formatted="false">"واضح کریں کہ آپ کیا تلاش کر رہے ہیں اور آپ کے تجاویز\nتبصرے اور تبصرے کی وضاحت کریں\nایک فائدہ مند سوال کے ساتھ ویب سائٹ کی تلاش\nنتائج کے ساتھ موازنہ کریں"</string>
+    <string name="ui_178" formatted="false">"محفوظ کردہ اشیاء نہیں پڑھ سکتے ہیں. موجودہ فائل محفوظ کیا جاتا ہے."</string>
+    <string name="ui_179" formatted="false">"اس حصے میں کوئی درست لنک شامل نہیں ہے."</string>
+    <string name="ui_18" formatted="false">"فیصلہ کر لیا"</string>
+    <string name="ui_180" formatted="false">"نئے حصص کو کھولیں؟"</string>
+    <string name="ui_181" formatted="false">"موجودہ منصوبہ ختم ہو جائے گا."</string>
+    <string name="ui_182" formatted="false">"موجودہ منصوبہ بندی پر عمل کریں"</string>
+    <string name="ui_183" formatted="false">"نئے حصص کھولیں"</string>
+    <string name="ui_184" formatted="false">"محفوظ کردہ اشیاء فائل نہیں پڑھ سکتے ہیں. موجودہ فائل محفوظ کیا جاتا ہے."</string>
+    <string name="ui_185" formatted="false">"محفوظ کردہ اشیاء فائل پڑھنے کے قابل نہیں ہے.ایک نئے محفوظ کردہ اشیاء کھولنے کے قابل نہیں ہے."</string>
+    <string name="ui_186" formatted="false">"محفوظ کردہ اشیاء پڑھنے کے قابل نہیں ہیں.ایک بیک اپ نہیں بنایا جا سکتا."</string>
+    <string name="ui_187" formatted="false">"کوئی فائل پیکر دستیاب نہیں ہے."</string>
+    <string name="ui_188" formatted="false">"فائل کھولنے کے قابل نہیں تھا."</string>
+    <string name="ui_189" formatted="false">"درست tosave بیک اپ منتخب کریں۔"</string>
+    <string name="ui_19" formatted="false">"سیکھ لیا"</string>
+    <string name="ui_190" formatted="false">"عمل ختم نہیں ہوسکتا۔ فائل اور دستیاب اسٹوریج چیک کریں۔"</string>
+    <string name="ui_191" formatted="false">"معذرت خواہ مقاصد"</string>
+    <string name="ui_192" formatted="false">"ایک لنک کا اشتراک کریں یا پٹ کریں."</string>
+    <string name="ui_193" formatted="false">"یہ لنک پہلے سے ہی اس مقصد کے ساتھ محفوظ کیا گیا ہے."</string>
+    <string name="ui_194" formatted="false">"محفوظ کردہ اشیاء فائل پڑھنے کے قابل نہیں ہے. ایک بیک اپ پیدا نہیں کیا جا سکتا."</string>
+    <string name="ui_195" formatted="false">"محفوظ کردہ اشیاء فائل نہیں پڑھ سکتے ہیں؛ موجودہ فائل محفوظ کیا جاتا ہے."</string>
+    <string name="ui_196" formatted="false">"آپ 5،000 محفوظ اشیاء تک ذخیرہ کر سکتے ہیں."</string>
+    <string name="ui_197" formatted="false">"ذخیرہ کردہ اشیاء 4 MB کی حد سے زیادہ ہیں."</string>
+    <string name="ui_198" formatted="false">"فائل 4 MB تک ہوسکتا ہے."</string>
+    <string name="ui_199" formatted="false">"کام"</string>
+    <string name="ui_2" formatted="false">"خریدیں"</string>
+    <string name="ui_20" formatted="false">"بنا لیا"</string>
+    <string name="ui_200" formatted="false">"عنوان"</string>
+    <string name="ui_201" formatted="false">"محفوظ کرنے کی وجہ"</string>
+    <string name="ui_202" formatted="false">"تلاش کے سوال کی تعداد 300 حروف تک ہوسکتی ہے."</string>
+    <string name="ui_203" formatted="false">"انفارمیشن کی تاریخ کو محفوظ کریں"</string>
+    <string name="ui_204" formatted="false">"آپ 30 تک کام کر سکتے ہیں."</string>
+    <string name="ui_205" formatted="false">" خالی نہیں ہوسکتا"</string>
+    <string name="ui_206" formatted="false">" ہو سکتا ہے اوپر "</string>
+    <string name="ui_207" formatted="false">" شخصیتوں کے"</string>
+    <string name="ui_208" formatted="false">"ویب سائٹ تلاش کے مقصد کے لئے دستیاب ہے."</string>
+    <string name="ui_209" formatted="false">"فائل میں غیر متوقع اضافی مواد شامل ہے."</string>
+    <string name="ui_21" formatted="false">"دیکھ لیا"</string>
+    <string name="ui_210" formatted="false">"بے ترتیب سپورٹ فارمیٹ."</string>
+    <string name="ui_211" formatted="false">"غلط فائل کاپی فائل"</string>
+    <string name="ui_212" formatted="false">"آپ 5،000 محفوظ اشیاء تک درآمد کر سکتے ہیں."</string>
+    <string name="ui_213" formatted="false">"معذور تاریخ یاد دلاتا ہے."</string>
+    <string name="ui_214" formatted="false">"فائل میں دوگنا ذخیرہ IDs شامل ہے."</string>
+    <string name="ui_215" formatted="false">"ذخیرہ کردہ اشیاء کی مجموعی تعداد 5000 سے زیادہ نہیں ہوسکتی ہے."</string>
+    <string name="ui_216" formatted="false">"لنک بہت طویل ہے."</string>
+    <string name="ui_217" formatted="false">"ایک درست http/https لنک درج کریں."</string>
+    <string name="ui_218" formatted="false">"آج رات گزر چکی ہے · فردا 20:00 بجے"</string>
+    <string name="ui_219" formatted="false">"نوٹس کو ایک یادداشت کو محفوظ کرنے کی اجازت دیں."</string>
+    <string name="ui_22" formatted="false">"مل گیا"</string>
+    <string name="ui_220" formatted="false">"بھولے ہوئے"</string>
+    <string name="ui_221" formatted="false">"بھولے ہوئے اندراجات کی ترتیبات"</string>
+    <string name="ui_222" formatted="false">"مقاصد اپنی مرضی سے بنائیں"</string>
+    <string name="ui_223" formatted="false">"وجوہات اپنی مرضی سے بنائیں"</string>
+    <string name="ui_224" formatted="false">"کھولنے یا تبدیل کرنے کے بغیر دنوں کی تعداد ایک ناممکن محفوظ اشیاء. قدیم محفوظ اشیاء میں ظاہر ہوتا ہے بھول گئے; آپ کے محفوظ اشیاء کو ہٹا نہیں دیا جاتا."</string>
+    <string name="ui_225" formatted="false">"دن · 1–365"</string>
+    <string name="ui_226" formatted="false">"1 اور 365 کے درمیان دنوں کی تعداد درج کریں."</string>
+    <string name="ui_227" formatted="false">"اپلی کیشن میں چیک کردہ اختیارات دکھائے جاتے ہیں۔ ایک اختیارات کو چھپانا موجودہ محفوظ اشیاء کو تبدیل نہیں کرتا۔"</string>
+    <string name="ui_228" formatted="false">"فوری وجوہات"</string>
+    <string name="ui_229" formatted="false">"مقصد شامل کریں"</string>
+    <string name="ui_23" formatted="false">"تھیم منتخب کریں"</string>
+    <string name="ui_230" formatted="false">"وجہ شامل کریں"</string>
+    <string name="ui_231" formatted="false">"مکمل"</string>
+    <string name="ui_232" formatted="false">"اختیار کا نام"</string>
+    <string name="ui_233" formatted="false">"نیا اختیار"</string>
+    <string name="ui_234" formatted="false">"اختیار میں ترمیم"</string>
+    <string name="ui_235" formatted="false">"اختیارات کے ناموں کو 1 سے 60 حروف طویل ہونا چاہئے."</string>
+    <string name="ui_236" formatted="false">"آپ 500 تک ذاتی اختیارات شامل کر سکتے ہیں."</string>
+    <string name="ui_237" formatted="false">"ذاتی اختیارات کے اختیارات"</string>
+    <string name="ui_238" formatted="false">"اختیارات کو محفوظ نہیں کیا جا سکتا."</string>
+    <string name="ui_239" formatted="false">"اختیارات پڑھنے کے قابل نہیں ہیں ۔ موجودہ ترتیبات محفوظ ہیں ۔"</string>
+    <string name="ui_24" formatted="false">"ترتیبات اور بیک اپ"</string>
+    <string name="ui_240" formatted="false">"انفارمیشن کی تاریخ"</string>
+    <string name="ui_241" formatted="false">"اپنے مقاصد سے بچاؤ"</string>
+    <string name="ui_242" formatted="false">"اگر آپ چاہتے ہیں تو ایک خصوصی نوٹ شامل کریں."</string>
+    <string name="ui_243" formatted="false">"اطلاعات"</string>
+    <string name="ui_244" formatted="false">"ترتیبات"</string>
+    <string name="ui_245" formatted="false">"واپس"</string>
+    <string name="ui_246" formatted="false">"عمومی"</string>
+    <string name="ui_247" formatted="false">"محفوظ اندراجات"</string>
+    <string name="ui_248" formatted="false">"دن"</string>
+    <string name="ui_249" formatted="false">"مقاصد اور فوری وجوہات"</string>
+    <string name="ui_25" formatted="false">"محفوظ کریں۔ وجہ یاد رکھیں۔ عمل کریں۔"</string>
+    <string name="ui_250" formatted="false">"دکھائیں، چھپائیں یا ذاتی اختیارات شامل کریں."</string>
+    <string name="ui_251" formatted="false">"اطلاعات کا مرکز"</string>
+    <string name="ui_252" formatted="false">"اپنی یاد دہانیاں یہاں دیکھیں۔"</string>
+    <string name="ui_253" formatted="false">"سسٹم اطلاعات کی ترتیبات"</string>
+    <string name="ui_254" formatted="false">"فعال"</string>
+    <string name="ui_255" formatted="false">"غیر فعال"</string>
+    <string name="ui_256" formatted="false">"بیک اپ"</string>
+    <string name="ui_257" formatted="false">"محفوظ اندراجات اور ذاتی اختیارات برآمد کریں۔"</string>
+    <string name="ui_258" formatted="false">"موجودہ اندراجات برقرار رہیں گے۔"</string>
+    <string name="ui_259" formatted="false">"ابھی تک کوئی نوٹس نہیں"</string>
+    <string name="ui_26" formatted="false">"محفوظ کریں۔ وجہ یاد رکھیں۔"</string>
+    <string name="ui_260" formatted="false">"حالیہ اطلاعات"</string>
+    <string name="ui_261" formatted="false">"یہ محفوظ اشیاء اب موجود نہیں ہے."</string>
+    <string name="ui_262" formatted="false">"اطلاعات کی تاریخ مٹائیں"</string>
+    <string name="ui_263" formatted="false">"آنے والی یاد دہانیاں"</string>
+    <string name="ui_264" formatted="false">"نوٹس پڑھنے کے قابل نہیں ہیں ۔ موجودہ تاریخ محفوظ ہے ۔"</string>
+    <string name="ui_265" formatted="false">"تبصرے کو محفوظ نہیں کیا جا سکتا."</string>
+    <string name="ui_266" formatted="false">"محفوظ کرنے کا مقصد منتخب کریں"</string>
+    <string name="ui_267" formatted="false">"تاریک"</string>
+    <string name="ui_268" formatted="false">"ویڈیو چلائیں"</string>
+    <string name="ui_269" formatted="false">"ویڈیو لوڈ نہیں کیا جا سکتا۔ آپ اسے ذریعہ اپلی کیشن میں کھول سکتے ہیں۔"</string>
+    <string name="ui_27" formatted="false">"جاری رکھنے کے لیے ٹیپ کریں"</string>
+    <string name="ui_270" formatted="false">"tosave لامحدود"</string>
+    <string name="ui_271" formatted="false">"۲۰ مفت اندراجات · ایک بار خریداری"</string>
+    <string name="ui_272" formatted="false">"لامحدود اندراجات فعال"</string>
+    <string name="ui_273" formatted="false">"مدد"</string>
+    <string name="ui_274" formatted="false">"رابطہ اور مدد"</string>
+    <string name="ui_275" formatted="false">"کیا آپ کو ایپ پسند ہے؟"</string>
+    <string name="ui_276" formatted="false">"اپنی رائے بتائیں۔"</string>
+    <string name="ui_277" formatted="false">"بلا حد محفوظ کرتے رہیں۔"</string>
+    <string name="ui_278" formatted="false">"پہلے ۲۰ اندراجات مفت ہیں۔ ایک بار خرید کر حد ہٹائیں۔"</string>
+    <string name="ui_279" formatted="false">"لامحدود اندراجات"</string>
+    <string name="ui_28" formatted="false">"محفوظ مواد تلاش کریں"</string>
+    <string name="ui_280" formatted="false">"یاد دہانیاں اور بھولے ہوئے اندراجات"</string>
+    <string name="ui_281" formatted="false">"ذاتی مقاصد اور وجوہات"</string>
+    <string name="ui_282" formatted="false">"بیک اپ اور بحالی"</string>
+    <string name="ui_283" formatted="false">"ایک بار ادائیگی۔ کوئی رکنیت نہیں۔"</string>
+    <string name="ui_284" formatted="false">"مفت ورژن میں مکمل اندراجات سمیت ۲۰ اندراجات رکھ سکتے ہیں۔ موجودہ اندراجات ہمیشہ کھول، بدل اور بیک اپ کر سکتے ہیں۔"</string>
+    <string name="ui_285" formatted="false">"ابھی خریدیں"</string>
+    <string name="ui_286" formatted="false">"خریداری بحال کریں"</string>
+    <string name="ui_287" formatted="false">"فی الحال جاری رکھیں"</string>
+    <string name="ui_288" formatted="false">"قیمت Google Play سے ملتی ہے۔"</string>
+    <string name="ui_289" formatted="false">"جاری رکھیں"</string>
+    <string name="ui_29" formatted="false">"نیا اندراج"</string>
+    <string name="ui_290" formatted="false">"Google Play کی خریداری ابھی تک دستیاب نہیں ہے."</string>
+    <string name="ui_291" formatted="false">"Google Play سے رابطہ کریں .."</string>
+    <string name="ui_292" formatted="false">"Google Play سے منسلک کیا گیا ہے، آپ دوبارہ کوشش کر سکتے ہیں."</string>
+    <string name="ui_293" formatted="false">"خریداری منسوخ کی گئی ہے"</string>
+    <string name="ui_294" formatted="false">"خریداری مکمل نہیں ہوسکتی۔ آپ دوبارہ کوشش کر سکتے ہیں۔"</string>
+    <string name="ui_295" formatted="false">"بے حد محفوظ اشیاء کو ختم کرنے کے بعد بند کر دیا گیا ہے."</string>
+    <string name="ui_296" formatted="false">"خریداری کی تصدیق نہیں کی جا سکتی"</string>
+    <string name="ui_297" formatted="false">"خریداری کو محفوظ نہیں کیا جا سکتا.آپ کی خریداری کو بحال کریں."</string>
+    <string name="ui_298" formatted="false">"لامحدود محفوظ اشیاء بند کر دیا گیا. شکریہ!"</string>
+    <string name="ui_299" formatted="false">"خریداری کی تصدیق جاری ہے ۔ اسے بحال کرنے کی کوشش کریں ۔"</string>
+    <string name="ui_3" formatted="false">"سیکھیں"</string>
+    <string name="ui_30" formatted="false">" محفوظ اندراجات"</string>
+    <string name="ui_300" formatted="false">"لامحدود محفوظ اشیاء پہلے سے ہی فعال ہیں."</string>
+    <string name="ui_301" formatted="false">"خریداری شروع نہیں کر سکتے ہیں.آپ دوبارہ کوشش کر سکتے ہیں."</string>
+    <string name="ui_302" formatted="false">"۲۰ مفت اندراجات کی حد پوری ہو گئی۔"</string>
+    <string name="ui_303" formatted="false">"آپ کی رائے tosave کو بہتر بنانے میں مدد کرتی ہے۔"</string>
+    <string name="ui_304" formatted="false">"پسند آئی"</string>
+    <string name="ui_305" formatted="false">"بہتر ہو سکتی ہے"</string>
+    <string name="ui_306" formatted="false">"ابھی نہیں"</string>
+    <string name="ui_307" formatted="false">"رائے"</string>
+    <string name="ui_308" formatted="false">"آپ کی رائے · اختیاری"</string>
+    <string name="ui_309" formatted="false">"ای میل ایپ میں مسودہ کھلے گا۔ بھیجنے سے پہلے بدل سکتے ہیں۔"</string>
+    <string name="ui_31" formatted="false">"آپ نے ابھی کچھ محفوظ نہیں کیا"</string>
+    <string name="ui_310" formatted="false">"ای میل سے شیئر کریں"</string>
+    <string name="ui_311" formatted="false">"خریداری سے ۲۰ اندراجات کی حد ہٹتی ہے۔ تکنیکی گنجائش: ۵,۰۰۰ اندراجات / 4 MB۔"</string>
+    <string name="ui_312" formatted="false">"چھوٹی تصویر منتخب کریں"</string>
+    <string name="ui_313" formatted="false">"تصویر نہیں پڑھ سکتے ۔ ایک اور تصویر منتخب کریں ۔"</string>
+    <string name="ui_314" formatted="false">"تصویر شامل کریں"</string>
+    <string name="ui_315" formatted="false">"تصاویر"</string>
+    <string name="ui_316" formatted="false">"تصویر"</string>
+    <string name="ui_317" formatted="false">"اسکرین شاٹ"</string>
+    <string name="ui_318" formatted="false">"تصویر بڑی کریں"</string>
+    <string name="ui_319" formatted="false">"ٹیگز"</string>
+    <string name="ui_32" formatted="false">"ابھی یہاں کوئی اندراج محفوظ نہیں۔"</string>
+    <string name="ui_320" formatted="false">"ٹیگز شامل کریں · کوما سے الگ کریں"</string>
+    <string name="ui_321" formatted="false">"خریداری"</string>
+    <string name="ui_322" formatted="false">"ترکیب"</string>
+    <string name="ui_323" formatted="false">"کام"</string>
+    <string name="ui_324" formatted="false">"خیال"</string>
+    <string name="ui_325" formatted="false">"حوالہ"</string>
+    <string name="ui_326" formatted="false">"تصویر تیار ہو رہی ہے…"</string>
+    <string name="ui_327" formatted="false">"تصویر کا متن پڑھا جا رہا ہے…"</string>
+    <string name="ui_328" formatted="false">"متن نہیں پڑھا جا سکا۔ دوبارہ کوشش کریں۔"</string>
+    <string name="ui_329" formatted="false">"تصویر کے متن میں تلاش کی جا سکتی ہے۔"</string>
+    <string name="ui_33" formatted="false">"شیئر مینو سے لنک، تصویر یا ویڈیو tosave کو بھیجیں۔ محفوظ کرنے کی وجہ منتخب کریں تاکہ بعد میں آسانی سے مل جائے۔"</string>
+    <string name="ui_330" formatted="false">"پڑھا ہوا متن دکھائیں"</string>
+    <string name="ui_331" formatted="false">"تصویر کا متن"</string>
+    <string name="ui_332" formatted="false">"متن دوبارہ اسکین کریں"</string>
+    <string name="ui_333" formatted="false">"بیک اپ بنائیں"</string>
+    <string name="ui_334" formatted="false">"انٹرویو ریکارڈز، تصاویر اور ذاتی انتخاب."</string>
+    <string name="ui_335" formatted="false">"بیک اپ تیار ہو رہا ہے…"</string>
+    <string name="ui_336" formatted="false">"بیک اپ جانچا جا رہا ہے…"</string>
+    <string name="ui_337" formatted="false">"ٹیگ میں زیادہ سے زیادہ ۴۰ حروف ہو سکتے ہیں۔"</string>
+    <string name="ui_338" formatted="false">"زیادہ سے زیادہ ۱۲ ٹیگز شامل کر سکتے ہیں۔"</string>
+    <string name="ui_339" formatted="false">"معذور ٹیگ"</string>
+    <string name="ui_34" formatted="false">"ایک اور مقصد کا انتخاب کریں یا اپنی تلاش کو تبدیل کریں."</string>
+    <string name="ui_340" formatted="false">"ٹیگ شامل کریں"</string>
+    <string name="ui_341" formatted="false">"اسکرین شاٹس"</string>
+    <string name="ui_342" formatted="false">"ویڈیوز"</string>
+    <string name="ui_343" formatted="false">"سوشل"</string>
+    <string name="ui_344" formatted="false">"ویڈیو"</string>
+    <string name="ui_345" formatted="false">"آلے کی ویڈیو"</string>
+    <string name="ui_346" formatted="false">"ویڈیو شامل کریں"</string>
+    <string name="ui_347" formatted="false">"ویڈیو کھولیں"</string>
+    <string name="ui_348" formatted="false">"ویڈیو تیار ہو رہی ہے…"</string>
+    <string name="ui_349" formatted="false">"ویڈیوز شامل نہیں کر سکتے ہیں ۔ 64MB تک کھیلنے کے قابل ویڈیوز کا انتخاب کریں۔"</string>
+    <string name="ui_35" formatted="false">"کیسے کام کرتا ہے"</string>
+    <string name="ui_350" formatted="false">"ویڈیو نہیں کھول سکتے.آپ کے آلہ پر ایک ویڈیو پلیئر انسٹال کریں."</string>
+    <string name="ui_351" formatted="false">"مفت اندراجات"</string>
+    <string name="ui_352" formatted="false">"اسکرین شاٹس، ویڈیوز اور ٹیگز"</string>
+    <string name="ui_353" formatted="false">"تصاویر کے متن میں تلاش"</string>
+    <string name="ui_354" formatted="false">"تصاویر اور ویڈیوز سمیت بیک اپ"</string>
+    <string name="ui_355" formatted="false">"فائل منسلک · اضافی نقل نہیں"</string>
+    <string name="ui_356" formatted="false">"فائل دوبارہ منسلک کریں"</string>
+    <string name="ui_357" formatted="false">"پچھلے ورژن میں محفوظ نقل"</string>
+    <string name="ui_358" formatted="false">"فائل تک رسائی نہیں۔ دوبارہ منسلک کریں۔"</string>
+    <string name="ui_359" formatted="false">"حصہ موقت رسائی فراہم کرتا ہے ۔ ایک ہی فائل کو منتخب کریں اور اسے کاپی کرنے کے بغیر منسلک کریں۔"</string>
+    <string name="ui_36" formatted="false">"مکمل"</string>
+    <string name="ui_360" formatted="false">"فائل کی رسائی برقرار نہیں رہ سکی۔ دوسرا ذریعہ منتخب کریں۔"</string>
+    <string name="ui_361" formatted="false">"برآمد ٹیگ، نوٹوں اور فائل ریفرنس."</string>
+    <string name="ui_362" formatted="false">"لنک کردہ فائلوں اور رسائی کی اجازتوں کو منتقل نہیں کیا جاتا ہے ۔ دوسرے آلہ پر فائلوں کو رینک کریں۔"</string>
+    <string name="ui_363" formatted="false">"غیر منصفانہ فائل کا حوالہ."</string>
+    <string name="ui_364" formatted="false">"ٹیگز اور نوٹس کا بیک اپ"</string>
+    <string name="ui_365" formatted="false">"نئے مقامی ریکارڈ فائل کے لئے لنک. Backups the original file does not include."</string>
+    <string name="ui_37" formatted="false">"مقصد کے ساتھ محفوظ"</string>
+    <string name="ui_38" formatted="false">" مراحل"</string>
+    <string name="ui_39" formatted="false">"اسے کیوں محفوظ کر رہے ہیں؟"</string>
+    <string name="ui_4" formatted="false">"بنائیں"</string>
+    <string name="ui_40" formatted="false">"محفوظ اندراج میں ترمیم"</string>
+    <string name="ui_41" formatted="false">"اپنا مقصد منتخب کریں۔ عنوان اور تفصیلات بعد میں بدل سکتے ہیں۔"</string>
+    <string name="ui_42" formatted="false">"لنک"</string>
+    <string name="ui_43" formatted="false">"لنک پیسٹ کریں"</string>
+    <string name="ui_44" formatted="false">"لنک میں ترمیم"</string>
+    <string name="ui_45" formatted="false">"محفوظ کرنے کا مقصد"</string>
+    <string name="ui_46" formatted="false">"شروع کرنے کے لیے مقصد منتخب کریں۔"</string>
+    <string name="ui_47" formatted="false">"فوری وجہ"</string>
+    <string name="ui_48" formatted="false">"یاد دہانی شامل کریں"</string>
+    <string name="ui_49" formatted="false">"یہ خانے اختیاری ہیں۔ انہیں بھرے بغیر بھی محفوظ کر سکتے ہیں۔"</string>
+    <string name="ui_5" formatted="false">"دیکھیں"</string>
+    <string name="ui_50" formatted="false">"عنوان · اختیاری"</string>
+    <string name="ui_51" formatted="false">"ذاتی نوٹ · اختیاری"</string>
+    <string name="ui_52" formatted="false">"کاموں کی فہرست"</string>
+    <string name="ui_53" formatted="false">"آپ کے منصوبے کو چھوٹے کاموں میں توڑ دیں ۔ آپ کو ختم ہونے کے بعد کارڈ میں ان کو چیک کریں ۔ اگر آپ ترجیح دیتے ہیں تو یہ خالی چھوڑ دیں ۔"</string>
+    <string name="ui_54" formatted="false">"کام · ہر سطر میں ایک"</string>
+    <string name="ui_55" formatted="false">"نمونہ کام منتخب کریں"</string>
+    <string name="ui_56" formatted="false">"پہلے مقصد منتخب کریں۔"</string>
+    <string name="ui_57" formatted="false">"تلاش کے الفاظ · اختیاری"</string>
+    <string name="ui_58" formatted="false">"نوٹ اور کام · اختیاری"</string>
+    <string name="ui_59" formatted="false">"تبدیلیاں محفوظ کریں"</string>
+    <string name="ui_6" formatted="false">"تلاش کریں"</string>
+    <string name="ui_60" formatted="false">"آپ کے آلے پر محفوظ۔ آف لائن کام کرتا ہے۔"</string>
+    <string name="ui_61" formatted="false">"یاد دہانی"</string>
+    <string name="ui_62" formatted="false">"ایک لنک کا اشتراک کریں یا ایک پٹ کریں."</string>
+    <string name="ui_63" formatted="false">" · محفوظ کریں"</string>
+    <string name="ui_64" formatted="false">"مستقبل کا وقت منتخب کریں"</string>
+    <string name="ui_65" formatted="false">"محفوظ ہو گیا · "</string>
+    <string name="ui_66" formatted="false">"اندراج تازہ ہو گیا"</string>
+    <string name="ui_67" formatted="false">"آپ کے کلپ بورڈ میں کوئی لنک نہیں ہے."</string>
+    <string name="ui_68" formatted="false">"آپ کے کلپ بورڈ میں کوئی درست لنک شامل نہیں ہے."</string>
+    <string name="ui_69" formatted="false">"محفوظ کرنے کا مقصد"</string>
+    <string name="ui_7" formatted="false">"زیر التوا"</string>
+    <string name="ui_70" formatted="false">" کام مکمل"</string>
+    <string name="ui_71" formatted="false">"کوئی یاد دہانی نہیں"</string>
+    <string name="ui_72" formatted="false">"یاد دہانی میں ترمیم"</string>
+    <string name="ui_73" formatted="false">"مواد دیکھیں"</string>
+    <string name="ui_74" formatted="false">"اصل مواد کھولیں"</string>
+    <string name="ui_75" formatted="false">"زیر التوا نشان لگائیں"</string>
+    <string name="ui_76" formatted="false">"زیر التوا نشان لگا دیا"</string>
+    <string name="ui_77" formatted="false">"ترمیم کریں"</string>
+    <string name="ui_78" formatted="false">"محفوظ اندراج حذف کریں"</string>
+    <string name="ui_79" formatted="false">"یہ اندراج حذف کریں؟"</string>
+    <string name="ui_8" formatted="false">"سب"</string>
+    <string name="ui_80" formatted="false">"اندراج حذف ہو گیا"</string>
+    <string name="ui_81" formatted="false">"واپس کریں"</string>
+    <string name="ui_82" formatted="false">"آپ کیا تلاش کرنا چاہتے ہیں؟"</string>
+    <string name="ui_83" formatted="false">"ویب پر تلاش کریں"</string>
+    <string name="ui_84" formatted="false">"صرف تلاش کے یہ الفاظ Google سرچ کو بھیجے جاتے ہیں۔"</string>
+    <string name="ui_85" formatted="false">"داخل کریں جو آپ تلاش کرنا چاہتے ہیں."</string>
+    <string name="ui_86" formatted="false">"اس لنک کو کھولنے کے لئے کوئی ایپ دستیاب نہیں ہے."</string>
+    <string name="ui_87" formatted="false">"اپنی نظر کا انتخاب کریں"</string>
+    <string name="ui_88" formatted="false">"AMOLED موضوع خالص سیاہ پس منظر کا استعمال کرتا ہے."</string>
+    <string name="ui_89" formatted="false">"خالص سیاہ AMOLED"</string>
+    <string name="ui_9" formatted="false">"مکمل"</string>
+    <string name="ui_90" formatted="false">"روشن"</string>
+    <string name="ui_91" formatted="false">"سسٹم کے مطابق"</string>
+    <string name="ui_92" formatted="false">" · منتخب"</string>
+    <string name="ui_93" formatted="false">"محفوظ اندراجات آپ کے آلے پر رہتے ہیں۔ اختیار آپ کا ہے۔"</string>
+    <string name="ui_94" formatted="false">"ایپ کی زبان"</string>
+    <string name="ui_95" formatted="false">"سسٹم کی زبان"</string>
+    <string name="ui_96" formatted="false">"ظاہری انداز"</string>
+    <string name="ui_97" formatted="false">"JSON بیک اپ برآمد کریں"</string>
+    <string name="ui_98" formatted="false">"بیک اپ درآمد کریں"</string>
+    <string name="ui_99" formatted="false">"فونٹ کا لائسنس"</string>
+</resources>

@@ -1,124 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
+    <string name="about_contribution" formatted="false">"tosave gelirinin bir kısmı; SMA ile mücadele eden çocuklara, çocuk esirgeme ve bakım kuruluşlarına, sağlık ve eğitim kurumlarına ve fidan dikimi çalışmalarına aktarılır. Amaç, çocukların yaşamına ve bakımına, sağlığa erişime, eğitim olanaklarına ve doğanın korunmasına katkıda bulunmaktır."</string>
+    <string name="about_contribution_title" formatted="false">"Birlikte katkı sunuyoruz"</string>
+    <string name="about_developer" formatted="false">"Geliştirici"</string>
+    <string name="about_entry" formatted="false">"tosave hakkında"</string>
+    <string name="about_independent" formatted="false">"tosave, tr.developer tarafından bireysel olarak geliştirilen bir uygulamadır. Farklı cihazlar ve kullanım koşulları nedeniyle eksik özelliklerle veya hatalarla karşılaşabilirsiniz. Bildirdiğiniz sorunlar incelenir; geliştirici bunları mümkün olan en kısa sürede düzeltmek için çalışır. Önerileriniz uygulamanın gelişmesine yardımcı olur. Hata bildirirken cihaz modelinizi, Android sürümünü ve sorunun hangi adımlarda oluştuğunu paylaşmanız çözüm sürecini kolaylaştırır."</string>
+    <string name="about_independent_title" formatted="false">"Bağımsız geliştirme"</string>
+    <string name="about_purpose" formatted="false">"tosave, paylaştığınız bağlantıları, fotoğrafları ve videoları düzenlemenize yardımcı olur. Her kaydın ne için kullanılacağını seçebilir; etiketler, kişisel notlar ve hatırlatmalar ekleyebilirsiniz. Böylece bir içeriği neden kaydettiğinizi hatırlar ve ihtiyaç duyduğunuzda kolayca bulabilirsiniz."</string>
+    <string name="about_title" formatted="false">"Hakkında"</string>
+    <string name="card_counts">"%1$d bekleyen · %2$d tamamlanan"</string>
+    <string name="media_saved_copy" formatted="false">"Uygulamada saklanır"</string>
+    <string name="ocr_empty" formatted="false">"Görselde metin bulunamadı."</string>
+    <string name="ocr_inline_title" formatted="false">"Görseldeki metin"</string>
+    <string name="shared_media_error" formatted="false">"Paylaşılan dosya okunamadı veya dosya sınırını aşıyor."</string>
     <string name="ui_0" formatted="false">"Yap"</string>
     <string name="ui_1" formatted="false">"Git"</string>
-    <string name="ui_2" formatted="false">"Al"</string>
-    <string name="ui_3" formatted="false">"Öğren"</string>
-    <string name="ui_4" formatted="false">"Üret"</string>
-    <string name="ui_5" formatted="false">"İzle"</string>
-    <string name="ui_6" formatted="false">"Bul"</string>
-    <string name="ui_7" formatted="false">"Bekleyen"</string>
-    <string name="ui_8" formatted="false">"Tümü"</string>
-    <string name="ui_9" formatted="false">"Tamamlanan"</string>
     <string name="ui_10" formatted="false">"Kapat"</string>
-    <string name="ui_11" formatted="false">"Kaydet"</string>
-    <string name="ui_12" formatted="false">"Vazgeç"</string>
-    <string name="ui_13" formatted="false">"Ekle"</string>
-    <string name="ui_14" formatted="false">"Sil"</string>
-    <string name="ui_15" formatted="false">"Ara"</string>
-    <string name="ui_16" formatted="false">"Yaptım"</string>
-    <string name="ui_17" formatted="false">"Gittim"</string>
-    <string name="ui_18" formatted="false">"Karar verdim"</string>
-    <string name="ui_19" formatted="false">"Öğrendim"</string>
-    <string name="ui_20" formatted="false">"Ürettim"</string>
-    <string name="ui_21" formatted="false">"İzledim"</string>
-    <string name="ui_22" formatted="false">"Buldum"</string>
-    <string name="ui_23" formatted="false">"Tema seç"</string>
-    <string name="ui_24" formatted="false">"Ayarlar ve yedekler"</string>
-    <string name="ui_25" formatted="false">"Kaydet. Nedenini hatırla. Harekete geç."</string>
-    <string name="ui_26" formatted="false">"Kaydet. Nedenini unutma."</string>
-    <string name="ui_27" formatted="false">"Devam etmek için dokun"</string>
-    <string name="ui_28" formatted="false">"Kayıtlarında ara"</string>
-    <string name="ui_29" formatted="false">"Yeni kayıt"</string>
-    <string name="ui_30" formatted="false">" kayıt"</string>
-    <string name="ui_31" formatted="false">"İyi bir şey gördün mü?"</string>
-    <string name="ui_32" formatted="false">"Burada henüz kayıt yok."</string>
-    <string name="ui_33" formatted="false">"Instagram, TikTok veya YouTube&#x27;da paylaş menüsünden SaveWhy&#x27;ı seç. Niyetine dokun, kaydet."</string>
-    <string name="ui_34" formatted="false">"Başka bir niyet seç veya arama sözcüğünü değiştir."</string>
-    <string name="ui_35" formatted="false">"Nasıl çalışır?"</string>
-    <string name="ui_36" formatted="false">"Tamamlandı"</string>
-    <string name="ui_37" formatted="false">"Niyetiyle kaydedildi"</string>
-    <string name="ui_38" formatted="false">" adım"</string>
-    <string name="ui_39" formatted="false">"Neden kaydediyorsun?"</string>
-    <string name="ui_40" formatted="false">"Kaydını düzenle"</string>
-    <string name="ui_41" formatted="false">"Niyetini seç. Başlık ve detayları sonra da düzenleyebilirsin."</string>
-    <string name="ui_42" formatted="false">"Bağlantı"</string>
-    <string name="ui_43" formatted="false">"Panodan ekle"</string>
-    <string name="ui_44" formatted="false">"Bağlantıyı düzenle"</string>
-    <string name="ui_45" formatted="false">"NE İÇİN?"</string>
-    <string name="ui_46" formatted="false">"Bir niyet seçerek başlayabilirsin."</string>
-    <string name="ui_47" formatted="false">"HIZLI NEDEN"</string>
-    <string name="ui_48" formatted="false">"Hatırlatıcı ekle"</string>
-    <string name="ui_49" formatted="false">"Bu alanlar isteğe bağlı. Kaydetmek için doldurman gerekmez."</string>
-    <string name="ui_50" formatted="false">"Başlık · isteğe bağlı"</string>
-    <string name="ui_51" formatted="false">"Özel not · isteğe bağlı"</string>
-    <string name="ui_52" formatted="false">"Yapılacaklar listesi"</string>
-    <string name="ui_53" formatted="false">"Bu kayıtla ne yapmak istediğini küçük işlere böl. Tamamladıklarını kartta işaretleyebilirsin. İstersen boş bırak."</string>
-    <string name="ui_54" formatted="false">"Yapılacaklar · her satıra bir iş"</string>
-    <string name="ui_55" formatted="false">"Örnek yapılacakları seç"</string>
-    <string name="ui_56" formatted="false">"Önce bir niyet seç."</string>
-    <string name="ui_57" formatted="false">"Bul için arama sorgusu · isteğe bağlı"</string>
-    <string name="ui_58" formatted="false">"Not ve yapılacaklar · isteğe bağlı"</string>
-    <string name="ui_59" formatted="false">"Değişiklikleri kaydet"</string>
-    <string name="ui_60" formatted="false">"Cihazında saklanır. İnternet bağlantısı gerekmez."</string>
-    <string name="ui_61" formatted="false">"Hatırlatma"</string>
-    <string name="ui_62" formatted="false">"Bir bağlantı paylaş veya panodan ekle."</string>
-    <string name="ui_63" formatted="false">" olarak kaydet"</string>
-    <string name="ui_64" formatted="false">"Gelecekte bir zaman seç."</string>
-    <string name="ui_65" formatted="false">"Kaydedildi · "</string>
-    <string name="ui_66" formatted="false">"Kayıt güncellendi"</string>
-    <string name="ui_67" formatted="false">"Panoda bir bağlantı yok."</string>
-    <string name="ui_68" formatted="false">"Panodaki metinde geçerli bir bağlantı yok."</string>
-    <string name="ui_69" formatted="false">"NİYETİM"</string>
-    <string name="ui_70" formatted="false">" adım tamamlandı"</string>
-    <string name="ui_71" formatted="false">"Hatırlatma yok"</string>
-    <string name="ui_72" formatted="false">"Hatırlatıcıyı düzenle"</string>
-    <string name="ui_73" formatted="false">"İçeriği izle"</string>
-    <string name="ui_74" formatted="false">"Orijinal içeriği aç"</string>
-    <string name="ui_75" formatted="false">"Bekleyenlere geri al"</string>
-    <string name="ui_76" formatted="false">"Bekleyenlere geri alındı"</string>
-    <string name="ui_77" formatted="false">"Düzenle"</string>
-    <string name="ui_78" formatted="false">"Kaydı sil"</string>
-    <string name="ui_79" formatted="false">"Kaydı sil?"</string>
-    <string name="ui_80" formatted="false">"Kayıt silindi"</string>
-    <string name="ui_81" formatted="false">"Geri al"</string>
-    <string name="ui_82" formatted="false">"Ne aramak istiyorsun?"</string>
-    <string name="ui_83" formatted="false">"Web&#x27;de ara"</string>
-    <string name="ui_84" formatted="false">"Yalnızca bu sorguyla Google araması açılır."</string>
-    <string name="ui_85" formatted="false">"Aramak istediğin şeyi yaz."</string>
-    <string name="ui_86" formatted="false">"Bağlantıyı açacak uygulama bulunamadı."</string>
-    <string name="ui_87" formatted="false">"Sana göre bir görünüm"</string>
-    <string name="ui_88" formatted="false">"AMOLED temada arka plan gerçek siyahtır."</string>
-    <string name="ui_89" formatted="false">"Simsiyah AMOLED"</string>
-    <string name="ui_90" formatted="false">"Aydınlık"</string>
-    <string name="ui_91" formatted="false">"Sistem tercihi"</string>
-    <string name="ui_92" formatted="false">" · seçili"</string>
-    <string name="ui_93" formatted="false">"Kayıtların senin cihazında. Kontrol sende."</string>
-    <string name="ui_94" formatted="false">"Uygulama dili"</string>
-    <string name="ui_95" formatted="false">"Sistem dili"</string>
-    <string name="ui_96" formatted="false">"Görünüm"</string>
-    <string name="ui_97" formatted="false">"JSON yedeği oluştur"</string>
-    <string name="ui_98" formatted="false">"Yedeği içe aktar"</string>
-    <string name="ui_99" formatted="false">"Font lisansı"</string>
     <string name="ui_100" formatted="false">"v0.4.0 · Hatırlatmalar ve dil tercihi\nAI içerik analizi henüz eklenmedi."</string>
-    <string name="ui_101" formatted="false">"Bir bağlantı. Bir niyet."</string>
+    <string name="ui_101" formatted="false">"Kaydet. Nedenini hatırla."</string>
     <string name="ui_102" formatted="false">"1  İçeriği paylaş"</string>
-    <string name="ui_103" formatted="false">"Sosyal medya uygulamasında Paylaş → SaveWhy."</string>
-    <string name="ui_104" formatted="false">"2  Niyetine dokun"</string>
+    <string name="ui_103" formatted="false">"Sosyal medya uygulamasında Paylaş → tosave."</string>
+    <string name="ui_104" formatted="false">"2  Kaydetme amacını seç"</string>
     <string name="ui_105" formatted="false">"Yap, Git, Al, Öğren, Üret, İzle veya Bul. Hızlı nedenlerden birini seçebilir veya doğrudan kaydedebilirsin."</string>
     <string name="ui_106" formatted="false">"3  Zamanı gelince geri dön"</string>
     <string name="ui_107" formatted="false">"Kaynağı aç, araştır veya adımlarını tamamla. Başlığı ve notları istediğin zaman düzenle."</string>
     <string name="ui_108" formatted="false">"Başlık paylaşım bilgisinden veya bağlantıdan oluşturulur. Uygulama videonun içeriğini analiz etmez."</string>
     <string name="ui_109" formatted="false">"Anladım"</string>
+    <string name="ui_11" formatted="false">"Kaydet"</string>
     <string name="ui_110" formatted="false">"Yedek oluşturuldu."</string>
     <string name="ui_111" formatted="false">"Yedeği içe aktar?"</string>
     <string name="ui_112" formatted="false">" yeni kayıt eklenecek. Mevcut kayıtlar korunur; tekrarlar atlanır."</string>
     <string name="ui_113" formatted="false">"İçe aktar"</string>
     <string name="ui_114" formatted="false">" kayıt eklendi."</string>
     <string name="ui_115" formatted="false">"Bildirimler kapalı"</string>
-    <string name="ui_116" formatted="false">"Hatırlatıcı için SaveWhy bildirimlerini ayarlardan aç. Kaydın yine saklanır."</string>
+    <string name="ui_116" formatted="false">"Hatırlatıcı için tosave bildirimlerini ayarlardan aç. Kaydın yine saklanır."</string>
     <string name="ui_117" formatted="false">"Ayarları aç"</string>
     <string name="ui_118" formatted="false">"Bildirim izni verilmedi. Hatırlatıcı eklenmedi."</string>
     <string name="ui_119" formatted="false">"Ne zaman hatırlatayım?"</string>
+    <string name="ui_12" formatted="false">"Vazgeç"</string>
     <string name="ui_120" formatted="false">"Birlikte yapacaksan buluşma zamanını seç. Bildirim cihazında görünür; başka kişiye gönderilmez."</string>
     <string name="ui_121" formatted="false">"Android pil tasarrufu nedeniyle bildirim seçilen saatten sonra gelebilir."</string>
     <string name="ui_122" formatted="false">"1 saat sonra"</string>
@@ -129,6 +48,7 @@
     <string name="ui_127" formatted="false">"Hatırlatmalar"</string>
     <string name="ui_128" formatted="false">"Seçtiğin zamanda kayıtlarına dön."</string>
     <string name="ui_129" formatted="false">"Kaydına dönme zamanı."</string>
+    <string name="ui_13" formatted="false">"Ekle"</string>
     <string name="ui_130" formatted="false">"Sonra deneyeceğim"</string>
     <string name="ui_131" formatted="false">"Hafta sonu yapacağım"</string>
     <string name="ui_132" formatted="false">"İşime yarar"</string>
@@ -139,6 +59,7 @@
     <string name="ui_137" formatted="false">"Gezi planıma ekleyeceğim"</string>
     <string name="ui_138" formatted="false">"Almayı düşünüyorum"</string>
     <string name="ui_139" formatted="false">"Fiyat karşılaştıracağım"</string>
+    <string name="ui_14" formatted="false">"Sil"</string>
     <string name="ui_140" formatted="false">"Hediye fikri"</string>
     <string name="ui_141" formatted="false">"İhtiyacım var"</string>
     <string name="ui_142" formatted="false">"Öğrenmek istiyorum"</string>
@@ -149,6 +70,7 @@
     <string name="ui_147" formatted="false">"Formatı uyarlayacağım"</string>
     <string name="ui_148" formatted="false">"Yeni içerik fikri"</string>
     <string name="ui_149" formatted="false">"Anlatımı hoşuma gitti"</string>
+    <string name="ui_15" formatted="false">"Ara"</string>
     <string name="ui_150" formatted="false">"Sonra izleyeceğim"</string>
     <string name="ui_151" formatted="false">"Akşam için"</string>
     <string name="ui_152" formatted="false">"Boş zamanımda"</string>
@@ -159,6 +81,7 @@
     <string name="ui_157" formatted="false">"Nerede olduğunu bulacağım"</string>
     <string name="ui_158" formatted="false">"Bir şeyi dene, uygula veya hazırla."</string>
     <string name="ui_159" formatted="false">"Ne yapmak istiyorsun? Bunu ne zaman veya hangi durumda kullanacaksın?"</string>
+    <string name="ui_16" formatted="false">"Yaptım"</string>
     <string name="ui_160" formatted="false">"Gerekenleri listele\nEksikleri hazırla\nDene ve sonucu not et"</string>
     <string name="ui_161" formatted="false">"Bir mekânı veya etkinliği ziyaret et."</string>
     <string name="ui_162" formatted="false">"Nereye, kiminle ve ne için gitmek istiyorsun?"</string>
@@ -169,6 +92,7 @@
     <string name="ui_167" formatted="false">"Bir bilgiyi veya beceriyi edin."</string>
     <string name="ui_168" formatted="false">"Ne öğrenmek ve nerede uygulamak istiyorsun?"</string>
     <string name="ui_169" formatted="false">"Öğrenmek istediğin noktayı yaz\nİçerikten not çıkar\nBir örnekle uygula"</string>
+    <string name="ui_17" formatted="false">"Gittim"</string>
     <string name="ui_170" formatted="false">"Bir fikri kendi içeriğine dönüştür."</string>
     <string name="ui_171" formatted="false">"Hangi kısmından ilham aldın? Kendi içeriğinde nasıl kullanacaksın?"</string>
     <string name="ui_172" formatted="false">"Açılış cümlesini ve formatı not et\nKendi açını ve hedef kitleni belirle\nAkış ve eylem çağrısını yaz\nKendi versiyonunu üret"</string>
@@ -176,9 +100,10 @@
     <string name="ui_174" formatted="false">"Neden izlemek istiyorsun? Ne zaman izlemek sana uygun?"</string>
     <string name="ui_175" formatted="false">"İçerikteki bir şeyi veya benzerini araştır."</string>
     <string name="ui_176" formatted="false">"Tam olarak neyi bulmak istiyorsun? Bildiğin ipuçları neler?"</string>
-    <string name="ui_177" formatted="false">"Aradığın şeyi ve ipuçlarını netleştir\nKaynak açıklamasını ve yorumları kontrol et\nUygun bir sorguyla web&#x27;de ara\nBulduğun sonucu kaynakla karşılaştır"</string>
+    <string name="ui_177" formatted="false">"Aradığın şeyi ve ipuçlarını netleştir\nKaynak açıklamasını ve yorumları kontrol et\nUygun bir sorguyla web'de ara\nBulduğun sonucu kaynakla karşılaştır"</string>
     <string name="ui_178" formatted="false">"Kayıtlar okunamadı. Mevcut dosya korunuyor."</string>
     <string name="ui_179" formatted="false">"Bu paylaşımda geçerli bir bağlantı yok."</string>
+    <string name="ui_18" formatted="false">"Karar verdim"</string>
     <string name="ui_180" formatted="false">"Yeni paylaşımı aç?"</string>
     <string name="ui_181" formatted="false">"Açık taslak kapanacak."</string>
     <string name="ui_182" formatted="false">"Taslakta kal"</string>
@@ -188,17 +113,20 @@
     <string name="ui_186" formatted="false">"Kayıtlar okunamadı. Yedek oluşturulamıyor."</string>
     <string name="ui_187" formatted="false">"Dosya seçici bulunamadı."</string>
     <string name="ui_188" formatted="false">"Dosya açılamadı."</string>
-    <string name="ui_189" formatted="false">"Geçerli bir SaveWhy yedeği seç."</string>
+    <string name="ui_189" formatted="false">"Geçerli bir tosave yedeği seç."</string>
+    <string name="ui_19" formatted="false">"Öğrendim"</string>
     <string name="ui_190" formatted="false">"İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et."</string>
-    <string name="ui_191" formatted="false">"Geçersiz niyet."</string>
+    <string name="ui_191" formatted="false">"Geçersiz kaydetme amacı."</string>
     <string name="ui_192" formatted="false">"Bir bağlantı paylaş veya yapıştır."</string>
-    <string name="ui_193" formatted="false">"Bu bağlantı aynı niyetle zaten kayıtlı."</string>
+    <string name="ui_193" formatted="false">"Bu bağlantı aynı amaçla zaten kayıtlı."</string>
     <string name="ui_194" formatted="false">"Kayıt dosyası okunamadı. Yedek oluşturulamıyor."</string>
     <string name="ui_195" formatted="false">"Kayıt dosyası okunamadı; mevcut dosya korunuyor."</string>
     <string name="ui_196" formatted="false">"En fazla 5000 kayıt saklanabilir."</string>
     <string name="ui_197" formatted="false">"Kayıtlar 4 MB sınırını aşıyor."</string>
     <string name="ui_198" formatted="false">"Dosya en fazla 4 MB olabilir."</string>
     <string name="ui_199" formatted="false">"Adım"</string>
+    <string name="ui_2" formatted="false">"Al"</string>
+    <string name="ui_20" formatted="false">"Ürettim"</string>
     <string name="ui_200" formatted="false">"Başlık"</string>
     <string name="ui_201" formatted="false">"Kaydetme nedeni"</string>
     <string name="ui_202" formatted="false">"Arama sorgusu en fazla 300 karakter olabilir."</string>
@@ -207,28 +135,31 @@
     <string name="ui_205" formatted="false">" boş bırakılamaz."</string>
     <string name="ui_206" formatted="false">" en fazla "</string>
     <string name="ui_207" formatted="false">" karakter olabilir."</string>
-    <string name="ui_208" formatted="false">"Web araması Bul niyeti içindir."</string>
+    <string name="ui_208" formatted="false">"Web araması Bul amacı için kullanılabilir."</string>
     <string name="ui_209" formatted="false">"Dosyada beklenmeyen ek içerik var."</string>
+    <string name="ui_21" formatted="false">"İzledim"</string>
     <string name="ui_210" formatted="false">"Desteklenmeyen yedek biçimi."</string>
     <string name="ui_211" formatted="false">"Geçersiz yedek dosyası."</string>
     <string name="ui_212" formatted="false">"En fazla 5000 kayıt içe aktarılabilir."</string>
     <string name="ui_213" formatted="false">"Geçersiz hatırlatma tarihi."</string>
     <string name="ui_214" formatted="false">"Dosyada tekrarlanan kayıt kimliği var."</string>
-    <string name="ui_215" formatted="false">"Toplam kayıt sayısı 5000&#x27;i aşamaz."</string>
+    <string name="ui_215" formatted="false">"Toplam kayıt sayısı 5000'i aşamaz."</string>
     <string name="ui_216" formatted="false">"Bağlantı çok uzun."</string>
     <string name="ui_217" formatted="false">"Geçerli bir http/https bağlantısı gir."</string>
     <string name="ui_218" formatted="false">"Bu akşam · 20:00 geçti; yarın 20:00"</string>
     <string name="ui_219" formatted="false">"Hatırlatıcıyı kaydetmek için bildirime izin ver."</string>
+    <string name="ui_22" formatted="false">"Buldum"</string>
     <string name="ui_220" formatted="false">"Unutulanlar"</string>
     <string name="ui_221" formatted="false">"Unutulanlar ayarı"</string>
-    <string name="ui_222" formatted="false">"Niyetlerini düzenle"</string>
+    <string name="ui_222" formatted="false">"Kaydetme amaçlarını düzenle"</string>
     <string name="ui_223" formatted="false">"Nedenlerini düzenle"</string>
     <string name="ui_224" formatted="false">"Tamamlanmamış bir kaydı açmadığın veya değiştirmediğin gün sayısı. Süreyi geçenler Unutulanlar sekmesinde görünür; kayıtların silinmez."</string>
     <string name="ui_225" formatted="false">"Gün sayısı · 1–365"</string>
     <string name="ui_226" formatted="false">"1 ile 365 arasında gün sayısı gir."</string>
     <string name="ui_227" formatted="false">"Seçenek ekle veya adını değiştir. İşaretli seçenekler uygulamada gösterilir. Gizlemek eski kayıtları değiştirmez."</string>
     <string name="ui_228" formatted="false">"Hızlı nedenler"</string>
-    <string name="ui_229" formatted="false">"Yeni niyet ekle"</string>
+    <string name="ui_229" formatted="false">"Yeni amaç ekle"</string>
+    <string name="ui_23" formatted="false">"Tema seç"</string>
     <string name="ui_230" formatted="false">"Yeni neden ekle"</string>
     <string name="ui_231" formatted="false">"Bitti"</string>
     <string name="ui_232" formatted="false">"Seçenek adı"</string>
@@ -239,130 +170,213 @@
     <string name="ui_237" formatted="false">"Geçersiz kişisel seçenek."</string>
     <string name="ui_238" formatted="false">"Seçenekler kaydedilemedi."</string>
     <string name="ui_239" formatted="false">"Seçenekler okunamadı. Mevcut ayarlar korunuyor."</string>
+    <string name="ui_24" formatted="false">"Ayarlar ve yedekler"</string>
     <string name="ui_240" formatted="false">"Geçersiz işlem tarihi."</string>
-    <string name="ui_241" formatted="false">"Kendi niyetinle kaydet."</string>
+    <string name="ui_241" formatted="false">"Kendi belirlediğin amaçla kaydet."</string>
     <string name="ui_242" formatted="false">"İstersen özel bir not ekle."</string>
-<string name="ui_243" formatted="false">"Bildirimler"</string>
-<string name="ui_244" formatted="false">"Ayarlar"</string>
-<string name="ui_245" formatted="false">"Geri"</string>
-<string name="ui_246" formatted="false">"Genel"</string>
-<string name="ui_247" formatted="false">"Kayıtlar"</string>
-<string name="ui_248" formatted="false">"gün"</string>
-<string name="ui_249" formatted="false">"Niyetler ve hızlı nedenler"</string>
-<string name="ui_250" formatted="false">"Göster, gizle veya kişisel seçenek ekle."</string>
-<string name="ui_251" formatted="false">"Bildirim merkezi"</string>
-<string name="ui_252" formatted="false">"Hatırlatmalarını burada gör."</string>
-<string name="ui_253" formatted="false">"Sistem bildirim ayarları"</string>
-<string name="ui_254" formatted="false">"Açık"</string>
-<string name="ui_255" formatted="false">"Kapalı"</string>
-<string name="ui_256" formatted="false">"Yedekleme"</string>
-<string name="ui_257" formatted="false">"Kayıtlarını ve kişisel seçeneklerini dışa aktar."</string>
-<string name="ui_258" formatted="false">"Mevcut kayıtların korunur."</string>
-<string name="ui_259" formatted="false">"Henüz bildirim yok."</string>
-<string name="ui_260" formatted="false">"Son bildirimler"</string>
-<string name="ui_261" formatted="false">"Bu kayıt artık mevcut değil."</string>
-<string name="ui_262" formatted="false">"Bildirim geçmişini temizle"</string>
-<string name="ui_263" formatted="false">"Yaklaşan hatırlatmalar"</string>
-<string name="ui_264" formatted="false">"Bildirimler okunamadı. Mevcut geçmiş korunuyor."</string>
-<string name="ui_265" formatted="false">"Bildirimler kaydedilemedi."</string>
-<string name="ui_266" formatted="false">"Niyetini seç"</string>
-<string name="ui_267" formatted="false">"Karanlık"</string>
-<string name="ui_268" formatted="false">"Videoyu oynat"</string>
-<string name="ui_269" formatted="false">"Video yüklenemedi. Kaynağında açabilirsin."</string>
-<string name="ui_270" formatted="false">"SaveWhy Sınırsız"</string>
-<string name="ui_271" formatted="false">"20 kayıt ücretsiz · Tek seferlik satın alma"</string>
-<string name="ui_272" formatted="false">"Sınırsız kayıt açık"</string>
-<string name="ui_273" formatted="false">"Destek"</string>
-<string name="ui_274" formatted="false">"İletişim ve destek"</string>
-<string name="ui_275" formatted="false">"Uygulamadan memnun musun?"</string>
-<string name="ui_276" formatted="false">"Görüşünü bizimle paylaş."</string>
-<string name="ui_277" formatted="false">"Kaydetmeye sınır koyma."</string>
-<string name="ui_278" formatted="false">"İlk 20 kayıt ücretsiz. Tek seferlik satın almayla kayıt sınırını kaldır."</string>
-<string name="ui_279" formatted="false">"Sınırsız kayıt"</string>
-<string name="ui_280" formatted="false">"Hatırlatmalar ve Unutulanlar"</string>
-<string name="ui_281" formatted="false">"Kişisel niyetler ve hızlı nedenler"</string>
-<string name="ui_282" formatted="false">"Yedekleme ve geri yükleme"</string>
-<string name="ui_283" formatted="false">"Tek seferlik ödeme. Abonelik yok."</string>
-<string name="ui_284" formatted="false">"Ücretsiz sürümde en fazla 20 kayıt tutulur. Tamamlananlar da bu sayıya dahildir. Mevcut kayıtlarını her zaman açabilir, düzenleyebilir ve yedekleyebilirsin."</string>
-<string name="ui_285" formatted="false">"Satın al"</string>
-<string name="ui_286" formatted="false">"Satın almayı geri yükle"</string>
-<string name="ui_287" formatted="false">"Şimdilik devam et"</string>
-<string name="ui_288" formatted="false">"Fiyat Google Play’den alınır."</string>
-<string name="ui_289" formatted="false">"Devam et"</string>
-<string name="ui_290" formatted="false">"Google Play satın alma şu anda kullanılamıyor."</string>
-<string name="ui_291" formatted="false">"Google Play’e bağlanılıyor…"</string>
-<string name="ui_292" formatted="false">"Google Play bağlantısı kesildi. Tekrar deneyebilirsin."</string>
-<string name="ui_293" formatted="false">"Satın alma iptal edildi."</string>
-<string name="ui_294" formatted="false">"Satın alma tamamlanamadı. Tekrar deneyebilirsin."</string>
-<string name="ui_295" formatted="false">"Ödeme bekliyor. Tamamlandığında sınırsız kayıt açılacak."</string>
-<string name="ui_296" formatted="false">"Satın alma doğrulanamadı."</string>
-<string name="ui_297" formatted="false">"Satın alma kaydedilemedi. Satın almayı geri yükle."</string>
-<string name="ui_298" formatted="false">"Sınırsız kayıt açıldı. Teşekkürler!"</string>
-<string name="ui_299" formatted="false">"Satın alma onayı bekliyor. Geri yüklemeyi dene."</string>
-<string name="ui_300" formatted="false">"Sınırsız kayıt zaten açık."</string>
-<string name="ui_301" formatted="false">"Satın alma başlatılamadı. Tekrar deneyebilirsin."</string>
-<string name="ui_302" formatted="false">"20 ücretsiz kayıt sınırına ulaştın."</string>
-<string name="ui_303" formatted="false">"Bir dakikalık görüşün SaveWhy’ı geliştirmemize yardımcı olur."</string>
-<string name="ui_304" formatted="false">"Memnunum"</string>
-<string name="ui_305" formatted="false">"Geliştirilebilir"</string>
-<string name="ui_306" formatted="false">"Şimdi değil"</string>
-<string name="ui_307" formatted="false">"Geri bildirim"</string>
-<string name="ui_308" formatted="false">"Görüşün · isteğe bağlı"</string>
-<string name="ui_309" formatted="false">"E-posta uygulamasında taslak açılır. Göndermeden önce düzenleyebilirsin."</string>
-<string name="ui_310" formatted="false">"E-posta ile paylaş"</string>
-<string name="ui_311" formatted="false">"Satın alma 20 kayıt sınırını kaldırır. Teknik kapasite: 5.000 kayıt / 4 MB."</string>
-<string name="ui_312">Küçük görsel seç</string>
-<string name="ui_313">Görsel okunamadı. Başka bir görsel seç.</string>
-<string name="ui_314">Görsel ekle</string>
-<string name="ui_315">Görseller</string>
-<string name="ui_316">Görsel</string>
-<string name="ui_317">Ekran görüntüsü</string>
-<string name="ui_318">Görseli büyüt</string>
-<string name="ui_319">Etiketler</string>
-<string name="ui_320">Etiket ekle · virgülle ayır</string>
-<string name="ui_321">Alışveriş</string>
-<string name="ui_322">Tarif</string>
-<string name="ui_323">İş</string>
-<string name="ui_324">Fikir</string>
-<string name="ui_325">Referans</string>
-<string name="ui_326">Görsel hazırlanıyor…</string>
-<string name="ui_327">Görseldeki yazılar okunuyor…</string>
-<string name="ui_328">Metin okunamadı. Yeniden deneyebilirsin.</string>
-<string name="ui_329">Görseldeki yazılar aramada kullanılır.</string>
-<string name="ui_330">Okunan metni göster</string>
-<string name="ui_331">Görseldeki metin</string>
-<string name="ui_332">Metni yeniden tara</string>
-<string name="ui_333">Yedek oluştur</string>
-<string name="ui_334">Kayıtlarını, görsellerini ve kişisel seçeneklerini dışa aktar.</string>
-<string name="ui_335">Yedek hazırlanıyor…</string>
-<string name="ui_336">Yedek kontrol ediliyor…</string>
-<string name="ui_337">Etiket en fazla 40 karakter olabilir.</string>
-<string name="ui_338">En fazla 12 etiket eklenebilir.</string>
-<string name="ui_339">Geçersiz etiketler.</string>
-<string name="ui_340">Etiket ekle</string>
-<string name="ui_341">Ekran görüntüleri</string>
-<string name="ui_342">Videolar</string>
-<string name="ui_343">Sosyal</string>
-<string name="ui_344">Video</string>
-<string name="ui_345">Cihaz videosu</string>
-<string name="ui_346">Video ekle</string>
-<string name="ui_347">Videoyu aç</string>
-<string name="ui_348">Video hazırlanıyor…</string>
-<string name="ui_349">Video eklenemedi. En fazla 64 MB olan oynatılabilir bir video seç.</string>
-<string name="ui_350">Video açılamadı. Cihazında bir video oynatıcı bulunmalı.</string>
-<string name="ui_351">Ücretsiz kayıt</string>
-<string name="ui_352">Ekran görüntüleri, videolar ve etiketler</string>
-<string name="ui_353">Görseldeki yazıyla arama</string>
-<string name="ui_354">Görselleri ve videoları içeren yedek</string>
-<string name="ui_355">Dosyaya bağlı · yeniden kopyalanmaz</string>
-<string name="ui_356">Dosyayı yeniden bağla</string>
-<string name="ui_357">Önceki sürümde saklanan kopya</string>
-<string name="ui_358">Dosyaya erişilemiyor. Dosyayı yeniden bağla.</string>
-<string name="ui_359">Paylaşım geçici erişim verdi. Kopyalamadan saklamak için aynı dosyayı seç.</string>
-<string name="ui_360">Kalıcı dosya erişimi alınamadı. Başka bir dosya kaynağı seç.</string>
-<string name="ui_361">Etiketlerini, notlarını ve dosya bağlantılarını dışa aktar.</string>
-<string name="ui_362">Bağlı dosyalar ve erişim izinleri taşınmaz. Başka cihazda dosyaları yeniden bağlaman gerekir.</string>
-<string name="ui_363">Geçersiz dosya referansı.</string>
-<string name="ui_364">Etiket ve not yedeği</string>
-<string name="ui_365">Yeni yerel kayıtlar dosyaya bağlıdır. Yedek dosyanın aslını içermez.</string>
+    <string name="ui_243" formatted="false">"Bildirimler"</string>
+    <string name="ui_244" formatted="false">"Ayarlar"</string>
+    <string name="ui_245" formatted="false">"Geri"</string>
+    <string name="ui_246" formatted="false">"Genel"</string>
+    <string name="ui_247" formatted="false">"Kayıtlar"</string>
+    <string name="ui_248" formatted="false">"gün"</string>
+    <string name="ui_249" formatted="false">"Amaçlar ve hızlı nedenler"</string>
+    <string name="ui_25" formatted="false">"Kaydet. Nedenini hatırla. Harekete geç."</string>
+    <string name="ui_250" formatted="false">"Göster, gizle veya kişisel seçenek ekle."</string>
+    <string name="ui_251" formatted="false">"Bildirim merkezi"</string>
+    <string name="ui_252" formatted="false">"Hatırlatmalarını burada gör."</string>
+    <string name="ui_253" formatted="false">"Sistem bildirim ayarları"</string>
+    <string name="ui_254" formatted="false">"Açık"</string>
+    <string name="ui_255" formatted="false">"Kapalı"</string>
+    <string name="ui_256" formatted="false">"Yedekleme"</string>
+    <string name="ui_257" formatted="false">"Kayıtlarını ve kişisel seçeneklerini dışa aktar."</string>
+    <string name="ui_258" formatted="false">"Mevcut kayıtların korunur."</string>
+    <string name="ui_259" formatted="false">"Henüz bildirim yok."</string>
+    <string name="ui_26" formatted="false">"Kaydet. Nedenini unutma."</string>
+    <string name="ui_260" formatted="false">"Son bildirimler"</string>
+    <string name="ui_261" formatted="false">"Bu kayıt artık mevcut değil."</string>
+    <string name="ui_262" formatted="false">"Bildirim geçmişini temizle"</string>
+    <string name="ui_263" formatted="false">"Yaklaşan hatırlatmalar"</string>
+    <string name="ui_264" formatted="false">"Bildirimler okunamadı. Mevcut geçmiş korunuyor."</string>
+    <string name="ui_265" formatted="false">"Bildirimler kaydedilemedi."</string>
+    <string name="ui_266" formatted="false">"Kaydetme amacını seç"</string>
+    <string name="ui_267" formatted="false">"Karanlık"</string>
+    <string name="ui_268" formatted="false">"Videoyu oynat"</string>
+    <string name="ui_269" formatted="false">"Video yüklenemedi. Kaynağında açabilirsin."</string>
+    <string name="ui_27" formatted="false">"Devam etmek için dokun"</string>
+    <string name="ui_270" formatted="false">"tosave Sınırsız"</string>
+    <string name="ui_271" formatted="false">"20 kayıt ücretsiz · Tek seferlik satın alma"</string>
+    <string name="ui_272" formatted="false">"Sınırsız kayıt açık"</string>
+    <string name="ui_273" formatted="false">"Destek"</string>
+    <string name="ui_274" formatted="false">"İletişim ve destek"</string>
+    <string name="ui_275" formatted="false">"Uygulamadan memnun musun?"</string>
+    <string name="ui_276" formatted="false">"Görüşünü bizimle paylaş."</string>
+    <string name="ui_277" formatted="false">"Kaydetmeye sınır koyma."</string>
+    <string name="ui_278" formatted="false">"İlk 20 kayıt ücretsiz. Tek seferlik satın almayla kayıt sınırını kaldır."</string>
+    <string name="ui_279" formatted="false">"Sınırsız kayıt"</string>
+    <string name="ui_28" formatted="false">"Kayıtlarında ara"</string>
+    <string name="ui_280" formatted="false">"Hatırlatmalar ve Unutulanlar"</string>
+    <string name="ui_281" formatted="false">"Kişisel amaçlar ve hızlı nedenler"</string>
+    <string name="ui_282" formatted="false">"Yedekleme ve geri yükleme"</string>
+    <string name="ui_283" formatted="false">"Tek seferlik ödeme. Abonelik yok."</string>
+    <string name="ui_284" formatted="false">"Ücretsiz sürümde en fazla 20 kayıt tutulur. Tamamlananlar da bu sayıya dahildir. Mevcut kayıtlarını her zaman açabilir, düzenleyebilir ve yedekleyebilirsin."</string>
+    <string name="ui_285" formatted="false">"Satın al"</string>
+    <string name="ui_286" formatted="false">"Satın almayı geri yükle"</string>
+    <string name="ui_287" formatted="false">"Şimdilik devam et"</string>
+    <string name="ui_288" formatted="false">"Fiyat Google Play’den alınır."</string>
+    <string name="ui_289" formatted="false">"Devam et"</string>
+    <string name="ui_29" formatted="false">"Yeni kayıt"</string>
+    <string name="ui_290" formatted="false">"Google Play satın alma şu anda kullanılamıyor."</string>
+    <string name="ui_291" formatted="false">"Google Play’e bağlanılıyor…"</string>
+    <string name="ui_292" formatted="false">"Google Play bağlantısı kesildi. Tekrar deneyebilirsin."</string>
+    <string name="ui_293" formatted="false">"Satın alma iptal edildi."</string>
+    <string name="ui_294" formatted="false">"Satın alma tamamlanamadı. Tekrar deneyebilirsin."</string>
+    <string name="ui_295" formatted="false">"Ödeme bekliyor. Tamamlandığında sınırsız kayıt açılacak."</string>
+    <string name="ui_296" formatted="false">"Satın alma doğrulanamadı."</string>
+    <string name="ui_297" formatted="false">"Satın alma kaydedilemedi. Satın almayı geri yükle."</string>
+    <string name="ui_298" formatted="false">"Sınırsız kayıt açıldı. Teşekkürler!"</string>
+    <string name="ui_299" formatted="false">"Satın alma onayı bekliyor. Geri yüklemeyi dene."</string>
+    <string name="ui_3" formatted="false">"Öğren"</string>
+    <string name="ui_30" formatted="false">" kayıt"</string>
+    <string name="ui_300" formatted="false">"Sınırsız kayıt zaten açık."</string>
+    <string name="ui_301" formatted="false">"Satın alma başlatılamadı. Tekrar deneyebilirsin."</string>
+    <string name="ui_302" formatted="false">"20 ücretsiz kayıt sınırına ulaştın."</string>
+    <string name="ui_303" formatted="false">"Bir dakikalık görüşün tosave’ı geliştirmemize yardımcı olur."</string>
+    <string name="ui_304" formatted="false">"Memnunum"</string>
+    <string name="ui_305" formatted="false">"Geliştirilebilir"</string>
+    <string name="ui_306" formatted="false">"Şimdi değil"</string>
+    <string name="ui_307" formatted="false">"Geri bildirim"</string>
+    <string name="ui_308" formatted="false">"Görüşün · isteğe bağlı"</string>
+    <string name="ui_309" formatted="false">"E-posta uygulamasında taslak açılır. Göndermeden önce düzenleyebilirsin."</string>
+    <string name="ui_31" formatted="false">"Henüz bir şey kaydetmedin"</string>
+    <string name="ui_310" formatted="false">"E-posta ile paylaş"</string>
+    <string name="ui_311" formatted="false">"Satın alma 20 kayıt sınırını kaldırır. Teknik kapasite: 5.000 kayıt / 4 MB."</string>
+    <string name="ui_312" formatted="false">"Küçük görsel seç"</string>
+    <string name="ui_313" formatted="false">"Görsel okunamadı. Başka bir görsel seç."</string>
+    <string name="ui_314" formatted="false">"Görsel ekle"</string>
+    <string name="ui_315" formatted="false">"Görseller"</string>
+    <string name="ui_316" formatted="false">"Görsel"</string>
+    <string name="ui_317" formatted="false">"Ekran görüntüsü"</string>
+    <string name="ui_318" formatted="false">"Görseli büyüt"</string>
+    <string name="ui_319" formatted="false">"Etiketler"</string>
+    <string name="ui_32" formatted="false">"Burada henüz kayıt yok."</string>
+    <string name="ui_320" formatted="false">"Etiket ekle · virgülle ayır"</string>
+    <string name="ui_321" formatted="false">"Alışveriş"</string>
+    <string name="ui_322" formatted="false">"Tarif"</string>
+    <string name="ui_323" formatted="false">"İş"</string>
+    <string name="ui_324" formatted="false">"Fikir"</string>
+    <string name="ui_325" formatted="false">"Referans"</string>
+    <string name="ui_326" formatted="false">"Görsel hazırlanıyor…"</string>
+    <string name="ui_327" formatted="false">"Görseldeki yazılar okunuyor…"</string>
+    <string name="ui_328" formatted="false">"Metin okunamadı. Yeniden deneyebilirsin."</string>
+    <string name="ui_329" formatted="false">"Görseldeki yazılar aramada kullanılır."</string>
+    <string name="ui_33" formatted="false">"Bir bağlantıyı, fotoğrafı veya videoyu Paylaş menüsünden tosave’a gönder. Neden kaydettiğini seç, daha sonra kolayca bul."</string>
+    <string name="ui_330" formatted="false">"Okunan metni göster"</string>
+    <string name="ui_331" formatted="false">"Görseldeki metin"</string>
+    <string name="ui_332" formatted="false">"Metni yeniden tara"</string>
+    <string name="ui_333" formatted="false">"Yedek oluştur"</string>
+    <string name="ui_334" formatted="false">"Kayıtlarını, görsellerini ve kişisel seçeneklerini dışa aktar."</string>
+    <string name="ui_335" formatted="false">"Yedek hazırlanıyor…"</string>
+    <string name="ui_336" formatted="false">"Yedek kontrol ediliyor…"</string>
+    <string name="ui_337" formatted="false">"Etiket en fazla 40 karakter olabilir."</string>
+    <string name="ui_338" formatted="false">"En fazla 12 etiket eklenebilir."</string>
+    <string name="ui_339" formatted="false">"Geçersiz etiketler."</string>
+    <string name="ui_34" formatted="false">"Başka bir amaç seç veya arama sözcüğünü değiştir."</string>
+    <string name="ui_340" formatted="false">"Etiket ekle"</string>
+    <string name="ui_341" formatted="false">"Ekran görüntüleri"</string>
+    <string name="ui_342" formatted="false">"Videolar"</string>
+    <string name="ui_343" formatted="false">"Sosyal"</string>
+    <string name="ui_344" formatted="false">"Video"</string>
+    <string name="ui_345" formatted="false">"Cihaz videosu"</string>
+    <string name="ui_346" formatted="false">"Video ekle"</string>
+    <string name="ui_347" formatted="false">"Videoyu aç"</string>
+    <string name="ui_348" formatted="false">"Video hazırlanıyor…"</string>
+    <string name="ui_349" formatted="false">"Video eklenemedi. En fazla 64 MB olan oynatılabilir bir video seç."</string>
+    <string name="ui_35" formatted="false">"Nasıl çalışır?"</string>
+    <string name="ui_350" formatted="false">"Video açılamadı. Cihazında bir video oynatıcı bulunmalı."</string>
+    <string name="ui_351" formatted="false">"Ücretsiz kayıt"</string>
+    <string name="ui_352" formatted="false">"Ekran görüntüleri, videolar ve etiketler"</string>
+    <string name="ui_353" formatted="false">"Görseldeki yazıyla arama"</string>
+    <string name="ui_354" formatted="false">"Görselleri ve videoları içeren yedek"</string>
+    <string name="ui_355" formatted="false">"Dosyaya bağlı · yeniden kopyalanmaz"</string>
+    <string name="ui_356" formatted="false">"Dosyayı yeniden bağla"</string>
+    <string name="ui_357" formatted="false">"Önceki sürümde saklanan kopya"</string>
+    <string name="ui_358" formatted="false">"Dosyaya erişilemiyor. Dosyayı yeniden bağla."</string>
+    <string name="ui_359" formatted="false">"Paylaşım geçici erişim verdi. Kopyalamadan saklamak için aynı dosyayı seç."</string>
+    <string name="ui_36" formatted="false">"Tamamlandı"</string>
+    <string name="ui_360" formatted="false">"Kalıcı dosya erişimi alınamadı. Başka bir dosya kaynağı seç."</string>
+    <string name="ui_361" formatted="false">"Etiketlerini, notlarını ve dosya bağlantılarını dışa aktar."</string>
+    <string name="ui_362" formatted="false">"Bağlı dosyalar ve erişim izinleri taşınmaz. Başka cihazda dosyaları yeniden bağlaman gerekir."</string>
+    <string name="ui_363" formatted="false">"Geçersiz dosya referansı."</string>
+    <string name="ui_364" formatted="false">"Etiket ve not yedeği"</string>
+    <string name="ui_365" formatted="false">"Yeni yerel kayıtlar dosyaya bağlıdır. Yedek dosyanın aslını içermez."</string>
+    <string name="ui_37" formatted="false">"Bir amaçla kaydedildi"</string>
+    <string name="ui_38" formatted="false">" adım"</string>
+    <string name="ui_39" formatted="false">"Neden kaydediyorsun?"</string>
+    <string name="ui_4" formatted="false">"Üret"</string>
+    <string name="ui_40" formatted="false">"Kaydını düzenle"</string>
+    <string name="ui_41" formatted="false">"Kaydetme amacını seç. Başlığı ve ayrıntıları daha sonra düzenleyebilirsin."</string>
+    <string name="ui_42" formatted="false">"Bağlantı"</string>
+    <string name="ui_43" formatted="false">"Panodan ekle"</string>
+    <string name="ui_44" formatted="false">"Bağlantıyı düzenle"</string>
+    <string name="ui_45" formatted="false">"Kaydetme amacı"</string>
+    <string name="ui_46" formatted="false">"Başlamak için kaydetme amacını seç."</string>
+    <string name="ui_47" formatted="false">"HIZLI NEDEN"</string>
+    <string name="ui_48" formatted="false">"Hatırlatıcı ekle"</string>
+    <string name="ui_49" formatted="false">"Bu alanlar isteğe bağlı. Kaydetmek için doldurman gerekmez."</string>
+    <string name="ui_5" formatted="false">"İzle"</string>
+    <string name="ui_50" formatted="false">"Başlık · isteğe bağlı"</string>
+    <string name="ui_51" formatted="false">"Özel not · isteğe bağlı"</string>
+    <string name="ui_52" formatted="false">"Yapılacaklar listesi"</string>
+    <string name="ui_53" formatted="false">"Bu kayıtla ne yapmak istediğini küçük işlere böl. Tamamladıklarını kartta işaretleyebilirsin. İstersen boş bırak."</string>
+    <string name="ui_54" formatted="false">"Yapılacaklar · her satıra bir iş"</string>
+    <string name="ui_55" formatted="false">"Örnek yapılacakları seç"</string>
+    <string name="ui_56" formatted="false">"Önce kaydetme amacını seç."</string>
+    <string name="ui_57" formatted="false">"Bul için arama sorgusu · isteğe bağlı"</string>
+    <string name="ui_58" formatted="false">"Not ve yapılacaklar · isteğe bağlı"</string>
+    <string name="ui_59" formatted="false">"Değişiklikleri kaydet"</string>
+    <string name="ui_6" formatted="false">"Bul"</string>
+    <string name="ui_60" formatted="false">"Cihazında saklanır. İnternet bağlantısı gerekmez."</string>
+    <string name="ui_61" formatted="false">"Hatırlatma"</string>
+    <string name="ui_62" formatted="false">"Bir bağlantı paylaş veya panodan ekle."</string>
+    <string name="ui_63" formatted="false">" olarak kaydet"</string>
+    <string name="ui_64" formatted="false">"Gelecekte bir zaman seç."</string>
+    <string name="ui_65" formatted="false">"Kaydedildi · "</string>
+    <string name="ui_66" formatted="false">"Kayıt güncellendi"</string>
+    <string name="ui_67" formatted="false">"Panoda bir bağlantı yok."</string>
+    <string name="ui_68" formatted="false">"Panodaki metinde geçerli bir bağlantı yok."</string>
+    <string name="ui_69" formatted="false">"Kaydetme amacı"</string>
+    <string name="ui_7" formatted="false">"Bekleyen"</string>
+    <string name="ui_70" formatted="false">" adım tamamlandı"</string>
+    <string name="ui_71" formatted="false">"Hatırlatma yok"</string>
+    <string name="ui_72" formatted="false">"Hatırlatıcıyı düzenle"</string>
+    <string name="ui_73" formatted="false">"İçeriği izle"</string>
+    <string name="ui_74" formatted="false">"Orijinal içeriği aç"</string>
+    <string name="ui_75" formatted="false">"Bekleyenlere geri al"</string>
+    <string name="ui_76" formatted="false">"Bekleyenlere geri alındı"</string>
+    <string name="ui_77" formatted="false">"Düzenle"</string>
+    <string name="ui_78" formatted="false">"Kaydı sil"</string>
+    <string name="ui_79" formatted="false">"Kaydı sil?"</string>
+    <string name="ui_8" formatted="false">"Tümü"</string>
+    <string name="ui_80" formatted="false">"Kayıt silindi"</string>
+    <string name="ui_81" formatted="false">"Geri al"</string>
+    <string name="ui_82" formatted="false">"Ne aramak istiyorsun?"</string>
+    <string name="ui_83" formatted="false">"Web'de ara"</string>
+    <string name="ui_84" formatted="false">"Yalnızca bu sorguyla Google araması açılır."</string>
+    <string name="ui_85" formatted="false">"Aramak istediğin şeyi yaz."</string>
+    <string name="ui_86" formatted="false">"Bağlantıyı açacak uygulama bulunamadı."</string>
+    <string name="ui_87" formatted="false">"Sana göre bir görünüm"</string>
+    <string name="ui_88" formatted="false">"AMOLED temada arka plan gerçek siyahtır."</string>
+    <string name="ui_89" formatted="false">"Simsiyah AMOLED"</string>
+    <string name="ui_9" formatted="false">"Tamamlanan"</string>
+    <string name="ui_90" formatted="false">"Aydınlık"</string>
+    <string name="ui_91" formatted="false">"Sistem tercihi"</string>
+    <string name="ui_92" formatted="false">" · seçili"</string>
+    <string name="ui_93" formatted="false">"Kayıtların senin cihazında. Kontrol sende."</string>
+    <string name="ui_94" formatted="false">"Uygulama dili"</string>
+    <string name="ui_95" formatted="false">"Sistem dili"</string>
+    <string name="ui_96" formatted="false">"Görünüm"</string>
+    <string name="ui_97" formatted="false">"JSON yedeği oluştur"</string>
+    <string name="ui_98" formatted="false">"Yedeği içe aktar"</string>
+    <string name="ui_99" formatted="false">"Font lisansı"</string>
 </resources>

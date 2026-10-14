@@ -17,7 +17,7 @@ public final class CardCodec {
             array.put(new JSONObject().put("id", c.id).put("url", c.url).put("title", c.title)
                     .put("why", c.why).put("note", c.note).put("createdAt", c.createdAt).put("done", c.done).put("steps", steps).put("searchQuery",c.searchQuery).put("reminderAt",c.reminderAt).put("lastActivityAt",c.lastActivityAt).put("imageId",c.imageId).put("videoId",c.videoId()).put("mediaUri",c.mediaUri()).put("mediaName",c.mediaName()).put("tags",new JSONArray(c.tags)).put("recognizedText",c.recognizedText).put("ocrState",c.ocrState));
         }
-        return new JSONObject().put("app", "SaveWhy").put("version", 6).put("cards", array).toString(2);
+        return new JSONObject().put("app", "tosave").put("version", 6).put("cards", array).toString(2);
     }
 
     public static List<Card> decode(String json) throws JSONException {
@@ -33,7 +33,7 @@ public final class CardCodec {
         else if (root instanceof JSONObject) {
             JSONObject object = (JSONObject) root;
             version=object.getInt("version");
-            if (!"SaveWhy".equals(object.getString("app")) || (version != 1 && version != 2 && version != 3 && version != 4 && version != 5 && version != 6))
+            if ((!"tosave".equals(object.getString("app")) && !"SaveWhy".equals(object.getString("app"))) || (version != 1 && version != 2 && version != 3 && version != 4 && version != 5 && version != 6))
                 throw new IllegalArgumentException("Desteklenmeyen yedek biçimi.");
             array = object.getJSONArray("cards");
         } else throw new IllegalArgumentException("Geçersiz yedek dosyası.");

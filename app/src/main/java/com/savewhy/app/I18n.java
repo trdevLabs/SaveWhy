@@ -9,6 +9,15 @@ import androidx.appcompat.app.AppCompatDelegate;
 public final class I18n {
     private static final Map<String,Integer> IDS=new HashMap<>();
     static {
+        IDS.put("Görseldeki metin",R.string.ocr_inline_title);
+        IDS.put("Görselde metin bulunamadı.",R.string.ocr_empty);
+        IDS.put("Uygulamada saklanır",R.string.media_saved_copy);
+        IDS.put("Paylaşılan dosya okunamadı veya dosya sınırını aşıyor.",R.string.shared_media_error);
+        IDS.put("Hakkında",R.string.about_title);
+        IDS.put("tosave hakkında",R.string.about_entry);
+        IDS.put("Birlikte katkı sunuyoruz",R.string.about_contribution_title);
+        IDS.put("Bağımsız geliştirme",R.string.about_independent_title);
+
         IDS.put("Yap",R.string.ui_0);
         IDS.put("Git",R.string.ui_1);
         IDS.put("Al",R.string.ui_2);
@@ -42,7 +51,7 @@ public final class I18n {
         IDS.put(" kayıt",R.string.ui_30);
         IDS.put("İyi bir şey gördün mü?",R.string.ui_31);
         IDS.put("Burada henüz kayıt yok.",R.string.ui_32);
-        IDS.put("Instagram, TikTok veya YouTube'da paylaş menüsünden SaveWhy'ı seç. Niyetine dokun, kaydet.",R.string.ui_33);
+        IDS.put("Instagram, TikTok veya YouTube'da paylaş menüsünden tosave'ı seç. Niyetine dokun, kaydet.",R.string.ui_33);
         IDS.put("Başka bir niyet seç veya arama sözcüğünü değiştir.",R.string.ui_34);
         IDS.put("Nasıl çalışır?",R.string.ui_35);
         IDS.put("Tamamlandı",R.string.ui_36);
@@ -112,7 +121,7 @@ public final class I18n {
         IDS.put("v0.4.0 · Hatırlatmalar ve dil tercihi\nAI içerik analizi henüz eklenmedi.",R.string.ui_100);
         IDS.put("Bir bağlantı. Bir niyet.",R.string.ui_101);
         IDS.put("1  İçeriği paylaş",R.string.ui_102);
-        IDS.put("Sosyal medya uygulamasında Paylaş → SaveWhy.",R.string.ui_103);
+        IDS.put("Sosyal medya uygulamasında Paylaş → tosave.",R.string.ui_103);
         IDS.put("2  Niyetine dokun",R.string.ui_104);
         IDS.put("Yap, Git, Al, Öğren, Üret, İzle veya Bul. Hızlı nedenlerden birini seçebilir veya doğrudan kaydedebilirsin.",R.string.ui_105);
         IDS.put("3  Zamanı gelince geri dön",R.string.ui_106);
@@ -125,7 +134,7 @@ public final class I18n {
         IDS.put("İçe aktar",R.string.ui_113);
         IDS.put(" kayıt eklendi.",R.string.ui_114);
         IDS.put("Bildirimler kapalı",R.string.ui_115);
-        IDS.put("Hatırlatıcı için SaveWhy bildirimlerini ayarlardan aç. Kaydın yine saklanır.",R.string.ui_116);
+        IDS.put("Hatırlatıcı için tosave bildirimlerini ayarlardan aç. Kaydın yine saklanır.",R.string.ui_116);
         IDS.put("Ayarları aç",R.string.ui_117);
         IDS.put("Bildirim izni verilmedi. Hatırlatıcı eklenmedi.",R.string.ui_118);
         IDS.put("Ne zaman hatırlatayım?",R.string.ui_119);
@@ -198,7 +207,7 @@ public final class I18n {
         IDS.put("Kayıtlar okunamadı. Yedek oluşturulamıyor.",R.string.ui_186);
         IDS.put("Dosya seçici bulunamadı.",R.string.ui_187);
         IDS.put("Dosya açılamadı.",R.string.ui_188);
-        IDS.put("Geçerli bir SaveWhy yedeği seç.",R.string.ui_189);
+        IDS.put("Geçerli bir tosave yedeği seç.",R.string.ui_189);
         IDS.put("İşlem tamamlanamadı. Dosyayı ve kullanılabilir alanı kontrol et.",R.string.ui_190);
         IDS.put("Geçersiz niyet.",R.string.ui_191);
         IDS.put("Bir bağlantı paylaş veya yapıştır.",R.string.ui_192);
@@ -279,7 +288,7 @@ public final class I18n {
         IDS.put("Karanlık",R.string.ui_267);
         IDS.put("Videoyu oynat",R.string.ui_268);
         IDS.put("Video yüklenemedi. Kaynağında açabilirsin.",R.string.ui_269);
-        IDS.put("SaveWhy Sınırsız",R.string.ui_270);
+        IDS.put("tosave Sınırsız",R.string.ui_270);
         IDS.put("20 kayıt ücretsiz · Tek seferlik satın alma",R.string.ui_271);
         IDS.put("Sınırsız kayıt açık",R.string.ui_272);
         IDS.put("Destek",R.string.ui_273);
@@ -312,7 +321,7 @@ public final class I18n {
         IDS.put("Sınırsız kayıt zaten açık.",R.string.ui_300);
         IDS.put("Satın alma başlatılamadı. Tekrar deneyebilirsin.",R.string.ui_301);
         IDS.put("20 ücretsiz kayıt sınırına ulaştın.",R.string.ui_302);
-        IDS.put("Bir dakikalık görüşün SaveWhy’ı geliştirmemize yardımcı olur.",R.string.ui_303);
+        IDS.put("Bir dakikalık görüşün tosave’ı geliştirmemize yardımcı olur.",R.string.ui_303);
         IDS.put("Memnunum",R.string.ui_304);
         IDS.put("Geliştirilebilir",R.string.ui_305);
         IDS.put("Şimdi değil",R.string.ui_306);

@@ -1,124 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
+    <string name="about_contribution" formatted="false">"A portion of tosave's revenue is directed to children living with spinal muscular atrophy (SMA), child protection and care organizations, health and educational institutions, and tree planting initiatives. The aim is to support children's lives and care, access to health services, educational opportunities and the protection of nature."</string>
+    <string name="about_contribution_title" formatted="false">"Contributing together"</string>
+    <string name="about_developer" formatted="false">"Developer"</string>
+    <string name="about_entry" formatted="false">"About tosave"</string>
+    <string name="about_independent" formatted="false">"tosave is independently developed by tr.developer. You may encounter missing features or errors on different devices or in different situations. Reported issues are reviewed, and the developer works to fix them as soon as possible. Your suggestions help the app improve. When reporting a problem, including your device model, Android version and the steps that caused it helps resolve it."</string>
+    <string name="about_independent_title" formatted="false">"Independent development"</string>
+    <string name="about_purpose" formatted="false">"tosave helps you organize the links, photos and videos you share with it. Choose what you want to do with each saved item and add tags, private notes and reminders. That way you can remember why you saved it and find it easily when you need it."</string>
+    <string name="about_title" formatted="false">"About"</string>
+    <string name="card_counts">"%1$d pending · %2$d completed"</string>
+    <string name="media_saved_copy" formatted="false">"Stored in the app"</string>
+    <string name="ocr_empty" formatted="false">"No text found in image."</string>
+    <string name="ocr_inline_title" formatted="false">"Text in image"</string>
+    <string name="shared_media_error" formatted="false">"The shared file could not be read or exceeds the file limit."</string>
     <string name="ui_0" formatted="false">"Do"</string>
     <string name="ui_1" formatted="false">"Go"</string>
-    <string name="ui_2" formatted="false">"Buy"</string>
-    <string name="ui_3" formatted="false">"Learn"</string>
-    <string name="ui_4" formatted="false">"Create"</string>
-    <string name="ui_5" formatted="false">"Watch"</string>
-    <string name="ui_6" formatted="false">"Find"</string>
-    <string name="ui_7" formatted="false">"Pending"</string>
-    <string name="ui_8" formatted="false">"All"</string>
-    <string name="ui_9" formatted="false">"Completed"</string>
     <string name="ui_10" formatted="false">"Close"</string>
-    <string name="ui_11" formatted="false">"Save"</string>
-    <string name="ui_12" formatted="false">"Cancel"</string>
-    <string name="ui_13" formatted="false">"Add"</string>
-    <string name="ui_14" formatted="false">"Delete"</string>
-    <string name="ui_15" formatted="false">"Search"</string>
-    <string name="ui_16" formatted="false">"Done"</string>
-    <string name="ui_17" formatted="false">"Visited"</string>
-    <string name="ui_18" formatted="false">"Decided"</string>
-    <string name="ui_19" formatted="false">"Learned"</string>
-    <string name="ui_20" formatted="false">"Created"</string>
-    <string name="ui_21" formatted="false">"Watched"</string>
-    <string name="ui_22" formatted="false">"Found"</string>
-    <string name="ui_23" formatted="false">"Choose theme"</string>
-    <string name="ui_24" formatted="false">"Settings and backups"</string>
-    <string name="ui_25" formatted="false">"Save it. Remember why. Take action."</string>
-    <string name="ui_26" formatted="false">"Save it. Remember why."</string>
-    <string name="ui_27" formatted="false">"Tap to continue"</string>
-    <string name="ui_28" formatted="false">"Search your saves"</string>
-    <string name="ui_29" formatted="false">"New save"</string>
-    <string name="ui_30" formatted="false">" saves"</string>
-    <string name="ui_31" formatted="false">"Found something good?"</string>
-    <string name="ui_32" formatted="false">"No saves here yet."</string>
-    <string name="ui_33" formatted="false">"Choose SaveWhy from the share menu in Instagram, TikTok or YouTube. Pick your intent and save."</string>
-    <string name="ui_34" formatted="false">"Choose another intent or change your search."</string>
-    <string name="ui_35" formatted="false">"How it works"</string>
-    <string name="ui_36" formatted="false">"Completed"</string>
-    <string name="ui_37" formatted="false">"Saved with purpose"</string>
-    <string name="ui_38" formatted="false">" steps"</string>
-    <string name="ui_39" formatted="false">"Why are you saving this?"</string>
-    <string name="ui_40" formatted="false">"Edit your save"</string>
-    <string name="ui_41" formatted="false">"Choose your intent. You can edit the title and details later."</string>
-    <string name="ui_42" formatted="false">"Link"</string>
-    <string name="ui_43" formatted="false">"Paste link"</string>
-    <string name="ui_44" formatted="false">"Edit link"</string>
-    <string name="ui_45" formatted="false">"WHAT FOR?"</string>
-    <string name="ui_46" formatted="false">"Choose an intent to start."</string>
-    <string name="ui_47" formatted="false">"QUICK REASON"</string>
-    <string name="ui_48" formatted="false">"Add reminder"</string>
-    <string name="ui_49" formatted="false">"These fields are optional. You can save without filling them in."</string>
-    <string name="ui_50" formatted="false">"Title · optional"</string>
-    <string name="ui_51" formatted="false">"Private note · optional"</string>
-    <string name="ui_52" formatted="false">"Checklist"</string>
-    <string name="ui_53" formatted="false">"Break your plan into small tasks. Check them off in the card as you finish. Leave this empty if you prefer."</string>
-    <string name="ui_54" formatted="false">"Tasks · one per line"</string>
-    <string name="ui_55" formatted="false">"Choose example tasks"</string>
-    <string name="ui_56" formatted="false">"Choose an intent first."</string>
-    <string name="ui_57" formatted="false">"Find search query · optional"</string>
-    <string name="ui_58" formatted="false">"Note and checklist · optional"</string>
-    <string name="ui_59" formatted="false">"Save changes"</string>
-    <string name="ui_60" formatted="false">"Stored on your device. Works offline."</string>
-    <string name="ui_61" formatted="false">"Reminder"</string>
-    <string name="ui_62" formatted="false">"Share a link or paste one."</string>
-    <string name="ui_63" formatted="false">" · save"</string>
-    <string name="ui_64" formatted="false">"Choose a future time."</string>
-    <string name="ui_65" formatted="false">"Saved · "</string>
-    <string name="ui_66" formatted="false">"Save updated"</string>
-    <string name="ui_67" formatted="false">"No link in your clipboard."</string>
-    <string name="ui_68" formatted="false">"Your clipboard does not contain a valid link."</string>
-    <string name="ui_69" formatted="false">"MY INTENT"</string>
-    <string name="ui_70" formatted="false">" tasks completed"</string>
-    <string name="ui_71" formatted="false">"No reminder"</string>
-    <string name="ui_72" formatted="false">"Edit reminder"</string>
-    <string name="ui_73" formatted="false">"Watch content"</string>
-    <string name="ui_74" formatted="false">"Open original content"</string>
-    <string name="ui_75" formatted="false">"Mark as pending"</string>
-    <string name="ui_76" formatted="false">"Marked as pending"</string>
-    <string name="ui_77" formatted="false">"Edit"</string>
-    <string name="ui_78" formatted="false">"Delete save"</string>
-    <string name="ui_79" formatted="false">"Delete this save?"</string>
-    <string name="ui_80" formatted="false">"Save deleted"</string>
-    <string name="ui_81" formatted="false">"Undo"</string>
-    <string name="ui_82" formatted="false">"What would you like to search for?"</string>
-    <string name="ui_83" formatted="false">"Search the web"</string>
-    <string name="ui_84" formatted="false">"Only this query is sent to Google search."</string>
-    <string name="ui_85" formatted="false">"Enter what you want to search for."</string>
-    <string name="ui_86" formatted="false">"No app available to open this link."</string>
-    <string name="ui_87" formatted="false">"Choose your look"</string>
-    <string name="ui_88" formatted="false">"The AMOLED theme uses a pure black background."</string>
-    <string name="ui_89" formatted="false">"Pure black AMOLED"</string>
-    <string name="ui_90" formatted="false">"Light"</string>
-    <string name="ui_91" formatted="false">"Follow system"</string>
-    <string name="ui_92" formatted="false">" · selected"</string>
-    <string name="ui_93" formatted="false">"Your saves stay on your device. You are in control."</string>
-    <string name="ui_94" formatted="false">"App language"</string>
-    <string name="ui_95" formatted="false">"System language"</string>
-    <string name="ui_96" formatted="false">"Appearance"</string>
-    <string name="ui_97" formatted="false">"Export JSON backup"</string>
-    <string name="ui_98" formatted="false">"Import backup"</string>
-    <string name="ui_99" formatted="false">"Font license"</string>
     <string name="ui_100" formatted="false">"v0.4.0 · Reminders and language settings\nAI content analysis is not available yet."</string>
-    <string name="ui_101" formatted="false">"One link. One intent."</string>
+    <string name="ui_101" formatted="false">"One link. One purpose."</string>
     <string name="ui_102" formatted="false">"1  Share content"</string>
-    <string name="ui_103" formatted="false">"In your social app, choose Share → SaveWhy."</string>
-    <string name="ui_104" formatted="false">"2  Choose your intent"</string>
+    <string name="ui_103" formatted="false">"In your social app, choose Share → tosave."</string>
+    <string name="ui_104" formatted="false">"2  Choose your purpose"</string>
     <string name="ui_105" formatted="false">"Do, Go, Buy, Learn, Create, Watch or Find. Choose a quick reason or save right away."</string>
     <string name="ui_106" formatted="false">"3  Return when it is time"</string>
     <string name="ui_107" formatted="false">"Open the source, research it or finish your tasks. Edit the title and notes whenever you like."</string>
     <string name="ui_108" formatted="false">"Titles come from shared information or the link. The app does not analyze the video."</string>
     <string name="ui_109" formatted="false">"Got it"</string>
+    <string name="ui_11" formatted="false">"Save"</string>
     <string name="ui_110" formatted="false">"Backup exported."</string>
     <string name="ui_111" formatted="false">"Import this backup?"</string>
     <string name="ui_112" formatted="false">" new saves will be added. Existing saves are kept; duplicates are skipped."</string>
     <string name="ui_113" formatted="false">"Import"</string>
     <string name="ui_114" formatted="false">" saves added."</string>
     <string name="ui_115" formatted="false">"Notifications are off"</string>
-    <string name="ui_116" formatted="false">"Enable SaveWhy notifications in Settings to add a reminder. Your save is still kept."</string>
+    <string name="ui_116" formatted="false">"Enable tosave notifications in Settings to add a reminder. Your save is still kept."</string>
     <string name="ui_117" formatted="false">"Open settings"</string>
     <string name="ui_118" formatted="false">"Notification permission was not granted. No reminder was added."</string>
     <string name="ui_119" formatted="false">"When should I remind you?"</string>
+    <string name="ui_12" formatted="false">"Cancel"</string>
     <string name="ui_120" formatted="false">"If you plan to do this together, choose when you are meeting. The notification appears on your device; it is not sent to anyone else."</string>
     <string name="ui_121" formatted="false">"Android battery saving may delay the notification past the selected time."</string>
     <string name="ui_122" formatted="false">"In 1 hour"</string>
@@ -129,6 +48,7 @@
     <string name="ui_127" formatted="false">"Reminders"</string>
     <string name="ui_128" formatted="false">"Return to your saves at the time you choose."</string>
     <string name="ui_129" formatted="false">"Time to return to your save."</string>
+    <string name="ui_13" formatted="false">"Add"</string>
     <string name="ui_130" formatted="false">"I will try it later"</string>
     <string name="ui_131" formatted="false">"I will do it this weekend"</string>
     <string name="ui_132" formatted="false">"Useful for me"</string>
@@ -139,6 +59,7 @@
     <string name="ui_137" formatted="false">"Add to my travel plan"</string>
     <string name="ui_138" formatted="false">"Thinking of buying it"</string>
     <string name="ui_139" formatted="false">"I will compare prices"</string>
+    <string name="ui_14" formatted="false">"Delete"</string>
     <string name="ui_140" formatted="false">"Gift idea"</string>
     <string name="ui_141" formatted="false">"I need it"</string>
     <string name="ui_142" formatted="false">"I want to learn"</string>
@@ -149,6 +70,7 @@
     <string name="ui_147" formatted="false">"I will adapt the format"</string>
     <string name="ui_148" formatted="false">"New content idea"</string>
     <string name="ui_149" formatted="false">"I liked the storytelling"</string>
+    <string name="ui_15" formatted="false">"Search"</string>
     <string name="ui_150" formatted="false">"I will watch later"</string>
     <string name="ui_151" formatted="false">"For tonight"</string>
     <string name="ui_152" formatted="false">"In my free time"</string>
@@ -159,6 +81,7 @@
     <string name="ui_157" formatted="false">"I will find the location"</string>
     <string name="ui_158" formatted="false">"Try, make or prepare something."</string>
     <string name="ui_159" formatted="false">"What would you like to do? When or where will you use this?"</string>
+    <string name="ui_16" formatted="false">"Done"</string>
     <string name="ui_160" formatted="false">"List what you need\nPrepare anything missing\nTry it and note the result"</string>
     <string name="ui_161" formatted="false">"Visit a place or event."</string>
     <string name="ui_162" formatted="false">"Where would you like to go, with whom and why?"</string>
@@ -169,6 +92,7 @@
     <string name="ui_167" formatted="false">"Learn something or build a skill."</string>
     <string name="ui_168" formatted="false">"What do you want to learn and where will you apply it?"</string>
     <string name="ui_169" formatted="false">"Write down what you want to learn\nTake notes from the content\nPractice with an example"</string>
+    <string name="ui_17" formatted="false">"Visited"</string>
     <string name="ui_170" formatted="false">"Turn an idea into your own content."</string>
     <string name="ui_171" formatted="false">"What inspired you? How will you use it in your own content?"</string>
     <string name="ui_172" formatted="false">"Note the opening line and format\nChoose your angle and audience\nWrite the flow and call to action\nCreate your own version"</string>
@@ -179,6 +103,7 @@
     <string name="ui_177" formatted="false">"Clarify what you are looking for and your clues\nCheck the description and comments\nSearch the web with a useful query\nCompare the result with the source"</string>
     <string name="ui_178" formatted="false">"Saves could not be read. The existing file is preserved."</string>
     <string name="ui_179" formatted="false">"This share does not contain a valid link."</string>
+    <string name="ui_18" formatted="false">"Decided"</string>
     <string name="ui_180" formatted="false">"Open the new share?"</string>
     <string name="ui_181" formatted="false">"The current draft will close."</string>
     <string name="ui_182" formatted="false">"Keep current draft"</string>
@@ -188,17 +113,20 @@
     <string name="ui_186" formatted="false">"Saves could not be read. A backup cannot be created."</string>
     <string name="ui_187" formatted="false">"No file picker is available."</string>
     <string name="ui_188" formatted="false">"The file could not be opened."</string>
-    <string name="ui_189" formatted="false">"Choose a valid SaveWhy backup."</string>
+    <string name="ui_189" formatted="false">"Choose a valid tosave backup."</string>
+    <string name="ui_19" formatted="false">"Learned"</string>
     <string name="ui_190" formatted="false">"The operation could not finish. Check the file and available storage."</string>
-    <string name="ui_191" formatted="false">"Invalid intent."</string>
+    <string name="ui_191" formatted="false">"Invalid purpose."</string>
     <string name="ui_192" formatted="false">"Share or paste a link."</string>
-    <string name="ui_193" formatted="false">"This link is already saved with this intent."</string>
+    <string name="ui_193" formatted="false">"This link is already saved with this purpose."</string>
     <string name="ui_194" formatted="false">"The saves file could not be read. A backup cannot be created."</string>
     <string name="ui_195" formatted="false">"The saves file could not be read; the existing file is preserved."</string>
     <string name="ui_196" formatted="false">"You can store up to 5000 saves."</string>
     <string name="ui_197" formatted="false">"Saves exceed the 4 MB limit."</string>
     <string name="ui_198" formatted="false">"The file can be up to 4 MB."</string>
     <string name="ui_199" formatted="false">"Task"</string>
+    <string name="ui_2" formatted="false">"Buy"</string>
+    <string name="ui_20" formatted="false">"Created"</string>
     <string name="ui_200" formatted="false">"Title"</string>
     <string name="ui_201" formatted="false">"Reason for saving"</string>
     <string name="ui_202" formatted="false">"The search query can be up to 300 characters."</string>
@@ -207,8 +135,9 @@
     <string name="ui_205" formatted="false">" cannot be empty."</string>
     <string name="ui_206" formatted="false">" can be up to "</string>
     <string name="ui_207" formatted="false">" characters."</string>
-    <string name="ui_208" formatted="false">"Web search is available for the Find intent."</string>
+    <string name="ui_208" formatted="false">"Web search is available for the Find purpose."</string>
     <string name="ui_209" formatted="false">"The file contains unexpected extra content."</string>
+    <string name="ui_21" formatted="false">"Watched"</string>
     <string name="ui_210" formatted="false">"Unsupported backup format."</string>
     <string name="ui_211" formatted="false">"Invalid backup file."</string>
     <string name="ui_212" formatted="false">"You can import up to 5000 saves."</string>
@@ -219,16 +148,18 @@
     <string name="ui_217" formatted="false">"Enter a valid http/https link."</string>
     <string name="ui_218" formatted="false">"Tonight has passed · tomorrow at 20:00"</string>
     <string name="ui_219" formatted="false">"Allow notifications to save a reminder."</string>
+    <string name="ui_22" formatted="false">"Found"</string>
     <string name="ui_220" formatted="false">"Forgotten"</string>
     <string name="ui_221" formatted="false">"Forgotten saves settings"</string>
-    <string name="ui_222" formatted="false">"Customize intents"</string>
+    <string name="ui_222" formatted="false">"Customize purposes"</string>
     <string name="ui_223" formatted="false">"Customize reasons"</string>
     <string name="ui_224" formatted="false">"Number of days without opening or changing an unfinished save. Older saves appear in Forgotten; your saves are not deleted."</string>
     <string name="ui_225" formatted="false">"Days · 1–365"</string>
     <string name="ui_226" formatted="false">"Enter a number of days between 1 and 365."</string>
     <string name="ui_227" formatted="false">"Add or rename options. Checked options are shown in the app. Hiding an option does not change existing saves."</string>
     <string name="ui_228" formatted="false">"Quick reasons"</string>
-    <string name="ui_229" formatted="false">"Add intent"</string>
+    <string name="ui_229" formatted="false">"Add purpose"</string>
+    <string name="ui_23" formatted="false">"Choose theme"</string>
     <string name="ui_230" formatted="false">"Add reason"</string>
     <string name="ui_231" formatted="false">"Done"</string>
     <string name="ui_232" formatted="false">"Option name"</string>
@@ -239,130 +170,213 @@
     <string name="ui_237" formatted="false">"Invalid personal option."</string>
     <string name="ui_238" formatted="false">"Options could not be saved."</string>
     <string name="ui_239" formatted="false">"Options could not be read. Existing settings are preserved."</string>
+    <string name="ui_24" formatted="false">"Settings and backups"</string>
     <string name="ui_240" formatted="false">"Invalid activity date."</string>
-    <string name="ui_241" formatted="false">"Save with your own intent."</string>
+    <string name="ui_241" formatted="false">"Save with your own purpose."</string>
     <string name="ui_242" formatted="false">"Add a private note if you like."</string>
-<string name="ui_243" formatted="false">"Notifications"</string>
-<string name="ui_244" formatted="false">"Settings"</string>
-<string name="ui_245" formatted="false">"Back"</string>
-<string name="ui_246" formatted="false">"General"</string>
-<string name="ui_247" formatted="false">"Saves"</string>
-<string name="ui_248" formatted="false">"days"</string>
-<string name="ui_249" formatted="false">"Intents and quick reasons"</string>
-<string name="ui_250" formatted="false">"Show, hide or add personal options."</string>
-<string name="ui_251" formatted="false">"Notification center"</string>
-<string name="ui_252" formatted="false">"See your reminders here."</string>
-<string name="ui_253" formatted="false">"System notification settings"</string>
-<string name="ui_254" formatted="false">"On"</string>
-<string name="ui_255" formatted="false">"Off"</string>
-<string name="ui_256" formatted="false">"Backup"</string>
-<string name="ui_257" formatted="false">"Export your saves and personal options."</string>
-<string name="ui_258" formatted="false">"Your existing saves are preserved."</string>
-<string name="ui_259" formatted="false">"No notifications yet."</string>
-<string name="ui_260" formatted="false">"Recent notifications"</string>
-<string name="ui_261" formatted="false">"This save no longer exists."</string>
-<string name="ui_262" formatted="false">"Clear notification history"</string>
-<string name="ui_263" formatted="false">"Upcoming reminders"</string>
-<string name="ui_264" formatted="false">"Notifications could not be read. Existing history is preserved."</string>
-<string name="ui_265" formatted="false">"Notifications could not be saved."</string>
-<string name="ui_266" formatted="false">"Choose your intent"</string>
-<string name="ui_267" formatted="false">"Dark"</string>
-<string name="ui_268" formatted="false">"Play video"</string>
-<string name="ui_269" formatted="false">"The video could not load. You can open it in the source app."</string>
-<string name="ui_270" formatted="false">"SaveWhy Unlimited"</string>
-<string name="ui_271" formatted="false">"20 free saves · One-time purchase"</string>
-<string name="ui_272" formatted="false">"Unlimited saves enabled"</string>
-<string name="ui_273" formatted="false">"Support"</string>
-<string name="ui_274" formatted="false">"Contact and support"</string>
-<string name="ui_275" formatted="false">"Are you happy with the app?"</string>
-<string name="ui_276" formatted="false">"Share your feedback with us."</string>
-<string name="ui_277" formatted="false">"Keep saving without limits."</string>
-<string name="ui_278" formatted="false">"Your first 20 saves are free. Remove the limit with a one-time purchase."</string>
-<string name="ui_279" formatted="false">"Unlimited saves"</string>
-<string name="ui_280" formatted="false">"Reminders and Forgotten saves"</string>
-<string name="ui_281" formatted="false">"Personal intents and quick reasons"</string>
-<string name="ui_282" formatted="false">"Backup and restore"</string>
-<string name="ui_283" formatted="false">"One-time payment. No subscription."</string>
-<string name="ui_284" formatted="false">"The free version holds up to 20 saves, including completed ones. You can always open, edit and back up your existing saves."</string>
-<string name="ui_285" formatted="false">"Buy now"</string>
-<string name="ui_286" formatted="false">"Restore purchase"</string>
-<string name="ui_287" formatted="false">"Continue for now"</string>
-<string name="ui_288" formatted="false">"Price is provided by Google Play."</string>
-<string name="ui_289" formatted="false">"Continue"</string>
-<string name="ui_290" formatted="false">"Google Play purchases are currently unavailable."</string>
-<string name="ui_291" formatted="false">"Connecting to Google Play…"</string>
-<string name="ui_292" formatted="false">"Disconnected from Google Play. You can try again."</string>
-<string name="ui_293" formatted="false">"Purchase canceled."</string>
-<string name="ui_294" formatted="false">"The purchase could not complete. You can try again."</string>
-<string name="ui_295" formatted="false">"Payment is pending. Unlimited saves unlock after it completes."</string>
-<string name="ui_296" formatted="false">"The purchase could not be verified."</string>
-<string name="ui_297" formatted="false">"The purchase could not be saved. Restore your purchase."</string>
-<string name="ui_298" formatted="false">"Unlimited saves unlocked. Thank you!"</string>
-<string name="ui_299" formatted="false">"Purchase confirmation is pending. Try restoring it."</string>
-<string name="ui_300" formatted="false">"Unlimited saves are already enabled."</string>
-<string name="ui_301" formatted="false">"The purchase could not start. You can try again."</string>
-<string name="ui_302" formatted="false">"You have reached the 20-save free limit."</string>
-<string name="ui_303" formatted="false">"Your quick feedback helps us improve SaveWhy."</string>
-<string name="ui_304" formatted="false">"I like it"</string>
-<string name="ui_305" formatted="false">"It could be better"</string>
-<string name="ui_306" formatted="false">"Not now"</string>
-<string name="ui_307" formatted="false">"Feedback"</string>
-<string name="ui_308" formatted="false">"Your feedback · optional"</string>
-<string name="ui_309" formatted="false">"A draft opens in your email app. You can edit it before sending."</string>
-<string name="ui_310" formatted="false">"Share by email"</string>
-<string name="ui_311" formatted="false">"Purchase removes the 20-save limit. Technical capacity: 5,000 saves / 4 MB."</string>
-<string name="ui_312">Choose thumbnail</string>
-<string name="ui_313">Could not read the image. Choose another image.</string>
-<string name="ui_314">Add image</string>
-<string name="ui_315">Images</string>
-<string name="ui_316">Image</string>
-<string name="ui_317">Screenshot</string>
-<string name="ui_318">Enlarge image</string>
-<string name="ui_319">Tags</string>
-<string name="ui_320">Add tags · separate with commas</string>
-<string name="ui_321">Shopping</string>
-<string name="ui_322">Recipe</string>
-<string name="ui_323">Work</string>
-<string name="ui_324">Idea</string>
-<string name="ui_325">Reference</string>
-<string name="ui_326">Preparing image…</string>
-<string name="ui_327">Reading text in image…</string>
-<string name="ui_328">Could not read text. You can try again.</string>
-<string name="ui_329">Text from the image is searchable.</string>
-<string name="ui_330">Show recognized text</string>
-<string name="ui_331">Text in image</string>
-<string name="ui_332">Scan text again</string>
-<string name="ui_333">Create backup</string>
-<string name="ui_334">Export records, images and personal choices.</string>
-<string name="ui_335">Preparing backup…</string>
-<string name="ui_336">Checking backup…</string>
-<string name="ui_337">Tags can have up to 40 characters.</string>
-<string name="ui_338">You can add up to 12 tags.</string>
-<string name="ui_339">Invalid tags.</string>
-<string name="ui_340">Add tag</string>
-<string name="ui_341">Screenshots</string>
-<string name="ui_342">Videos</string>
-<string name="ui_343">Social</string>
-<string name="ui_344">Video</string>
-<string name="ui_345">Device video</string>
-<string name="ui_346">Add video</string>
-<string name="ui_347">Open video</string>
-<string name="ui_348">Preparing video…</string>
-<string name="ui_349">Could not add video. Choose a playable video up to 64 MB.</string>
-<string name="ui_350">Could not open video. Install a video player on your device.</string>
-<string name="ui_351">Free records</string>
-<string name="ui_352">Screenshots, videos and tags</string>
-<string name="ui_353">Search text in images</string>
-<string name="ui_354">Backup with images and videos</string>
-<string name="ui_355">Linked file · no duplicate copy</string>
-<string name="ui_356">Relink file</string>
-<string name="ui_357">Copy saved by an earlier version</string>
-<string name="ui_358">Cannot access the file. Relink it.</string>
-<string name="ui_359">The share grants temporary access. Select the same file to link it without copying.</string>
-<string name="ui_360">Could not retain file access. Select another file source.</string>
-<string name="ui_361">Export tags, notes and file references.</string>
-<string name="ui_362">Linked files and access permissions are not transferred. Relink the files on another device.</string>
-<string name="ui_363">Invalid file reference.</string>
-<string name="ui_364">Tags and notes backup</string>
-<string name="ui_365">New local records link to the file. Backups do not include the original file.</string>
+    <string name="ui_243" formatted="false">"Notifications"</string>
+    <string name="ui_244" formatted="false">"Settings"</string>
+    <string name="ui_245" formatted="false">"Back"</string>
+    <string name="ui_246" formatted="false">"General"</string>
+    <string name="ui_247" formatted="false">"Saves"</string>
+    <string name="ui_248" formatted="false">"days"</string>
+    <string name="ui_249" formatted="false">"Purposes and quick reasons"</string>
+    <string name="ui_25" formatted="false">"Save it. Remember why. Take action."</string>
+    <string name="ui_250" formatted="false">"Show, hide or add personal options."</string>
+    <string name="ui_251" formatted="false">"Notification center"</string>
+    <string name="ui_252" formatted="false">"See your reminders here."</string>
+    <string name="ui_253" formatted="false">"System notification settings"</string>
+    <string name="ui_254" formatted="false">"On"</string>
+    <string name="ui_255" formatted="false">"Off"</string>
+    <string name="ui_256" formatted="false">"Backup"</string>
+    <string name="ui_257" formatted="false">"Export your saves and personal options."</string>
+    <string name="ui_258" formatted="false">"Your existing saves are preserved."</string>
+    <string name="ui_259" formatted="false">"No notifications yet."</string>
+    <string name="ui_26" formatted="false">"Save it. Remember why."</string>
+    <string name="ui_260" formatted="false">"Recent notifications"</string>
+    <string name="ui_261" formatted="false">"This save no longer exists."</string>
+    <string name="ui_262" formatted="false">"Clear notification history"</string>
+    <string name="ui_263" formatted="false">"Upcoming reminders"</string>
+    <string name="ui_264" formatted="false">"Notifications could not be read. Existing history is preserved."</string>
+    <string name="ui_265" formatted="false">"Notifications could not be saved."</string>
+    <string name="ui_266" formatted="false">"Choose why you're saving this"</string>
+    <string name="ui_267" formatted="false">"Dark"</string>
+    <string name="ui_268" formatted="false">"Play video"</string>
+    <string name="ui_269" formatted="false">"The video could not load. You can open it in the source app."</string>
+    <string name="ui_27" formatted="false">"Tap to continue"</string>
+    <string name="ui_270" formatted="false">"tosave Unlimited"</string>
+    <string name="ui_271" formatted="false">"20 free saves · One-time purchase"</string>
+    <string name="ui_272" formatted="false">"Unlimited saves enabled"</string>
+    <string name="ui_273" formatted="false">"Support"</string>
+    <string name="ui_274" formatted="false">"Contact and support"</string>
+    <string name="ui_275" formatted="false">"Are you happy with the app?"</string>
+    <string name="ui_276" formatted="false">"Share your feedback with us."</string>
+    <string name="ui_277" formatted="false">"Keep saving without limits."</string>
+    <string name="ui_278" formatted="false">"Your first 20 saves are free. Remove the limit with a one-time purchase."</string>
+    <string name="ui_279" formatted="false">"Unlimited saves"</string>
+    <string name="ui_28" formatted="false">"Search your saves"</string>
+    <string name="ui_280" formatted="false">"Reminders and Forgotten saves"</string>
+    <string name="ui_281" formatted="false">"Personal purposes and quick reasons"</string>
+    <string name="ui_282" formatted="false">"Backup and restore"</string>
+    <string name="ui_283" formatted="false">"One-time payment. No subscription."</string>
+    <string name="ui_284" formatted="false">"The free version holds up to 20 saves, including completed ones. You can always open, edit and back up your existing saves."</string>
+    <string name="ui_285" formatted="false">"Buy now"</string>
+    <string name="ui_286" formatted="false">"Restore purchase"</string>
+    <string name="ui_287" formatted="false">"Continue for now"</string>
+    <string name="ui_288" formatted="false">"Price is provided by Google Play."</string>
+    <string name="ui_289" formatted="false">"Continue"</string>
+    <string name="ui_29" formatted="false">"New save"</string>
+    <string name="ui_290" formatted="false">"Google Play purchases are currently unavailable."</string>
+    <string name="ui_291" formatted="false">"Connecting to Google Play…"</string>
+    <string name="ui_292" formatted="false">"Disconnected from Google Play. You can try again."</string>
+    <string name="ui_293" formatted="false">"Purchase canceled."</string>
+    <string name="ui_294" formatted="false">"The purchase could not complete. You can try again."</string>
+    <string name="ui_295" formatted="false">"Payment is pending. Unlimited saves unlock after it completes."</string>
+    <string name="ui_296" formatted="false">"The purchase could not be verified."</string>
+    <string name="ui_297" formatted="false">"The purchase could not be saved. Restore your purchase."</string>
+    <string name="ui_298" formatted="false">"Unlimited saves unlocked. Thank you!"</string>
+    <string name="ui_299" formatted="false">"Purchase confirmation is pending. Try restoring it."</string>
+    <string name="ui_3" formatted="false">"Learn"</string>
+    <string name="ui_30" formatted="false">" saves"</string>
+    <string name="ui_300" formatted="false">"Unlimited saves are already enabled."</string>
+    <string name="ui_301" formatted="false">"The purchase could not start. You can try again."</string>
+    <string name="ui_302" formatted="false">"You have reached the 20-save free limit."</string>
+    <string name="ui_303" formatted="false">"Your quick feedback helps us improve tosave."</string>
+    <string name="ui_304" formatted="false">"I like it"</string>
+    <string name="ui_305" formatted="false">"It could be better"</string>
+    <string name="ui_306" formatted="false">"Not now"</string>
+    <string name="ui_307" formatted="false">"Feedback"</string>
+    <string name="ui_308" formatted="false">"Your feedback · optional"</string>
+    <string name="ui_309" formatted="false">"A draft opens in your email app. You can edit it before sending."</string>
+    <string name="ui_31" formatted="false">"You haven't saved anything yet"</string>
+    <string name="ui_310" formatted="false">"Share by email"</string>
+    <string name="ui_311" formatted="false">"Purchase removes the 20-save limit. Technical capacity: 5,000 saves / 4 MB."</string>
+    <string name="ui_312" formatted="false">"Choose thumbnail"</string>
+    <string name="ui_313" formatted="false">"Could not read the image. Choose another image."</string>
+    <string name="ui_314" formatted="false">"Add image"</string>
+    <string name="ui_315" formatted="false">"Images"</string>
+    <string name="ui_316" formatted="false">"Image"</string>
+    <string name="ui_317" formatted="false">"Screenshot"</string>
+    <string name="ui_318" formatted="false">"Enlarge image"</string>
+    <string name="ui_319" formatted="false">"Tags"</string>
+    <string name="ui_32" formatted="false">"No saves here yet."</string>
+    <string name="ui_320" formatted="false">"Add tags · separate with commas"</string>
+    <string name="ui_321" formatted="false">"Shopping"</string>
+    <string name="ui_322" formatted="false">"Recipe"</string>
+    <string name="ui_323" formatted="false">"Work"</string>
+    <string name="ui_324" formatted="false">"Idea"</string>
+    <string name="ui_325" formatted="false">"Reference"</string>
+    <string name="ui_326" formatted="false">"Preparing image…"</string>
+    <string name="ui_327" formatted="false">"Reading text in image…"</string>
+    <string name="ui_328" formatted="false">"Could not read text. You can try again."</string>
+    <string name="ui_329" formatted="false">"Text from the image is searchable."</string>
+    <string name="ui_33" formatted="false">"Send a link, photo or video to tosave using the Share menu. Choose why you're saving it so you can find it easily later."</string>
+    <string name="ui_330" formatted="false">"Show recognized text"</string>
+    <string name="ui_331" formatted="false">"Text in image"</string>
+    <string name="ui_332" formatted="false">"Scan text again"</string>
+    <string name="ui_333" formatted="false">"Create backup"</string>
+    <string name="ui_334" formatted="false">"Export records, images and personal choices."</string>
+    <string name="ui_335" formatted="false">"Preparing backup…"</string>
+    <string name="ui_336" formatted="false">"Checking backup…"</string>
+    <string name="ui_337" formatted="false">"Tags can have up to 40 characters."</string>
+    <string name="ui_338" formatted="false">"You can add up to 12 tags."</string>
+    <string name="ui_339" formatted="false">"Invalid tags."</string>
+    <string name="ui_34" formatted="false">"Choose another purpose or change your search."</string>
+    <string name="ui_340" formatted="false">"Add tag"</string>
+    <string name="ui_341" formatted="false">"Screenshots"</string>
+    <string name="ui_342" formatted="false">"Videos"</string>
+    <string name="ui_343" formatted="false">"Social"</string>
+    <string name="ui_344" formatted="false">"Video"</string>
+    <string name="ui_345" formatted="false">"Device video"</string>
+    <string name="ui_346" formatted="false">"Add video"</string>
+    <string name="ui_347" formatted="false">"Open video"</string>
+    <string name="ui_348" formatted="false">"Preparing video…"</string>
+    <string name="ui_349" formatted="false">"Could not add video. Choose a playable video up to 64 MB."</string>
+    <string name="ui_35" formatted="false">"How it works"</string>
+    <string name="ui_350" formatted="false">"Could not open video. Install a video player on your device."</string>
+    <string name="ui_351" formatted="false">"Free records"</string>
+    <string name="ui_352" formatted="false">"Screenshots, videos and tags"</string>
+    <string name="ui_353" formatted="false">"Search text in images"</string>
+    <string name="ui_354" formatted="false">"Backup with images and videos"</string>
+    <string name="ui_355" formatted="false">"Linked file · no duplicate copy"</string>
+    <string name="ui_356" formatted="false">"Relink file"</string>
+    <string name="ui_357" formatted="false">"Copy saved by an earlier version"</string>
+    <string name="ui_358" formatted="false">"Cannot access the file. Relink it."</string>
+    <string name="ui_359" formatted="false">"The share grants temporary access. Select the same file to link it without copying."</string>
+    <string name="ui_36" formatted="false">"Completed"</string>
+    <string name="ui_360" formatted="false">"Could not retain file access. Select another file source."</string>
+    <string name="ui_361" formatted="false">"Export tags, notes and file references."</string>
+    <string name="ui_362" formatted="false">"Linked files and access permissions are not transferred. Relink the files on another device."</string>
+    <string name="ui_363" formatted="false">"Invalid file reference."</string>
+    <string name="ui_364" formatted="false">"Tags and notes backup"</string>
+    <string name="ui_365" formatted="false">"New local records link to the file. Backups do not include the original file."</string>
+    <string name="ui_37" formatted="false">"Saved with purpose"</string>
+    <string name="ui_38" formatted="false">" steps"</string>
+    <string name="ui_39" formatted="false">"Why are you saving this?"</string>
+    <string name="ui_4" formatted="false">"Create"</string>
+    <string name="ui_40" formatted="false">"Edit your save"</string>
+    <string name="ui_41" formatted="false">"Choose your purpose. You can edit the title and details later."</string>
+    <string name="ui_42" formatted="false">"Link"</string>
+    <string name="ui_43" formatted="false">"Paste link"</string>
+    <string name="ui_44" formatted="false">"Edit link"</string>
+    <string name="ui_45" formatted="false">"Saving purpose"</string>
+    <string name="ui_46" formatted="false">"Choose an purpose to start."</string>
+    <string name="ui_47" formatted="false">"QUICK REASON"</string>
+    <string name="ui_48" formatted="false">"Add reminder"</string>
+    <string name="ui_49" formatted="false">"These fields are optional. You can save without filling them in."</string>
+    <string name="ui_5" formatted="false">"Watch"</string>
+    <string name="ui_50" formatted="false">"Title · optional"</string>
+    <string name="ui_51" formatted="false">"Private note · optional"</string>
+    <string name="ui_52" formatted="false">"Checklist"</string>
+    <string name="ui_53" formatted="false">"Break your plan into small tasks. Check them off in the card as you finish. Leave this empty if you prefer."</string>
+    <string name="ui_54" formatted="false">"Tasks · one per line"</string>
+    <string name="ui_55" formatted="false">"Choose example tasks"</string>
+    <string name="ui_56" formatted="false">"Choose an purpose first."</string>
+    <string name="ui_57" formatted="false">"Find search query · optional"</string>
+    <string name="ui_58" formatted="false">"Note and checklist · optional"</string>
+    <string name="ui_59" formatted="false">"Save changes"</string>
+    <string name="ui_6" formatted="false">"Find"</string>
+    <string name="ui_60" formatted="false">"Stored on your device. Works offline."</string>
+    <string name="ui_61" formatted="false">"Reminder"</string>
+    <string name="ui_62" formatted="false">"Share a link or paste one."</string>
+    <string name="ui_63" formatted="false">" · save"</string>
+    <string name="ui_64" formatted="false">"Choose a future time."</string>
+    <string name="ui_65" formatted="false">"Saved · "</string>
+    <string name="ui_66" formatted="false">"Save updated"</string>
+    <string name="ui_67" formatted="false">"No link in your clipboard."</string>
+    <string name="ui_68" formatted="false">"Your clipboard does not contain a valid link."</string>
+    <string name="ui_69" formatted="false">"Saving purpose"</string>
+    <string name="ui_7" formatted="false">"Pending"</string>
+    <string name="ui_70" formatted="false">" tasks completed"</string>
+    <string name="ui_71" formatted="false">"No reminder"</string>
+    <string name="ui_72" formatted="false">"Edit reminder"</string>
+    <string name="ui_73" formatted="false">"Watch content"</string>
+    <string name="ui_74" formatted="false">"Open original content"</string>
+    <string name="ui_75" formatted="false">"Mark as pending"</string>
+    <string name="ui_76" formatted="false">"Marked as pending"</string>
+    <string name="ui_77" formatted="false">"Edit"</string>
+    <string name="ui_78" formatted="false">"Delete save"</string>
+    <string name="ui_79" formatted="false">"Delete this save?"</string>
+    <string name="ui_8" formatted="false">"All"</string>
+    <string name="ui_80" formatted="false">"Save deleted"</string>
+    <string name="ui_81" formatted="false">"Undo"</string>
+    <string name="ui_82" formatted="false">"What would you like to search for?"</string>
+    <string name="ui_83" formatted="false">"Search the web"</string>
+    <string name="ui_84" formatted="false">"Only this query is sent to Google search."</string>
+    <string name="ui_85" formatted="false">"Enter what you want to search for."</string>
+    <string name="ui_86" formatted="false">"No app available to open this link."</string>
+    <string name="ui_87" formatted="false">"Choose your look"</string>
+    <string name="ui_88" formatted="false">"The AMOLED theme uses a pure black background."</string>
+    <string name="ui_89" formatted="false">"Pure black AMOLED"</string>
+    <string name="ui_9" formatted="false">"Completed"</string>
+    <string name="ui_90" formatted="false">"Light"</string>
+    <string name="ui_91" formatted="false">"Follow system"</string>
+    <string name="ui_92" formatted="false">" · selected"</string>
+    <string name="ui_93" formatted="false">"Your saves stay on your device. You are in control."</string>
+    <string name="ui_94" formatted="false">"App language"</string>
+    <string name="ui_95" formatted="false">"System language"</string>
+    <string name="ui_96" formatted="false">"Appearance"</string>
+    <string name="ui_97" formatted="false">"Export JSON backup"</string>
+    <string name="ui_98" formatted="false">"Import backup"</string>
+    <string name="ui_99" formatted="false">"Font license"</string>
 </resources>

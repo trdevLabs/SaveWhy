@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="about_contribution" formatted="false">"tosave 的部分收入用于支持患有脊髓性肌萎缩症（SMA）的儿童、儿童保护与照护机构、医疗与教育机构以及植树项目。目的是帮助儿童的生活与照护，支持医疗服务的获得、教育机会和自然环境保护。"</string>
+    <string name="about_contribution_title" formatted="false">"一起贡献力量"</string>
+    <string name="about_developer" formatted="false">"开发者"</string>
+    <string name="about_entry" formatted="false">"关于 tosave"</string>
+    <string name="about_independent" formatted="false">"tosave 由 tr.developer 独立开发。由于设备和使用情况不同，应用可能存在功能不足或错误。收到的问题反馈会经过检查，开发者会尽力尽快修复。你的建议有助于应用改进。报告问题时，请提供设备型号、Android 版本以及导致问题的操作步骤，以便更快解决。"</string>
+    <string name="about_independent_title" formatted="false">"独立开发"</string>
+    <string name="about_purpose" formatted="false">"tosave 帮助你整理分享给应用的链接、照片和视频。你可以为每项保存的内容选择用途，并添加标签、私人笔记和提醒。这样就能记住保存原因，并在需要时轻松找到内容。"</string>
+    <string name="about_title" formatted="false">"关于"</string>
+    <string name="card_counts">"%1$d 待处理 · %2$d 已完成"</string>
+    <string name="media_saved_copy" formatted="false">"保存在应用中"</string>
+    <string name="ocr_empty" formatted="false">"图片中未发现文字。"</string>
+    <string name="ocr_inline_title" formatted="false">"图片中的文字"</string>
+    <string name="shared_media_error" formatted="false">"无法读取分享的文件，或文件超出大小限制。"</string>
+    <string name="ui_0" formatted="false">"做"</string>
+    <string name="ui_1" formatted="false">"去"</string>
+    <string name="ui_10" formatted="false">"关闭"</string>
+    <string name="ui_100" formatted="false">"v0.4.0 · 提醒和语言设置\nAI 内容分析尚未提供。"</string>
+    <string name="ui_101" formatted="false">"一条线,一条目的。"</string>
+    <string name="ui_102" formatted="false">"1 分享内容"</string>
+    <string name="ui_103" formatted="false">"在社交应用中选择分享 → tosave。"</string>
+    <string name="ui_104" formatted="false">"2 选择你的目的"</string>
+    <string name="ui_105" formatted="false">"做、去、购买、学习、创建、观看或找到,选择快速原因或立即节省。"</string>
+    <string name="ui_106" formatted="false">"3 回归时是时候"</string>
+    <string name="ui_107" formatted="false">"打开源,研究它或完成你的任务 编辑标题和笔记,每当你喜欢。"</string>
+    <string name="ui_108" formatted="false">"标题来自共享信息或链接. 该应用程序不分析视频。"</string>
+    <string name="ui_109" formatted="false">"知道了"</string>
+    <string name="ui_11" formatted="false">"保存"</string>
+    <string name="ui_110" formatted="false">"备份出口。"</string>
+    <string name="ui_111" formatted="false">"导入此备份？"</string>
+    <string name="ui_112" formatted="false">" 将添加新的存储物品;现有存储物品将被保留;复制品将被转移。"</string>
+    <string name="ui_113" formatted="false">"导入"</string>
+    <string name="ui_114" formatted="false">" 添加保存物品。"</string>
+    <string name="ui_115" formatted="false">"通知已关闭"</string>
+    <string name="ui_116" formatted="false">"请在设置中开启 tosave 通知以添加提醒。保存的内容仍会保留。"</string>
+    <string name="ui_117" formatted="false">"打开设置"</string>
+    <string name="ui_118" formatted="false">"通知许可未被授予,没有提及。"</string>
+    <string name="ui_119" formatted="false">"什么时候提醒你？"</string>
+    <string name="ui_12" formatted="false">"取消"</string>
+    <string name="ui_120" formatted="false">"如果计划一起行动，请选择见面时间。通知只会出现在你的设备上，不会发送给其他人。"</string>
+    <string name="ui_121" formatted="false">"Android 電池儲存可能會延遲通知的選擇時間。"</string>
+    <string name="ui_122" formatted="false">"1 小时后"</string>
+    <string name="ui_123" formatted="false">"今晚 · 20:00"</string>
+    <string name="ui_124" formatted="false">"明天 · 09:00"</string>
+    <string name="ui_125" formatted="false">"周末 · 10:00"</string>
+    <string name="ui_126" formatted="false">"选择日期与时间"</string>
+    <string name="ui_127" formatted="false">"提醒"</string>
+    <string name="ui_128" formatted="false">"返回您选择的时刻存储的项目。"</string>
+    <string name="ui_129" formatted="false">"是时候回到你保存的物品。"</string>
+    <string name="ui_13" formatted="false">"添加"</string>
+    <string name="ui_130" formatted="false">"以后我会尝试"</string>
+    <string name="ui_131" formatted="false">"我将在本周末做"</string>
+    <string name="ui_132" formatted="false">"对我有用"</string>
+    <string name="ui_133" formatted="false">"我们将共同做"</string>
+    <string name="ui_134" formatted="false">"我想去参观"</string>
+    <string name="ui_135" formatted="false">"周末的"</string>
+    <string name="ui_136" formatted="false">"我会和朋友一起去"</string>
+    <string name="ui_137" formatted="false">"添加到我的旅行计划"</string>
+    <string name="ui_138" formatted="false">"想想买它"</string>
+    <string name="ui_139" formatted="false">"我将比较价格"</string>
+    <string name="ui_14" formatted="false">"删除"</string>
+    <string name="ui_140" formatted="false">"礼物想法"</string>
+    <string name="ui_141" formatted="false">"我需要它"</string>
+    <string name="ui_142" formatted="false">"我想学习"</string>
+    <string name="ui_143" formatted="false">"我会在工作中使用它"</string>
+    <string name="ui_144" formatted="false">"我会练习"</string>
+    <string name="ui_145" formatted="false">"保持为参考"</string>
+    <string name="ui_146" formatted="false">"它激励我"</string>
+    <string name="ui_147" formatted="false">"我会调整格式。"</string>
+    <string name="ui_148" formatted="false">"新内容理念"</string>
+    <string name="ui_149" formatted="false">"我喜欢讲故事"</string>
+    <string name="ui_15" formatted="false">"搜索"</string>
+    <string name="ui_150" formatted="false">"以后我会看"</string>
+    <string name="ui_151" formatted="false">"今天晚上"</string>
+    <string name="ui_152" formatted="false">"在我的自由时间"</string>
+    <string name="ui_153" formatted="false">"我们将共同观察"</string>
+    <string name="ui_154" formatted="false">"我会发现它是什么"</string>
+    <string name="ui_155" formatted="false">"我会寻找类似的东西。"</string>
+    <string name="ui_156" formatted="false">"我会找到源头。"</string>
+    <string name="ui_157" formatted="false">"我会找到位置"</string>
+    <string name="ui_158" formatted="false">"尝试,做或准备一些东西。"</string>
+    <string name="ui_159" formatted="false">"你想做什么?什么时候或在哪里你会使用它?"</string>
+    <string name="ui_16" formatted="false">"已完成"</string>
+    <string name="ui_160" formatted="false">"列出你需要的东西\n准备失去的一切\n试试,并注意结果。"</string>
+    <string name="ui_161" formatted="false">"参观某个地方或活动。"</string>
+    <string name="ui_162" formatted="false">"你想去哪里,和谁和为什么?"</string>
+    <string name="ui_163" formatted="false">"查看地址及开放时间\n选择一天去参观\n您访问后添加笔记"</string>
+    <string name="ui_164" formatted="false">"考虑购买。"</string>
+    <string name="ui_165" formatted="false">"这个产品会满足什么需求?你的预算或选择标准是什么?"</string>
+    <string name="ui_166" formatted="false">"写下你的需要和预算\n比较价格和替代品\n决定是否要买"</string>
+    <string name="ui_167" formatted="false">"学习或建立技能。"</string>
+    <string name="ui_168" formatted="false">"你想学到什么,你会应用它在哪里?"</string>
+    <string name="ui_169" formatted="false">"写下你想学到的东西\n从内容中获取笔记\n用一个例子练习"</string>
+    <string name="ui_17" formatted="false">"已到访"</string>
+    <string name="ui_170" formatted="false">"将一个想法转化为自己的内容。"</string>
+    <string name="ui_171" formatted="false">"什么激励你?你将如何在自己的内容中使用它?"</string>
+    <string name="ui_172" formatted="false">"注意开端线和格式\n选择你的角度和观众\n写下流量并呼吁行动\n创建自己的版本"</string>
+    <string name="ui_173" formatted="false">"随后观看视频或内容。"</string>
+    <string name="ui_174" formatted="false">"為什麼會想看?什麼時候會有好時光?"</string>
+    <string name="ui_175" formatted="false">"探索你所看到的东西或类似的东西。"</string>
+    <string name="ui_176" formatted="false">"究竟你想找什么?你有哪些提示?"</string>
+    <string name="ui_177" formatted="false">"澄清你正在寻找什么和你的提示\n查看描述和评论\n用有用的查询搜索网页\n与来源相比"</string>
+    <string name="ui_178" formatted="false">"存储的项目无法阅读,现有文件保留。"</string>
+    <string name="ui_179" formatted="false">"此部分不包含有效的链接。"</string>
+    <string name="ui_18" formatted="false">"已决定"</string>
+    <string name="ui_180" formatted="false">"开启新股票?"</string>
+    <string name="ui_181" formatted="false">"目前的草案将结束。"</string>
+    <string name="ui_182" formatted="false">"保持现行草案"</string>
+    <string name="ui_183" formatted="false">"开设新股票"</string>
+    <string name="ui_184" formatted="false">"存储的项目文件无法阅读,现有文件保留。"</string>
+    <string name="ui_185" formatted="false">"存储的项目文件无法阅读. 无法打开新的存储项目。"</string>
+    <string name="ui_186" formatted="false">"保存的项目无法阅读,无法创建备份。"</string>
+    <string name="ui_187" formatted="false">"没有Picker文件。"</string>
+    <string name="ui_188" formatted="false">"文件无法打开。"</string>
+    <string name="ui_189" formatted="false">"请选择有效的 tosave 备份。"</string>
+    <string name="ui_19" formatted="false">"已学会"</string>
+    <string name="ui_190" formatted="false">"操作无法完成 查看文件和可用的存储。"</string>
+    <string name="ui_191" formatted="false">"不合格的目的。"</string>
+    <string name="ui_192" formatted="false">"分享或插入链接。"</string>
+    <string name="ui_193" formatted="false">"这个链接已经用这个目的保存了。"</string>
+    <string name="ui_194" formatted="false">"保存的项目文件无法阅读,无法创建备份。"</string>
+    <string name="ui_195" formatted="false">"保存的项目文件无法阅读;现有文件保留。"</string>
+    <string name="ui_196" formatted="false">"您可以存储多达5000件存储的物品。"</string>
+    <string name="ui_197" formatted="false">"存储的项目超过 4 MB 限制。"</string>
+    <string name="ui_198" formatted="false">"文件容量可达 4 MB。"</string>
+    <string name="ui_199" formatted="false">"任务"</string>
+    <string name="ui_2" formatted="false">"购买"</string>
+    <string name="ui_20" formatted="false">"已创作"</string>
+    <string name="ui_200" formatted="false">"标题"</string>
+    <string name="ui_201" formatted="false">"保存原因"</string>
+    <string name="ui_202" formatted="false">"搜索查询可达300个字符。"</string>
+    <string name="ui_203" formatted="false">"残疾人保存日期"</string>
+    <string name="ui_204" formatted="false">"您可以添加多达30个任务。"</string>
+    <string name="ui_205" formatted="false">" 不能空了。"</string>
+    <string name="ui_206" formatted="false">" 可以上到 "</string>
+    <string name="ui_207" formatted="false">" 人物。"</string>
+    <string name="ui_208" formatted="false">"网页搜索可用于搜索目的。"</string>
+    <string name="ui_209" formatted="false">"文件包含意想不到的额外内容。"</string>
+    <string name="ui_21" formatted="false">"已观看"</string>
+    <string name="ui_210" formatted="false">"不支持的备份格式。"</string>
+    <string name="ui_211" formatted="false">"错误的备份文件。"</string>
+    <string name="ui_212" formatted="false">"您可以进口多达5000件存储的物品。"</string>
+    <string name="ui_213" formatted="false">"残疾纪念日期。"</string>
+    <string name="ui_214" formatted="false">"文件包含复制保存ID。"</string>
+    <string name="ui_215" formatted="false">"存储的物品总数不得超过5000件。"</string>
+    <string name="ui_216" formatted="false">"链接太长了。"</string>
+    <string name="ui_217" formatted="false">"输入有效的 http/https 链接。"</string>
+    <string name="ui_218" formatted="false">"今天晚上过去了 · 明天下午8点"</string>
+    <string name="ui_219" formatted="false">"允许通知保存提醒。"</string>
+    <string name="ui_22" formatted="false">"已找到"</string>
+    <string name="ui_220" formatted="false">"被遗忘"</string>
+    <string name="ui_221" formatted="false">"被遗忘内容设置"</string>
+    <string name="ui_222" formatted="false">"自定义目的"</string>
+    <string name="ui_223" formatted="false">"自定义原因"</string>
+    <string name="ui_224" formatted="false">"未打开或更改未完成的存储项目的日数 旧存储项目显示在被遗忘;您的存储项目不会被删除。"</string>
+    <string name="ui_225" formatted="false">"天数 · 1–365"</string>
+    <string name="ui_226" formatted="false">"输入 1 到 365 之间的日数。"</string>
+    <string name="ui_227" formatted="false">"添加或重新命名选项. 在应用程序中显示已检查的选项. 隐藏选项不会改变现有存储的项目。"</string>
+    <string name="ui_228" formatted="false">"快捷原因"</string>
+    <string name="ui_229" formatted="false">"添加目的"</string>
+    <string name="ui_23" formatted="false">"选择主题"</string>
+    <string name="ui_230" formatted="false">"添加原因"</string>
+    <string name="ui_231" formatted="false">"完成"</string>
+    <string name="ui_232" formatted="false">"选项名称"</string>
+    <string name="ui_233" formatted="false">"新选项"</string>
+    <string name="ui_234" formatted="false">"编辑选项"</string>
+    <string name="ui_235" formatted="false">"选项名称必须长1～60个字符。"</string>
+    <string name="ui_236" formatted="false">"您可以添加多达500个个人选项。"</string>
+    <string name="ui_237" formatted="false">"不合格的个人选择。"</string>
+    <string name="ui_238" formatted="false">"选项无法保存。"</string>
+    <string name="ui_239" formatted="false">"选项无法阅读,现有设置保留。"</string>
+    <string name="ui_24" formatted="false">"设置与备份"</string>
+    <string name="ui_240" formatted="false">"残疾活动日期。"</string>
+    <string name="ui_241" formatted="false">"用自己的目的保存。"</string>
+    <string name="ui_242" formatted="false">"如果你愿意,请添加私人笔记。"</string>
+    <string name="ui_243" formatted="false">"通知"</string>
+    <string name="ui_244" formatted="false">"设置"</string>
+    <string name="ui_245" formatted="false">"返回"</string>
+    <string name="ui_246" formatted="false">"通用"</string>
+    <string name="ui_247" formatted="false">"已保存"</string>
+    <string name="ui_248" formatted="false">"天"</string>
+    <string name="ui_249" formatted="false">"目的与快捷原因"</string>
+    <string name="ui_25" formatted="false">"保存。记住原因。付诸行动。"</string>
+    <string name="ui_250" formatted="false">"显示、隐藏或添加个人选项。"</string>
+    <string name="ui_251" formatted="false">"通知中心"</string>
+    <string name="ui_252" formatted="false">"在这里查看提醒。"</string>
+    <string name="ui_253" formatted="false">"系统通知设置"</string>
+    <string name="ui_254" formatted="false">"开启"</string>
+    <string name="ui_255" formatted="false">"关闭"</string>
+    <string name="ui_256" formatted="false">"备份"</string>
+    <string name="ui_257" formatted="false">"导出已保存内容与个人选项。"</string>
+    <string name="ui_258" formatted="false">"现有保存内容会保留。"</string>
+    <string name="ui_259" formatted="false">"尚未通知。"</string>
+    <string name="ui_26" formatted="false">"保存。记住原因。"</string>
+    <string name="ui_260" formatted="false">"最近通知"</string>
+    <string name="ui_261" formatted="false">"这个保存的物品已经不存在了。"</string>
+    <string name="ui_262" formatted="false">"清除通知记录"</string>
+    <string name="ui_263" formatted="false">"即将到来的提醒"</string>
+    <string name="ui_264" formatted="false">"通知不能阅读,现有历史保留。"</string>
+    <string name="ui_265" formatted="false">"通知无法保存。"</string>
+    <string name="ui_266" formatted="false">"选择保存目的"</string>
+    <string name="ui_267" formatted="false">"深色"</string>
+    <string name="ui_268" formatted="false">"播放视频"</string>
+    <string name="ui_269" formatted="false">"视频无法上传,您可以在源应用程序中打开。"</string>
+    <string name="ui_27" formatted="false">"点按继续"</string>
+    <string name="ui_270" formatted="false">"tosave 无限版"</string>
+    <string name="ui_271" formatted="false">"20 项免费保存 · 一次性购买"</string>
+    <string name="ui_272" formatted="false">"无限保存已开启"</string>
+    <string name="ui_273" formatted="false">"支持"</string>
+    <string name="ui_274" formatted="false">"联系与支持"</string>
+    <string name="ui_275" formatted="false">"你喜欢这款应用吗？"</string>
+    <string name="ui_276" formatted="false">"分享你的意见。"</string>
+    <string name="ui_277" formatted="false">"继续无限保存。"</string>
+    <string name="ui_278" formatted="false">"前 20 项保存免费，一次性购买即可解除上限。"</string>
+    <string name="ui_279" formatted="false">"无限保存"</string>
+    <string name="ui_28" formatted="false">"搜索已保存内容"</string>
+    <string name="ui_280" formatted="false">"提醒与被遗忘内容"</string>
+    <string name="ui_281" formatted="false">"个人目的与原因"</string>
+    <string name="ui_282" formatted="false">"备份与恢复"</string>
+    <string name="ui_283" formatted="false">"一次性付款。无需订阅。"</string>
+    <string name="ui_284" formatted="false">"免费版可保存 20 项内容，包括已完成的内容。现有内容始终可以打开、编辑和备份。"</string>
+    <string name="ui_285" formatted="false">"立即购买"</string>
+    <string name="ui_286" formatted="false">"恢复购买"</string>
+    <string name="ui_287" formatted="false">"暂时继续"</string>
+    <string name="ui_288" formatted="false">"价格由 Google Play 提供。"</string>
+    <string name="ui_289" formatted="false">"继续"</string>
+    <string name="ui_29" formatted="false">"新建保存"</string>
+    <string name="ui_290" formatted="false">"Google Play 購買目前尚未可用。"</string>
+    <string name="ui_291" formatted="false">"连接到 Google Play .."</string>
+    <string name="ui_292" formatted="false">"Google Play 已关闭,您可以再次尝试。"</string>
+    <string name="ui_293" formatted="false">"購買取消"</string>
+    <string name="ui_294" formatted="false">"購買無法完成,可以再嘗試。"</string>
+    <string name="ui_295" formatted="false">"付款即将到来 无限存储物品在完成后解锁。"</string>
+    <string name="ui_296" formatted="false">"購買無法確認。"</string>
+    <string name="ui_297" formatted="false">"購買無法儲蓄 恢復購買。"</string>
+    <string name="ui_298" formatted="false">"无限存储的项目被解锁,谢谢!"</string>
+    <string name="ui_299" formatted="false">"购买确认即将到来,试着恢复。"</string>
+    <string name="ui_3" formatted="false">"学习"</string>
+    <string name="ui_30" formatted="false">" 项已保存"</string>
+    <string name="ui_300" formatted="false">"无限的存储项目已经启用。"</string>
+    <string name="ui_301" formatted="false">"購買無法開始,你可以再試一次。"</string>
+    <string name="ui_302" formatted="false">"已达到 20 项免费保存的上限。"</string>
+    <string name="ui_303" formatted="false">"你的意见有助于我们改进 tosave。"</string>
+    <string name="ui_304" formatted="false">"喜欢"</string>
+    <string name="ui_305" formatted="false">"可以改进"</string>
+    <string name="ui_306" formatted="false">"暂时不要"</string>
+    <string name="ui_307" formatted="false">"反馈"</string>
+    <string name="ui_308" formatted="false">"你的意见 · 选填"</string>
+    <string name="ui_309" formatted="false">"将在邮件应用中打开草稿，你可以编辑后再发送。"</string>
+    <string name="ui_31" formatted="false">"你还没有保存任何内容"</string>
+    <string name="ui_310" formatted="false">"通过邮件分享"</string>
+    <string name="ui_311" formatted="false">"购买后解除 20 项保存上限。技术容量：5,000 项 / 4 MB。"</string>
+    <string name="ui_312" formatted="false">"选择缩略图"</string>
+    <string name="ui_313" formatted="false">"无法阅读图像,选择另一个图像。"</string>
+    <string name="ui_314" formatted="false">"添加图片"</string>
+    <string name="ui_315" formatted="false">"图片"</string>
+    <string name="ui_316" formatted="false">"图片"</string>
+    <string name="ui_317" formatted="false">"截图"</string>
+    <string name="ui_318" formatted="false">"放大图片"</string>
+    <string name="ui_319" formatted="false">"标签"</string>
+    <string name="ui_32" formatted="false">"尚无保存内容。"</string>
+    <string name="ui_320" formatted="false">"添加标签 · 用逗号分隔"</string>
+    <string name="ui_321" formatted="false">"购物"</string>
+    <string name="ui_322" formatted="false">"食谱"</string>
+    <string name="ui_323" formatted="false">"工作"</string>
+    <string name="ui_324" formatted="false">"灵感"</string>
+    <string name="ui_325" formatted="false">"参考"</string>
+    <string name="ui_326" formatted="false">"正在准备图片…"</string>
+    <string name="ui_327" formatted="false">"正在识别图片文字…"</string>
+    <string name="ui_328" formatted="false">"无法识别文字，请重试。"</string>
+    <string name="ui_329" formatted="false">"可以搜索图片中的文字。"</string>
+    <string name="ui_33" formatted="false">"通过分享菜单将链接、照片或视频发送到 tosave。选择保存原因，以后就能轻松找到。"</string>
+    <string name="ui_330" formatted="false">"显示识别的文字"</string>
+    <string name="ui_331" formatted="false">"图片中的文字"</string>
+    <string name="ui_332" formatted="false">"重新识别文字"</string>
+    <string name="ui_333" formatted="false">"创建备份"</string>
+    <string name="ui_334" formatted="false">"出口记录、图像和个人选择。"</string>
+    <string name="ui_335" formatted="false">"正在准备备份…"</string>
+    <string name="ui_336" formatted="false">"正在检查备份…"</string>
+    <string name="ui_337" formatted="false">"标签最多 40 个字符。"</string>
+    <string name="ui_338" formatted="false">"最多可添加 12 个标签。"</string>
+    <string name="ui_339" formatted="false">"残疾标签。"</string>
+    <string name="ui_34" formatted="false">"选择另一个目的或改变你的搜索。"</string>
+    <string name="ui_340" formatted="false">"添加标签"</string>
+    <string name="ui_341" formatted="false">"截图"</string>
+    <string name="ui_342" formatted="false">"视频"</string>
+    <string name="ui_343" formatted="false">"社交内容"</string>
+    <string name="ui_344" formatted="false">"视频"</string>
+    <string name="ui_345" formatted="false">"设备视频"</string>
+    <string name="ui_346" formatted="false">"添加视频"</string>
+    <string name="ui_347" formatted="false">"打开视频"</string>
+    <string name="ui_348" formatted="false">"正在准备视频…"</string>
+    <string name="ui_349" formatted="false">"不能添加视频 选择可播放的视频,高达 64 MB。"</string>
+    <string name="ui_35" formatted="false">"它是如何工作的"</string>
+    <string name="ui_350" formatted="false">"无法打开视频. 安装您的设备上的视频播放器。"</string>
+    <string name="ui_351" formatted="false">"免费保存"</string>
+    <string name="ui_352" formatted="false">"截图、视频与标签"</string>
+    <string name="ui_353" formatted="false">"搜索图片文字"</string>
+    <string name="ui_354" formatted="false">"含图片与视频的备份"</string>
+    <string name="ui_355" formatted="false">"文件已关联 · 不重复复制"</string>
+    <string name="ui_356" formatted="false">"重新关联文件"</string>
+    <string name="ui_357" formatted="false">"旧版本保存的副本"</string>
+    <string name="ui_358" formatted="false">"无法访问文件，请重新关联。"</string>
+    <string name="ui_359" formatted="false">"共享允许暂时访问. 选择相同的文件将其链接到没有复制。"</string>
+    <string name="ui_36" formatted="false">"已完成"</string>
+    <string name="ui_360" formatted="false">"无法保留文件访问权限，请选择其他来源。"</string>
+    <string name="ui_361" formatted="false">"出口标签、笔记和文件参考。"</string>
+    <string name="ui_362" formatted="false">"链接文件和访问权限不被转移. 将文件重新链接到另一个设备。"</string>
+    <string name="ui_363" formatted="false">"不合格的文件参考。"</string>
+    <string name="ui_364" formatted="false">"标签与笔记备份"</string>
+    <string name="ui_365" formatted="false">"新本地记录链接到文件. 备份不包含原始文件。"</string>
+    <string name="ui_37" formatted="false">"带着目的保存"</string>
+    <string name="ui_38" formatted="false">" 个步骤"</string>
+    <string name="ui_39" formatted="false">"为什么保存这个？"</string>
+    <string name="ui_4" formatted="false">"创作"</string>
+    <string name="ui_40" formatted="false">"编辑保存内容"</string>
+    <string name="ui_41" formatted="false">"选择目的。稍后可以编辑标题和详情。"</string>
+    <string name="ui_42" formatted="false">"链接"</string>
+    <string name="ui_43" formatted="false">"粘贴链接"</string>
+    <string name="ui_44" formatted="false">"编辑链接"</string>
+    <string name="ui_45" formatted="false">"保存目的"</string>
+    <string name="ui_46" formatted="false">"选择一个目的即可开始。"</string>
+    <string name="ui_47" formatted="false">"快速选择原因"</string>
+    <string name="ui_48" formatted="false">"添加提醒"</string>
+    <string name="ui_49" formatted="false">"这些字段均为选填，可以直接保存。"</string>
+    <string name="ui_5" formatted="false">"观看"</string>
+    <string name="ui_50" formatted="false">"标题 · 选填"</string>
+    <string name="ui_51" formatted="false">"私人笔记 · 选填"</string>
+    <string name="ui_52" formatted="false">"任务清单"</string>
+    <string name="ui_53" formatted="false">"把你的计划分成小任务,当你完成时,在卡片中检查它们,如果你喜欢的话,就放空了。"</string>
+    <string name="ui_54" formatted="false">"任务 · 每行一项"</string>
+    <string name="ui_55" formatted="false">"选择示例任务"</string>
+    <string name="ui_56" formatted="false">"请先选择目的。"</string>
+    <string name="ui_57" formatted="false">"搜索词 · 选填"</string>
+    <string name="ui_58" formatted="false">"笔记与任务 · 选填"</string>
+    <string name="ui_59" formatted="false">"保存更改"</string>
+    <string name="ui_6" formatted="false">"查找"</string>
+    <string name="ui_60" formatted="false">"保存在设备上。可离线使用。"</string>
+    <string name="ui_61" formatted="false">"提醒"</string>
+    <string name="ui_62" formatted="false">"分享一个链接或插入一个。"</string>
+    <string name="ui_63" formatted="false">" · 保存"</string>
+    <string name="ui_64" formatted="false">"选择未来时间。"</string>
+    <string name="ui_65" formatted="false">"已保存 · "</string>
+    <string name="ui_66" formatted="false">"保存内容已更新"</string>
+    <string name="ui_67" formatted="false">"没有链接在你的剪辑板上。"</string>
+    <string name="ui_68" formatted="false">"您的剪辑板不包含有效的链接。"</string>
+    <string name="ui_69" formatted="false">"保存目的"</string>
+    <string name="ui_7" formatted="false">"待处理"</string>
+    <string name="ui_70" formatted="false">" 项任务已完成"</string>
+    <string name="ui_71" formatted="false">"无提醒"</string>
+    <string name="ui_72" formatted="false">"编辑提醒"</string>
+    <string name="ui_73" formatted="false">"观看内容"</string>
+    <string name="ui_74" formatted="false">"打开原始内容"</string>
+    <string name="ui_75" formatted="false">"标为待处理"</string>
+    <string name="ui_76" formatted="false">"已标为待处理"</string>
+    <string name="ui_77" formatted="false">"编辑"</string>
+    <string name="ui_78" formatted="false">"删除保存内容"</string>
+    <string name="ui_79" formatted="false">"删除这项保存内容？"</string>
+    <string name="ui_8" formatted="false">"全部"</string>
+    <string name="ui_80" formatted="false">"保存内容已删除"</string>
+    <string name="ui_81" formatted="false">"撤销"</string>
+    <string name="ui_82" formatted="false">"你想寻找什么?"</string>
+    <string name="ui_83" formatted="false">"搜索网页"</string>
+    <string name="ui_84" formatted="false">"仅将此搜索词发送至 Google 搜索。"</string>
+    <string name="ui_85" formatted="false">"输入你想要寻找的东西。"</string>
+    <string name="ui_86" formatted="false">"没有应用程序可以打开此链接。"</string>
+    <string name="ui_87" formatted="false">"选择你的外观"</string>
+    <string name="ui_88" formatted="false">"AMOLED主题使用纯黑色背景。"</string>
+    <string name="ui_89" formatted="false">"纯黑 AMOLED"</string>
+    <string name="ui_9" formatted="false">"已完成"</string>
+    <string name="ui_90" formatted="false">"浅色"</string>
+    <string name="ui_91" formatted="false">"跟随系统"</string>
+    <string name="ui_92" formatted="false">" · 已选择"</string>
+    <string name="ui_93" formatted="false">"保存内容留在你的设备上，由你掌控。"</string>
+    <string name="ui_94" formatted="false">"应用语言"</string>
+    <string name="ui_95" formatted="false">"系统语言"</string>
+    <string name="ui_96" formatted="false">"外观"</string>
+    <string name="ui_97" formatted="false">"导出 JSON 备份"</string>
+    <string name="ui_98" formatted="false">"导入备份"</string>
+    <string name="ui_99" formatted="false">"字体许可证"</string>
+</resources>

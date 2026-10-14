@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="about_contribution" formatted="false">"Sebagian pendapatan tosave disalurkan kepada anak-anak dengan atrofi otot spinal (SMA), lembaga perlindungan dan pengasuhan anak, lembaga kesehatan dan pendidikan, serta kegiatan penanaman pohon. Tujuannya adalah mendukung kehidupan dan perawatan anak, akses layanan kesehatan, kesempatan pendidikan, dan perlindungan alam."</string>
+    <string name="about_contribution_title" formatted="false">"Berkontribusi bersama"</string>
+    <string name="about_developer" formatted="false">"Pengembang"</string>
+    <string name="about_entry" formatted="false">"Tentang tosave"</string>
+    <string name="about_independent" formatted="false">"tosave dikembangkan secara mandiri oleh tr.developer. Pada perangkat atau kondisi penggunaan tertentu, mungkin ada fitur yang belum lengkap atau kesalahan. Masalah yang dilaporkan ditinjau dan pengembang berupaya memperbaikinya secepat mungkin. Saran Anda membantu meningkatkan aplikasi. Saat melaporkan masalah, sertakan model perangkat, versi Android, dan langkah-langkah yang menyebabkan masalah."</string>
+    <string name="about_independent_title" formatted="false">"Pengembangan mandiri"</string>
+    <string name="about_purpose" formatted="false">"tosave membantu Anda mengatur tautan, foto, dan video yang Anda bagikan ke aplikasi. Pilih kegunaan setiap item yang disimpan, lalu tambahkan tag, catatan pribadi, dan pengingat. Dengan begitu, Anda dapat mengingat alasan menyimpan dan menemukannya dengan mudah saat diperlukan."</string>
+    <string name="about_title" formatted="false">"Tentang"</string>
+    <string name="card_counts">"%1$d tertunda · %2$d selesai"</string>
+    <string name="media_saved_copy" formatted="false">"Disimpan dalam aplikasi"</string>
+    <string name="ocr_empty" formatted="false">"Tidak ada teks pada gambar."</string>
+    <string name="ocr_inline_title" formatted="false">"Teks pada gambar"</string>
+    <string name="shared_media_error" formatted="false">"File yang dibagikan tidak terbaca atau melebihi batas."</string>
+    <string name="ui_0" formatted="false">"Lakukan"</string>
+    <string name="ui_1" formatted="false">"Pergi"</string>
+    <string name="ui_10" formatted="false">"Tutup"</string>
+    <string name="ui_100" formatted="false">"v0.4.0 · Peringatan dan pengaturan bahasa\nAnalisis konten AI belum tersedia."</string>
+    <string name="ui_101" formatted="false">"Satu link, satu tujuan menyimpan."</string>
+    <string name="ui_102" formatted="false">"1 berbagi konten"</string>
+    <string name="ui_103" formatted="false">"Di aplikasi sosial, pilih Bagikan → tosave."</string>
+    <string name="ui_104" formatted="false">"2 Pilih Tujuan Anda"</string>
+    <string name="ui_105" formatted="false">"Buat, Pergi, Beli, Belajar, Buat, Lihat atau Temukan. pilih alasan cepat atau simpan segera."</string>
+    <string name="ui_106" formatted="false">"3 Kembalinya saat sudah waktunya"</string>
+    <string name="ui_107" formatted="false">"Buka sumber, temukan atau menyelesaikan tugas Anda. Edit judul dan catatan kapan saja Anda inginkan."</string>
+    <string name="ui_108" formatted="false">"Judul berasal dari informasi yang dikongsi atau pautan. aplikasi tidak menganalisis video."</string>
+    <string name="ui_109" formatted="false">"Mengerti"</string>
+    <string name="ui_11" formatted="false">"Simpan"</string>
+    <string name="ui_110" formatted="false">"Backup yang di ekspor."</string>
+    <string name="ui_111" formatted="false">"Impor cadangan ini?"</string>
+    <string name="ui_112" formatted="false">" item yang disimpan baru akan ditambahkan. item yang disimpan yang ada disimpan; duplikat disimpan."</string>
+    <string name="ui_113" formatted="false">"Impor"</string>
+    <string name="ui_114" formatted="false">" Menambahkan item yang disimpan."</string>
+    <string name="ui_115" formatted="false">"Pemberitahuan dihentikan"</string>
+    <string name="ui_116" formatted="false">"Aktifkan notifikasi tosave di pengaturan untuk menambah pengingat. Item Anda tetap tersimpan."</string>
+    <string name="ui_117" formatted="false">"Buka pengaturan"</string>
+    <string name="ui_118" formatted="false">"Tidak ada izin pemberitahuan yang diberikan. tidak ada peringatan yang ditambahkan."</string>
+    <string name="ui_119" formatted="false">"Kapan mengingatkan Anda?"</string>
+    <string name="ui_12" formatted="false">"Batal"</string>
+    <string name="ui_120" formatted="false">"Jika dilakukan bersama, pilih waktu bertemu. Notifikasi muncul di perangkat Anda, tidak dikirim ke orang lain."</string>
+    <string name="ui_121" formatted="false">"Penyimpanan baterai Android dapat menunda pemberitahuan lebih awal dari waktu yang dipilih."</string>
+    <string name="ui_122" formatted="false">"Dalam 1 jam"</string>
+    <string name="ui_123" formatted="false">"Malam ini · 20:00"</string>
+    <string name="ui_124" formatted="false">"Besok · 09:00"</string>
+    <string name="ui_125" formatted="false">"Akhir pekan · 10:00"</string>
+    <string name="ui_126" formatted="false">"Pilih tanggal dan waktu"</string>
+    <string name="ui_127" formatted="false">"Pengingat"</string>
+    <string name="ui_128" formatted="false">"Kembali ke item yang disimpan pada waktu yang Anda pilih."</string>
+    <string name="ui_129" formatted="false">"Sudah waktunya untuk kembali ke item yang diselamatkan."</string>
+    <string name="ui_13" formatted="false">"Tambah"</string>
+    <string name="ui_130" formatted="false">"Aku akan mencoba nanti"</string>
+    <string name="ui_131" formatted="false">"Saya akan melakukannya pada akhir pekan ini"</string>
+    <string name="ui_132" formatted="false">"berguna untuk saya"</string>
+    <string name="ui_133" formatted="false">"Kami akan melakukannya bersama"</string>
+    <string name="ui_134" formatted="false">"Aku ingin mengunjungi"</string>
+    <string name="ui_135" formatted="false">"Untuk akhir pekan"</string>
+    <string name="ui_136" formatted="false">"Aku akan pergi dengan seorang teman"</string>
+    <string name="ui_137" formatted="false">"Tambahkan ke rencana perjalanan saya"</string>
+    <string name="ui_138" formatted="false">"Berpikir untuk membelinya"</string>
+    <string name="ui_139" formatted="false">"Saya akan membandingkan harga"</string>
+    <string name="ui_14" formatted="false">"Hapus"</string>
+    <string name="ui_140" formatted="false">"Ide hadiah"</string>
+    <string name="ui_141" formatted="false">"Saya membutuhkan"</string>
+    <string name="ui_142" formatted="false">"Aku ingin belajar"</string>
+    <string name="ui_143" formatted="false">"Saya akan menggunakannya di tempat kerja"</string>
+    <string name="ui_144" formatted="false">"Aku akan berlatih"</string>
+    <string name="ui_145" formatted="false">"Tetap sebagai referensi"</string>
+    <string name="ui_146" formatted="false">"Itu menginspirasi saya"</string>
+    <string name="ui_147" formatted="false">"Saya akan menyesuaikan format"</string>
+    <string name="ui_148" formatted="false">"Ide konten baru"</string>
+    <string name="ui_149" formatted="false">"Saya suka cerita"</string>
+    <string name="ui_15" formatted="false">"Cari"</string>
+    <string name="ui_150" formatted="false">"Aku akan menonton nanti"</string>
+    <string name="ui_151" formatted="false">"Untuk malam ini"</string>
+    <string name="ui_152" formatted="false">"Dalam waktu bebas saya"</string>
+    <string name="ui_153" formatted="false">"Kami akan menonton bersama"</string>
+    <string name="ui_154" formatted="false">"Aku akan tahu apa itu"</string>
+    <string name="ui_155" formatted="false">"Aku akan mencari sesuatu yang serupa."</string>
+    <string name="ui_156" formatted="false">"Aku akan menemukan sumber"</string>
+    <string name="ui_157" formatted="false">"Saya akan menemukan lokasi"</string>
+    <string name="ui_158" formatted="false">"Cobalah, buat atau siapkan sesuatu."</string>
+    <string name="ui_159" formatted="false">"Apa yang ingin Anda lakukan? kapan atau di mana Anda akan menggunakannya?"</string>
+    <string name="ui_16" formatted="false">"Selesai"</string>
+    <string name="ui_160" formatted="false">"Daftar apa yang Anda butuhkan\nSiapkan apa saja yang hilang\nCobalah dan perhatikan hasilnya."</string>
+    <string name="ui_161" formatted="false">"Mengunjungi tempat atau acara."</string>
+    <string name="ui_162" formatted="false">"Di mana Anda ingin pergi, dengan siapa dan mengapa?"</string>
+    <string name="ui_163" formatted="false">"Periksa alamat dan jam buka\nPilih hari untuk dikunjungi\nTambahkan catatan setelah kunjungan Anda"</string>
+    <string name="ui_164" formatted="false">"Pertimbangkan pembelian"</string>
+    <string name="ui_165" formatted="false">"Apa kebutuhan produk ini akan memenuhi? apa anggaran atau kriteria pemilihan Anda?"</string>
+    <string name="ui_166" formatted="false">"Tuliskan kebutuhan dan anggaran Anda\nPerbandingan Harga dan Alternatif\nMemutuskan apakah untuk membeli"</string>
+    <string name="ui_167" formatted="false">"Belajar sesuatu atau membangun keterampilan."</string>
+    <string name="ui_168" formatted="false">"Apa yang ingin Anda pelajari dan di mana Anda akan menerapkannya?"</string>
+    <string name="ui_169" formatted="false">"Tuliskan apa yang ingin Anda pelajari\nDapatkan catatan dari konten\nBerlatih dengan contoh"</string>
+    <string name="ui_17" formatted="false">"Dikunjungi"</string>
+    <string name="ui_170" formatted="false">"Tukar ide ke dalam konten Anda sendiri."</string>
+    <string name="ui_171" formatted="false">"Apa yang menginspirasi Anda? bagaimana Anda akan menggunakannya dalam konten Anda sendiri?"</string>
+    <string name="ui_172" formatted="false">"Perhatikan garis pembukaan dan format\nPilih sudut dan penonton Anda\nMenulis aliran dan memanggil tindakan\nBuat versi Anda sendiri"</string>
+    <string name="ui_173" formatted="false">"Menonton video atau konten kemudian."</string>
+    <string name="ui_174" formatted="false">"Mengapa Anda ingin menontonnya?Kapan akan menjadi waktu yang baik?"</string>
+    <string name="ui_175" formatted="false">"Temukan sesuatu yang Anda lihat atau sesuatu yang serupa."</string>
+    <string name="ui_176" formatted="false">"Apa sebenarnya yang ingin Anda temukan? apa petunjuk yang Anda miliki?"</string>
+    <string name="ui_177" formatted="false">"Menjelaskan apa yang Anda cari dan petunjuk Anda\nPeriksa deskripsi dan komentar\nCari situs web dengan pertanyaan yang berguna\nBandingkan hasil dengan sumber"</string>
+    <string name="ui_178" formatted="false">"item yang disimpan tidak dapat dibaca. file yang ada disimpan."</string>
+    <string name="ui_179" formatted="false">"Bahagian ini tidak mengandung link yang valid."</string>
+    <string name="ui_18" formatted="false">"Diputuskan"</string>
+    <string name="ui_180" formatted="false">"Membuka saham baru?"</string>
+    <string name="ui_181" formatted="false">"Rencana saat ini akan ditutup."</string>
+    <string name="ui_182" formatted="false">"Tetapkan Rencana Saat Ini"</string>
+    <string name="ui_183" formatted="false">"Membuka Saham Baru"</string>
+    <string name="ui_184" formatted="false">"File item yang disimpan tidak dapat dibaca. file yang ada disimpan."</string>
+    <string name="ui_185" formatted="false">"File item yang disimpan tidak dapat dibaca. item baru yang disimpan tidak dapat dibuka."</string>
+    <string name="ui_186" formatted="false">"item yang disimpan tidak dapat dibaca. backup tidak dapat dibuat."</string>
+    <string name="ui_187" formatted="false">"Tidak ada file picker yang tersedia."</string>
+    <string name="ui_188" formatted="false">"File tersebut tidak bisa dibuka."</string>
+    <string name="ui_189" formatted="false">"Pilih cadangan tosave yang valid."</string>
+    <string name="ui_19" formatted="false">"Dipelajari"</string>
+    <string name="ui_190" formatted="false">"Operasi tidak dapat selesai. periksa file dan penyimpanan yang tersedia."</string>
+    <string name="ui_191" formatted="false">"dengan tujuan menyimpan yang tidak sah."</string>
+    <string name="ui_192" formatted="false">"Membagikan atau menyertakan link."</string>
+    <string name="ui_193" formatted="false">"Link ini sudah diselamatkan dengan tujuan menyimpan ini."</string>
+    <string name="ui_194" formatted="false">"File item yang disimpan tidak dapat dibaca. backup tidak dapat dibuat."</string>
+    <string name="ui_195" formatted="false">"File item yang disimpan tidak dapat dibaca; file yang ada disimpan."</string>
+    <string name="ui_196" formatted="false">"Anda dapat menyimpan hingga 5000 item yang disimpan."</string>
+    <string name="ui_197" formatted="false">"item yang disimpan melebihi batas 4 MB."</string>
+    <string name="ui_198" formatted="false">"File ini bisa mencapai 4 MB."</string>
+    <string name="ui_199" formatted="false">"Tugas"</string>
+    <string name="ui_2" formatted="false">"Beli"</string>
+    <string name="ui_20" formatted="false">"Dibuat"</string>
+    <string name="ui_200" formatted="false">"Judul"</string>
+    <string name="ui_201" formatted="false">"Alasan menyimpan"</string>
+    <string name="ui_202" formatted="false">"Pertanyaan pencarian dapat mencapai 300 karakter."</string>
+    <string name="ui_203" formatted="false">"Invalid menyimpan tanggal."</string>
+    <string name="ui_204" formatted="false">"Anda dapat menambahkan hingga 30 tugas."</string>
+    <string name="ui_205" formatted="false">" Tidak bisa kosong."</string>
+    <string name="ui_206" formatted="false">" dapat naik ke "</string>
+    <string name="ui_207" formatted="false">" karakter yang"</string>
+    <string name="ui_208" formatted="false">"Pencarian web tersedia untuk mencari tujuan."</string>
+    <string name="ui_209" formatted="false">"File ini mengandung konten tambahan yang tidak dijangka."</string>
+    <string name="ui_21" formatted="false">"Ditonton"</string>
+    <string name="ui_210" formatted="false">"Format backup yang tidak didukung."</string>
+    <string name="ui_211" formatted="false">"File backup yang tidak sah."</string>
+    <string name="ui_212" formatted="false">"Anda dapat mengimport hingga 5000 item yang disimpan."</string>
+    <string name="ui_213" formatted="false">"Invalid mengingatkan tanggal."</string>
+    <string name="ui_214" formatted="false">"File ini berisi duplikat menyimpan ID."</string>
+    <string name="ui_215" formatted="false">"Jumlah keseluruhan barang yang disimpan tidak boleh melebihi 5000."</string>
+    <string name="ui_216" formatted="false">"Linknya terlalu panjang."</string>
+    <string name="ui_217" formatted="false">"Masukkan link HTTP/HTTPS yang valid."</string>
+    <string name="ui_218" formatted="false">"Malam ini telah berlalu · besok pukul 20:00"</string>
+    <string name="ui_219" formatted="false">"Biarkan pemberitahuan untuk menyimpan peringatan."</string>
+    <string name="ui_22" formatted="false">"Ditemukan"</string>
+    <string name="ui_220" formatted="false">"Terlupakan"</string>
+    <string name="ui_221" formatted="false">"Pengaturan item terlupakan"</string>
+    <string name="ui_222" formatted="false">"Sesuaikan tujuan"</string>
+    <string name="ui_223" formatted="false">"Sesuaikan alasan"</string>
+    <string name="ui_224" formatted="false">"Jumlah hari tanpa membuka atau mengubah item yang disimpan yang belum selesai. item yang disimpan yang lebih tua muncul dalam Lupa; item yang disimpan Anda tidak dihapus."</string>
+    <string name="ui_225" formatted="false">"Hari · 1–365"</string>
+    <string name="ui_226" formatted="false">"Masukkan beberapa hari antara 1 dan 365."</string>
+    <string name="ui_227" formatted="false">"Tambah atau menamakan kembali opsi. opsi yang disemak dipaparkan dalam aplikasi. menyembunyikan opsi tidak mengubah item yang disimpan yang ada."</string>
+    <string name="ui_228" formatted="false">"Alasan singkat"</string>
+    <string name="ui_229" formatted="false">"Tambah tujuan"</string>
+    <string name="ui_23" formatted="false">"Pilih tema"</string>
+    <string name="ui_230" formatted="false">"Tambah alasan"</string>
+    <string name="ui_231" formatted="false">"Selesai"</string>
+    <string name="ui_232" formatted="false">"Nama pilihan"</string>
+    <string name="ui_233" formatted="false">"Pilihan baru"</string>
+    <string name="ui_234" formatted="false">"Edit pilihan"</string>
+    <string name="ui_235" formatted="false">"Nama opsi harus 1 – 60 karakter panjang."</string>
+    <string name="ui_236" formatted="false">"Anda dapat menambahkan hingga 500 opsi pribadi."</string>
+    <string name="ui_237" formatted="false">"Pilihan pribadi yang tidak sah."</string>
+    <string name="ui_238" formatted="false">"Pilihan tidak bisa diselamatkan."</string>
+    <string name="ui_239" formatted="false">"Opsi tidak dapat dibaca. pengaturan yang ada disimpan."</string>
+    <string name="ui_24" formatted="false">"Pengaturan dan cadangan"</string>
+    <string name="ui_240" formatted="false">"Invalid kegiatan tanggal."</string>
+    <string name="ui_241" formatted="false">"Simpan dengan tujuan menyimpan Anda sendiri."</string>
+    <string name="ui_242" formatted="false">"Tambahkan catatan pribadi jika Anda suka."</string>
+    <string name="ui_243" formatted="false">"Notifikasi"</string>
+    <string name="ui_244" formatted="false">"Pengaturan"</string>
+    <string name="ui_245" formatted="false">"Kembali"</string>
+    <string name="ui_246" formatted="false">"Umum"</string>
+    <string name="ui_247" formatted="false">"Item tersimpan"</string>
+    <string name="ui_248" formatted="false">"hari"</string>
+    <string name="ui_249" formatted="false">"Tujuan dan alasan singkat"</string>
+    <string name="ui_25" formatted="false">"Simpan. Ingat alasannya. Bertindak."</string>
+    <string name="ui_250" formatted="false">"Menampilkan, menyembunyikan atau menambahkan pilihan pribadi."</string>
+    <string name="ui_251" formatted="false">"Pusat notifikasi"</string>
+    <string name="ui_252" formatted="false">"Lihat pengingat Anda di sini."</string>
+    <string name="ui_253" formatted="false">"Pengaturan notifikasi sistem"</string>
+    <string name="ui_254" formatted="false">"Aktif"</string>
+    <string name="ui_255" formatted="false">"Nonaktif"</string>
+    <string name="ui_256" formatted="false">"Cadangan"</string>
+    <string name="ui_257" formatted="false">"Ekspor item tersimpan dan pilihan pribadi."</string>
+    <string name="ui_258" formatted="false">"Item yang ada tetap tersimpan."</string>
+    <string name="ui_259" formatted="false">"Belum ada pemberitahuan lagi."</string>
+    <string name="ui_26" formatted="false">"Simpan. Ingat alasannya."</string>
+    <string name="ui_260" formatted="false">"Notifikasi terbaru"</string>
+    <string name="ui_261" formatted="false">"Item yang diselamatkan ini tidak ada lagi."</string>
+    <string name="ui_262" formatted="false">"Hapus riwayat notifikasi"</string>
+    <string name="ui_263" formatted="false">"Pengingat mendatang"</string>
+    <string name="ui_264" formatted="false">"Pemberitahuan tidak dapat dibaca. sejarah yang ada disimpan."</string>
+    <string name="ui_265" formatted="false">"Notifikasi tidak dapat disimpan."</string>
+    <string name="ui_266" formatted="false">"Pilih tujuan menyimpan"</string>
+    <string name="ui_267" formatted="false">"Gelap"</string>
+    <string name="ui_268" formatted="false">"Putar video"</string>
+    <string name="ui_269" formatted="false">"Video tidak dapat dimuat.Anda dapat membukanya di aplikasi sumber."</string>
+    <string name="ui_27" formatted="false">"Ketuk untuk lanjut"</string>
+    <string name="ui_270" formatted="false">"tosave tanpa batas"</string>
+    <string name="ui_271" formatted="false">"20 item gratis · Sekali beli"</string>
+    <string name="ui_272" formatted="false">"Penyimpanan tanpa batas aktif"</string>
+    <string name="ui_273" formatted="false">"Dukungan"</string>
+    <string name="ui_274" formatted="false">"Kontak dan dukungan"</string>
+    <string name="ui_275" formatted="false">"Apakah Anda suka aplikasi ini?"</string>
+    <string name="ui_276" formatted="false">"Bagikan masukan Anda."</string>
+    <string name="ui_277" formatted="false">"Terus menyimpan tanpa batas."</string>
+    <string name="ui_278" formatted="false">"20 item pertama gratis. Hapus batas dengan sekali pembelian."</string>
+    <string name="ui_279" formatted="false">"Item tersimpan tanpa batas"</string>
+    <string name="ui_28" formatted="false">"Cari item tersimpan"</string>
+    <string name="ui_280" formatted="false">"Pengingat dan item terlupakan"</string>
+    <string name="ui_281" formatted="false">"Tujuan dan alasan pribadi"</string>
+    <string name="ui_282" formatted="false">"Cadangkan dan pulihkan"</string>
+    <string name="ui_283" formatted="false">"Sekali bayar. Tanpa langganan."</string>
+    <string name="ui_284" formatted="false">"Versi gratis menampung 20 item, termasuk yang selesai. Item yang ada selalu bisa dibuka, diedit, dan dicadangkan."</string>
+    <string name="ui_285" formatted="false">"Beli sekarang"</string>
+    <string name="ui_286" formatted="false">"Pulihkan pembelian"</string>
+    <string name="ui_287" formatted="false">"Lanjutkan sementara"</string>
+    <string name="ui_288" formatted="false">"Harga disediakan Google Play."</string>
+    <string name="ui_289" formatted="false">"Lanjutkan"</string>
+    <string name="ui_29" formatted="false">"Item baru"</string>
+    <string name="ui_290" formatted="false">"Pembelian Google Play saat ini tidak tersedia."</string>
+    <string name="ui_291" formatted="false">"Menghubungkan ke Google Play.."</string>
+    <string name="ui_292" formatted="false">"Tidak terhubung dari Google Play, Anda dapat mencoba lagi."</string>
+    <string name="ui_293" formatted="false">"Pembelian dibatalkan."</string>
+    <string name="ui_294" formatted="false">"Pembelian tidak bisa selesai. Anda dapat mencoba lagi."</string>
+    <string name="ui_295" formatted="false">"Unlimited disimpan item disekat setelah selesai."</string>
+    <string name="ui_296" formatted="false">"Pembelian tidak dapat disahkan."</string>
+    <string name="ui_297" formatted="false">"Pembelian tidak dapat disimpan. mengembalikan pembelian Anda."</string>
+    <string name="ui_298" formatted="false">"Unlimited disimpan item tertutup. terima kasih!"</string>
+    <string name="ui_299" formatted="false">"Pengesahan pembelian sedang ditunggu.Coba pulih."</string>
+    <string name="ui_3" formatted="false">"Pelajari"</string>
+    <string name="ui_30" formatted="false">" item tersimpan"</string>
+    <string name="ui_300" formatted="false">"Item yang disimpan tak terbatas sudah diaktifkan."</string>
+    <string name="ui_301" formatted="false">"Pembelian tidak bisa dimulai. Anda dapat mencoba lagi."</string>
+    <string name="ui_302" formatted="false">"Batas 20 item gratis telah tercapai."</string>
+    <string name="ui_303" formatted="false">"Masukan Anda membantu kami meningkatkan tosave."</string>
+    <string name="ui_304" formatted="false">"Saya suka"</string>
+    <string name="ui_305" formatted="false">"Bisa lebih baik"</string>
+    <string name="ui_306" formatted="false">"Tidak sekarang"</string>
+    <string name="ui_307" formatted="false">"Masukan"</string>
+    <string name="ui_308" formatted="false">"Masukan Anda · opsional"</string>
+    <string name="ui_309" formatted="false">"Draf dibuka di aplikasi email. Anda bisa mengedit sebelum mengirim."</string>
+    <string name="ui_31" formatted="false">"Belum ada yang Anda simpan"</string>
+    <string name="ui_310" formatted="false">"Bagikan lewat email"</string>
+    <string name="ui_311" formatted="false">"Pembelian menghapus batas 20 item. Kapasitas teknis: 5.000 item / 4 MB."</string>
+    <string name="ui_312" formatted="false">"Pilih thumbnail"</string>
+    <string name="ui_313" formatted="false">"Anda tidak bisa membaca gambar. pilih gambar lain."</string>
+    <string name="ui_314" formatted="false">"Tambah gambar"</string>
+    <string name="ui_315" formatted="false">"Gambar"</string>
+    <string name="ui_316" formatted="false">"Gambar"</string>
+    <string name="ui_317" formatted="false">"Tangkapan layar"</string>
+    <string name="ui_318" formatted="false">"Perbesar gambar"</string>
+    <string name="ui_319" formatted="false">"Tag"</string>
+    <string name="ui_32" formatted="false">"Belum ada item tersimpan."</string>
+    <string name="ui_320" formatted="false">"Tambah tag · pisahkan dengan koma"</string>
+    <string name="ui_321" formatted="false">"Belanja"</string>
+    <string name="ui_322" formatted="false">"Resep"</string>
+    <string name="ui_323" formatted="false">"Pekerjaan"</string>
+    <string name="ui_324" formatted="false">"Ide"</string>
+    <string name="ui_325" formatted="false">"Referensi"</string>
+    <string name="ui_326" formatted="false">"Menyiapkan gambar…"</string>
+    <string name="ui_327" formatted="false">"Membaca teks pada gambar…"</string>
+    <string name="ui_328" formatted="false">"Teks tidak terbaca. Coba lagi."</string>
+    <string name="ui_329" formatted="false">"Teks gambar dapat dicari."</string>
+    <string name="ui_33" formatted="false">"Kirim tautan, foto, atau video ke tosave melalui menu Bagikan. Pilih alasan menyimpan agar mudah ditemukan nanti."</string>
+    <string name="ui_330" formatted="false">"Tampilkan teks terbaca"</string>
+    <string name="ui_331" formatted="false">"Teks pada gambar"</string>
+    <string name="ui_332" formatted="false">"Pindai teks lagi"</string>
+    <string name="ui_333" formatted="false">"Buat cadangan"</string>
+    <string name="ui_334" formatted="false">"Rekor ekspor, gambar dan pilihan pribadi."</string>
+    <string name="ui_335" formatted="false">"Menyiapkan cadangan…"</string>
+    <string name="ui_336" formatted="false">"Memeriksa cadangan…"</string>
+    <string name="ui_337" formatted="false">"Tag maksimal 40 karakter."</string>
+    <string name="ui_338" formatted="false">"Anda dapat menambah hingga 12 tag."</string>
+    <string name="ui_339" formatted="false">"Tag yang tidak sah."</string>
+    <string name="ui_34" formatted="false">"Pilih tujuan lain atau ubah pencarian Anda."</string>
+    <string name="ui_340" formatted="false">"Tambah tag"</string>
+    <string name="ui_341" formatted="false">"Tangkapan layar"</string>
+    <string name="ui_342" formatted="false">"Video"</string>
+    <string name="ui_343" formatted="false">"Media sosial"</string>
+    <string name="ui_344" formatted="false">"Video"</string>
+    <string name="ui_345" formatted="false">"Video perangkat"</string>
+    <string name="ui_346" formatted="false">"Tambah video"</string>
+    <string name="ui_347" formatted="false">"Buka video"</string>
+    <string name="ui_348" formatted="false">"Menyiapkan video…"</string>
+    <string name="ui_349" formatted="false">"Tidak dapat menambahkan video. pilih video yang dapat dimainkan hingga 64 MB."</string>
+    <string name="ui_35" formatted="false">"Bagaimana ia bekerja"</string>
+    <string name="ui_350" formatted="false">"Tidak bisa membuka video.Memasang pemutar video pada perangkat Anda."</string>
+    <string name="ui_351" formatted="false">"Item gratis"</string>
+    <string name="ui_352" formatted="false">"Tangkapan layar, video, dan tag"</string>
+    <string name="ui_353" formatted="false">"Cari teks dalam gambar"</string>
+    <string name="ui_354" formatted="false">"Cadangan gambar dan video"</string>
+    <string name="ui_355" formatted="false">"File ditautkan · tanpa salinan"</string>
+    <string name="ui_356" formatted="false">"Tautkan ulang file"</string>
+    <string name="ui_357" formatted="false">"Salinan dari versi sebelumnya"</string>
+    <string name="ui_358" formatted="false">"File tidak dapat diakses. Tautkan ulang."</string>
+    <string name="ui_359" formatted="false">"Share memberikan akses sementara. pilih file yang sama untuk menghubungkannya tanpa menyalin."</string>
+    <string name="ui_36" formatted="false">"Selesai"</string>
+    <string name="ui_360" formatted="false">"Akses file tidak dapat dipertahankan. Pilih sumber lain."</string>
+    <string name="ui_361" formatted="false">"Tag ekspor, catatan dan referensi file."</string>
+    <string name="ui_362" formatted="false">"File terhubung dan izin akses tidak dipindahkan.Relink file pada perangkat lain."</string>
+    <string name="ui_363" formatted="false">"File referensi yang tidak sah."</string>
+    <string name="ui_364" formatted="false">"Cadangan tag dan catatan"</string>
+    <string name="ui_365" formatted="false">"Rekaman lokal baru menghubungkan ke file. backup tidak mencakup file asli."</string>
+    <string name="ui_37" formatted="false">"Disimpan dengan tujuan"</string>
+    <string name="ui_38" formatted="false">" langkah"</string>
+    <string name="ui_39" formatted="false">"Mengapa menyimpan ini?"</string>
+    <string name="ui_4" formatted="false">"Buat"</string>
+    <string name="ui_40" formatted="false">"Edit item tersimpan"</string>
+    <string name="ui_41" formatted="false">"Pilih tujuan Anda. Judul dan detail bisa diedit nanti."</string>
+    <string name="ui_42" formatted="false">"Tautan"</string>
+    <string name="ui_43" formatted="false">"Tempel tautan"</string>
+    <string name="ui_44" formatted="false">"Edit tautan"</string>
+    <string name="ui_45" formatted="false">"Tujuan menyimpan"</string>
+    <string name="ui_46" formatted="false">"Pilih tujuan untuk memulai."</string>
+    <string name="ui_47" formatted="false">"ALASAN SINGKAT"</string>
+    <string name="ui_48" formatted="false">"Tambah pengingat"</string>
+    <string name="ui_49" formatted="false">"Kolom ini opsional. Anda bisa menyimpan tanpa mengisinya."</string>
+    <string name="ui_5" formatted="false">"Tonton"</string>
+    <string name="ui_50" formatted="false">"Judul · opsional"</string>
+    <string name="ui_51" formatted="false">"Catatan pribadi · opsional"</string>
+    <string name="ui_52" formatted="false">"Daftar tugas"</string>
+    <string name="ui_53" formatted="false">"Memecahkan rencana Anda ke dalam tugas-tugas kecil. memeriksa mereka di kartu saat Anda selesai. Tinggalkan ini kosong jika Anda lebih suka."</string>
+    <string name="ui_54" formatted="false">"Tugas · satu per baris"</string>
+    <string name="ui_55" formatted="false">"Pilih contoh tugas"</string>
+    <string name="ui_56" formatted="false">"Pilih tujuan terlebih dahulu."</string>
+    <string name="ui_57" formatted="false">"Kueri pencarian · opsional"</string>
+    <string name="ui_58" formatted="false">"Catatan dan tugas · opsional"</string>
+    <string name="ui_59" formatted="false">"Simpan perubahan"</string>
+    <string name="ui_6" formatted="false">"Temukan"</string>
+    <string name="ui_60" formatted="false">"Tersimpan di perangkat. Berfungsi offline."</string>
+    <string name="ui_61" formatted="false">"Pengingat"</string>
+    <string name="ui_62" formatted="false">"Berikan link atau paste satu."</string>
+    <string name="ui_63" formatted="false">" · simpan"</string>
+    <string name="ui_64" formatted="false">"Pilih waktu masa depan."</string>
+    <string name="ui_65" formatted="false">"Tersimpan · "</string>
+    <string name="ui_66" formatted="false">"Item diperbarui"</string>
+    <string name="ui_67" formatted="false">"Tidak ada link di clipboard Anda."</string>
+    <string name="ui_68" formatted="false">"Klipboard Anda tidak mengandung link yang valid."</string>
+    <string name="ui_69" formatted="false">"Tujuan menyimpan"</string>
+    <string name="ui_7" formatted="false">"Tertunda"</string>
+    <string name="ui_70" formatted="false">" tugas selesai"</string>
+    <string name="ui_71" formatted="false">"Tanpa pengingat"</string>
+    <string name="ui_72" formatted="false">"Edit pengingat"</string>
+    <string name="ui_73" formatted="false">"Tonton konten"</string>
+    <string name="ui_74" formatted="false">"Buka konten asli"</string>
+    <string name="ui_75" formatted="false">"Tandai tertunda"</string>
+    <string name="ui_76" formatted="false">"Ditandai tertunda"</string>
+    <string name="ui_77" formatted="false">"Edit"</string>
+    <string name="ui_78" formatted="false">"Hapus item tersimpan"</string>
+    <string name="ui_79" formatted="false">"Hapus item ini?"</string>
+    <string name="ui_8" formatted="false">"Semua"</string>
+    <string name="ui_80" formatted="false">"Item dihapus"</string>
+    <string name="ui_81" formatted="false">"Urungkan"</string>
+    <string name="ui_82" formatted="false">"Apa yang ingin Anda cari?"</string>
+    <string name="ui_83" formatted="false">"Cari di web"</string>
+    <string name="ui_84" formatted="false">"Hanya kueri ini yang dikirim ke pencarian Google."</string>
+    <string name="ui_85" formatted="false">"Masukkan apa yang ingin Anda cari."</string>
+    <string name="ui_86" formatted="false">"Tidak ada aplikasi yang tersedia untuk membuka link ini."</string>
+    <string name="ui_87" formatted="false">"Pilih tampilan Anda"</string>
+    <string name="ui_88" formatted="false">"Tema AMOLED menggunakan latar belakang hitam murni."</string>
+    <string name="ui_89" formatted="false">"AMOLED hitam pekat"</string>
+    <string name="ui_9" formatted="false">"Selesai"</string>
+    <string name="ui_90" formatted="false">"Terang"</string>
+    <string name="ui_91" formatted="false">"Ikuti sistem"</string>
+    <string name="ui_92" formatted="false">" · dipilih"</string>
+    <string name="ui_93" formatted="false">"Item tersimpan tetap di perangkat Anda. Anda yang mengendalikan."</string>
+    <string name="ui_94" formatted="false">"Bahasa aplikasi"</string>
+    <string name="ui_95" formatted="false">"Bahasa sistem"</string>
+    <string name="ui_96" formatted="false">"Tampilan"</string>
+    <string name="ui_97" formatted="false">"Ekspor cadangan JSON"</string>
+    <string name="ui_98" formatted="false">"Impor cadangan"</string>
+    <string name="ui_99" formatted="false">"Lisensi font"</string>
+</resources>

@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="about_contribution" formatted="false">"tosave-এর আয়ের একটি অংশ স্পাইনাল মাসকুলার অ্যাট্রফি (SMA) আক্রান্ত শিশু, শিশু সুরক্ষা ও যত্ন সংস্থা, স্বাস্থ্য ও শিক্ষা প্রতিষ্ঠান এবং বৃক্ষরোপণ কাজে দেওয়া হয়। উদ্দেশ্য হলো শিশুদের জীবন ও যত্ন, স্বাস্থ্যসেবা পাওয়ার সুযোগ, শিক্ষার সুযোগ এবং প্রকৃতি সংরক্ষণে অবদান রাখা।"</string>
+    <string name="about_contribution_title" formatted="false">"একসঙ্গে অবদান"</string>
+    <string name="about_developer" formatted="false">"ডেভেলপার"</string>
+    <string name="about_entry" formatted="false">"tosave সম্পর্কে"</string>
+    <string name="about_independent" formatted="false">"tosave ব্যক্তিগতভাবে tr.developer তৈরি করেন। বিভিন্ন ডিভাইস ও ব্যবহারের পরিস্থিতিতে কিছু সুবিধা অসম্পূর্ণ থাকতে পারে বা ত্রুটি দেখা দিতে পারে। জানানো সমস্যাগুলো পর্যালোচনা করা হয় এবং ডেভেলপার যত দ্রুত সম্ভব সংশোধনের চেষ্টা করেন। আপনার পরামর্শ অ্যাপ উন্নত করতে সাহায্য করে। সমস্যা জানানোর সময় ডিভাইসের মডেল, Android সংস্করণ এবং কোন ধাপগুলোতে সমস্যা হয়েছে তা জানালে সমাধান সহজ হয়।"</string>
+    <string name="about_independent_title" formatted="false">"স্বতন্ত্র উন্নয়ন"</string>
+    <string name="about_purpose" formatted="false">"tosave অ্যাপের সঙ্গে শেয়ার করা লিংক, ছবি ও ভিডিও সাজিয়ে রাখতে সাহায্য করে। প্রতিটি সংরক্ষিত বিষয় কী কাজে ব্যবহার করবেন তা বেছে নিন এবং ট্যাগ, ব্যক্তিগত নোট ও রিমাইন্ডার যোগ করুন। এতে সংরক্ষণের কারণ মনে থাকবে এবং প্রয়োজনের সময় সহজে খুঁজে পাবেন।"</string>
+    <string name="about_title" formatted="false">"অ্যাপ সম্পর্কে"</string>
+    <string name="card_counts">"%1$d অপেক্ষমান · %2$d সম্পন্ন"</string>
+    <string name="media_saved_copy" formatted="false">"অ্যাপে সংরক্ষিত"</string>
+    <string name="ocr_empty" formatted="false">"ছবিতে লেখা পাওয়া যায়নি।"</string>
+    <string name="ocr_inline_title" formatted="false">"ছবির লেখা"</string>
+    <string name="shared_media_error" formatted="false">"শেয়ার করা ফাইল পড়া যায়নি বা সীমা ছাড়িয়েছে।"</string>
+    <string name="ui_0" formatted="false">"করুন"</string>
+    <string name="ui_1" formatted="false">"যান"</string>
+    <string name="ui_10" formatted="false">"বন্ধ করুন"</string>
+    <string name="ui_100" formatted="false">"v0.4.0 · স্মৃতি এবং ভাষা পরামর্শ\nএআই বিষয়বস্তু বিশ্লেষণ এখনো পাওয়া যায় না।"</string>
+    <string name="ui_101" formatted="false">"এক লক্ষ্য, এক লক্ষ্য।"</string>
+    <string name="ui_102" formatted="false">"1 শেয়ারিং বিষয়বস্তু"</string>
+    <string name="ui_103" formatted="false">"সামাজিক মাধ্যমের অ্যাপে শেয়ার → tosave বেছে নিন।"</string>
+    <string name="ui_104" formatted="false">"2 আপনার উদ্দেশ্য নির্বাচন করুন"</string>
+    <string name="ui_105" formatted="false">"কর, গিয়ে, কিনুন, শিখুন, সৃষ্টি করুন, দেখুন বা খুঁজুন. একটি দ্রুত কারণ নির্বাচন করুন বা দ্রুত সংরক্ষণ করুন."</string>
+    <string name="ui_106" formatted="false">"৩. যখন ফিরে আসে"</string>
+    <string name="ui_107" formatted="false">"উৎস খুলুন, এটি গবেষণা করুন বা আপনার কাজগুলি শেষ করুন. আপনি যখন চান তখন টাইটটি এবং নোটগুলি সংশোধন করুন।"</string>
+    <string name="ui_108" formatted="false">"Titles comes from shared information or the link. অ্যাপটি ভিডিওটি বিশ্লেষণ করে না।"</string>
+    <string name="ui_109" formatted="false">"বুঝেছি"</string>
+    <string name="ui_11" formatted="false">"সংরক্ষণ করুন"</string>
+    <string name="ui_110" formatted="false">"রিপোর্ট বিতরণ করা হয়েছে।"</string>
+    <string name="ui_111" formatted="false">"এই ব্যাকআপ আমদানি করবেন?"</string>
+    <string name="ui_112" formatted="false">" নতুন সংরক্ষিত উপাদানগুলি যোগ করা হবে. বর্তমান সংরক্ষিত উপাদানগুলি সংরক্ষিত করা হয়; ডাবলিকেটগুলি বের করা হয়."</string>
+    <string name="ui_113" formatted="false">"আমদানি করুন"</string>
+    <string name="ui_114" formatted="false">" সংরক্ষিত পণ্য যোগ করা হয়।"</string>
+    <string name="ui_115" formatted="false">"বিজ্ঞাপন বন্ধ"</string>
+    <string name="ui_116" formatted="false">"রিমাইন্ডার যোগ করতে সেটিংসে tosave-এর বিজ্ঞপ্তি চালু করুন। আপনার বিষয় সংরক্ষিত থাকবে।"</string>
+    <string name="ui_117" formatted="false">"সেটিংস খুলুন"</string>
+    <string name="ui_118" formatted="false">"এতে কোনও সতর্কতা দেওয়া হয়নি, কোনও সতর্কতা দেওয়া হয়নি।"</string>
+    <string name="ui_119" formatted="false">"কখন মনে করিয়ে দেব?"</string>
+    <string name="ui_12" formatted="false">"বাতিল"</string>
+    <string name="ui_120" formatted="false">"একসঙ্গে করলে দেখা করার সময় বেছে নিন। বিজ্ঞপ্তি আপনার ডিভাইসেই দেখাবে; অন্য কাউকে পাঠানো হবে না।"</string>
+    <string name="ui_121" formatted="false">"অ্যান্ড্রয়েড ব্যাটারি সংরক্ষণ নির্দিষ্ট সময় থেকে আগ্রহী通知 দেরি করতে পারে।"</string>
+    <string name="ui_122" formatted="false">"১ ঘণ্টা পরে"</string>
+    <string name="ui_123" formatted="false">"আজ রাতে · 20:00"</string>
+    <string name="ui_124" formatted="false">"আগামীকাল · 09:00"</string>
+    <string name="ui_125" formatted="false">"সপ্তাহান্তে · 10:00"</string>
+    <string name="ui_126" formatted="false">"তারিখ ও সময় বেছে নিন"</string>
+    <string name="ui_127" formatted="false">"রিমাইন্ডার"</string>
+    <string name="ui_128" formatted="false">"আপনার সুরক্ষিত পণ্যগুলি আপনার বেছে নেওয়া সময়ে ফিরে যান।"</string>
+    <string name="ui_129" formatted="false">"আপনার সংরক্ষিত পণ্য ফিরে আসার সময়।"</string>
+    <string name="ui_13" formatted="false">"যোগ করুন"</string>
+    <string name="ui_130" formatted="false">"পরে চেষ্টা করব।"</string>
+    <string name="ui_131" formatted="false">"আমি এই সপ্তাহে করব।"</string>
+    <string name="ui_132" formatted="false">"আমার জন্য উপকারী"</string>
+    <string name="ui_133" formatted="false">"আমরা একসাথে তা করবো"</string>
+    <string name="ui_134" formatted="false">"আমি দেখতে চাই"</string>
+    <string name="ui_135" formatted="false">"সপ্তাহের জন্য"</string>
+    <string name="ui_136" formatted="false">"আমি এক বন্ধুকে নিয়ে যাব।"</string>
+    <string name="ui_137" formatted="false">"আমার ভ্রমণ পরিকল্পনা যোগ করুন"</string>
+    <string name="ui_138" formatted="false">"কেনার কথা ভাবতে"</string>
+    <string name="ui_139" formatted="false">"আমি মূল্য তুলবো।"</string>
+    <string name="ui_14" formatted="false">"মুছুন"</string>
+    <string name="ui_140" formatted="false">"উপহার ধারণা"</string>
+    <string name="ui_141" formatted="false">"আমার প্রয়োজন"</string>
+    <string name="ui_142" formatted="false">"আমি শিখতে চাই"</string>
+    <string name="ui_143" formatted="false">"আমি কাজে এটি ব্যবহার করব।"</string>
+    <string name="ui_144" formatted="false">"আমি কাজ করবো"</string>
+    <string name="ui_145" formatted="false">"একটি প্রতিক্রিয়া হিসাবে রাখুন"</string>
+    <string name="ui_146" formatted="false">"আমাকে প্রভাবিত করেছে"</string>
+    <string name="ui_147" formatted="false">"আমি ফর্মটামে পরিবর্তন করবো।"</string>
+    <string name="ui_148" formatted="false">"নতুন বিষয়ক ধারণা"</string>
+    <string name="ui_149" formatted="false">"গল্পটা আমার ভালো লাগে"</string>
+    <string name="ui_15" formatted="false">"খুঁজুন"</string>
+    <string name="ui_150" formatted="false">"পরে দেখবো"</string>
+    <string name="ui_151" formatted="false">"আজ রাতে"</string>
+    <string name="ui_152" formatted="false">"আমার স্বাধীন সময়"</string>
+    <string name="ui_153" formatted="false">"আমরা একসাথে দেখবো"</string>
+    <string name="ui_154" formatted="false">"আমি জানি এটা কি"</string>
+    <string name="ui_155" formatted="false">"আমি তেমন কিছু খুঁজছি।"</string>
+    <string name="ui_156" formatted="false">"আমি সূত্র খুঁজবো।"</string>
+    <string name="ui_157" formatted="false">"আমি অবস্থান খুঁজবো।"</string>
+    <string name="ui_158" formatted="false">"চেষ্টা করুন, তৈরি করুন বা কিছু প্রস্তুত করুন।"</string>
+    <string name="ui_159" formatted="false">"আপনি কি করতে চান? কখন এবং কোথায় আপনি এটি ব্যবহার করবেন?"</string>
+    <string name="ui_16" formatted="false">"সম্পন্ন"</string>
+    <string name="ui_160" formatted="false">"আপনি যা প্রয়োজন তালিকা করুন\nযে কিছুই হারিয়ে যাচ্ছে তা প্রস্তুত করুন।\nচেষ্টা করুন এবং ফলাফলটি উল্লেখ করুন"</string>
+    <string name="ui_161" formatted="false">"একটি জায়গা বা অনুষ্ঠান দেখুন।"</string>
+    <string name="ui_162" formatted="false">"আপনি কোথায় যেতে চান, किसके साथ এবং কেন?"</string>
+    <string name="ui_163" formatted="false">"ঠিকানা এবং খোলা ঘণ্টা দেখুন\nভ্রমণের জন্য একটি দিন নির্বাচন করুন\nআপনার সফরের পরে নোট যোগ করুন"</string>
+    <string name="ui_164" formatted="false">"একটি কিনা ভাবুন।"</string>
+    <string name="ui_165" formatted="false">"এই পণ্যটি কী প্রয়োজনীয়তা পূরণ করবে? আপনার বাজেট বা নির্বাচন কত criteria?"</string>
+    <string name="ui_166" formatted="false">"আপনার প্রয়োজন এবং বাজেট লিখুন\nমূল্য এবং বিকল্পের তুলনা\nকেনার সিদ্ধান্ত নেবেন কি না"</string>
+    <string name="ui_167" formatted="false">"কিছু শিখুন বা একটি দক্ষতা তৈরি করুন।"</string>
+    <string name="ui_168" formatted="false">"আপনি কী শিখতে চান এবং কোথায় এটি প্রয়োগ করবেন?"</string>
+    <string name="ui_169" formatted="false">"আপনি যা শিখতে চান তা লিখুন\nবিষয়বস্তু থেকে নোট নিতে\nএকটি উদাহরণের সাথে কাজ করুন"</string>
+    <string name="ui_17" formatted="false">"পরিদর্শন করা হয়েছে"</string>
+    <string name="ui_170" formatted="false">"একটি ধারণা আপনার নিজের সামগ্রীতে পরিণত করুন।"</string>
+    <string name="ui_171" formatted="false">"আপনি কিভাবে নিজের সাইটের মধ্যে এটি ব্যবহার করবেন?"</string>
+    <string name="ui_172" formatted="false">"খোলা লাইন এবং ফর্মটামটি উল্লেখ করুন\nআপনার অঙ্গ এবং দর্শক নির্বাচন করুন\nপ্রদর্শন লিখুন এবং কার্যক্রমের জন্য কল করুন\nনিজের সংস্করণ তৈরি করুন"</string>
+    <string name="ui_173" formatted="false">"পরে ভিডিও বা বিষয়বস্তু দেখুন।"</string>
+    <string name="ui_174" formatted="false">"আপনি কেন দেখতে চান? কখন ভাল সময় হবে?"</string>
+    <string name="ui_175" formatted="false">"আপনি যা দেখেছেন তা খুঁজে বের করুন, অথবা এমন কিছু দেখুন।"</string>
+    <string name="ui_176" formatted="false">"আপনি কী খুঁজে পেতে চান? কোন পথ আছে?"</string>
+    <string name="ui_177" formatted="false">"আপনি কী খুঁজছেন এবং আপনার চিহ্নগুলি পরিষ্কার করুন\nদেখুন বিবরণ এবং মন্তব্য\nওয়েবসাইটটি ব্যবহারযোগ্য প্রশ্নের সাথে অনুসন্ধান করুন\nফলাফলকে উৎসের সাথে তুলুন"</string>
+    <string name="ui_178" formatted="false">"সংরক্ষিত পণ্য পড়তে পারে না. বর্তমান ফাইল সংরক্ষিত হয়।"</string>
+    <string name="ui_179" formatted="false">"এই অংশটি সঠিক লিঙ্ক নেই।"</string>
+    <string name="ui_18" formatted="false">"সিদ্ধান্ত নেওয়া হয়েছে"</string>
+    <string name="ui_180" formatted="false">"নতুন শেয়ার খোলা?"</string>
+    <string name="ui_181" formatted="false">"বর্তমান পরিকল্পনা বন্ধ হবে।"</string>
+    <string name="ui_182" formatted="false">"বর্তমান পরিকল্পনা রাখুন"</string>
+    <string name="ui_183" formatted="false">"নতুন শেয়ার খোলা"</string>
+    <string name="ui_184" formatted="false">"সংরক্ষিত পণ্য ফাইল পড়তে পারে না; বর্তমান ফাইল সংরক্ষিত হয়।"</string>
+    <string name="ui_185" formatted="false">"সংরক্ষিত পণ্য ফাইল পড়তে পারে না. একটি নতুন সংরক্ষিত পণ্য খুলতে পারে না."</string>
+    <string name="ui_186" formatted="false">"সংরক্ষিত পণ্যগুলি পড়তে পারে না. একটি রেকর্ড তৈরি করা যাবে না."</string>
+    <string name="ui_187" formatted="false">"কোন ফাইল পিকার পাওয়া যায় না।"</string>
+    <string name="ui_188" formatted="false">"ফাইলটি খোলা যায়নি।"</string>
+    <string name="ui_189" formatted="false">"একটি সঠিক tosave ব্যাকআপ বেছে নিন।"</string>
+    <string name="ui_19" formatted="false">"শেখা হয়েছে"</string>
+    <string name="ui_190" formatted="false">"কাজ শেষ হতে পারে না. ফাইলটি এবং उपलब्ध স্টোরেজটি চেক করুন."</string>
+    <string name="ui_191" formatted="false">"অস্বাভাবিক উদ্দেশ্য।"</string>
+    <string name="ui_192" formatted="false">"শেয়ার করুন বা একটি লিঙ্ক পাস করুন।"</string>
+    <string name="ui_193" formatted="false">"এই লিঙ্কটি এই উদ্দেশ্যে এখন সংরক্ষণ করা হয়েছে।"</string>
+    <string name="ui_194" formatted="false">"সংরক্ষিত পণ্য ফাইল পড়তে পারে না. একটি সাবস্ক্রিপ তৈরি করা যাবে না."</string>
+    <string name="ui_195" formatted="false">"সংরক্ষিত পণ্য ফাইল পড়তে পারে না; বর্তমান ফাইল সংরক্ষিত হয়।"</string>
+    <string name="ui_196" formatted="false">"আপনাকে ৫০০০টি উপাদান সংরক্ষণ করা যায়।"</string>
+    <string name="ui_197" formatted="false">"সংরক্ষিত পণ্য 4 MB সীমাবদ্ধতা অর্জন করে।"</string>
+    <string name="ui_198" formatted="false">"ফাইলটি 4 MB পর্যন্ত থাকতে পারে।"</string>
+    <string name="ui_199" formatted="false">"কাজ"</string>
+    <string name="ui_2" formatted="false">"কিনুন"</string>
+    <string name="ui_20" formatted="false">"তৈরি হয়েছে"</string>
+    <string name="ui_200" formatted="false">"শিরোনাম"</string>
+    <string name="ui_201" formatted="false">"সংরক্ষণের কারণ"</string>
+    <string name="ui_202" formatted="false">"অনুসন্ধানের ফলাফলটি ৩০০ চিঠি পর্যন্ত হতে পারে।"</string>
+    <string name="ui_203" formatted="false">"অসুবিধা সুরক্ষা দিন।"</string>
+    <string name="ui_204" formatted="false">"আপনি 30 টি কাজের জন্য যোগ করতে পারেন।"</string>
+    <string name="ui_205" formatted="false">" ভুল হতে পারে না।"</string>
+    <string name="ui_206" formatted="false">" এতে হতে পারে "</string>
+    <string name="ui_207" formatted="false">" চরিত্র"</string>
+    <string name="ui_208" formatted="false">"ওয়েবসাইট অনুসন্ধান পাওয়া যায় খুঁজে পাওয়া উদ্দেশ্য জন্য।"</string>
+    <string name="ui_209" formatted="false">"ফাইলটিতে অপ্রত্যাশিত অতিরিক্ত বিষয়বস্তু রয়েছে।"</string>
+    <string name="ui_21" formatted="false">"দেখা হয়েছে"</string>
+    <string name="ui_210" formatted="false">"অপসারণ সাপোর্ট ফর্মেট।"</string>
+    <string name="ui_211" formatted="false">"অসম্ভব রেকর্ড ফাইল।"</string>
+    <string name="ui_212" formatted="false">"আপনাকে ৫০০০টি উপাদান সংরক্ষণ করা যায়।"</string>
+    <string name="ui_213" formatted="false">"অস্বীকারের ইতিমধ্যে স্মরণ।"</string>
+    <string name="ui_214" formatted="false">"ফাইলে ডাবলিকেট সার্ভিস IDs রয়েছে।"</string>
+    <string name="ui_215" formatted="false">"সংরক্ষিত পণ্যগুলির মোট সংখ্যা ৫ হাজারের বেশি হতে পারে না।"</string>
+    <string name="ui_216" formatted="false">"লিঙ্কটি খুব দীর্ঘ।"</string>
+    <string name="ui_217" formatted="false">"একটি সঠিক http/https লিঙ্ক লিখুন।"</string>
+    <string name="ui_218" formatted="false">"আজ রাত শেষ হয়ে গেছে · আগামীকাল ২০:০ এ"</string>
+    <string name="ui_219" formatted="false">"একটি স্মরণের সুরক্ষা করার জন্য বিজ্ঞাপনের অনুমতি দেয়।"</string>
+    <string name="ui_22" formatted="false">"খুঁজে পাওয়া গেছে"</string>
+    <string name="ui_220" formatted="false">"ভুলে যাওয়া"</string>
+    <string name="ui_221" formatted="false">"ভুলে যাওয়া বিষয়ের সেটিংস"</string>
+    <string name="ui_222" formatted="false">"উদ্দেশ্য পরিবর্তন করুন"</string>
+    <string name="ui_223" formatted="false">"কারণ পরিবর্তন করুন"</string>
+    <string name="ui_224" formatted="false">"অন্তর্ভুক্ত সংরক্ষিত পণ্য খোলা বা পরিবর্তন না করার দিনগুলি সংখ্যা. অন্তর্ভুক্ত সংরক্ষিত পণ্যগুলি অন্তর্ভুক্ত পণ্যগুলিতে প্রদর্শিত হয়; আপনার সংরক্ষিত পণ্যগুলি মুছে ফেলে না।"</string>
+    <string name="ui_225" formatted="false">"দিন · 1–365"</string>
+    <string name="ui_226" formatted="false">"১ থেকে ৩৬৫ দিনের মধ্যে একটি সংখ্যা প্রদান করুন।"</string>
+    <string name="ui_227" formatted="false">"Add or rename options. Checked options are displayed in the app. একটি পছন্দ ঘুরে রাখা বর্তমান সংরক্ষিত পণ্যগুলি পরিবর্তন করে না।"</string>
+    <string name="ui_228" formatted="false">"দ্রুত কারণ"</string>
+    <string name="ui_229" formatted="false">"উদ্দেশ্য যোগ করুন"</string>
+    <string name="ui_23" formatted="false">"থিম বেছে নিন"</string>
+    <string name="ui_230" formatted="false">"কারণ যোগ করুন"</string>
+    <string name="ui_231" formatted="false">"সম্পন্ন"</string>
+    <string name="ui_232" formatted="false">"বিকল্পের নাম"</string>
+    <string name="ui_233" formatted="false">"নতুন বিকল্প"</string>
+    <string name="ui_234" formatted="false">"বিকল্প সম্পাদনা করুন"</string>
+    <string name="ui_235" formatted="false">"অপশন নামগুলি 1–60 চিঠি দীর্ঘ হতে হবে।"</string>
+    <string name="ui_236" formatted="false">"আপনি 500 ব্যক্তিগত বিকল্পগুলি পর্যন্ত যোগ করতে পারেন।"</string>
+    <string name="ui_237" formatted="false">"ব্যক্তিগত পছন্দ অসম্ভব।"</string>
+    <string name="ui_238" formatted="false">"বিকল্পগুলি বাঁচানো যায়নি।"</string>
+    <string name="ui_239" formatted="false">"অপশনগুলি পড়তে পারেনি. বর্তমান সেটগুলি সংরক্ষিত হয়।"</string>
+    <string name="ui_24" formatted="false">"সেটিংস ও ব্যাকআপ"</string>
+    <string name="ui_240" formatted="false">"অভ্যন্তরীণ কার্যক্রমের দিন।"</string>
+    <string name="ui_241" formatted="false">"নিজের উদ্দেশ্যে সংরক্ষণ করুন।"</string>
+    <string name="ui_242" formatted="false">"আপনি যদি পছন্দ করেন তবে একটি ব্যক্তিগত নোট যোগ করুন।"</string>
+    <string name="ui_243" formatted="false">"বিজ্ঞপ্তি"</string>
+    <string name="ui_244" formatted="false">"সেটিংস"</string>
+    <string name="ui_245" formatted="false">"ফিরুন"</string>
+    <string name="ui_246" formatted="false">"সাধারণ"</string>
+    <string name="ui_247" formatted="false">"সংরক্ষিত বিষয়"</string>
+    <string name="ui_248" formatted="false">"দিন"</string>
+    <string name="ui_249" formatted="false">"উদ্দেশ্য ও দ্রুত কারণ"</string>
+    <string name="ui_25" formatted="false">"সংরক্ষণ করুন। কারণ মনে রাখুন। কাজে লাগান।"</string>
+    <string name="ui_250" formatted="false">"প্রদর্শন, সুরক্ষা বা ব্যক্তিগত বিকল্পগুলি যোগ করুন।"</string>
+    <string name="ui_251" formatted="false">"বিজ্ঞপ্তি কেন্দ্র"</string>
+    <string name="ui_252" formatted="false">"এখানে আপনার রিমাইন্ডার দেখুন।"</string>
+    <string name="ui_253" formatted="false">"সিস্টেমের বিজ্ঞপ্তি সেটিংস"</string>
+    <string name="ui_254" formatted="false">"চালু"</string>
+    <string name="ui_255" formatted="false">"বন্ধ"</string>
+    <string name="ui_256" formatted="false">"ব্যাকআপ"</string>
+    <string name="ui_257" formatted="false">"সংরক্ষিত বিষয় ও ব্যক্তিগত বিকল্প রপ্তানি করুন।"</string>
+    <string name="ui_258" formatted="false">"বর্তমান সংরক্ষিত বিষয় অক্ষত থাকবে।"</string>
+    <string name="ui_259" formatted="false">"এখনো কোনো বিজ্ঞাপন নেই।"</string>
+    <string name="ui_26" formatted="false">"সংরক্ষণ করুন। কারণ মনে রাখুন।"</string>
+    <string name="ui_260" formatted="false">"সাম্প্রতিক বিজ্ঞপ্তি"</string>
+    <string name="ui_261" formatted="false">"এই সুরক্ষিত পণ্য এখন আর নেই।"</string>
+    <string name="ui_262" formatted="false">"বিজ্ঞপ্তির ইতিহাস মুছুন"</string>
+    <string name="ui_263" formatted="false">"আসন্ন রিমাইন্ডার"</string>
+    <string name="ui_264" formatted="false">"খবর পড়তে পারে না; বর্তমান ইতিহাস সংরক্ষিত হয়।"</string>
+    <string name="ui_265" formatted="false">"বিজ্ঞাপন সংরক্ষণ করা যায়নি।"</string>
+    <string name="ui_266" formatted="false">"সংরক্ষণের উদ্দেশ্য বেছে নিন"</string>
+    <string name="ui_267" formatted="false">"গাঢ়"</string>
+    <string name="ui_268" formatted="false">"ভিডিও চালান"</string>
+    <string name="ui_269" formatted="false">"ভিডিওটি লোড করতে পারেন না. আপনি এটি উৎস অ্যাপে খুলে যেতে পারেন।"</string>
+    <string name="ui_27" formatted="false">"চালিয়ে যেতে ট্যাপ করুন"</string>
+    <string name="ui_270" formatted="false">"tosave সীমাহীন"</string>
+    <string name="ui_271" formatted="false">"২০টি বিষয় বিনামূল্যে · এককালীন ক্রয়"</string>
+    <string name="ui_272" formatted="false">"সীমাহীন সংরক্ষণ চালু"</string>
+    <string name="ui_273" formatted="false">"সহায়তা"</string>
+    <string name="ui_274" formatted="false">"যোগাযোগ ও সহায়তা"</string>
+    <string name="ui_275" formatted="false">"অ্যাপটি কি আপনার ভালো লাগছে?"</string>
+    <string name="ui_276" formatted="false">"আপনার মতামত জানান।"</string>
+    <string name="ui_277" formatted="false">"সীমা ছাড়া সংরক্ষণ করুন।"</string>
+    <string name="ui_278" formatted="false">"প্রথম ২০টি বিষয় বিনামূল্যে। একবার কিনে সীমা সরান।"</string>
+    <string name="ui_279" formatted="false">"সীমাহীন সংরক্ষণ"</string>
+    <string name="ui_28" formatted="false">"সংরক্ষিত বিষয় খুঁজুন"</string>
+    <string name="ui_280" formatted="false">"রিমাইন্ডার ও ভুলে যাওয়া বিষয়"</string>
+    <string name="ui_281" formatted="false">"ব্যক্তিগত উদ্দেশ্য ও কারণ"</string>
+    <string name="ui_282" formatted="false">"ব্যাকআপ ও পুনরুদ্ধার"</string>
+    <string name="ui_283" formatted="false">"এককালীন পেমেন্ট। কোনো সাবস্ক্রিপশন নেই।"</string>
+    <string name="ui_284" formatted="false">"বিনামূল্যের সংস্করণে সম্পন্ন বিষয়সহ ২০টি বিষয় রাখা যায়। বর্তমান বিষয় সবসময় খুলতে, বদলাতে ও ব্যাকআপ করতে পারবেন।"</string>
+    <string name="ui_285" formatted="false">"এখন কিনুন"</string>
+    <string name="ui_286" formatted="false">"ক্রয় পুনরুদ্ধার করুন"</string>
+    <string name="ui_287" formatted="false">"আপাতত চালিয়ে যান"</string>
+    <string name="ui_288" formatted="false">"Google Play মূল্য জানায়।"</string>
+    <string name="ui_289" formatted="false">"চালিয়ে যান"</string>
+    <string name="ui_29" formatted="false">"নতুন বিষয়"</string>
+    <string name="ui_290" formatted="false">"গুগল প্লে কেনাকাটা এখন পাওয়া যায় না।"</string>
+    <string name="ui_291" formatted="false">"গুগল প্লাইডের সাথে সংযোগ.."</string>
+    <string name="ui_292" formatted="false">"গুগল প্লাই থেকে বন্ধ, আবারও চেষ্টা করতে পারেন।"</string>
+    <string name="ui_293" formatted="false">"কেনাকাটা বাতিল করা হয়েছে।"</string>
+    <string name="ui_294" formatted="false">"কেনার কাজ শেষ হতে পারে না, আবারও চেষ্টা করতে পারেন।"</string>
+    <string name="ui_295" formatted="false">"অসম্ভব সংরক্ষিত পণ্যগুলি সম্পূর্ণ পরে লুকিয়ে ফেলুন।"</string>
+    <string name="ui_296" formatted="false">"কেনাকাটা সতর্ক করা যায়নি।"</string>
+    <string name="ui_297" formatted="false">"কেনাকাটা সংরক্ষণ করা যাবে না. আপনার কেনাকাটা পুনরাবৃত্তি করুন."</string>
+    <string name="ui_298" formatted="false">"সীমাবদ্ধ সংরক্ষিত পণ্য অ্যাক্সেস করা হয়. ধন্যবাদ!"</string>
+    <string name="ui_299" formatted="false">"কেনাকাটা সাক্ষাৎকার চলছে, তাহলে তা পুনরাবৃত্তি করার চেষ্টা করুন।"</string>
+    <string name="ui_3" formatted="false">"শিখুন"</string>
+    <string name="ui_30" formatted="false">" সংরক্ষিত বিষয়"</string>
+    <string name="ui_300" formatted="false">"অসম্ভব সংরক্ষিত পণ্যগুলি এখনই চালু করা হয়েছে।"</string>
+    <string name="ui_301" formatted="false">"কেনাকাটা শুরু করতে পারেনি, আবার চেষ্টা করতে পারেন।"</string>
+    <string name="ui_302" formatted="false">"২০টি বিনামূল্যের বিষয়ের সীমায় পৌঁছেছেন।"</string>
+    <string name="ui_303" formatted="false">"আপনার মতামত tosave উন্নত করতে সাহায্য করে।"</string>
+    <string name="ui_304" formatted="false">"ভালো লেগেছে"</string>
+    <string name="ui_305" formatted="false">"আরও ভালো হতে পারে"</string>
+    <string name="ui_306" formatted="false">"এখন নয়"</string>
+    <string name="ui_307" formatted="false">"মতামত"</string>
+    <string name="ui_308" formatted="false">"আপনার মতামত · ঐচ্ছিক"</string>
+    <string name="ui_309" formatted="false">"ইমেইল অ্যাপে খসড়া খুলবে। পাঠানোর আগে বদলাতে পারবেন।"</string>
+    <string name="ui_31" formatted="false">"এখনও কিছু সংরক্ষণ করেননি"</string>
+    <string name="ui_310" formatted="false">"ইমেইলে শেয়ার করুন"</string>
+    <string name="ui_311" formatted="false">"কিনলে ২০টি বিষয়ের সীমা সরে যায়। প্রযুক্তিগত ধারণক্ষমতা: ৫,০০০ বিষয় / 4 MB।"</string>
+    <string name="ui_312" formatted="false">"থাম্বনেইল বেছে নিন"</string>
+    <string name="ui_313" formatted="false">"ছবি পড়তে পারবেন না, অন্য ছবি নির্বাচন করুন।"</string>
+    <string name="ui_314" formatted="false">"ছবি যোগ করুন"</string>
+    <string name="ui_315" formatted="false">"ছবি"</string>
+    <string name="ui_316" formatted="false">"ছবি"</string>
+    <string name="ui_317" formatted="false">"স্ক্রিনশট"</string>
+    <string name="ui_318" formatted="false">"ছবি বড় করুন"</string>
+    <string name="ui_319" formatted="false">"ট্যাগ"</string>
+    <string name="ui_32" formatted="false">"এখানে এখনও কিছু সংরক্ষিত নেই।"</string>
+    <string name="ui_320" formatted="false">"ট্যাগ যোগ করুন · কমা দিয়ে আলাদা করুন"</string>
+    <string name="ui_321" formatted="false">"কেনাকাটা"</string>
+    <string name="ui_322" formatted="false">"রেসিপি"</string>
+    <string name="ui_323" formatted="false">"কাজ"</string>
+    <string name="ui_324" formatted="false">"ধারণা"</string>
+    <string name="ui_325" formatted="false">"তথ্যসূত্র"</string>
+    <string name="ui_326" formatted="false">"ছবি প্রস্তুত হচ্ছে…"</string>
+    <string name="ui_327" formatted="false">"ছবির লেখা পড়া হচ্ছে…"</string>
+    <string name="ui_328" formatted="false">"লেখা পড়া যায়নি। আবার চেষ্টা করুন।"</string>
+    <string name="ui_329" formatted="false">"ছবির লেখা দিয়ে খোঁজা যায়।"</string>
+    <string name="ui_33" formatted="false">"শেয়ার মেনু থেকে একটি লিংক, ছবি বা ভিডিও tosave-এ পাঠান। কেন সংরক্ষণ করছেন তা বেছে নিন, যেন পরে সহজে খুঁজে পান।"</string>
+    <string name="ui_330" formatted="false">"পড়া লেখা দেখান"</string>
+    <string name="ui_331" formatted="false">"ছবির লেখা"</string>
+    <string name="ui_332" formatted="false">"লেখা আবার স্ক্যান করুন"</string>
+    <string name="ui_333" formatted="false">"ব্যাকআপ তৈরি করুন"</string>
+    <string name="ui_334" formatted="false">"রেকর্ড, ছবি এবং ব্যক্তিগত সিদ্ধান্তগুলি সরবরাহ করুন।"</string>
+    <string name="ui_335" formatted="false">"ব্যাকআপ প্রস্তুত হচ্ছে…"</string>
+    <string name="ui_336" formatted="false">"ব্যাকআপ যাচাই হচ্ছে…"</string>
+    <string name="ui_337" formatted="false">"ট্যাগে সর্বোচ্চ ৪০টি অক্ষর থাকতে পারে।"</string>
+    <string name="ui_338" formatted="false">"সর্বোচ্চ ১২টি ট্যাগ যোগ করতে পারবেন।"</string>
+    <string name="ui_339" formatted="false">"অস্বীকার ট্যাগ"</string>
+    <string name="ui_34" formatted="false">"অন্য উদ্দেশ্য বা আপনার অনুসন্ধান পরিবর্তন করুন।"</string>
+    <string name="ui_340" formatted="false">"ট্যাগ যোগ করুন"</string>
+    <string name="ui_341" formatted="false">"স্ক্রিনশট"</string>
+    <string name="ui_342" formatted="false">"ভিডিও"</string>
+    <string name="ui_343" formatted="false">"সামাজিক মাধ্যম"</string>
+    <string name="ui_344" formatted="false">"ভিডিও"</string>
+    <string name="ui_345" formatted="false">"ডিভাইসের ভিডিও"</string>
+    <string name="ui_346" formatted="false">"ভিডিও যোগ করুন"</string>
+    <string name="ui_347" formatted="false">"ভিডিও খুলুন"</string>
+    <string name="ui_348" formatted="false">"ভিডিও প্রস্তুত হচ্ছে…"</string>
+    <string name="ui_349" formatted="false">"ভিডিও যোগ করতে পারবেন না. 64 MB পর্যন্ত খেলাযোগ্য ভিডিও নির্বাচন করুন."</string>
+    <string name="ui_35" formatted="false">"কীভাবে কাজ করে"</string>
+    <string name="ui_350" formatted="false">"ভিডিও খুলতে পারবেন না. আপনার ডিভাইসে একটি ভিডিও প্লেয়ার ইনস্টল করুন."</string>
+    <string name="ui_351" formatted="false">"বিনামূল্যের বিষয়"</string>
+    <string name="ui_352" formatted="false">"স্ক্রিনশট, ভিডিও ও ট্যাগ"</string>
+    <string name="ui_353" formatted="false">"ছবির লেখা খুঁজুন"</string>
+    <string name="ui_354" formatted="false">"ছবি ও ভিডিওসহ ব্যাকআপ"</string>
+    <string name="ui_355" formatted="false">"ফাইল সংযুক্ত · অতিরিক্ত কপি নেই"</string>
+    <string name="ui_356" formatted="false">"ফাইল আবার সংযুক্ত করুন"</string>
+    <string name="ui_357" formatted="false">"পুরোনো সংস্করণে সংরক্ষিত কপি"</string>
+    <string name="ui_358" formatted="false">"ফাইলে প্রবেশ করা যাচ্ছে না। আবার সংযুক্ত করুন।"</string>
+    <string name="ui_359" formatted="false">"একই ফাইল নির্বাচন করুন, তা কপি না করে সংযুক্ত করতে।"</string>
+    <string name="ui_36" formatted="false">"সম্পন্ন"</string>
+    <string name="ui_360" formatted="false">"ফাইলের অনুমতি রাখা যায়নি। অন্য উৎস বেছে নিন।"</string>
+    <string name="ui_361" formatted="false">"Export tags, notes এবং file references।"</string>
+    <string name="ui_362" formatted="false">"লিঙ্কিত ফাইল এবং অ্যাক্সেস অনুমতিগুলি স্থানান্তর করা হয় না. ফাইলগুলি অন্য ডিভাইসে রিলিং করুন."</string>
+    <string name="ui_363" formatted="false">"অসম্ভব ফাইল রিপোর্ট।"</string>
+    <string name="ui_364" formatted="false">"ট্যাগ ও নোটের ব্যাকআপ"</string>
+    <string name="ui_365" formatted="false">"নতুন স্থানীয় রেকর্ড ফাইলের সাথে লিঙ্ক. সাবস্ক্রিপের মধ্যে মূল ফাইল নেই।"</string>
+    <string name="ui_37" formatted="false">"উদ্দেশ্য নিয়ে সংরক্ষিত"</string>
+    <string name="ui_38" formatted="false">" ধাপ"</string>
+    <string name="ui_39" formatted="false">"এটি কেন সংরক্ষণ করছেন?"</string>
+    <string name="ui_4" formatted="false">"তৈরি করুন"</string>
+    <string name="ui_40" formatted="false">"সংরক্ষিত বিষয় সম্পাদনা করুন"</string>
+    <string name="ui_41" formatted="false">"উদ্দেশ্য বেছে নিন। শিরোনাম ও বিস্তারিত পরে বদলাতে পারবেন।"</string>
+    <string name="ui_42" formatted="false">"লিংক"</string>
+    <string name="ui_43" formatted="false">"লিংক পেস্ট করুন"</string>
+    <string name="ui_44" formatted="false">"লিংক সম্পাদনা করুন"</string>
+    <string name="ui_45" formatted="false">"সংরক্ষণের উদ্দেশ্য"</string>
+    <string name="ui_46" formatted="false">"শুরু করতে একটি উদ্দেশ্য বেছে নিন।"</string>
+    <string name="ui_47" formatted="false">"দ্রুত কারণ"</string>
+    <string name="ui_48" formatted="false">"রিমাইন্ডার যোগ করুন"</string>
+    <string name="ui_49" formatted="false">"এই ঘরগুলো ঐচ্ছিক। না পূরণ করেও সংরক্ষণ করতে পারবেন।"</string>
+    <string name="ui_5" formatted="false">"দেখুন"</string>
+    <string name="ui_50" formatted="false">"শিরোনাম · ঐচ্ছিক"</string>
+    <string name="ui_51" formatted="false">"ব্যক্তিগত নোট · ঐচ্ছিক"</string>
+    <string name="ui_52" formatted="false">"কাজের তালিকা"</string>
+    <string name="ui_53" formatted="false">"আপনার পরিকল্পনাকে ছোট কাজে বিভক্ত করুন. আপনি শেষ হওয়ার পর কার্ডে তাদের খুঁজে বের করুন. আপনি পছন্দ করলে এটি खाली রাখুন."</string>
+    <string name="ui_54" formatted="false">"কাজ · প্রতি লাইনে একটি"</string>
+    <string name="ui_55" formatted="false">"উদাহরণ কাজ বেছে নিন"</string>
+    <string name="ui_56" formatted="false">"আগে একটি উদ্দেশ্য বেছে নিন।"</string>
+    <string name="ui_57" formatted="false">"খোঁজার শব্দ · ঐচ্ছিক"</string>
+    <string name="ui_58" formatted="false">"নোট ও কাজ · ঐচ্ছিক"</string>
+    <string name="ui_59" formatted="false">"পরিবর্তন সংরক্ষণ করুন"</string>
+    <string name="ui_6" formatted="false">"খুঁজুন"</string>
+    <string name="ui_60" formatted="false">"আপনার ডিভাইসে সংরক্ষিত। অফলাইনে কাজ করে।"</string>
+    <string name="ui_61" formatted="false">"রিমাইন্ডার"</string>
+    <string name="ui_62" formatted="false">"একটি লিঙ্ক শেয়ার করুন অথবা একটি পেস্ট করুন।"</string>
+    <string name="ui_63" formatted="false">" · সংরক্ষণ করুন"</string>
+    <string name="ui_64" formatted="false">"ভবিষ্যতের সময় নির্বাচন করুন।"</string>
+    <string name="ui_65" formatted="false">"সংরক্ষিত · "</string>
+    <string name="ui_66" formatted="false">"বিষয় আপডেট হয়েছে"</string>
+    <string name="ui_67" formatted="false">"আপনার ক্লিপবোর্ডে কোন লিঙ্ক নেই।"</string>
+    <string name="ui_68" formatted="false">"আপনার ক্লিপবার্ডে একটি সঠিক লিঙ্ক নেই।"</string>
+    <string name="ui_69" formatted="false">"সংরক্ষণের উদ্দেশ্য"</string>
+    <string name="ui_7" formatted="false">"অপেক্ষমান"</string>
+    <string name="ui_70" formatted="false">" কাজ সম্পন্ন"</string>
+    <string name="ui_71" formatted="false">"কোনো রিমাইন্ডার নেই"</string>
+    <string name="ui_72" formatted="false">"রিমাইন্ডার সম্পাদনা করুন"</string>
+    <string name="ui_73" formatted="false">"বিষয় দেখুন"</string>
+    <string name="ui_74" formatted="false">"মূল বিষয় খুলুন"</string>
+    <string name="ui_75" formatted="false">"অপেক্ষমান হিসেবে চিহ্নিত করুন"</string>
+    <string name="ui_76" formatted="false">"অপেক্ষমান চিহ্নিত হয়েছে"</string>
+    <string name="ui_77" formatted="false">"সম্পাদনা করুন"</string>
+    <string name="ui_78" formatted="false">"সংরক্ষিত বিষয় মুছুন"</string>
+    <string name="ui_79" formatted="false">"এই বিষয় মুছবেন?"</string>
+    <string name="ui_8" formatted="false">"সব"</string>
+    <string name="ui_80" formatted="false">"বিষয় মুছে ফেলা হয়েছে"</string>
+    <string name="ui_81" formatted="false">"পূর্বাবস্থায় ফেরান"</string>
+    <string name="ui_82" formatted="false">"আপনি কী খুঁজতে চান?"</string>
+    <string name="ui_83" formatted="false">"ওয়েবে খুঁজুন"</string>
+    <string name="ui_84" formatted="false">"শুধু এই খোঁজার শব্দ Google অনুসন্ধানে পাঠানো হয়।"</string>
+    <string name="ui_85" formatted="false">"আপনি যা খুঁজতে চান তা লিখুন।"</string>
+    <string name="ui_86" formatted="false">"এই লিঙ্কটি খুলতে কোন অ্যাপ নেই।"</string>
+    <string name="ui_87" formatted="false">"আপনার চোখ নির্বাচন করুন"</string>
+    <string name="ui_88" formatted="false">"AMOLED থেমা একটি শুধুমাত্র কালো ফাউন্ডেশন ব্যবহার করে।"</string>
+    <string name="ui_89" formatted="false">"সম্পূর্ণ কালো AMOLED"</string>
+    <string name="ui_9" formatted="false">"সম্পন্ন"</string>
+    <string name="ui_90" formatted="false">"হালকা"</string>
+    <string name="ui_91" formatted="false">"সিস্টেম অনুযায়ী"</string>
+    <string name="ui_92" formatted="false">" · নির্বাচিত"</string>
+    <string name="ui_93" formatted="false">"সংরক্ষিত বিষয় আপনার ডিভাইসে থাকে। নিয়ন্ত্রণ আপনার।"</string>
+    <string name="ui_94" formatted="false">"অ্যাপের ভাষা"</string>
+    <string name="ui_95" formatted="false">"সিস্টেমের ভাষা"</string>
+    <string name="ui_96" formatted="false">"চেহারা"</string>
+    <string name="ui_97" formatted="false">"JSON ব্যাকআপ রপ্তানি করুন"</string>
+    <string name="ui_98" formatted="false">"ব্যাকআপ আমদানি করুন"</string>
+    <string name="ui_99" formatted="false">"ফন্ট লাইসেন্স"</string>
+</resources>
