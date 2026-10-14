@@ -132,3 +132,12 @@ Tek seferlik satılan, cihazda çalışan temel ürün korunur. Bulut AI temel s
 - Cihaz videosunu ekle/etiketle, galeride aslını silip cihaz oynatıcısıyla aç; video paylaşımını ve 64 MB sınırını dene.
 - Ekran görüntüleri/Videolar/Sosyal filtreleri ve kayıt kullanım barı; satın alma ekranında $4.99 ve screenshot/video özellikleri.
 - Görseller, videolar ve seçilmiş sosyal küçük görsellerle ZIP yedeği oluştur; ayrı kurulumda geri yükleyip görsel/metin/etiketleri kontrol et. Eski JSON yedeğini de dene.
+
+## v0.11 cihaz kabulü
+
+- Instagram/TikTok/Facebook'tan Paylaş → SaveWhy ile gerçek linki kaydet; tek pencere davranışı değişmemeli.
+- Galeriden görsel/video paylaş; sağlayıcı yalnız geçici izin veriyorsa aynı dosyayı sistem seçicisinden bağla. İşlem kopya oluşturmamalı.
+- Uygulamayı kapat/yeniden aç ve cihazı yeniden başlat; kalıcı izni alınan dosya URI'leri erişilebilmeli.
+- Galeride aslı sil/taşı veya izni kaldır; etiket/notlar kalmalı ve yeniden bağlama aynı kartı güncellemeli.
+- Dosya adı/etiket/OCR araması, büyük video referansı, 20 kayıt kapasitesi ve $4.99 ekranı.
+- Referans yedeğini aynı kurulumda ve yeni kurulumda dene; dosya erişim izinlerinin taşınmadığı açıklanmalı. Eski v0.10 kopyalı yedekler de çalışmalı.

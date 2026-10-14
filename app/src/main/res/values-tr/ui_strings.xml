@@ -354,4 +354,15 @@
 <string name="ui_352">Ekran görüntüleri, videolar ve etiketler</string>
 <string name="ui_353">Görseldeki yazıyla arama</string>
 <string name="ui_354">Görselleri ve videoları içeren yedek</string>
+<string name="ui_355">Dosyaya bağlı · yeniden kopyalanmaz</string>
+<string name="ui_356">Dosyayı yeniden bağla</string>
+<string name="ui_357">Önceki sürümde saklanan kopya</string>
+<string name="ui_358">Dosyaya erişilemiyor. Dosyayı yeniden bağla.</string>
+<string name="ui_359">Paylaşım geçici erişim verdi. Kopyalamadan saklamak için aynı dosyayı seç.</string>
+<string name="ui_360">Kalıcı dosya erişimi alınamadı. Başka bir dosya kaynağı seç.</string>
+<string name="ui_361">Etiketlerini, notlarını ve dosya bağlantılarını dışa aktar.</string>
+<string name="ui_362">Bağlı dosyalar ve erişim izinleri taşınmaz. Başka cihazda dosyaları yeniden bağlaman gerekir.</string>
+<string name="ui_363">Geçersiz dosya referansı.</string>
+<string name="ui_364">Etiket ve not yedeği</string>
+<string name="ui_365">Yeni yerel kayıtlar dosyaya bağlıdır. Yedek dosyanın aslını içermez.</string>
 </resources>

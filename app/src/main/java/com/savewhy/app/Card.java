@@ -8,7 +8,7 @@ public final class Card {
     public static final int MAX_STEPS = 30;
     public final String id, url, title, why, note, searchQuery, imageId;
     public final List<String> tags;
-    public String recognizedText="", ocrState="none";private String videoId="";
+    public String recognizedText="", ocrState="none";private String videoId="",mediaUri="",mediaName="";
     public final long createdAt;
     public long reminderAt, lastActivityAt;
     public boolean done;
@@ -52,18 +52,26 @@ public final class Card {
         if (text.trim().length() > max) throw new IllegalArgumentException(name + " en fazla " + max + " karakter olabilir.");
         return text.trim();
     }
-    public Card copy() { Card c=new Card(id, url, title, why, note, createdAt, done, steps, searchQuery,imageId,tags,recognizedText,ocrState); c.reminderAt=reminderAt; c.lastActivityAt=lastActivityAt;c.setVideo(videoId); return c; }
+    public Card copy() { Card c=new Card(id, url, title, why, note, createdAt, done, steps, searchQuery,imageId,tags,recognizedText,ocrState); c.reminderAt=reminderAt; c.lastActivityAt=lastActivityAt;c.setVideo(videoId);c.setMediaReference(mediaUri,mediaName); return c; }
     public boolean isImage(){return !imageId.isEmpty()&&videoId.isEmpty();}
     public boolean isVideo(){return !videoId.isEmpty();}
     public boolean hasVisual(){return !imageId.isEmpty();}
     public String videoId(){return videoId;}
     public void setVideo(String value){if(value==null||(!value.isEmpty()&&(!value.matches("[a-f0-9]{64}")||imageId.isEmpty())))throw new IllegalArgumentException("Geçersiz video kimliği.");videoId=value;}
+    public boolean isReference(){return !mediaUri.isEmpty();}
+    public String mediaUri(){return mediaUri;}
+    public String mediaName(){return mediaName;}
+    public void setMediaReference(String uri,String name){
+        if(uri==null||name==null||uri.length()>4096||name.length()>160)throw new IllegalArgumentException("Geçersiz dosya referansı.");
+        if(!uri.isEmpty()){try{java.net.URI value=java.net.URI.create(uri);if(!hasVisual()||!"content".equals(value.getScheme())||value.getRawAuthority()==null||value.getRawAuthority().isEmpty()||value.getRawUserInfo()!=null)throw new IllegalArgumentException();}catch(Exception e){throw new IllegalArgumentException("Geçersiz dosya referansı.");}}
+        if(uri.isEmpty()&&!name.isEmpty())throw new IllegalArgumentException("Geçersiz dosya referansı.");mediaUri=uri;mediaName=name;
+    }
     public static List<String> parseTags(List<String> values){if(values==null)throw new IllegalArgumentException("Geçersiz etiketler.");List<String> tags=new ArrayList<>();Set<String> keys=new HashSet<>();for(String value:values){if(value==null)throw new IllegalArgumentException("Geçersiz etiketler.");value=value.trim();if(value.isEmpty())continue;if(value.length()>40||value.contains("\n")||value.contains(","))throw new IllegalArgumentException("Etiket en fazla 40 karakter olabilir.");if(keys.add(fold(value)))tags.add(value);}if(tags.size()>12)throw new IllegalArgumentException("En fazla 12 etiket eklenebilir.");return tags;}
     public static List<String> parseTags(String text){return parseTags(Arrays.asList(text.split(",",-1)));}
     public int completedSteps() { int n = 0; for (Step s : steps) if (s.done) n++; return n; }
-    public String duplicateKey() { return (isVideo()?"video:"+videoId:isImage()?"image:"+imageId:url) + "\n" + why; }
+    public String duplicateKey() { return (isReference()?"reference:"+mediaUri:isVideo()?"video:"+videoId:isImage()?"image:"+imageId:url) + "\n" + why; }
     public boolean matches(String query) {
-        StringBuilder data = new StringBuilder(title).append(' ').append(note).append(' ').append(url).append(' ').append(why).append(' ').append(searchQuery).append(' ').append(recognizedText);
+        StringBuilder data = new StringBuilder(title).append(' ').append(note).append(' ').append(url).append(' ').append(why).append(' ').append(searchQuery).append(' ').append(recognizedText).append(' ').append(mediaName);
         for(String tag:tags)data.append(' ').append(tag);
         for (Step s : steps) data.append(' ').append(s.text);
         return fold(data.toString()).contains(fold(query));

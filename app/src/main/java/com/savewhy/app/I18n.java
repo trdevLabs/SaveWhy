@@ -364,6 +364,17 @@ public final class I18n {
         IDS.put("Ekran görüntüleri, videolar ve etiketler",R.string.ui_352);
         IDS.put("Görseldeki yazıyla arama",R.string.ui_353);
         IDS.put("Görselleri ve videoları içeren yedek",R.string.ui_354);
+        IDS.put("Dosyaya bağlı · yeniden kopyalanmaz",R.string.ui_355);
+        IDS.put("Dosyayı yeniden bağla",R.string.ui_356);
+        IDS.put("Önceki sürümde saklanan kopya",R.string.ui_357);
+        IDS.put("Dosyaya erişilemiyor. Dosyayı yeniden bağla.",R.string.ui_358);
+        IDS.put("Paylaşım geçici erişim verdi. Kopyalamadan saklamak için aynı dosyayı seç.",R.string.ui_359);
+        IDS.put("Kalıcı dosya erişimi alınamadı. Başka bir dosya kaynağı seç.",R.string.ui_360);
+        IDS.put("Etiketlerini, notlarını ve dosya bağlantılarını dışa aktar.",R.string.ui_361);
+        IDS.put("Bağlı dosyalar ve erişim izinleri taşınmaz. Başka cihazda dosyaları yeniden bağlaman gerekir.",R.string.ui_362);
+        IDS.put("Geçersiz dosya referansı.",R.string.ui_363);
+        IDS.put("Etiket ve not yedeği",R.string.ui_364);
+        IDS.put("Yeni yerel kayıtlar dosyaya bağlıdır. Yedek dosyanın aslını içermez.",R.string.ui_365);
     }
     private I18n() {}
     public static String text(Context context,String value) {

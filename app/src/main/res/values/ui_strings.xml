@@ -354,4 +354,15 @@
 <string name="ui_352">Screenshots, videos and tags</string>
 <string name="ui_353">Search text in images</string>
 <string name="ui_354">Backup with images and videos</string>
+<string name="ui_355">Linked file · no duplicate copy</string>
+<string name="ui_356">Relink file</string>
+<string name="ui_357">Copy saved by an earlier version</string>
+<string name="ui_358">Cannot access the file. Relink it.</string>
+<string name="ui_359">The share grants temporary access. Select the same file to link it without copying.</string>
+<string name="ui_360">Could not retain file access. Select another file source.</string>
+<string name="ui_361">Export tags, notes and file references.</string>
+<string name="ui_362">Linked files and access permissions are not transferred. Relink the files on another device.</string>
+<string name="ui_363">Invalid file reference.</string>
+<string name="ui_364">Tags and notes backup</string>
+<string name="ui_365">New local records link to the file. Backups do not include the original file.</string>
 </resources>

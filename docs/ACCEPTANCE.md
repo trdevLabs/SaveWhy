@@ -77,7 +77,7 @@ Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır 
 
 JDK 17, Gradle 8.9, Android SDK 35 ve Build Tools 34.0.0 kullanılır. SDK/Gradle arşivlerinin SHA-256 özetleri sabitlenmiştir. İlk derleme ve arayüz testleri bağımlılıkları indirir. GitHub token veya model API anahtarı gerekmez. SDK lisans kabulü defterde açıklanır. Debug APK mağaza paketi değildir.
 
-Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce görselleri içeren yedek oluştur**; yeniden kurulumdan sonra içe aktar.
+Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce yedek oluştur**; yeniden kurulumdan sonra içe aktar.
 
 ## Yerel geliştirme
 
@@ -99,11 +99,11 @@ Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni veri
 
 ## Veri ve yedekler
 
-Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller ve kaydedilen ekran görüntüleri cihazda saklanır; yeni ZIP yedeğine dahildir. Uygulama silinirse yerel dosya silinir. Menüden **Yedek oluştur** ile başka bir konuma yedek al.
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Yeni yerel görsel/video kayıtları kalıcı dosya URI'sine bağlıdır; asılları yeniden kopyalanmaz. ZIP yedeği bu kayıtların etiketlerini/notlarını/referanslarını taşır, asıl dosyaları ve erişim izinlerini taşımaz. Eski sürümde saklanan kopyalar ve seçilmiş sosyal küçük görseller ZIP'te korunur. Uygulama silinirse yerel dosya silinir. Menüden **Yedek oluştur** ile başka bir konuma yedek al.
 
 İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet veya görsel/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB kayıt metadatası, 5000 kart, kart başına 30 adım; görsel içe aktarmada 12 MB, kayıtlı görselde 2 MB, cihaz videosunda 64 MB, ZIP yedeğinin toplam açılmış içeriğinde 2 GB. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 
-v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.10 kayıt biçimi **sürüm 5**'tir; görsel kimliği, etiketler ve okunan metin eklenmiştir. Sürüm 1–4 JSON yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
+v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.11 kayıt biçimi **sürüm 6**'dır; dosya URI'si ve görünen dosya adı eklenmiştir. Sürüm 1–5 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
 
 ## Doğrulama
 
@@ -141,3 +141,12 @@ Manrope, Google Fonts deposundan alınmıştır: https://github.com/google/fonts
 - Gerçek ffmpeg MP4 fixture'ıyla byte-for-byte özel video kopyası; testte sahte Android kare çıkarıcısıyla poster akışı. Görsel metin modeli de UI iş akışı testinde fake OCR ile çalıştırıldı; fiziksel cihazda OCR doğruluğu/codec oynatma ayrıca kontrol edilmeli.
 - $4.99 satın alma ekranı, screenshot/video özellikleri, 3/20 kullanım barı ve ödeme yapılandırılmadığında satın alma düğmesinin kapalı kalması UI testleriyle doğrulandı.
 - APK derlemesi, ZIP bütünlüğü ve imza doğrulaması başarılı; lint sıfır Error/Fatal.
+
+## v0.11 doğrulama
+
+- 159 test geçti, sıfır başarısız/atlanan test. Lint sıfır Error/Fatal; APK derlemesi ve imza/ZIP kontrolü başarılı.
+- Dosya URI referansı/kalıcı okuma izni, dosyayı yeniden yazmadan örneklem okuma, dosya adı araması, v5 kopyaların göçü ve v6 copy/merge doğrulandı.
+- Referans ZIP'inin sadece records.json içermesi ve asıl dosya bulunmadan metadata olarak geri yüklenmesi doğrulandı; eski kopyalı yedek testleri de geçti.
+- Paylaşımın kalıcı izin vermemesi halinde OPEN_DOCUMENT'a yönlendirme ve seçicide de izin reddedilince güvenilmez kayıt/kopya yaratılmaması doğrulandı.
+- Yeniden bağlama aynı kimlik, etiket ve notları koruyor; bağlı video kaynak URI ile salt-okuma devri yapıyor.
+- Fiziksel cihazda Samsung Galeri/Google Fotoğraflar gibi sağlayıcıların gerçek izin ömrü, yeniden başlatma sonrası erişim ve dosya taşınması/erişim iptali kabulü ayrıca yapılmalı.

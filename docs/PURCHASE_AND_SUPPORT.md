@@ -44,3 +44,7 @@ Kaynaklar:
 Ekran görüntüsü/fotoğraf ve cihaz videosu da birer kayıttır; bağlantılarla ortak 20 kayıt kapasitesini kullanır. OCR, etiketler ve görselli ZIP yedeği ücretsiz kayıtlar için de erişilebilirdir; ayrı abonelik veya ek ücret yoktur.
 
 Fiyat kararı: savewhy_lifetime USD taban fiyatı **4.99**. APK tasarımındaki $4.99 yazısı ürün bulunmadığı durumda gösterilen başlangıç fiyatıdır; gerçek ödemede Play fiyatı ve para birimi kullanılır.
+
+## v0.11 depolama
+
+Yeni yerel dosyalar kopyalanmaz; etiket/not/dosya referansı yedeklenir. Önceki kopyalı kayıtlar ve seçilmiş sosyal küçük görseller için legacy ZIP desteği sürer. $4.99 fiyat ve ortak 20 kayıt kapasitesi korunur.

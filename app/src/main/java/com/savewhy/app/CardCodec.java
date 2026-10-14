@@ -15,9 +15,9 @@ public final class CardCodec {
             JSONArray steps = new JSONArray();
             for (Card.Step s : c.steps) steps.put(new JSONObject().put("text", s.text).put("done", s.done));
             array.put(new JSONObject().put("id", c.id).put("url", c.url).put("title", c.title)
-                    .put("why", c.why).put("note", c.note).put("createdAt", c.createdAt).put("done", c.done).put("steps", steps).put("searchQuery",c.searchQuery).put("reminderAt",c.reminderAt).put("lastActivityAt",c.lastActivityAt).put("imageId",c.imageId).put("videoId",c.videoId()).put("tags",new JSONArray(c.tags)).put("recognizedText",c.recognizedText).put("ocrState",c.ocrState));
+                    .put("why", c.why).put("note", c.note).put("createdAt", c.createdAt).put("done", c.done).put("steps", steps).put("searchQuery",c.searchQuery).put("reminderAt",c.reminderAt).put("lastActivityAt",c.lastActivityAt).put("imageId",c.imageId).put("videoId",c.videoId()).put("mediaUri",c.mediaUri()).put("mediaName",c.mediaName()).put("tags",new JSONArray(c.tags)).put("recognizedText",c.recognizedText).put("ocrState",c.ocrState));
         }
-        return new JSONObject().put("app", "SaveWhy").put("version", 5).put("cards", array).toString(2);
+        return new JSONObject().put("app", "SaveWhy").put("version", 6).put("cards", array).toString(2);
     }
 
     public static List<Card> decode(String json) throws JSONException {
@@ -33,7 +33,7 @@ public final class CardCodec {
         else if (root instanceof JSONObject) {
             JSONObject object = (JSONObject) root;
             version=object.getInt("version");
-            if (!"SaveWhy".equals(object.getString("app")) || (version != 1 && version != 2 && version != 3 && version != 4 && version != 5))
+            if (!"SaveWhy".equals(object.getString("app")) || (version != 1 && version != 2 && version != 3 && version != 4 && version != 5 && version != 6))
                 throw new IllegalArgumentException("Desteklenmeyen yedek biçimi.");
             array = object.getJSONArray("cards");
         } else throw new IllegalArgumentException("Geçersiz yedek dosyası.");
@@ -50,6 +50,7 @@ public final class CardCodec {
                     c.getString("note"), legacy ? c.optLong("createdAt", 0) : c.getLong("createdAt"), c.getBoolean("done"), steps,
                     version>=2?c.getString("searchQuery"):"",version>=5?c.getString("imageId"):"",tags,version>=5?c.getString("recognizedText"):"",version>=5?c.getString("ocrState"):"none");
             if(version>=5)card.setVideo(c.optString("videoId",""));
+            if(version>=6)card.setMediaReference(c.getString("mediaUri"),c.getString("mediaName"));
             card.reminderAt=version>=3?c.getLong("reminderAt"):0;
             card.lastActivityAt=version>=4?c.getLong("lastActivityAt"):card.createdAt;
             if(card.lastActivityAt<0)throw new IllegalArgumentException("Geçersiz işlem tarihi.");
@@ -67,7 +68,7 @@ public final class CardCodec {
         for (Card c : imported) if (keys.add(c.duplicateKey())) {
             String id = c.id;
             if (ids.contains(id)) id = UUID.randomUUID().toString();
-            ids.add(id); Card added=new Card(id,c.url,c.title,c.why,c.note,c.createdAt,c.done,c.steps,c.searchQuery,c.imageId,c.tags,c.recognizedText,c.ocrState); added.reminderAt=c.reminderAt; added.lastActivityAt=c.lastActivityAt;added.setVideo(c.videoId()); result.add(added);
+            ids.add(id); Card added=new Card(id,c.url,c.title,c.why,c.note,c.createdAt,c.done,c.steps,c.searchQuery,c.imageId,c.tags,c.recognizedText,c.ocrState); added.reminderAt=c.reminderAt; added.lastActivityAt=c.lastActivityAt;added.setVideo(c.videoId());added.setMediaReference(c.mediaUri(),c.mediaName()); result.add(added);
         }
         if (result.size() > MAX_CARDS) throw new IllegalArgumentException("Toplam kayıt sayısı 5000'i aşamaz.");
         return result;

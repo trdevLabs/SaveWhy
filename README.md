@@ -1,4 +1,4 @@
-# SaveWhy · Android 0.10.0
+# SaveWhy · Android 0.11.0
 
 **Paylaş. Niyetine dokun. Kaydet.**
 
@@ -13,6 +13,14 @@ Instagram, TikTok, YouTube veya bir web bağlantısında **Paylaş → SaveWhy**
 Başlık yazmak veya detay eklemek zorunlu değildir. Başlık paylaşım bilgisinden alınır; bilgi yoksa bağlantının kaynağı ve içerik kimliğinden oluşturulur. Her niyette dört hızlı neden vardır. Özel başlık, not, adımlar ve Bul sorgusu kapalı, isteğe bağlı detay alanındadır. Uygulama panoyu yalnızca **Panodan ekle** düğmesine dokunduğunda okur.
 
 **İzle** daha sonra tüketmek istediğin içerik içindir. **Bul** içerikte gördüğün bir şeyin kimliğini, kaynağını veya benzerini araştırmak içindir. Bul kartında web aramasından önce sorguyu gözden geçirirsin; özel notun sorguya otomatik eklenmez. Al, satın alma kararı; Öğren, öğrenme hedefi içindir.
+
+## v0.11 yenilikleri
+
+- Android **Paylaş → SaveWhy** akışı korunur. Yüzen simge/uygulama izleme/ekran yakalama servisi eklenmedi.
+- Yeni yerel görsel ve video kayıtları `content://` dosya bağlantısı + kalıcı okuma izni ile saklanır; asıl dosyalar çoğaltılmaz.
+- Paylaşım geçici izin verirse kalıcı bağlantı için aynı dosya Android dosya seçicisinden seçilir. URI izinlerinin kalıcı olduğu varsayılmaz ve gizli kopyalama yapılmaz.
+- Dosya taşınır/silinir veya izin kaldırılırsa etiket/notlar korunur; detayda **Dosyayı yeniden bağla** bulunur. Kimlik dosya adından değil URI'den alınır; dosya adı ayrıca aranabilir.
+- Referans yedeği etiket/not/URI'yi taşır; başka cihazda asıl dosyaları yeniden bağlamak gerekir. Önceki sürümün kopyaları silinmeden okunur ve eski yedekler desteklenir.
 
 ## v0.10 yenilikleri
 
@@ -106,7 +114,7 @@ Başlıklar **içerik özeti değildir**; uygulama videoyu analiz etmez. Hazır 
 
 JDK 17, Gradle 8.9, Android SDK 35 ve Build Tools 34.0.0 kullanılır. SDK/Gradle arşivlerinin SHA-256 özetleri sabitlenmiştir. İlk derleme ve arayüz testleri bağımlılıkları indirir. GitHub token veya model API anahtarı gerekmez. SDK lisans kabulü defterde açıklanır. Debug APK mağaza paketi değildir.
 
-Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce görselleri içeren yedek oluştur**; yeniden kurulumdan sonra içe aktar.
+Colab her yeni ortamda farklı debug imza anahtarı oluşturabilir. Telefon eski uygulamanın üzerine APK'yı kabul etmezse **uygulamayı silmeden önce yedek oluştur**; yeniden kurulumdan sonra içe aktar.
 
 ## Yerel geliştirme
 
@@ -128,11 +136,11 @@ Script `javac`, `curl`, `unzip` ve `python3` gerektirir; lisans değişkeni veri
 
 ## Veri ve yedekler
 
-Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Kullanıcının seçtiği küçük görseller ve kaydedilen ekran görüntüleri cihazda saklanır; yeni ZIP yedeğine dahildir. Uygulama silinirse yerel dosya silinir. Menüden **Yedek oluştur** ile başka bir konuma yedek al.
+Kayıtlar ve hatırlatma tarihleri uygulamaya özel `cards.json` dosyasında saklanır. Hesap veya AI sunucusu yoktur. Küçük görseller için internet izni vardır; desteklenen sosyal bağlantılar ve görsel CDN'leri üzerinden herkese açık önizleme verisi alınır. Başlıklar, notlar ve kayıt listesi gönderilmez. Kayıt verileri cihazında kalır. Tüm içerikler ve web aramaları tarayıcıda/kaynak uygulamasında açılır. Yeni yerel görsel/video kayıtları kalıcı dosya URI'sine bağlıdır; asılları yeniden kopyalanmaz. ZIP yedeği bu kayıtların etiketlerini/notlarını/referanslarını taşır, asıl dosyaları ve erişim izinlerini taşımaz. Eski sürümde saklanan kopyalar ve seçilmiş sosyal küçük görseller ZIP'te korunur. Uygulama silinirse yerel dosya silinir. Menüden **Yedek oluştur** ile başka bir konuma yedek al.
 
 İçe aktarma mevcut kayıtları değiştirmeden yeni kayıtları ekler. Aynı bağlantı/niyet veya görsel/niyet atlanır; aynı kimlikte farklı içerik varsa yeni kimlik verilir. Geçersiz dosya mevcut kayıtları etkilemez. Sınırlar: 4 MB kayıt metadatası, 5000 kart, kart başına 30 adım; görsel içe aktarmada 12 MB, kayıtlı görselde 2 MB, cihaz videosunda 64 MB, ZIP yedeğinin toplam açılmış içeriğinde 2 GB. Okunamayan yerel dosya otomatik sıfırlanmaz; yazma işlemleri durdurulur.
 
-v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.10 kayıt biçimi **sürüm 5**'tir; görsel kimliği, etiketler ve okunan metin eklenmiştir. Sürüm 1–4 JSON yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
+v0.1'in dizi biçimi ve v0.2'nin sürüm 1 JSON biçimi okunur. v0.11 kayıt biçimi **sürüm 6**'dır; dosya URI'si ve görünen dosya adı eklenmiştir. Sürüm 1–5 yedekleri de okunur; eski uygulama yeni biçimi okuyamaz. Eski APK'ya dönüş için uygulamayı silmek veri kaybına neden olabilir; yedek ve sürüm uyumluluğunu önce kontrol et.
 
 ## Doğrulama
 
